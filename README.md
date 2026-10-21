@@ -2,7 +2,7 @@
 
 *A hands-on course with Maestro, LigPrep, Epik, Jaguar and the Python API*
 
-Five two-hour sessions on preparing structures in Maestro and LigPrep, predicting protonation
+Five sessions on preparing structures in Maestro and LigPrep, predicting protonation
 states with Epik, running and reading DFT calculations with Jaguar, deriving properties from them, and automating the work with
 the Python API and the command line. The worked example is 1,4-benzoquinone, a redox-active
 molecule whose experimental reduction potential and pKa values are known, so results can be checked
