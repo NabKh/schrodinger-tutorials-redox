@@ -1,0 +1,5 @@
+# notebooks and the E(pH) figure script (no Schrödinger licence needed)
+numpy
+matplotlib
+rdkit
+jupyter

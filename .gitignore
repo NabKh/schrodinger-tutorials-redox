@@ -1,0 +1,11 @@
+# Schrödinger scratch folders
+*_tmp/
+scratch/
+# your own outputs
+results/
+# OS files
+.DS_Store
+Thumbs.db
+# Jupyter and Python caches
+.ipynb_checkpoints/
+__pycache__/
