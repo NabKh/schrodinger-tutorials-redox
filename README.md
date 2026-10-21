@@ -7,8 +7,6 @@ states with Epik, running and reading DFT calculations with Jaguar, deriving pro
 the Python API and the command line. The worked example is 1,4-benzoquinone, a redox-active
 molecule whose experimental reduction potential and pKa values are known.
 
-The material is written for MSc and PhD students and researchers who are new to Schrödinger and to DFT.
-
 ## Sessions
 
 | session | title | content | folder | status |
