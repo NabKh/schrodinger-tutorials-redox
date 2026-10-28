@@ -54,12 +54,12 @@ Every hands-on step has the same four parts:
 
 | step | benzoquinone | AQDS, TEMPO, indigo family |
 |---|---|---|
-| S · states → inputs (`make_inputs.py`) | done, S3 | done, S7 |
-| S, A · check (`check_inputs.py`) | done, S4 | done, S7 |
-| A · read the input | done, A1 | A4 (fill in one group input) |
+| S · states → inputs (`make_inputs.py`) | in class, step S3 | in class, step S7 |
+| S, A · check (`check_inputs.py`) | in class, step S4 | in class, step S7 |
+| A · read the input | in class, step A1 | in class, step A4 (fill in one group input) |
 | B · submit | live PBE job, ladder and solvation jobs | after the session, as the project |
 | C · read an output (`summarise_job.py`) | `bq_Q.out`, `bq_QHrad.out`, `bq_QH2*.out` | after the session, on the group's own output (E) |
-| D · IR | done | not done: no gas-phase spectrum is used for them |
+| D · IR | step D, after the gas-phase job | not part of the session: no gas-phase spectrum is used for them |
 
 ## Before the session
 
@@ -78,7 +78,7 @@ Every hands-on step has the same four parts:
 | 0:30 | L · Level of theory | why B3LYP-D3/def2-TZVPD in PBF water: the ladder and the solvation comparison |
 | 0:45 | A · The input | read `bq_Q.in` keyword by keyword; fix three broken inputs; fill in your group's input |
 | 1:00 | B · Submit | submit the live job and one ladder or solvation job (benzoquinone only); monitor them |
-| 1:10 | C · The output | read a finished output while the live jobs run; rebuild G |
+| 1:10 | C · The output | read the benzoquinone production output; rebuild G |
 | 1:40 | D · IR spectrum | scale, compare with the NIST gas-phase spectrum, judge the agreement |
 | 1:55 | E · Other molecules | what changes for AQDS, TEMPO and indigo (read at home if time is short) |
 
@@ -291,7 +291,7 @@ The PBF single points must reproduce the final energies of `bq_Q.out` and `bq_Q2
 5. Validate the whole protocol against measured E° and pKa (Session 3). A systematic offset can be calibrated; a random error cannot.
 6. Count the cost. Read the wall time of the benzoquinone production jobs (`summarise_job.py`), and multiply by the number of states and conformers, and by the cost of the larger molecules, before choosing a higher rung.
 
-For this course that procedure gives B3LYP-D3/def2-TZVPD in PBF water. It is a hybrid functional (no GGA self-interaction error at this level of concern), with dispersion that costs nothing (its size for benzoquinone is measured in L1), a diffuse basis because most states are anions, and the solvation model in which Jaguar optimises routinely. Its weak point, solvation of the multiply charged ions, is measured in L4 rather than assumed away.
+For this course that procedure gives B3LYP-D3/def2-TZVPD in PBF water. It is a hybrid functional (no GGA self-interaction error at this level of concern), with dispersion that costs nothing (its size for benzoquinone is to be measured in L1), a diffuse basis because most states are anions, and the solvation model in which Jaguar optimises routinely. Its weak point, solvation of the multiply charged ions, is to be measured in L4 rather than assumed away.
 
 ## A · The input (15 min)
 
@@ -312,7 +312,7 @@ For this course that procedure gives B3LYP-D3/def2-TZVPD in PBF water. It is a h
 
 Not in the input, but set by default (Jaguar 13.2, `jaguar_keywords.xml`): `iuhf=2`, spin-unrestricted when `multip` > 1 and restricted otherwise; pseudospectral integrals (`nops=0`); and in solvent, convergence criteria scaled relative to the gas phase (the factor is printed in the output, C1). There are no k-points: a molecule is not periodic, and there are no periodic images to correct for when it is charged.
 
-**A2 · Why these choices.** The argument is in section L; here, connect each keyword to it. Diffuse functions are for the anions QH⁻ and Q²⁻, whose outer electrons are weakly bound (L3). D3 costs nothing; how much it changes a step between states, and the lowest frequency of QH₂, is measured in L1 (`bq_QH2.out` against `bq_QH2_b3lyp.out`). The optimisation is in water rather than in the gas phase because the anions change geometry in solvent, and the course uses one geometry per state (L4, L5). PBE/LACVP++\*\* in `inputs/live/` is a cheaper level for the live job only; its numbers are not used in Session 3.
+**A2 · Why these choices.** The argument is in section L; here, connect each keyword to it. Diffuse functions are for the anions QH⁻ and Q²⁻, whose outer electrons are weakly bound (L3). D3 costs nothing; how much it changes a step between states, and the lowest frequency of QH₂, is to be measured in L1 (`bq_QH2.out` against `bq_QH2_b3lyp.out`). The optimisation is in water rather than in the gas phase because the anions change geometry in solvent, and the course uses one geometry per state (L4, L5). PBE/LACVP++\*\* in `inputs/live/` is a cheaper level for the live job only; its numbers are not used in Session 3.
 
 **A3 · Three broken inputs.** Predict the problem of each file in `inputs/broken/` from the `&gen` section alone, write it in the worksheet, then run
 
@@ -485,7 +485,7 @@ Predict which one moves the B3u mode, then compare the results. If none of them 
 
 ## E · What changes for the other molecules (5 min)
 
-The steps are those of benzoquinone. What changes is listed per family: the states, what is different in the input, what to check in the output, and what a finished output looks like.
+The steps are those of benzoquinone. What changes is listed per family: the states, what is different in the input, and what to check in the output once it has run.
 
 **E1 · AQDS** (anthraquinone-2,7-disulfonate; `inputs/aqds/`, recipe `aqds.csv`)
 
