@@ -58,6 +58,11 @@ $SCHRODINGER/run scripts/summarise_job.py results/bq/bq_Q.out results/bq/bq_Q_b3
 $SCHRODINGER/run scripts/summarise_job.py results/bq/bq_QH2.out results/bq/bq_QH2_b3lyp.out
 $SCHRODINGER/run scripts/summarise_job.py results/bq/bq_QH2cis.out results/bq/bq_QH2cis_b3lyp.out
 
+# L2, L3 · the vendor's flags for the functionals and basis sets of the course (seconds, no job)
+J=$(ls -d $SCHRODINGER/mmshare-v*/data/jaguar)
+head -1 $J/levels_of_theory.csv | cut -d, -f1-10; grep -E '^(PBE|B3LYP|B3LYP-D3|M06-2X-D3|wB97X-D),' $J/levels_of_theory.csv | cut -d, -f1-10
+head -1 $J/basis_sets.csv; grep -E '^(6-31G\*\*|DEF2-TZVP|DEF2-TZVPD|LACVP\+\+\*\*),' $J/basis_sets.csv
+
 # L2 · the ladder
 $SCHRODINGER/run scripts/summarise_job.py results/level/*.out results/checks/bq_Q_gas_tzvp.out results/checks/bq_Q_gas.out
 for o in results/level/*.out results/checks/bq_Q_gas_tzvp.out results/checks/bq_Q_gas.out; do $SCHRODINGER/run scripts/ir_compare.py "$o"; done
