@@ -90,8 +90,8 @@ $f = "aqds"          # your group's family: aqds, tempo or indigo
 
 # L2, L3 · the vendor's flags for the functionals and basis sets of the course (seconds, no job)
 $JD = (Get-ChildItem "$S\mmshare-v*\data\jaguar").FullName
-Import-Csv $J\levels_of_theory.csv | Where-Object Method -in "PBE","B3LYP","B3LYP-D3","M06-2X-D3","wB97X-D" | Format-Table Method, is_recommended, is_dispersion_corrected_dft, is_hybrid_dft, is_meta_gga_dft, is_long_range_corrected_dft
-Import-Csv $J\basis_sets.csv | Where-Object full_name -in "6-31G**","DEF2-TZVP","DEF2-TZVPD","LACVP++**" | Format-Table full_name, is_diffuse, is_ecp
+Import-Csv $JD\levels_of_theory.csv | Where-Object Method -in "PBE","B3LYP","B3LYP-D3","M06-2X-D3","wB97X-D" | Format-Table Method, is_recommended, is_dispersion_corrected_dft, is_hybrid_dft, is_meta_gga_dft, is_long_range_corrected_dft
+Import-Csv $JD\basis_sets.csv | Where-Object full_name -in "6-31G**","DEF2-TZVP","DEF2-TZVPD","LACVP++**" | Format-Table full_name, is_diffuse, is_ecp
 # expected (2026-2): recommended 1 for all but PBE; diffuse 1 for DEF2-TZVPD and LACVP++** only; ECP 1 for LACVP++** only
 
 # L2 · the ladder, when the rungs are back (B5, P3, P4)
