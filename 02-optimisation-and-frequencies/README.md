@@ -181,7 +181,7 @@ job,parent,smiles,strip,charge,multiplicity
 & "$S\run" scripts\make_inputs.py inputs\recipes\bq.csv --out results\made --parents ..\01-introduction\results\bq_prepped.maegz
 ```
 
-*Expected:* one line per state, for example `bq_Q2m  from bq_QH2  H removed: __ __  12 atoms  N=  58  molchg=-2  multip=1` (the atom numbers depend on how the parent was built), and `wrote 6 inputs and states.maegz to results\made`. Copy your lines into the worksheet (S1).
+*Expected:* one line per state, for example `bq_Q2m  from bq_QH2  H removed: H9-O1 H12-O6  12 atoms  N=  58  molchg=-2  multip=1`. Each removed H is printed with the atom it was bonded to: `H9-O1` means H9, bonded to O1, so an O–H was removed and not a C–H. The atom numbers depend on how the parent was built, and `wrote 6 inputs and states.maegz to results\made`. Copy your lines into the worksheet (S1).
 
 *Why:* for each row the script copies the parent, deletes the listed hydrogens, checks that the electron count fits the multiplicity, writes `results\made\<job>.in` with the `&gen` keywords of the production level (A1), adds `iuhf=1` (unrestricted) to every state with multiplicity > 1, and appends the structure to `results\made\states.maegz`. `molchg` and `multip` are set from the recipe *after* the structure: the Schrödinger API otherwise takes the charge from the formal charges of the atoms, and a deleted H leaves the O without a formal charge, so QH⁻ would silently become neutral (`setStructure`, `schrodinger/application/jaguar/input.py`). The same keywords at another level: `--level live` (PBE/LACVP++\*\*) or `--level gas`; any single keyword with `--set`, for example `--set basis=6-31G**`; and `--suffix _x` appended to every job name. If the script stops with "electrons cannot have multiplicity", the recipe row is wrong, not the script.
 
@@ -196,7 +196,7 @@ job,parent,smiles,strip,charge,multiplicity
 code --diff results\made\bq_Q2m.in inputs\bq\bq_Q2m.in
 ```
 
-Then open `results\made\states.maegz` in Maestro (File > Import Structures) and look at each state.
+`results\made\states.maegz` holds the six structures for Maestro (File > Import Structures): instructor demo, not needed for the check.
 
 *Expected:* six `ok` lines. In the diff (or, without VS Code on the PATH, `Compare-Object (Get-Content results\made\bq_Q2m.in) (Get-Content inputs\bq\bq_Q2m.in)`):
 
@@ -204,7 +204,7 @@ Then open `results\made\states.maegz` in Maestro (File > Import Structures) and 
 - `MAEFILE: bq_Q2m.mae` only in your file: the API also writes `results\made\bq_Q2m.mae`, the same structure as a Maestro file, and points to it. Keep the `.mae` next to its `.in`; when an input is copied elsewhere, copy both.
 - Different coordinates and atom names (`C2`, `O6`, `H9` against `C1`, `O2`, `H1`): every 3D build is a new start, and the optimisation should take both to the same minimum.
 
-In the coordinates, check that the H atoms left in Q²⁻ are the C–H ones: each is about 1.08 Å from a ring C (for example H9 to C3 in `results\made\bq_Q2m.in`). An O–H would be about 0.97 Å from an O. In Maestro: is the right H gone, is the formula right?
+In the coordinates, check that the H atoms left in Q²⁻ are the C–H ones: each is about 1.08 Å from a ring C (for example H9 to C3 in `results\made\bq_Q2m.in`). An O–H would be about 0.97 Å from an O. Which H was removed is already in the S3 output (`H9-O1`).
 
 *Why:* `check_inputs.py` compares every input with `states.csv` (A3); the diff shows that the inputs given in `inputs/bq/` are made the same way, and that only the start differs. The optimisation should take both starts to the same minimum.
 

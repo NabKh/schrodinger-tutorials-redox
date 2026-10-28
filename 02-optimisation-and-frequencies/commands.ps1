@@ -64,12 +64,13 @@ Pop-Location
 & "$S\run" scripts\make_inputs.py inputs\recipes\bq.csv --out results\made
 #   or from the LigPrep parents:
 #   & "$S\run" scripts\make_inputs.py inputs\recipes\bq.csv --out results\made --parents ..\01-introduction\results\bq_prepped.maegz
-# expected: one line per state, then "wrote 6 inputs and states.maegz to results\made"
+# expected: one line per state, e.g. H removed: H9-O1 H12-O6 (each removed H and the atom it was bonded to),
+#   then "wrote 6 inputs and states.maegz to results\made"
 
 # S4 · check them, compare with the given inputs, look at them in Maestro
 & "$S\run" scripts\check_inputs.py results\made
 code --diff results\made\bq_Q2m.in inputs\bq\bq_Q2m.in
-# Maestro: File > Import Structures > results\made\states.maegz
+# (instructor demo only) Maestro: File > Import Structures > results\made\states.maegz
 
 # S5 · the input written from the Maestro panel (gear > Write) against the script's
 #   code --diff <written file> results\made\bq_QHm.in

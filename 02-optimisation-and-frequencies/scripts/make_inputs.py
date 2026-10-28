@@ -127,6 +127,10 @@ def main():
         charge, mult = int(row["charge"]), int(row["multiplicity"])
         st = parents[row["parent"]].copy()
         stripped = hydrogens_to_strip(st, row["strip"])
+        # each removed H with the atom it was bonded to, e.g. H9-O1: shows that an O-H, not a C-H, was removed
+        removed = (
+            " ".join(f"H{i}-{b.element}{b.index}" for i in stripped for b in st.atom[i].bonded_atoms) or "-"
+        )
         st.deleteAtoms(stripped)
         st.title = job
         st.property["i_m_Spin_multiplicity"] = mult
@@ -142,9 +146,8 @@ def main():
             jag.setValues(dict(iuhf=1))
         jag.saveAs(str(out / f"{job}.in"))
         writer.append(st)
-        removed = " ".join(str(i) for i in stripped) or "-"
         print(
-            f"{job:16s} from {row['parent']:10s} H removed: {removed:8s} {st.atom_total:3d} atoms  N={n_el:4d}  molchg={charge:+d}  multip={mult}"
+            f"{job:16s} from {row['parent']:10s} H removed: {removed:14s} {st.atom_total:3d} atoms  N={n_el:4d}  molchg={charge:+d}  multip={mult}"
         )
     writer.close()
     print(f"wrote {len(rows)} inputs and states.maegz to {out}")
