@@ -17,6 +17,8 @@ Fill in the predictions before running anything, then the observations.
 
 Why is Q²⁻ made from QH₂ and not from Q, although it has the same atoms as Q?
 
+**S7 · The other families.** For your group's family, from the `check_inputs.py` output: which states are open shell, and which two states have the same atoms but different N?
+
 **S5.** The input you wrote from the Maestro panel (gear > Write) against `results\made\bq_QHm.in`: which lines differ, and does `check_inputs.py` pass it?
 
 ## L · Level of theory
@@ -81,7 +83,6 @@ Why does an electron count catch a wrong spin but not every wrong charge?
 | job | job ID | host | submitted at | finished at |
 |---|---|---|---|---|
 | `bq_Q_pbe` or `bq_QH2_pbe` | | | | |
-| group job | | | | |
 
 ## C · The output (`bq_Q.out`)
 
@@ -101,7 +102,7 @@ Why does an electron count catch a wrong spin but not every wrong charge?
 | Gtot printed (Eh) | | | |
 | G at 1 mol/L (Eh) | | | |
 
-**C4.** Benzoquinone has no mode below 100 cm⁻¹. Name a molecule of this course where the quasi-harmonic floor will change G, and say why.
+**C4.** No reference output of this course has a mode below 100 cm⁻¹ (`bq_Q` 232.7, `tp_TH` 182.6, `di_D` 116.5 cm⁻¹). What kind of motion would produce one, and what would the floor then change in G: the enthalpy, the entropy, or both?
 
 **C5 · QH₂ conformers.**
 

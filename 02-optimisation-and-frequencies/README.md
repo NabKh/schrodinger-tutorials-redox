@@ -28,7 +28,7 @@ The session is hands-on throughout: every step is done together, in pairs, on th
 | `inputs/solvation/` | L: Q and Q²⁻ single points at one geometry with no solvent, PBF, SMD and C-PCM |
 | `inputs/bq/` | A, C: benzoquinone states at the production level, B3LYP-D3/def2-TZVPD in PBF water; `_b3lyp` without D3 |
 | `inputs/live/bq_Q_pbe.in`, `bq_QH2_pbe.in` | B: the jobs submitted during the session (PBE/LACVP++\*\*, PBF water) |
-| `inputs/groups/` | A4, B4: one input per group with `molchg=??` and `multip=??` |
+| `inputs/groups/` | A4: one input per group with `molchg=??` and `multip=??` |
 | `inputs/broken/` | A3: three inputs with an error each |
 | `inputs/gas/` | D: gas-phase Q and QH₂ for the IR comparison |
 | `inputs/checks/` | D4: one-factor checks of the soft modes |
@@ -40,6 +40,26 @@ The session is hands-on throughout: every step is done together, in pairs, on th
 | `commands.ps1` (Windows), `commands.sh` (Linux) | S, L, B, C, D: every command of the session |
 
 `make_inputs.py` uses the Schrödinger Python API and must be run with the suite's Python, `& "$S\run" scripts\make_inputs.py ...`. The other scripts need only Python 3 with `numpy` (and `matplotlib` for the plot); they run with the suite's Python, `& "$S\run" scripts\<name>.py ...`, or any Python with those packages. Reference outputs of the production jobs are handed out by the instructor at the start of section C; they are not in the repository.
+
+## How each step is written
+
+Every hands-on step has the same four parts:
+
+- **Input**: the file(s) it reads, with their path in this folder;
+- **Command**: what you type, in PowerShell or the VS Code terminal (the same lines are in `commands.ps1`, under the section name of the step);
+- **Expected**: what you should see. Numbers marked with a file name were read from that output; anything not yet run on the workstation says so;
+- **Why**: what the step tests, and what you do if the result is not the expected one.
+
+**Heavy for one molecule, light for all.** Optimisation + frequency jobs at the production level take hours (wall times from the reference outputs: 1.0–1.3 h per benzoquinone state, 6.7–7.7 h per TEMPO state, 23.4 h for dehydroindigo). They are run for benzoquinone only. Everything that costs seconds is done for all four families, so that each student has seen the states, inputs and outputs of the molecule of their project before starting it.
+
+| step | benzoquinone | AQDS, TEMPO, indigo family |
+|---|---|---|
+| S · states → inputs (`make_inputs.py`) | done, S3 | done, S7 |
+| S, A · check (`check_inputs.py`) | done, S4 | done, S7 |
+| A · read the input | done, A1 | A4 (fill in one group input) |
+| B · submit | live PBE job, ladder and solvation jobs | after the session, as the project |
+| C · read an output (`summarise_job.py`) | `bq_Q.out`, `bq_QHrad.out`, `bq_QH2*.out` | `tp_TH.out`, `di_D.out` (E); no AQDS output exists yet |
+| D · IR | done | not done: no gas-phase spectrum is used for them |
 
 ## Before the session
 
@@ -57,7 +77,7 @@ The session is hands-on throughout: every step is done together, in pairs, on th
 | 0:05 | S · States → inputs | one molecule, all its states, one input each: by script, then the same in Maestro |
 | 0:30 | L · Level of theory | why B3LYP-D3/def2-TZVPD in PBF water: the ladder and the solvation comparison |
 | 0:45 | A · The input | read `bq_Q.in` keyword by keyword; fix three broken inputs; fill in your group's input |
-| 1:00 | B · Submit | submit the live job, your group's job and one ladder or solvation job; monitor them |
+| 1:00 | B · Submit | submit the live job and one ladder or solvation job (benzoquinone only); monitor them |
 | 1:10 | C · The output | read a finished output while the live jobs run; rebuild G |
 | 1:40 | D · IR spectrum | scale, compare with the NIST gas-phase spectrum, judge the agreement |
 | 1:55 | E · Other molecules | what changes for AQDS, TEMPO and indigo (read at home if time is short) |
@@ -162,6 +182,50 @@ The GUI is good for one state and for looking; the script is reproducible, and i
 | AQDS, `aqds.csv` | `aq_Q` (−2), `aq_QH2` (−2) | Q•⁻ from Q; QH•, QH⁻ at O9 or O10, and Q²⁻, from QH₂ | the two SO₃⁻ give −2 to every state. `O:1` and `O:2` are the first and second O–H in atom order: check in `states.maegz` which one is at C9 and which at C10, and rename if needed. The 2,7-substitution makes the two sites different, so both are computed. |
 | TEMPO, `tempo.csv` | `tp_Tp` (oxoammonium, +1), `tp_TH` (hydroxylamine), `tp_TH2p` (+1) | T• and T⁻ from TH, by removing the O–H | T• is a doublet with 87 electrons; the oxoammonium N=O⁺ is a closed shell. |
 | indigo, `indigo.csv` | `di_D`, `di_I`, `di_L` (0, 2 and 4 N–H/O–H hydrogens) | D•⁻, D²⁻ from D; DH•, I⁻ (N–H removed) and I•⁻ from I; LH₃•, L⁻, L²⁻ (O–H removed) from L | which H is removed is a choice of tautomer: L⁻ with O⁻ and with N⁻ are different states with different G. The recipes take O–H for leucoindigo and N–H for indigo; the other choice is a homework question. |
+
+**S7 · The light steps for every family** (commands S7). No job is submitted; each command takes seconds.
+
+*Input:* `inputs/recipes/aqds.csv`, `tempo.csv`, `indigo.csv`; the given inputs in `inputs/aqds/`, `inputs/tempo/`, `inputs/indigo/`.
+
+*Command:*
+
+```powershell
+foreach ($f in "aqds", "tempo", "indigo") {
+    & "$S\run" scripts\make_inputs.py inputs\recipes\$f.csv --out results\made_$f
+    & "$S\run" scripts\check_inputs.py results\made_$f inputs\$f
+}
+```
+
+*Expected* for the given inputs (output of `check_inputs.py` on `inputs\aqds`, `inputs\tempo` and `inputs\indigo`; the `results\made_*` lines should give the same atoms, N, `molchg` and `multip`, and are filled in after the workstation run):
+
+```
+aq_Q               ok      30 atoms  N= 188  molchg=-2  multip=1  closed shell
+aq_Q2m             ok      30 atoms  N= 190  molchg=-4  multip=1  closed shell
+aq_QH2             ok      32 atoms  N= 190  molchg=-2  multip=1  closed shell
+aq_QHm10           ok      31 atoms  N= 190  molchg=-3  multip=1  closed shell
+aq_QHm9            ok      31 atoms  N= 190  molchg=-3  multip=1  closed shell
+aq_QHrad10         ok      31 atoms  N= 189  molchg=-2  multip=2  open shell, unrestricted (iuhf default)
+aq_QHrad9          ok      31 atoms  N= 189  molchg=-2  multip=2  open shell, unrestricted (iuhf default)
+aq_Qradm           ok      30 atoms  N= 189  molchg=-3  multip=2  open shell, unrestricted (iuhf default)
+tp_T               ok      29 atoms  N=  87  molchg=+0  multip=2  open shell, unrestricted (iuhf default)
+tp_TH              ok      30 atoms  N=  88  molchg=+0  multip=1  closed shell
+tp_TH2p            ok      31 atoms  N=  88  molchg=+1  multip=1  closed shell
+tp_Tm              ok      29 atoms  N=  88  molchg=-1  multip=1  closed shell
+tp_Tp              ok      29 atoms  N=  86  molchg=+1  multip=1  closed shell
+di_D               ok      28 atoms  N= 134  molchg=+0  multip=1  closed shell
+di_D2m             ok      28 atoms  N= 136  molchg=-2  multip=1  closed shell
+di_DHrad           ok      29 atoms  N= 135  molchg=+0  multip=2  open shell, unrestricted (iuhf default)
+di_Dradm           ok      28 atoms  N= 135  molchg=-1  multip=2  open shell, unrestricted (iuhf default)
+di_I               ok      30 atoms  N= 136  molchg=+0  multip=1  closed shell
+di_Im              ok      29 atoms  N= 136  molchg=-1  multip=1  closed shell
+di_Iradm           ok      30 atoms  N= 137  molchg=-1  multip=2  open shell, unrestricted (iuhf default)
+di_L               ok      32 atoms  N= 138  molchg=+0  multip=1  closed shell
+di_L2m             ok      30 atoms  N= 138  molchg=-2  multip=1  closed shell
+di_LH3rad          ok      31 atoms  N= 137  molchg=+0  multip=2  open shell, unrestricted (iuhf default)
+di_Lm              ok      31 atoms  N= 138  molchg=-1  multip=1  closed shell
+```
+
+*Why:* read the table as the S1 grid of each family. Every proton removed lowers the atom count by one and the charge by one at the same N; every electron added raises N by one at the same atoms; odd N is a doublet. Two cases to look at in Maestro (`results\made_*\states.maegz`): the AQDS states at O9 and O10 (S6), and the four AQDS states with charge −3 and −4, which are the hardest to describe (E).
 
 ## L · Choosing the level of theory, from cheap to expensive (15 min)
 
@@ -281,11 +345,19 @@ See `commands.ps1`, sections B1 to B4; the Linux equivalents are in `commands.sh
 
 **B2 · Live job.** Each pair submits one of the two live inputs, so that both are running:
 
+*Input:* `inputs/live/bq_Q_pbe.in` or `bq_QH2_pbe.in` (PBE/LACVP++\*\*, PBF water; checked in A3 like the others).
+
+*Command:* the input is copied into `results\live` first and submitted from there, so that the output files land in `results\live` and not among the inputs:
+
 ```powershell
-& "$S\jaguar" run inputs\live\bq_Q_pbe.in -HOST <host> -PARALLEL 4
+New-Item -ItemType Directory -Force results\live | Out-Null
+Copy-Item inputs\live\*.in results\live\
+Push-Location results\live
+& "$S\jaguar" run bq_Q_pbe.in -HOST <host> -PARALLEL 4
+Pop-Location
 ```
 
-The command returns at once with a job ID; the output comes back to the folder you submitted from when the job ends. Do not submit the same file twice: the second job overwrites the first one's output.
+*Expected:* a `JobId:` line; the command returns at once. When the job ends, `bq_Q_pbe.out`, `.log` and `.mae` come back to `results\live`. Do not submit the same file twice from the same folder: the second job overwrites the first one's output.
 
 **B3 · Monitor.**
 
@@ -294,9 +366,9 @@ The command returns at once with a job ID; the output comes back to the folder y
 & "$S\jsc" tail-file --name bq_Q_pbe.log <jobid>
 ```
 
-The `.log` shows the SCF and geometry iterations as they happen; the `.out` is complete only at the end.
+*Expected:* the job in `jsc list`, with its status (UNVERIFIED wording in 2026-2: running, then completed). The `.log` shows the SCF and geometry iterations as they happen; the `.out` is complete only at the end. A job that ends with no `.out`: read the `.log` and submit again (B1).
 
-**B4 · Group job.** Submit your group's input from A4 the same way. These are larger molecules; they will not finish during the session. You will read them in the homework.
+**B4 · The other families: not submitted in the session.** A group input at the production level takes 7 h (TEMPO) to 23 h (indigo family) per state (reference outputs, E); the PBE versions in `inputs/groups/` are cheaper, but their cost has not been measured. Your group's state is submitted after the session, as the start of the project, with the same three lines as B2 (commands B4).
 
 **B5 · One ladder or solvation job per pair** (commands B5). The instructor assigns them: the two cheap rungs `inputs/levels/bq_Q_pbe_631g.in` and `bq_Q_b3lyp_631g.in`, and the eight single points in `inputs/solvation/`. The M06-2X and ωB97X-D rungs at def2-TZVPD are run by the instructor before the session. The results go into the L tables of the worksheet at the start of Session 3.
 
@@ -308,7 +380,36 @@ While the live jobs run, work on the finished production output `bq_Q.out` (B3LY
 & "$S\run" scripts\summarise_job.py reference\bq_Q.out
 ```
 
-then find each line of the summary in the `.out` yourself (search in VS Code with Ctrl+F).
+*Expected* (`bq_Q.out`, run on the reference output):
+
+```
+  job                              bq_Q
+  stoichiometry                    C6H4O2
+  level                            DFT(b3lyp-d3)
+  basis                            def2-tzvpd
+  solvent                          water
+  charge / multiplicity            0 / 1
+  electrons                        56
+  <S**2> (ideal S(S+1))            closed shell
+  point group (used)               D2h (D2h)
+  smallest eigenvalue of S         8.388E-07
+  geometry steps                   9
+  optimisation converged           yes
+  final energy E (Eh)              -381.62536957481
+  vibrations (expected 3N-6)       30 (30)
+  imaginary frequencies            0
+  lowest three (cm-1)              232.7 B3u, 349.4 B2g, 391.7 Au
+  quasi-harmonic floor             100.00 cm^-1
+  rotational symmetry number       4
+  T, P                             T =   298.15 K, P = 1.00E+00 atm
+  ZPE (kcal/mol)                   54.567
+  G_thermal from table (kcal/mol)  -17.758
+  Gtot printed (Eh)                -381.566711
+  wall time (h)                    1.12
+  G = E + (ZPE + G_table)/627.5095 -381.566711 Eh (differs from printed by +0.000 kcal/mol)
+```
+
+Then find each line of the summary in the `.out` yourself (search in VS Code with Ctrl+F): C1 to C5 go through them in order. The script is a shortcut for reading, not a replacement: you must be able to find every number in the output.
 
 **C1 · Did the optimisation converge?** Search `Geometry optimization complete`. Just above it, the last step:
 
@@ -353,7 +454,7 @@ Then read the three lines above the vibrational temperatures:
   Frequencies will be adjusted to a minimum value of  100.00 cm^-1.
 ```
 
-Jaguar 2026-2 treats every mode below 100 cm⁻¹ as if it were at 100 cm⁻¹ when it computes the vibrational entropy (a correction of the Session 1 slides, which say harmonic). Low modes give the largest entropy and are the least harmonic; this avoids an entropy that grows without bound as a frequency goes to zero. Benzoquinone has no mode below 100 cm⁻¹, so here it changes nothing; for TEMPO's methyl rotors and the sulfonate rotations of AQDS it does. Finally `rotational symmetry number: 4` (D2h): σ enters the rotational entropy as −R ln σ. Do not also count symmetry-equivalent structures by hand.
+Jaguar 2026-2 treats every mode below 100 cm⁻¹ as if it were at 100 cm⁻¹ when it computes the vibrational entropy (a correction of the Session 1 slides, which say harmonic). Low modes give the largest entropy and are the least harmonic; this avoids an entropy that grows without bound as a frequency goes to zero. Benzoquinone has no mode below 100 cm⁻¹, so here it changes nothing. Neither do the other reference outputs: their lowest modes are 182.6 cm⁻¹ (`tp_TH.out`) and 116.5 cm⁻¹ (`di_D.out`). The floor will matter for a molecule with a mode below 100 cm⁻¹, for example a freely rotating group; whether the AQDS sulfonate rotations are such modes is not known until an AQDS output exists. Finally `rotational symmetry number: 4` (D2h): σ enters the rotational entropy as −R ln σ. Do not also count symmetry-equivalent structures by hand.
 
 **C5 · Two conformers of QH₂.** `bq_QH2.out` (trans O–H, C2h) and `bq_QH2cis.out` (cis, C2v):
 
@@ -400,15 +501,32 @@ Predict which one moves the B3u mode, then compare the results with the instruct
 
 ## E · What changes for the other molecules (5 min)
 
-| family | what to watch |
-|---|---|
-| **AQDS** (anthraquinone-2,7-disulfonate) | Charges −2 to −4: diffuse functions and solvent are essential; a gas-phase calculation of the −3 and −4 ions is meaningless (UNVERIFIED for this molecule: the extra electrons may not be bound without solvent). Each SO₃⁻ group can rotate: all inputs here start from the same orientation (one O of each group perpendicular to the ring, on opposite faces); a different orientation is a different conformer, with a different G. 30 atoms with three-row S atoms: expect at least the 6.7 h of TEMPO-H (30 atoms, `tp_TH.out`) per job. |
-| **TEMPO** | The radical is the stable form: check ⟨S²⟩. The ring is puckered (Cs), and the four methyl groups give soft rotor modes, where the quasi-harmonic treatment matters. TEMPO⁻ (`tp_Tm.in`, the aminoxide anion) completes the grid. 6.7 h (`tp_TH.out`) to 7.7 h (`tp_TH2p.out`) per job. |
-| **Indigo family** | Dehydroindigo → indigo → leucoindigo adds 2 H and 2 e⁻ at each step. Intramolecular N–H···O=C hydrogen bonds fix the trans (anti) form of indigo; leucoindigo can rotate about the central C–C bond: `di_Lm` and `di_LH3rad` start syn, the others anti, so compare both. Dehydroindigo has a small HOMO–LUMO gap (2.55 eV, `di_D.out`, HOMO and LUMO energies): check the stability of the closed-shell solution. Its smallest overlap eigenvalue is negative (−1.5 × 10⁻⁸): def2-TZVPD is numerically linearly dependent for this molecule, and the basis should be checked before production. About 23 h per job. |
+The steps are those of benzoquinone. What changes is listed per family: the states, what is different in the input, what to check in the output, and what a finished output looks like.
+
+**E1 · AQDS** (anthraquinone-2,7-disulfonate; `inputs/aqds/`, recipe `aqds.csv`)
+
+- *States:* the benzoquinone grid with charge −2 added to every state (the two SO₃⁻), from −2 (Q, QH₂, QH•) to −4 (Q²⁻); QH• and QH⁻ twice, at O9 and at O10 (S7).
+- *Input:* the same `&gen` as benzoquinone. Diffuse functions and solvent are essential: UNVERIFIED for this molecule, a gas-phase −3 or −4 ion may not bind its extra electrons at all. Each SO₃⁻ group can rotate: all inputs start from the same orientation (one O of each group perpendicular to the ring, on opposite faces); another orientation is another conformer, with another G.
+- *Check in the output:* as for benzoquinone, plus the smallest eigenvalue of S (30 atoms, a diffuse basis, and anions) and the lowest modes (the sulfonate rotations: above or below the 100 cm⁻¹ floor?).
+- *Expected:* no AQDS reference output exists yet. Cost: at least that of TEMPO-H, 6.7 h (also 30 atoms, `tp_TH.out`), more with the S atoms.
+
+**E2 · TEMPO** (`inputs/tempo/`, recipe `tempo.csv`)
+
+- *States:* the oxoammonium T⁺ (`tp_Tp`), the nitroxide radical T• (`tp_T`, the stable form), the aminoxide anion T⁻ (`tp_Tm`), the hydroxylamine TH (`tp_TH`) and its protonated form TH₂⁺ (`tp_TH2p`). One-electron steps T⁺/T• and T•/T⁻; T⁻ + H⁺ → TH.
+- *Input:* the same `&gen`; T• is a doublet (87 electrons) and is computed unrestricted by default.
+- *Check in the output:* ⟨S²⟩ of T•; the ring is puckered (Cs), so a planar start or a symmetry imposed by hand would be wrong.
+- *Expected* (`tp_TH.out`): 30 atoms, 88 electrons, Cs, 17 geometry steps, converged, 84 frequencies, 0 imaginary, lowest 182.6 (A′), 193.6 (A″), 232.2 cm⁻¹ (A″), smallest eigenvalue of S 1.430 × 10⁻⁶, E = −484.557912 Eh, ZPE 173.342 kcal/mol, G_table −21.573 kcal/mol, Gtot −484.316052 Eh, 6.66 h. `tp_TH2p.out` took 7.73 h. No mode is below 100 cm⁻¹, so the methyl rotors do not reach the quasi-harmonic floor here.
+
+**E3 · Indigo family** (`inputs/indigo/`, recipe `indigo.csv`)
+
+- *States:* dehydroindigo D → indigo I → leucoindigo L, each step adding 2 H and 2 e⁻, with the anions and radicals between them (12 states, S7). Which H is removed is a choice of tautomer: the recipes take N–H for indigo and O–H for leucoindigo (S6).
+- *Input:* the same `&gen`. Intramolecular N–H···O=C hydrogen bonds fix the trans (anti) form of indigo; leucoindigo can rotate about the central C–C bond: `di_Lm` and `di_LH3rad` start syn, the others anti, so both should be compared.
+- *Check in the output:* the HOMO–LUMO gap of dehydroindigo is small, 2.55 eV (`di_D.out`, HOMO and LUMO energies), so the stability of the closed-shell solution should be checked. The smallest eigenvalue of S is 2.5 × 10⁻⁷ at the first geometry and −2.4 × 10⁻⁸ at the last (`di_D.out`): def2-TZVPD is numerically linearly dependent for this molecule, and the basis should be checked before production.
+- *Expected* (`di_D.out`): 28 atoms, 134 electrons, C2h (σ = 2), 13 geometry steps, converged, 78 frequencies, 0 imaginary, lowest 116.5 (Au), 142.8 (Bu), 161.6 cm⁻¹ (Au), E = −874.790743 Eh, ZPE 129.446 kcal/mol, G_table −23.524 kcal/mol, Gtot −874.621945 Eh, 23.37 h.
 
 ## Homework
 
-1. Read your group's output from B4 with `summarise_job.py`: converged? minimum? ⟨S²⟩? Rebuild G by hand as in C4 and add 1.89 kcal/mol.
+1. Run `summarise_job.py` on `tp_TH.out` and `di_D.out` (from the instructor) and check every line against the E2 and E3 expected values; rebuild G by hand as in C4 and add 1.89 kcal/mol. The same reading, on your group's own output, is the first step of the project (B4).
 2. The live PBE job against the production job: which numbers change by more than 1 kcal/mol, and which would matter for a pKa?
 3. The worksheet questions of D3, E and L.
 4. Make the states of your group's family with `make_inputs.py` and its recipe, and check them with `check_inputs.py`. For leucoindigo, write the recipe line for L⁻ with the N–H removed instead of the O–H.

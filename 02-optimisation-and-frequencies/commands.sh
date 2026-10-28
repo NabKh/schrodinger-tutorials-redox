@@ -14,6 +14,12 @@ $SCHRODINGER/run scripts/make_inputs.py inputs/recipes/bq.csv --out results/made
 $SCHRODINGER/run scripts/check_inputs.py results/made
 diff results/made/bq_Q2m.in inputs/bq/bq_Q2m.in
 
+# S7 · the light steps for the other families: states, inputs and checks, no job
+for f in aqds tempo indigo; do
+  $SCHRODINGER/run scripts/make_inputs.py inputs/recipes/$f.csv --out results/made_$f
+  $SCHRODINGER/run scripts/check_inputs.py results/made_$f inputs/$f
+done
+
 # L · ladder and solvation inputs
 $SCHRODINGER/run scripts/check_inputs.py inputs/levels
 $SCHRODINGER/run scripts/check_inputs.py inputs/solvation

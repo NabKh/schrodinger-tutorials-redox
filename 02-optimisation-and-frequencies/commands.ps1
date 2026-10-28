@@ -25,6 +25,12 @@ New-Item -ItemType Directory -Force results | Out-Null   # outputs of this sessi
 code --diff results\made\bq_Q2m.in inputs\bq\bq_Q2m.in
 # Maestro: File > Import Structures > results\made\states.maegz
 
+# S7 · the light steps for the other families: states, inputs and checks, no job
+foreach ($f in "aqds", "tempo", "indigo") {
+    & "$S\run" scripts\make_inputs.py inputs\recipes\$f.csv --out results\made_$f
+    & "$S\run" scripts\check_inputs.py results\made_$f inputs\$f
+}
+
 # L · the ladder and solvation inputs are checked like any other
 & "$S\run" scripts\check_inputs.py inputs\levels
 & "$S\run" scripts\check_inputs.py inputs\solvation
@@ -61,7 +67,7 @@ Pop-Location
 & "$S\jsc" info <jobid>
 & "$S\jsc" tail-file --name bq_Q_pbe.log <jobid>
 
-# B4 · group job, the same way
+# B4 · group job: after the session, as the start of the project (hours per state)
 New-Item -ItemType Directory -Force results\group | Out-Null
 Copy-Item inputs\groups\<file>.in results\group\
 Push-Location results\group
