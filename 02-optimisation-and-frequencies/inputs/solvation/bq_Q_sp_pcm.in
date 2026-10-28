@@ -3,6 +3,7 @@ entry_name: bq_Q_sp_pcm
 dftname=B3LYP-D3
 basis=def2-TZVPD
 isolv=7
+pcm_model=cpcm
 solvent=water
 igeopt=0
 molchg=0

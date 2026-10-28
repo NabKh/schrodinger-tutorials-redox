@@ -1,7 +1,7 @@
 job,parent,smiles,strip,charge,multiplicity
 di_D,di_D,O=C1C(C2=Nc3ccccc3C2=O)=Nc2ccccc21,,0,1
 di_Dradm,di_D,O=C1C(C2=Nc3ccccc3C2=O)=Nc2ccccc21,,-1,2
-di_D2m,di_D,O=C1C(C2=Nc3ccccc3C2=O)=Nc2ccccc21,,-2,1
+di_D2m,di_I,O=C1/C(=C2\Nc3ccccc3C2=O)Nc2ccccc21,N N,-2,1
 di_DHrad,di_I,O=C1/C(=C2\Nc3ccccc3C2=O)Nc2ccccc21,N,0,2
 di_Im,di_I,O=C1/C(=C2\Nc3ccccc3C2=O)Nc2ccccc21,N,-1,1
 di_I,di_I,O=C1/C(=C2\Nc3ccccc3C2=O)Nc2ccccc21,,0,1

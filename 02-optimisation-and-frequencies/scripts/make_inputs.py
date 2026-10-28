@@ -16,8 +16,10 @@ Recipe columns (one row per state):
   multiplicity  multip of the state
 
 The atoms of a state are those of its parent minus the stripped hydrogens; the electrons are set
-by the charge alone. Q, Q*- and Q2- therefore share the coordinates of Q, and the optimisation
-moves each of them to its own minimum.
+by the charge alone. Q*- shares the coordinates of Q; Q2- is made from QH2 minus both O-H
+hydrogens (bq.csv), so it starts from the hydroquinone ring. The optimisation moves each state to
+its own minimum. Every state with multiplicity > 1 gets iuhf=1 (unrestricted).
+A SMILES carries no conformation (syn/anti, sulfonate orientation): look at states.maegz.
 """
 
 import argparse
@@ -30,13 +32,27 @@ from schrodinger.application.jaguar.input import JaguarInput
 LEVELS = {
     # B3LYP-D3/def2-TZVPD in PBF water: the inputs in inputs/bq
     "production": dict(
-        dftname="B3LYP-D3", basis="def2-TZVPD", isolv=2, solvent="water", nogas=2,
-        igeopt=1, ifreq=1, irder=1, maxitg=200,
+        dftname="B3LYP-D3",
+        basis="def2-TZVPD",
+        isolv=2,
+        solvent="water",
+        nogas=2,
+        igeopt=1,
+        ifreq=1,
+        irder=1,
+        maxitg=200,
     ),
     # PBE/LACVP++** in PBF water: the inputs in inputs/live
     "live": dict(
-        dftname="PBE", basis="LACVP++**", isolv=2, solvent="water", nogas=2,
-        igeopt=1, ifreq=1, irder=1, maxitg=200,
+        dftname="PBE",
+        basis="LACVP++**",
+        isolv=2,
+        solvent="water",
+        nogas=2,
+        igeopt=1,
+        ifreq=1,
+        irder=1,
+        maxitg=200,
     ),
     # B3LYP-D3/def2-TZVPD in the gas phase: the inputs in inputs/gas
     "gas": dict(dftname="B3LYP-D3", basis="def2-TZVPD", igeopt=1, ifreq=1, irder=1, maxitg=200),
@@ -45,7 +61,12 @@ LEVELS = {
 
 def read_parents(rows, parents_file):
     if parents_file:
-        return {st.title: st for st in structure.StructureReader(parents_file)}
+        parents = {}
+        for st in structure.StructureReader(parents_file):
+            if st.title in parents:
+                raise SystemExit(f"{parents_file}: two entries titled {st.title}; keep one (LigPrep -s 1)")
+            parents[st.title] = st
+        return parents
     parents = {}
     for row in rows:
         if row["parent"] not in parents:
@@ -63,12 +84,17 @@ def hydrogens_to_strip(st, strip):
         else:
             element, _, nth = token.partition(":")
             candidates = [
-                a.index
-                for a in st.atom
-                if a.element == "H" and any(b.element == element for b in a.bonded_atoms)
+                a.index for a in st.atom if a.element == "H" and any(b.element == element for b in a.bonded_atoms)
             ]
             free = [i for i in candidates if i not in chosen]
-            index = candidates[int(nth) - 1] if nth else free[0]
+            if nth:
+                index = candidates[int(nth) - 1]
+            elif free:
+                index = free[0]
+            else:
+                raise SystemExit(f"{st.title}: no H on {element} left for token {token!r}")
+        if index in chosen:
+            raise SystemExit(f"{st.title}: atom {index} listed twice in strip {strip!r}")
         if st.atom[index].element != "H":
             raise SystemExit(f"{st.title}: atom {index} is {st.atom[index].element}, not H")
         chosen.append(index)
@@ -112,12 +138,16 @@ def main():
         jag = JaguarInput(structure=st, name=job)
         jag.setValues(genkeys)
         jag.setValues(dict(molchg=charge, multip=mult))  # after the structure, which sets them from formal charges
+        if mult > 1:
+            jag.setValues(dict(iuhf=1))
         jag.saveAs(str(out / f"{job}.in"))
         writer.append(st)
         removed = " ".join(str(i) for i in stripped) or "-"
-        print(f"{job:16s} from {row['parent']:10s} H removed: {removed:8s} {st.atom_total:3d} atoms  N={n_el:4d}  molchg={charge:+d}  multip={mult}")
+        print(
+            f"{job:16s} from {row['parent']:10s} H removed: {removed:8s} {st.atom_total:3d} atoms  N={n_el:4d}  molchg={charge:+d}  multip={mult}"
+        )
     writer.close()
-    print(f"wrote {len(rows)} inputs and states.maegz (open it in Maestro) to {out}")
+    print(f"wrote {len(rows)} inputs and states.maegz to {out}")
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-job,family,charge,multiplicity,added_H,added_e,expected_point_group,note
+job,family,charge,multiplicity,added_H,added_e,predicted_point_group,note
 bq_Q,benzoquinone,0,1,0,0,D2h,quinone
 bq_Qradm,benzoquinone,-1,2,0,1,D2h,semiquinone radical anion
 bq_QHrad,benzoquinone,0,2,1,1,Cs,neutral semiquinone radical
@@ -14,7 +14,8 @@ bq_QH2_pbe,benzoquinone,0,1,2,2,C2h,live job (PBE/LACVP++**)
 bq_Q_gas,benzoquinone,0,1,0,0,D2h,gas phase for the IR comparison
 bq_QH2_gas,benzoquinone,0,1,2,2,C2h,gas phase for the IR comparison
 bq_Q_gas_nops,benzoquinone,0,1,0,0,D2h,check: analytic integrals (nops=1)
-bq_Q_gas_grid,benzoquinone,0,1,0,0,D2h,check: ultrafine accuracy (iacc=1) and tight CPHF
+bq_Q_gas_iacc,benzoquinone,0,1,0,0,D2h,check: very high SCF accuracy cutoffs (iacc=1)
+bq_Q_gas_cphf,benzoquinone,0,1,0,0,D2h,check: tight CPHF convergence (rmscp=1.0e-6)
 bq_Q_gas_tzvp,benzoquinone,0,1,0,0,D2h,check: no diffuse functions (def2-TZVP)
 aq_Q,aqds,-2,1,0,0,C2,quinone (two sulfonates)
 aq_Qradm,aqds,-3,2,0,1,C2,semiquinone radical anion
@@ -31,7 +32,7 @@ tp_TH,tempo,0,1,1,2,Cs,hydroxylamine (TEMPO-H)
 tp_TH2p,tempo,1,1,2,2,Cs,protonated hydroxylamine
 di_D,indigo,0,1,0,0,C2h,dehydroindigo
 di_Dradm,indigo,-1,2,0,1,C2h,dehydroindigo radical anion
-di_D2m,indigo,-2,1,0,2,C2h,"indigo dianion, start from di_D"
+di_D2m,indigo,-2,1,0,2,C2h,"dianion D2- (D + 2e-): same atoms as di_D, made from di_I minus both N-H"
 di_DHrad,indigo,0,2,1,1,C1,H on N
 di_Im,indigo,-1,1,1,2,C1,indigo monoanion
 di_I,indigo,0,1,2,2,C2h,indigo
@@ -48,11 +49,11 @@ bq_Q_pbe_631g,benzoquinone,0,1,0,0,D2h,"level ladder, gas: PBE/6-31G**"
 bq_Q_b3lyp_631g,benzoquinone,0,1,0,0,D2h,"level ladder, gas: B3LYP/6-31G**"
 bq_Q_m062x,benzoquinone,0,1,0,0,D2h,"level ladder, gas: M06-2X-D3/def2-TZVPD"
 bq_Q_wb97xd,benzoquinone,0,1,0,0,D2h,"level ladder, gas: wB97X-D/def2-TZVPD"
-bq_Q_sp_gas,benzoquinone,0,1,0,0,D2h,"solvation single point at the PBF geometry: gas"
-bq_Q_sp_pbf,benzoquinone,0,1,0,0,D2h,"solvation single point: PBF (must reproduce bq_Q.out)"
+bq_Q_sp_gas,benzoquinone,0,1,0,0,D2h,"solvation single point at the optimised PBF geometry (L4a): gas"
+bq_Q_sp_pbf,benzoquinone,0,1,0,0,D2h,"solvation single point: PBF (must reproduce the final SCFE of bq_Q.out)"
 bq_Q_sp_smd,benzoquinone,0,1,0,0,D2h,"solvation single point: SMD"
-bq_Q_sp_pcm,benzoquinone,0,1,0,0,D2h,"solvation single point: PCM (C-PCM, Jaguar default)"
-bq_Q2m_sp_gas,benzoquinone,-2,1,0,2,D2h,"solvation single point at the PBF geometry: gas"
-bq_Q2m_sp_pbf,benzoquinone,-2,1,0,2,D2h,"solvation single point: PBF (must reproduce bq_Q2m.out)"
+bq_Q_sp_pcm,benzoquinone,0,1,0,0,D2h,"solvation single point: PCM (pcm_model=cpcm)"
+bq_Q2m_sp_gas,benzoquinone,-2,1,0,2,D2h,"solvation single point at the optimised PBF geometry (L4a): gas"
+bq_Q2m_sp_pbf,benzoquinone,-2,1,0,2,D2h,"solvation single point: PBF (must reproduce the final SCFE of bq_Q2m.out)"
 bq_Q2m_sp_smd,benzoquinone,-2,1,0,2,D2h,"solvation single point: SMD"
-bq_Q2m_sp_pcm,benzoquinone,-2,1,0,2,D2h,"solvation single point: PCM (C-PCM, Jaguar default)"
+bq_Q2m_sp_pcm,benzoquinone,-2,1,0,2,D2h,"solvation single point: PCM (pcm_model=cpcm)"
