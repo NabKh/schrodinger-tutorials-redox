@@ -323,7 +323,7 @@ The experimental values are the tabulated fundamentals of NIST CCCBDB (assignmen
 
 **L3 · Basis set.** 6-31G\*\* (double-ζ) → def2-TZVP (triple-ζ, polarisation) → def2-TZVPD (the same plus diffuse functions). Which of them are diffuse is listed in Jaguar's `basis_sets.csv` (commands L2, L3). In 2026-2 `is_diffuse` is 1 for DEF2-TZVPD and LACVP++\*\* and 0 for 6-31G\*\* and DEF2-TZVP; `is_ecp` is 1 only for LACVP++\*\* (an effective core potential on the heavier atoms). What LACVP++\*\* is for H–Ar is not in the file: read it in the Jaguar manual. The outer electrons of an anion are weakly bound and spread far from the nuclei, and a basis without diffuse functions confines them artificially. This matters for QH⁻ and Q²⁻ and for every AQDS state, all of them anions. The price is near-linear dependence of the basis. Read the smallest eigenvalue of the overlap matrix S in every output with a diffuse basis (`summarise_job.py` prints it; C, D4, E): a very small value means the basis must be checked before production.
 
-**L4 · Solvation model.** Jaguar offers, among others (`isolv`, `jaguar_keywords.xml`): 2 PBF (Poisson–Boltzmann, Jaguar's own model, in which all production geometries of this course are optimised), 7 PCM (variant set by `pcm_model`: `cosmo`, `cpcm` (default) or `ssvpe`; set explicitly to `cpcm` in the inputs here), and 8 SMD. In Jaguar, SMD uses C-PCM electrostatics plus its own non-electrostatic terms, so SMD and C-PCM are not independent models for the electrostatic part. `pbf_after_smd=1` runs a PBF single point after an SMD optimisation (`jaguar_keywords.xml`, 2025-1); it is not used here. UNVERIFIED (from the SMD paper's title, not read here): SMD is parametrised on experimental solvation free energies.
+**L4 · Solvation model.** Jaguar offers, among others (`isolv`, `jaguar_keywords.xml`): 2 PBF (Poisson–Boltzmann, Jaguar's own model, in which all production geometries of this course are optimised), 7 PCM (variant set by `pcm_model`: `cosmo`, `cpcm` (default) or `ssvpe`; set explicitly to `cpcm` in the inputs here), and 8 SMD. In Jaguar, SMD uses C-PCM electrostatics plus its own non-electrostatic terms, so SMD and C-PCM are not independent models for the electrostatic part. `pbf_after_smd=1` runs a PBF single point after an SMD optimisation (`jaguar_keywords.xml`, 2026-2); it is not used here. UNVERIFIED (from the SMD paper's title, not read here): SMD is parametrised on experimental solvation free energies.
 
 **L4a · Solvation single points at the optimised geometries.**
 
@@ -384,7 +384,7 @@ The course level was chosen with this procedure in mind: a hybrid functional, wi
 | `molchg` | `0` | total charge | `NELECT` (but no compensating background: a molecule needs none) |
 | `multip` | `1` | spin multiplicity 2S+1 | `ISPIN = 2`, `NUPDOWN` |
 
-The radical inputs (`bq_Qradm.in`, `bq_QHrad.in`) also carry `iuhf=1`, an unrestricted wavefunction. Not in the input, but set by default (`jaguar_keywords.xml`, 2025-1; re-check in 2026-2):
+The radical inputs (`bq_Qradm.in`, `bq_QHrad.in`) also carry `iuhf=1`, an unrestricted wavefunction. Not in the input, but set by default (`jaguar_keywords.xml`, 2026-2):
 
 - `iuhf=2`: restricted if closed shell, unrestricted if open shell; `iuhf=1` makes the choice explicit.
 - `nops=0`: pseudospectral integrals where possible.
@@ -625,7 +625,7 @@ Harmonic frequencies are the curvature of the potential at the minimum; measured
 
 *Input:* each file in `inputs/checks/` changes one thing relative to `inputs/gas/bq_Q_gas.in`:
 
-| input | change | tests (`jaguar_keywords.xml`, 2025-1) |
+| input | change | tests (`jaguar_keywords.xml`, 2026-2) |
 |---|---|---|
 | `bq_Q_gas_nops.in` | `nops=1` | "analytic calculation only": no pseudospectral integrals, with a diffuse basis |
 | `bq_Q_gas_iacc.in` | `iacc=1` | "v. high scf accuracy (ufine only)" instead of the default quick cutoffs |
@@ -657,7 +657,7 @@ The steps are those of benzoquinone. What changes is listed per family: the stat
 - *Input:* dehydroindigo D → indigo I → leucoindigo L, each step adding 2 H and 2 e⁻, with the anions and radicals between them (11 states, S7). Which H is removed is a choice of tautomer: the recipes take N–H for indigo and O–H for leucoindigo (S6). The same `&gen`. Intramolecular N–H···O=C hydrogen bonds fix the trans form of indigo; leucoindigo can rotate about the central C–C bond, so syn and anti are two conformers of every L state.
 - *Command:* as E1. For the second conformer: in Maestro, set the N–C–C–N dihedral about the central bond to 0° (syn) or 180° (anti) (UNVERIFIED menu wording in 2026-2: Edit > Adjust > Distances, Angles or Dihedrals), export as a Jaguar input with a new job name (`di_Lm_anti`), and add a row to `states.csv`.
 - *Expected:* HOMO and LUMO energies of D: ______ eV. Smallest eigenvalue of S at the first and the last geometry: ______, ______. For D (28 atoms, 134 electrons) 78 frequencies, 0 imaginary, σ from the point group. G of syn and anti for each L state: ______.
-- *Why:* a small HOMO–LUMO gap means that the closed-shell solution may not be the lowest: rerun the single point with `wf_stability=1` (wave-function stability analysis, `jaguar_keywords.xml`, 2025-1; re-check in 2026-2). A very small eigenvalue of S means def2-TZVPD is numerically near-linearly dependent for this molecule, and the basis must be checked before production. The point groups in `states.csv` are predictions; the output decides.
+- *Why:* a small HOMO–LUMO gap means that the closed-shell solution may not be the lowest: rerun the single point with `wf_stability=1` (wave-function stability analysis, `jaguar_keywords.xml`, 2026-2). A very small eigenvalue of S means def2-TZVPD is numerically near-linearly dependent for this molecule, and the basis must be checked before production. The point groups in `states.csv` are predictions; the output decides.
 
 ## Homework
 
