@@ -389,7 +389,7 @@ The radical inputs (`bq_Qradm.in`, `bq_QHrad.in`) also carry `iuhf=1`, an unrest
 - `iuhf=2`: restricted if closed shell, unrestricted if open shell; `iuhf=1` makes the choice explicit.
 - `nops=0`: pseudospectral integrals where possible.
 - `iacc=3`: "quick/solvent" SCF cutoffs; `rmscp=5.0e-5`: CPHF convergence (D4).
-- In solvent, other geometry convergence criteria (`iaccg=4`, "energy-priority"). UNVERIFIED (manual, not re-read): their thresholds are three times the gas-phase ones and the trust radius is 0.1; read the factor in the output (C1).
+- `iaccg=-99`: geometry convergence criteria "ACCURATE in general, SOLV if using PBF". The PBF production and live jobs use the SOLV criteria, the gas-phase jobs the accurate ones (`iaccg=2`). UNVERIFIED (manual, not re-read): the SOLV thresholds are three times the gas-phase ones and the trust radius is 0.1; read the criteria in the output (C1).
 - The Hessian: UNVERIFIED (manual, not re-read this session): analytic second derivatives only for basis sets without f functions. The live PBE/LACVP++\*\* job would then have an analytic Hessian, and the def2-TZVPD production jobs a numerical one, from finite differences of analytic gradients (about 6N gradients, 72 for benzoquinone), at many times the cost. Read in the output which one was used.
 
 There are no k-points: a molecule is not periodic, and there are no periodic images to correct for when it is charged.
