@@ -8,7 +8,7 @@ export SCHRODINGER=/opt/schrodinger2026-2      # adjust to your installation
 $SCHRODINGER/jsc hosts list
 H="<one of the compute hosts listed above>"    # replace the text in quotes
 mkdir -p results
-$SCHRODINGER/run scripts/check_inputs.py inputs/bq
+# (no check of the given inputs here: you make your own in S3 and check them in S4)
 
 # ---------------------------------------------------------------------------
 # P · instructor test run, before the session

@@ -26,7 +26,7 @@ The session is hands-on throughout: every step is worked through together, in pa
 | `inputs/recipes/` | S: for each family, which parent each state is made from, which H is removed, charge and multiplicity |
 | `inputs/levels/` | L: benzoquinone in the gas phase at four more levels of theory (the level ladder) |
 | `inputs/solvation/` | L4a: Q and Q²⁻ single points with no solvent, PBF, SMD and C-PCM; their geometry is replaced by the optimised one in L4a |
-| `inputs/bq/` | A, C: benzoquinone states at the production level, B3LYP-D3/def2-TZVPD in PBF water; `_b3lyp` without D3 |
+| `inputs/bq/` | reference copy only: benzoquinone states at the production level, B3LYP-D3/def2-TZVPD in PBF water (`_b3lyp` without D3). You make these files yourself in S3; this copy is for the comparison in S4 and as a fallback if your own run fails |
 | `inputs/live/bq_Q_pbe.in`, `bq_QH2_pbe.in` | B: the jobs submitted during the session (PBE/LACVP++\*\*, PBF water) |
 | `inputs/groups/` | A4: one input per group with `molchg=??` and `multip=??` |
 | `inputs/broken/` | A3: three inputs with an error each |
@@ -41,7 +41,7 @@ The session is hands-on throughout: every step is worked through together, in pa
 
 `make_inputs.py` uses the Schrödinger Python API and must be run with the suite's Python, `& "$S\run" scripts\make_inputs.py ...`. The other scripts need only Python 3 with `numpy` (and `matplotlib` for the plot); they run with the suite's Python, `& "$S\run" scripts\<name>.py ...`, or any Python with those packages. Paths are written with `\` for Windows; on Linux use `/` (`commands.sh`).
 
-**No output is in the repository, and nothing in this folder has been run yet.** Every output named below is produced by running the corresponding input on the workstation: in the instructor's test run before the session (P) for `results\bq\`, `results\checks\` and the two expensive ladder rungs, and in the session itself for the live, ladder and solvation jobs (B). The starting coordinates in `inputs/` are starting guesses; in the test run they are regenerated with `make_inputs.py` (P1), so do not read anything into them. They were written by `make_inputs.py` from the recipes in `inputs/recipes/`, not by Maestro or Epik; in class you make the same files yourself (S3) and compare (S4).
+**No output is in the repository, and nothing in this folder has been run yet.** Every output named below is produced by running the corresponding input on the workstation: in the instructor's test run before the session (P) for `results\bq\`, `results\checks\` and the two expensive ladder rungs, and in the session itself for the live, ladder and solvation jobs (B). The starting coordinates in `inputs/` are starting guesses; in the test run they are regenerated with `make_inputs.py` (P1), so do not read anything into them. They were written by `make_inputs.py` from the recipes in `inputs/recipes/`, not by Maestro or Epik. In class you do not start from them: you make the same files yourself (S3), check your own (S4), and only then compare with this copy.
 
 ## How each step is written
 
@@ -72,8 +72,7 @@ Every command uses two variables, set once (Before the session): `$H`, the compu
 1. On the Windows workstation, in PowerShell: `$S = "C:\Program Files\Schrodinger2026-2"` and `$env:SCHRODINGER = $S`. The second line sets the variable to the same installation as `$S`, so it cannot point at another release (Session 1, B1); without it `jsc hosts list` stops with "$SCHRODINGER must be defined". Then `& "$S\jsc" hosts list` shows the compute hosts besides `localhost` (Session 1, B2). Set `$H = "<one of them>"`. On the workstation the list shows `localhost` (the workstation itself) and the servers `rs4`, `rs5`, `rs6.differ.nl:8030`, each with a CPU node (`cpurs4`, …) and a GPU node (`gpurs4`, …). Jaguar runs on CPUs: `$H = "cpurs4"` (or `cpurs5`, `cpurs6`). `$S`, `$env:SCHRODINGER` and `$H` are lost when the window is closed: in a new window, set them again.
 2. `& "$S\jsc" cert get <server>:<port>` is run once per server, if not already in Session 1 (Before the session, item 4).
 3. Either PowerShell or the VS Code terminal opens in `$HOME\schrodinger-tutorials-redox\02-optimisation-and-frequencies` (`Set-Location $HOME\schrodinger-tutorials-redox\02-optimisation-and-frequencies`), and `New-Item -ItemType Directory -Force results` makes the folder for everything you produce; `inputs\` is never changed. In VS Code: File > Open Folder > the repository, then Terminal > New Terminal (PowerShell is the default shell on Windows).
-4. `& "$S\run" scripts\check_inputs.py inputs\bq` prints one `ok` line per input (10 lines). This only checks the *given* inputs; where they come from, and how you make them yourself, is S.
-5. Session 1's LigPrep output `..\01-introduction\results\bq_prepped.maegz` exists (Session 1, B3); if not, S3 builds the parents from SMILES.
+4. Session 1's LigPrep output `..\01-introduction\results\bq_prepped.maegz` exists (Session 1, B3); if not, S3 builds the parents from SMILES.
 
 ## P · Instructor test run (before 30 Oct)
 

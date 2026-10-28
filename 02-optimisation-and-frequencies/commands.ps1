@@ -16,8 +16,6 @@ $env:SCHRODINGER = $S      # same installation as $S; without it jsc stops with 
 $H = "cpurs4"              # a CPU node from the list above (Jaguar runs on CPUs)
 Set-Location $HOME\schrodinger-tutorials-redox\02-optimisation-and-frequencies
 New-Item -ItemType Directory -Force results | Out-Null   # outputs of this session go here
-# 0.4 · check the given inputs
-& "$S\run" scripts\check_inputs.py inputs\bq             # expected: 10 ok lines
 
 # ---------------------------------------------------------------------------
 # P · instructor test run, before the session (README, P)
