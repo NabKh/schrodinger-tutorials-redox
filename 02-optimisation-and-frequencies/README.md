@@ -441,7 +441,7 @@ See `commands.ps1`, sections B1 to B6; the Linux equivalents are in `commands.sh
 
 **B1 · Host.**
 
-*Command:* `& "$S\jsc" hosts list`; `& "$S\jsc" server-info rs4.differ.nl:8030`. *Expected:* the compute hosts, and the job server on rs4 (rs5 and rs6 likewise). *Why:* use a compute host, not `localhost`: set `$H` to it. A job that fails at once with `srun: executable file not found` hit a bad node: submit it again.
+*Command:* `& "$S\jsc" hosts list`; `& "$S\jsc" server-info rs4.differ.nl:8030`. *Expected:* the compute hosts, and for the job server on rs4 (rs5 and rs6 likewise) its address, `Job server version: 2026-2 …`, `Server API version` equal to `Client API version` (v1.20.5 in the test run) and the free disk space of its file store. A server version or API version different from your client's is the first thing to report if submission fails. *Why:* use a compute host, not `localhost`: set `$H` to it. A job that fails at once with `srun: executable file not found` hit a bad node: submit it again.
 
 **B2 · Live job.** Each pair submits one of the two live inputs, so that both are running.
 
