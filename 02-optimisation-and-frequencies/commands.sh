@@ -23,6 +23,8 @@ $SCHRODINGER/run scripts/make_inputs.py inputs/recipes/bq.csv --out results/p1_g
 for f in bq aqds tempo indigo; do cp results/p1_$f/*.in inputs/$f/; done
 cp results/p1_b3lyp/bq_Q_b3lyp.in results/p1_b3lyp/bq_QH2_b3lyp.in inputs/bq/
 cp results/p1_gas/bq_Q_gas.in results/p1_gas/bq_QH2_gas.in inputs/gas/
+#   drop the MAEFILE line: the geometry is in &zmat, and a .in that names a .mae fails without it
+for f in $(grep -l '^MAEFILE:' inputs/*/*.in); do sed '/^MAEFILE:/d' "$f" > "$f.tmp" && mv "$f.tmp" "$f"; done
 #   bq_QH2cis.in and bq_QH2cis_b3lyp.in: built in Maestro (README, P1)
 $SCHRODINGER/run scripts/check_inputs.py inputs
 

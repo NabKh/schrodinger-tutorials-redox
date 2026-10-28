@@ -78,7 +78,7 @@ Every command uses two variables, set once (Before the session): `$H`, the compu
 
 Everything students read in C, D and L1 comes from these jobs. They are run once, on the workstation, exactly as in class (commands P1–P4).
 
-- **P1 · Inputs.** Regenerate the starting inputs of every family with `make_inputs.py` (S3, S7) and copy them into `inputs\<family>\`; the `_b3lyp` inputs with `--set dftname=B3LYP --suffix _b3lyp`. `bq_QH2cis.in` is not in the recipe (a SMILES carries no cis/trans O–H): build it in Maestro from `bq_QH2` by rotating one O–H by 180°. Run `check_inputs.py` on every folder: all `ok`.
+- **P1 · Inputs.** Regenerate the starting inputs of every family with `make_inputs.py` (S3, S7) and copy them into `inputs\<family>\`, then delete their `MAEFILE:` line (the geometry is in `&zmat`; an input that names a `.mae` fails at once when the `.mae` is not next to it: `Error: unable to find file: bq_Q.mae`, test run); the `_b3lyp` inputs with `--set dftname=B3LYP --suffix _b3lyp`. `bq_QH2cis.in` is not in the recipe (a SMILES carries no cis/trans O–H): build it in Maestro from `bq_QH2` by rotating one O–H by 180°. Run `check_inputs.py` on every folder: all `ok`.
 - **P2 · Production benzoquinone.** All of `inputs\bq\*.in` into `results\bq\`.
 - **P3 · Gas phase and checks.** `inputs\gas\bq_Q_gas.in` and `inputs\checks\*.in` into `results\checks\`.
 - **P4 · Expensive ladder rungs.** `inputs\levels\bq_Q_m062x.in` and `bq_Q_wb97xd.in` into `results\level\`.

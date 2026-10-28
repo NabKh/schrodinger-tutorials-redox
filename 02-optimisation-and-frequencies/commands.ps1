@@ -30,6 +30,8 @@ foreach ($f in "bq", "aqds", "tempo", "indigo") {
 foreach ($f in "bq", "aqds", "tempo", "indigo") { Copy-Item results\p1_$f\*.in inputs\$f\ }
 Copy-Item results\p1_b3lyp\bq_Q_b3lyp.in, results\p1_b3lyp\bq_QH2_b3lyp.in inputs\bq\
 Copy-Item results\p1_gas\bq_Q_gas.in, results\p1_gas\bq_QH2_gas.in inputs\gas\
+#   drop the MAEFILE line: the geometry is in &zmat, and a .in that names a .mae fails without it
+Select-String -Path inputs\*\*.in -Pattern '^MAEFILE:' -List | ForEach-Object { (Get-Content $_.Path) -notmatch '^MAEFILE:' | Set-Content $_.Path }
 #   bq_QH2cis.in: built in Maestro from bq_QH2 (one O-H rotated by 180 degrees), exported as Jaguar input;
 #   bq_QH2cis_b3lyp.in: a copy of it with entry_name bq_QH2cis_b3lyp and dftname=B3LYP
 & "$S\run" scripts\check_inputs.py inputs
