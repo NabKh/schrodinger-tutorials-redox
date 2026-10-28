@@ -4,7 +4,7 @@
 
 Session 1 ended with a list of states, each with a charge and a multiplicity. Session 3 needs one Gibbs energy G per state, at a geometry that is a true minimum. This session produces and checks those numbers. You write Jaguar inputs, check them before they cost compute time, submit them from PowerShell or the VS Code terminal, and read the output line by line until you can rebuild G by hand. A gas-phase frequency calculation is then compared with the experimental IR spectrum, which is the only point in this course where a computed number meets a measured one directly.
 
-The session is hands-on throughout: every step is done together, in pairs, on the files of this folder.
+The session is hands-on throughout: every step is worked through together, in pairs, on the files of this folder.
 
 ## Learning goals
 
@@ -50,7 +50,7 @@ Every hands-on step has the same four parts:
 - **Expected**: what to check. Where theory fixes the answer (3N − 6 frequencies, 0 imaginary, ⟨S²⟩ = 0.75 for a doublet) it is given; numbers that only a run can give are left as ______, to be filled in from your own output;
 - **Why**: what the step tests, and what you do if the result is not the expected one.
 
-**Heavy for one molecule, light for all.** Optimisation + frequency jobs at the production level take hours, and longer for the larger molecules. They are run for benzoquinone only. Everything that costs seconds is done for all four families, so that each student has seen the states, inputs and outputs of the molecule of their project before starting it.
+**Heavy for one molecule, light for all.** Optimisation + frequency jobs at the production level take hours, and longer for the larger molecules. They are run for benzoquinone only. Everything that costs seconds is part of the session for all four families, so that each student has seen the states, inputs and outputs of the molecule of their project before starting it.
 
 | step | benzoquinone | AQDS, TEMPO, indigo family |
 |---|---|---|
@@ -64,7 +64,7 @@ Every hands-on step has the same four parts:
 ## Before the session
 
 1. On the Windows workstation, in PowerShell: `$S = "C:\Program Files\Schrodinger2026-2"` and `$env:SCHRODINGER = $S` (without the second line `jsc hosts list` stops with "$SCHRODINGER must be defined"). Then `& "$S\jsc" hosts list` shows the compute hosts besides `localhost` (Session 1, B2). Write one down: it replaces `<host>` in every command below.
-2. `& "$S\jsc" cert get <server>:<port>` has been run once (Session 1, Before the session, item 4).
+2. `& "$S\jsc" cert get <server>:<port>` is run once per server, if not already in Session 1 (Before the session, item 4).
 3. Either PowerShell or the VS Code terminal opens in `C:\schrodinger-tutorials-redox\02-optimisation-and-frequencies`. In VS Code: File > Open Folder > the repository, then Terminal > New Terminal (PowerShell is the default shell on Windows).
 4. `& "$S\run" scripts\check_inputs.py inputs\bq` prints one `ok` line per input.
 5. Session 1's LigPrep output `..\01-introduction\results\bq_prepped.maegz` exists (Session 1, B3); if not, S3 builds the parents from SMILES.
@@ -149,7 +149,7 @@ bq_Q2m,bq_QH2,Oc1ccc(O)cc1,O O,-2,1
 
 For each row the script copies the parent, deletes the listed hydrogens, checks that the electron count fits the multiplicity, writes `results\made\<job>.in` with the `&gen` keywords of the production level (section A1), and appends the structure to `results\made\states.maegz`. `molchg` and `multip` are set from the recipe *after* the structure: the Schrödinger API otherwise takes the charge from the formal charges of the atoms, and a deleted H leaves the O without a formal charge, so QH⁻ would silently become neutral (`setStructure`, `schrodinger/application/jaguar/input.py`). The same keywords at another level: `--level live` (PBE/LACVP++\*\*) or `--level gas`, and any single keyword with `--set`, for example `--set basis=6-31G**`.
 
-*Expected:* one line per state, for example `bq_Q2m  from bq_QH2  H removed: 9 12  12 atoms  N=  58  molchg=-2  multip=1` (the atom numbers depend on how the parent was built), and `wrote 6 inputs`. Copy your lines into the worksheet (S1).
+*Expected:* one line per state, for example `bq_Q2m  from bq_QH2  H removed: __ __  12 atoms  N=  58  molchg=-2  multip=1` (fill in the atom numbers: they depend on how the parent was built), and `wrote 6 inputs`. Copy your lines into the worksheet (S1).
 
 **S4 · Check before submitting.**
 
@@ -196,33 +196,33 @@ foreach ($f in "aqds", "tempo", "indigo") {
 }
 ```
 
-*Expected* for the given inputs (output of `check_inputs.py` on `inputs\aqds`, `inputs\tempo` and `inputs\indigo`; the `results\made_*` lines should give the same atoms, N, `molchg` and `multip`, and are filled in after the workstation run):
+*Expected:* one `ok` line per input, `inputs\aqds`, `inputs\tempo` and `inputs\indigo`, and the same for `results\made_*`. Predict atoms, N, `molchg`, `multip` and open/closed shell for each job from the recipe (S1 rules) before running, then check them against the output:
 
 ```
-aq_Q               ok      30 atoms  N= 188  molchg=-2  multip=1  closed shell
-aq_Q2m             ok      30 atoms  N= 190  molchg=-4  multip=1  closed shell
-aq_QH2             ok      32 atoms  N= 190  molchg=-2  multip=1  closed shell
-aq_QHm10           ok      31 atoms  N= 190  molchg=-3  multip=1  closed shell
-aq_QHm9            ok      31 atoms  N= 190  molchg=-3  multip=1  closed shell
-aq_QHrad10         ok      31 atoms  N= 189  molchg=-2  multip=2  open shell, unrestricted (iuhf default)
-aq_QHrad9          ok      31 atoms  N= 189  molchg=-2  multip=2  open shell, unrestricted (iuhf default)
-aq_Qradm           ok      30 atoms  N= 189  molchg=-3  multip=2  open shell, unrestricted (iuhf default)
-tp_T               ok      29 atoms  N=  87  molchg=+0  multip=2  open shell, unrestricted (iuhf default)
-tp_TH              ok      30 atoms  N=  88  molchg=+0  multip=1  closed shell
-tp_TH2p            ok      31 atoms  N=  88  molchg=+1  multip=1  closed shell
-tp_Tm              ok      29 atoms  N=  88  molchg=-1  multip=1  closed shell
-tp_Tp              ok      29 atoms  N=  86  molchg=+1  multip=1  closed shell
-di_D               ok      28 atoms  N= 134  molchg=+0  multip=1  closed shell
-di_D2m             ok      28 atoms  N= 136  molchg=-2  multip=1  closed shell
-di_DHrad           ok      29 atoms  N= 135  molchg=+0  multip=2  open shell, unrestricted (iuhf default)
-di_Dradm           ok      28 atoms  N= 135  molchg=-1  multip=2  open shell, unrestricted (iuhf default)
-di_I               ok      30 atoms  N= 136  molchg=+0  multip=1  closed shell
-di_Im              ok      29 atoms  N= 136  molchg=-1  multip=1  closed shell
-di_Iradm           ok      30 atoms  N= 137  molchg=-1  multip=2  open shell, unrestricted (iuhf default)
-di_L               ok      32 atoms  N= 138  molchg=+0  multip=1  closed shell
-di_L2m             ok      30 atoms  N= 138  molchg=-2  multip=1  closed shell
-di_LH3rad          ok      31 atoms  N= 137  molchg=+0  multip=2  open shell, unrestricted (iuhf default)
-di_Lm              ok      31 atoms  N= 138  molchg=-1  multip=1  closed shell
+aq_Q               ok      __ atoms  N= ___  molchg=__  multip=_  ______
+aq_Q2m             ok      __ atoms  N= ___  molchg=__  multip=_  ______
+aq_QH2             ok      __ atoms  N= ___  molchg=__  multip=_  ______
+aq_QHm10           ok      __ atoms  N= ___  molchg=__  multip=_  ______
+aq_QHm9            ok      __ atoms  N= ___  molchg=__  multip=_  ______
+aq_QHrad10         ok      __ atoms  N= ___  molchg=__  multip=_  ______
+aq_QHrad9          ok      __ atoms  N= ___  molchg=__  multip=_  ______
+aq_Qradm           ok      __ atoms  N= ___  molchg=__  multip=_  ______
+tp_T               ok      __ atoms  N= ___  molchg=__  multip=_  ______
+tp_TH              ok      __ atoms  N= ___  molchg=__  multip=_  ______
+tp_TH2p            ok      __ atoms  N= ___  molchg=__  multip=_  ______
+tp_Tm              ok      __ atoms  N= ___  molchg=__  multip=_  ______
+tp_Tp              ok      __ atoms  N= ___  molchg=__  multip=_  ______
+di_D               ok      __ atoms  N= ___  molchg=__  multip=_  ______
+di_D2m             ok      __ atoms  N= ___  molchg=__  multip=_  ______
+di_DHrad           ok      __ atoms  N= ___  molchg=__  multip=_  ______
+di_Dradm           ok      __ atoms  N= ___  molchg=__  multip=_  ______
+di_I               ok      __ atoms  N= ___  molchg=__  multip=_  ______
+di_Im              ok      __ atoms  N= ___  molchg=__  multip=_  ______
+di_Iradm           ok      __ atoms  N= ___  molchg=__  multip=_  ______
+di_L               ok      __ atoms  N= ___  molchg=__  multip=_  ______
+di_L2m             ok      __ atoms  N= ___  molchg=__  multip=_  ______
+di_LH3rad          ok      __ atoms  N= ___  molchg=__  multip=_  ______
+di_Lm              ok      __ atoms  N= ___  molchg=__  multip=_  ______
 ```
 
 *Why:* read the table as the S1 grid of each family. Every proton removed lowers the atom count by one and the charge by one at the same N; every electron added raises N by one at the same atoms; odd N is a doublet. Two cases to look at in Maestro (`results\made_*\states.maegz`): the AQDS states at O9 and O10 (S6), and the four AQDS states with charge −3 and −4, which are the hardest to describe (E).
