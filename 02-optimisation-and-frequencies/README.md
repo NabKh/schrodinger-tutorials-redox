@@ -198,7 +198,13 @@ code --diff results\made\bq_Q2m.in inputs\bq\bq_Q2m.in
 
 Then open `results\made\states.maegz` in Maestro (File > Import Structures) and look at each state.
 
-*Expected:* six `ok` lines; in the diff, the same `&gen` section and different coordinates (every 3D build is a new start). In Maestro: is the right H gone, is the formula right?
+*Expected:* six `ok` lines. In the diff (or, without VS Code on the PATH, `Compare-Object (Get-Content results\made\bq_Q2m.in) (Get-Content inputs\bq\bq_Q2m.in)`):
+
+- `solvent=water` and `multip=1` only in the reference copy. The Schrödinger API writes only keywords that differ from Jaguar's default (`getNonDefault`, `schrodinger/application/jaguar/input.py`), and water and multiplicity 1 are the defaults (`jaguar_keywords.xml`). Both files ask for the same calculation. A radical's `multip=2` is not a default, so it is always written.
+- `MAEFILE: bq_Q2m.mae` only in your file: the API also writes `results\made\bq_Q2m.mae`, the same structure as a Maestro file, and points to it. Keep the `.mae` next to its `.in`; when an input is copied elsewhere, copy both.
+- Different coordinates and atom names (`C2`, `O6`, `H9` against `C1`, `O2`, `H1`): every 3D build is a new start, and the optimisation should take both to the same minimum.
+
+In the coordinates, check that the H atoms left in Q²⁻ are the C–H ones: each is about 1.08 Å from a ring C (for example H9 to C3 in `results\made\bq_Q2m.in`). An O–H would be about 0.97 Å from an O. In Maestro: is the right H gone, is the formula right?
 
 *Why:* `check_inputs.py` compares every input with `states.csv` (A3); the diff shows that the inputs given in `inputs/bq/` are made the same way, and that only the start differs. The optimisation should take both starts to the same minimum.
 
