@@ -389,7 +389,7 @@ The radical inputs (`bq_Qradm.in`, `bq_QHrad.in`) also carry `iuhf=1`, an unrest
 - `iuhf=2`: restricted if closed shell, unrestricted if open shell; `iuhf=1` makes the choice explicit.
 - `nops=0`: pseudospectral integrals where possible.
 - `iacc=3`: "quick/solvent" SCF cutoffs; `rmscp=5.0e-5`: CPHF convergence (D4).
-- `iaccg=-99`: geometry convergence criteria "ACCURATE in general, SOLV if using PBF". The PBF production and live jobs use the SOLV criteria, the gas-phase jobs the accurate ones (`iaccg=2`). UNVERIFIED (manual, not re-read): the SOLV thresholds are three times the gas-phase ones and the trust radius is 0.1; read the criteria in the output (C1).
+- `iaccg=-99`: geometry convergence criteria "ACCURATE in general, SOLV if using PBF". The PBF production and live jobs use the SOLV criteria, the gas-phase jobs the accurate ones (`iaccg=2`). The live job `bq_Q_pbe` (PBF) printed these thresholds in brackets at every geometry step: energy change 1.5E-04, gradient max 1.35E-03 and rms 9.0E-04, displacement max 5.4E-03 and rms 3.6E-03, with a trust radius of 0.30.
 - The Hessian: UNVERIFIED (manual, not re-read this session): analytic second derivatives only for basis sets without f functions. The live PBE/LACVP++\*\* job would then have an analytic Hessian, and the def2-TZVPD production jobs a numerical one, from finite differences of analytic gradients (about 6N gradients, 72 for benzoquinone), at many times the cost. Read in the output which one was used.
 
 There are no k-points: a molecule is not periodic, and there are no periodic images to correct for when it is charged.
@@ -472,7 +472,7 @@ Pop-Location
 & "$S\jsc" cancel $J          # only if the job is wrong
 ```
 
-*Expected:* `jsc list` shows a table `JobId Name Status Created Runtime Host` with the job as `Running` on `rs4`; `jsc info` shows the full JobId, the command line, `Status: Running` and the start time. The `.log` shows the SCF and geometry iterations as they happen; the `.out` is complete only at the end. `tail-file --name <file>` prints the end of that file; with `-f` it keeps following it (Ctrl+C stops following, not the job). The status word at the end of a job is read in the test run: ______.
+*Expected:* `jsc list` shows a table `JobId Name Status Created Runtime Host` with the job as `Running` on `rs4`; `jsc info` shows the full JobId, the command line, `Status: Running` and the start time. The `.log` shows the SCF and geometry iterations as they happen; the `.out` is complete only at the end. `tail-file --name <file>` prints a job header and then the whole file so far; with `-f` it keeps following it and returns by itself when the job ends (Ctrl+C stops following, not the job). Each geometry step shows the energy, gradient and displacement with the threshold in brackets: `.` not met, `*` met. At the end the log reads `Job bq_Q_pbe completed on rs4.differ.nl` and the time (4.2 min, 4 geometry steps in the test run). A finished job disappears from `jsc list` ("No active jobs were found."); read its final status with `jsc info`.
 
 *Why:* a job that ends with no `.out`: read the `.log` and submit again (B1). Cancel a job as soon as you see it was submitted with a wrong input: it frees the host for the others.
 

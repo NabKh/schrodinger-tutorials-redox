@@ -156,7 +156,7 @@ $J = "<the JobId printed above>"   # replace the text in quotes
 # B3 · monitor, and cancel a wrong job
 & "$S\jsc" list
 & "$S\jsc" info $J
-& "$S\jsc" tail-file --name bq_Q_pbe.log $J     # add -f to keep following it; Ctrl+C stops following, not the job
+& "$S\jsc" tail-file --name bq_Q_pbe.log $J     # prints the whole log so far; -f keeps following until the job ends; Ctrl+C stops following, not the job
 #   & "$S\jsc" cancel $J                        # only if the job was submitted with a wrong input
 
 # B5 · one ladder or solvation job per pair (as assigned)
