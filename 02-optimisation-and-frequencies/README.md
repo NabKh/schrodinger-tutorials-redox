@@ -490,7 +490,7 @@ Pop-Location
 
 **B6 · Restart, and a whole family.**
 
-*Restart:* an optimisation that stopped at `maxitg` is continued from its last geometry. *Input:* `<job>.01.in`. *Command:* commands B6: copy it into a `restart` folder under the job's own name and submit it from there. *Expected:* a new `.out` that continues from the last geometry. *Why:* open the copied file first and check that `&gen` still has `igeopt=1` and `ifreq=1`; keeping the job name means `check_inputs.py` still finds it in `states.csv`.
+*Restart:* an optimisation that stopped at `maxitg` is continued from its last geometry. *Input:* `<job>.01.in`. *Command:* commands B6: copy it into a `restart` folder under the job's own name, together with `<job>.01.mae`, and submit it from there (the `.01.in` starts with `MAEFILE: <job>.01.mae`, test run; without that file Jaguar stops at once with `Error: unable to find file`). *Expected:* a new `.out` that continues from the last geometry. *Why:* open the copied file first and check that `&gen` still has `igeopt=1` and `ifreq=1` (test run: both kept); keeping the job name means `check_inputs.py` still finds it in `states.csv`.
 
 *Family:* every input of a folder, one job each. *Input:* `inputs\<family>\*.in`, without the restart files `*.NN.in`. *Command:* commands B6, family loop. *Expected:* one `JobId:` line per input. *Why:* this is how the project is submitted; check the folder with `check_inputs.py` before the loop.
 

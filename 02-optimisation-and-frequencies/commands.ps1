@@ -175,7 +175,8 @@ Pop-Location
 $job = "bq_Q_pbe"; $dir = "results\live"
 New-Item -ItemType Directory -Force $dir\restart | Out-Null
 Copy-Item $dir\$job.01.in $dir\restart\$job.in
-code $dir\restart\$job.in                      # check: igeopt=1 and ifreq=1 still in &gen
+Copy-Item $dir\$job.01.mae $dir\restart\                # the .01.in names it on its MAEFILE line
+code $dir\restart\$job.in                      # check: igeopt=1 and ifreq=1 still in &gen, MAEFILE: $job.01.mae
 Push-Location $dir\restart
 & "$S\jaguar" run "$job.in" -HOST $H -PARALLEL 4
 Pop-Location

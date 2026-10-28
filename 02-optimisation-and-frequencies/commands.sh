@@ -114,8 +114,8 @@ mkdir -p results/level && cp inputs/levels/bq_Q_pbe_631g.in inputs/levels/bq_Q_b
 
 # B6 · restart from the last geometry
 job=bq_Q_pbe; dir=results/live
-mkdir -p $dir/restart && cp $dir/$job.01.in $dir/restart/$job.in
-grep -E "igeopt|ifreq" $dir/restart/$job.in
+mkdir -p $dir/restart && cp $dir/$job.01.in $dir/restart/$job.in && cp $dir/$job.01.mae $dir/restart/   # the .01.in names it on its MAEFILE line
+grep -E "MAEFILE|igeopt|ifreq" $dir/restart/$job.in
 (cd $dir/restart && $SCHRODINGER/jaguar run $job.in -HOST "$H" -PARALLEL 4)
 
 # B6 · a whole family (also homework 1)
