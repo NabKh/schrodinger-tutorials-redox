@@ -103,7 +103,7 @@ J="<the JobId printed above>"                  # replace the text in quotes
 # B3 · monitor, and cancel a wrong job
 $SCHRODINGER/jsc list
 $SCHRODINGER/jsc info "$J"
-$SCHRODINGER/jsc tail-file --name bq_Q_pbe.log "$J"   # option name UNVERIFIED: $SCHRODINGER/jsc tail-file -h
+$SCHRODINGER/jsc tail-file --name bq_Q_pbe.log "$J"   # add -f to keep following it; Ctrl+C stops following, not the job
 # $SCHRODINGER/jsc cancel "$J"
 
 # B5 · one ladder or solvation job per pair

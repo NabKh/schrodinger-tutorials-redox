@@ -472,7 +472,7 @@ Pop-Location
 & "$S\jsc" cancel $J          # only if the job is wrong
 ```
 
-*Expected:* the job in `jsc list`, with its status (UNVERIFIED wording in 2026-2: running, then completed). The `.log` shows the SCF and geometry iterations as they happen; the `.out` is complete only at the end. The `--name` option of `tail-file` is UNVERIFIED: check `& "$S\jsc" tail-file -h` on the workstation.
+*Expected:* `jsc list` shows a table `JobId Name Status Created Runtime Host` with the job as `Running` on `rs4`; `jsc info` shows the full JobId, the command line, `Status: Running` and the start time. The `.log` shows the SCF and geometry iterations as they happen; the `.out` is complete only at the end. `tail-file --name <file>` prints the end of that file; with `-f` it keeps following it (Ctrl+C stops following, not the job). The status word at the end of a job is read in the test run: ______.
 
 *Why:* a job that ends with no `.out`: read the `.log` and submit again (B1). Cancel a job as soon as you see it was submitted with a wrong input: it frees the host for the others.
 
