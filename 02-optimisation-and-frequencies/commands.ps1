@@ -89,7 +89,7 @@ $f = "aqds"          # your group's family: aqds, tempo or indigo
 & "$S\run" scripts\summarise_job.py results\bq\bq_QH2cis.out results\bq\bq_QH2cis_b3lyp.out
 
 # L2, L3 · the vendor's flags for the functionals and basis sets of the course (seconds, no job)
-$J = (Get-ChildItem "$S\mmshare-v*\data\jaguar").FullName
+$JD = (Get-ChildItem "$S\mmshare-v*\data\jaguar").FullName
 Import-Csv $J\levels_of_theory.csv | Where-Object Method -in "PBE","B3LYP","B3LYP-D3","M06-2X-D3","wB97X-D" | Format-Table Method, is_recommended, is_dispersion_corrected_dft, is_hybrid_dft, is_meta_gga_dft, is_long_range_corrected_dft
 Import-Csv $J\basis_sets.csv | Where-Object full_name -in "6-31G**","DEF2-TZVP","DEF2-TZVPD","LACVP++**" | Format-Table full_name, is_diffuse, is_ecp
 # expected (2026-2): recommended 1 for all but PBE; diffuse 1 for DEF2-TZVPD and LACVP++** only; ECP 1 for LACVP++** only
