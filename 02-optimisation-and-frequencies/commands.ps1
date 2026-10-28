@@ -4,15 +4,20 @@
 # The Linux equivalent of every block is in commands.sh.
 
 # ---------------------------------------------------------------------------
-# 0 · suite, host and folder (Before the session)
+# 0 · files, suite, host and folder (Before the session)
+# 0.1 · get the files into your user folder (writing to C:\ itself is refused on the workstation)
+git clone https://github.com/NabKh/schrodinger-tutorials-redox.git $HOME\schrodinger-tutorials-redox
+git -C $HOME\schrodinger-tutorials-redox log -1 --oneline
+# 0.2 · the suite (set again in every new window)
 $S = "C:\Program Files\Schrodinger2026-2"
 $env:SCHRODINGER = $S      # same installation as $S; without it jsc stops with "$SCHRODINGER must be defined"
-& "$S\jsc" hosts list
-$H = "<one of the compute hosts listed above>"   # replace the text in quotes
-# the terminal must be in C:\schrodinger-tutorials-redox\02-optimisation-and-frequencies
-#   (if not: Set-Location C:\schrodinger-tutorials-redox\02-optimisation-and-frequencies)
+& "$S\jsc" hosts list      # localhost, and rs4/rs5/rs6.differ.nl:8030 with cpursN and gpursN
+# 0.3 · host and folder
+$H = "cpurs4"              # a CPU node from the list above (Jaguar runs on CPUs)
+Set-Location $HOME\schrodinger-tutorials-redox\02-optimisation-and-frequencies
 New-Item -ItemType Directory -Force results | Out-Null   # outputs of this session go here
-& "$S\run" scripts\check_inputs.py inputs\bq             # expected: one ok line per input
+# 0.4 · check the given inputs
+& "$S\run" scripts\check_inputs.py inputs\bq             # expected: 10 ok lines
 
 # ---------------------------------------------------------------------------
 # P · instructor test run, before the session (README, P)

@@ -41,7 +41,7 @@ The session is hands-on throughout: every step is worked through together, in pa
 
 `make_inputs.py` uses the Schrödinger Python API and must be run with the suite's Python, `& "$S\run" scripts\make_inputs.py ...`. The other scripts need only Python 3 with `numpy` (and `matplotlib` for the plot); they run with the suite's Python, `& "$S\run" scripts\<name>.py ...`, or any Python with those packages. Paths are written with `\` for Windows; on Linux use `/` (`commands.sh`).
 
-**No output is in the repository, and nothing in this folder has been run yet.** Every output named below is produced by running the corresponding input on the workstation: in the instructor's test run before the session (P) for `results\bq\`, `results\checks\` and the two expensive ladder rungs, and in the session itself for the live, ladder and solvation jobs (B). The starting coordinates in `inputs/` are starting guesses; in the test run they are regenerated with `make_inputs.py` (P1), so do not read anything into them.
+**No output is in the repository, and nothing in this folder has been run yet.** Every output named below is produced by running the corresponding input on the workstation: in the instructor's test run before the session (P) for `results\bq\`, `results\checks\` and the two expensive ladder rungs, and in the session itself for the live, ladder and solvation jobs (B). The starting coordinates in `inputs/` are starting guesses; in the test run they are regenerated with `make_inputs.py` (P1), so do not read anything into them. They were written by `make_inputs.py` from the recipes in `inputs/recipes/`, not by Maestro or Epik; in class you make the same files yourself (S3) and compare (S4).
 
 ## How each step is written
 
@@ -67,10 +67,12 @@ Every command uses two variables, set once (Before the session): `$H`, the compu
 
 ## Before the session
 
-1. On the Windows workstation, in PowerShell: `$S = "C:\Program Files\Schrodinger2026-2"` and `$env:SCHRODINGER = $S`. The second line sets the variable to the same installation as `$S`, so it cannot point at another release (Session 1, B1); without it `jsc hosts list` stops with "$SCHRODINGER must be defined". Then `& "$S\jsc" hosts list` shows the compute hosts besides `localhost` (Session 1, B2). Set `$H = "<one of them>"`.
+0. Get the files, into your user folder (on the workstation, writing to `C:\` itself was refused):
+   `git clone https://github.com/NabKh/schrodinger-tutorials-redox.git $HOME\schrodinger-tutorials-redox`, then `git -C $HOME\schrodinger-tutorials-redox log -1 --oneline` shows the version you have. If the folder already exists, either use it or clone under another name; never work in an old copy that is not a git checkout (`log` then says "not a git repository").
+1. On the Windows workstation, in PowerShell: `$S = "C:\Program Files\Schrodinger2026-2"` and `$env:SCHRODINGER = $S`. The second line sets the variable to the same installation as `$S`, so it cannot point at another release (Session 1, B1); without it `jsc hosts list` stops with "$SCHRODINGER must be defined". Then `& "$S\jsc" hosts list` shows the compute hosts besides `localhost` (Session 1, B2). Set `$H = "<one of them>"`. On the workstation the list shows `localhost` (the workstation itself) and the servers `rs4`, `rs5`, `rs6.differ.nl:8030`, each with a CPU node (`cpurs4`, …) and a GPU node (`gpurs4`, …). Jaguar runs on CPUs: `$H = "cpurs4"` (or `cpurs5`, `cpurs6`). `$S`, `$env:SCHRODINGER` and `$H` are lost when the window is closed: in a new window, set them again.
 2. `& "$S\jsc" cert get <server>:<port>` is run once per server, if not already in Session 1 (Before the session, item 4).
-3. Either PowerShell or the VS Code terminal opens in `C:\schrodinger-tutorials-redox\02-optimisation-and-frequencies`. In VS Code: File > Open Folder > the repository, then Terminal > New Terminal (PowerShell is the default shell on Windows).
-4. `& "$S\run" scripts\check_inputs.py inputs\bq` prints one `ok` line per input.
+3. Either PowerShell or the VS Code terminal opens in `$HOME\schrodinger-tutorials-redox\02-optimisation-and-frequencies` (`Set-Location $HOME\schrodinger-tutorials-redox\02-optimisation-and-frequencies`), and `New-Item -ItemType Directory -Force results` makes the folder for everything you produce; `inputs\` is never changed. In VS Code: File > Open Folder > the repository, then Terminal > New Terminal (PowerShell is the default shell on Windows).
+4. `& "$S\run" scripts\check_inputs.py inputs\bq` prints one `ok` line per input (10 lines). This only checks the *given* inputs; where they come from, and how you make them yourself, is S.
 5. Session 1's LigPrep output `..\01-introduction\results\bq_prepped.maegz` exists (Session 1, B3); if not, S3 builds the parents from SMILES.
 
 ## P · Instructor test run (before 30 Oct)
@@ -116,6 +118,16 @@ Two energies in Session 3 enter a pKa or a potential as differences. An error of
 ## S · From one molecule to all its states, and to one Jaguar input per state (25 min)
 
 Session 1 gave the states of benzoquinone as a list. Here we make them, from start to finish, with a script; then the same in Maestro. The other families follow the same steps (S6, S7).
+
+**Where all the states come from.** One molecule, written as a SMILES (Session 1, `01-introduction/inputs/bq_closed_shell.smi`), gives every state in three moves:
+
+| move | what happens | by hand | by script |
+|---|---|---|---|
+| a | SMILES → 3D structure of each closed-shell **parent**: Q (C=O) and QH₂ (O–H) | Maestro: draw, or import Session 1's LigPrep output | `make_inputs.py` (same 3D builder as LigPrep) |
+| b | **remove a proton**: delete an H bonded to O (QH•, QH⁻, Q²⁻); the atoms change | Maestro: select the H, delete | `strip` column of the recipe |
+| c | **add an electron**: only the charge changes, not the atoms (Q•⁻, and the charge of b) | Jaguar panel, *Molecule* tab: charge, multiplicity | `charge`, `multiplicity` columns |
+
+Not Epik: Epik adds or removes protons for a given pH, but not electrons, so it cannot make Q•⁻ or QH•, and LigPrep puts H back on radicals (Session 1, A5). Two parents and these three moves give the six states; the four other files in `inputs/bq/` are not new states but the same molecules at B3LYP without D3 (`_b3lyp`, L1) and QH₂ with one O–H turned by 180° (`bq_QH2cis`, built in Maestro, P1).
 
 **S1 · The proton–electron grid.** Every state is a reference state plus $n_\mathrm{H}$ protons and $n_e$ electrons:
 
