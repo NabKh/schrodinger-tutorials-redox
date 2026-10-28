@@ -457,7 +457,7 @@ Push-Location results\live
 Pop-Location
 ```
 
-*Expected:* a `JobId:` line; the command returns at once. Set `$J` to that JobId. When the job ends, these come back to `results\live` (names to confirm in the test run): `bq_Q_pbe.out` (the output read in C), `bq_Q_pbe.log` (progress), `bq_Q_pbe.01.mae` (final structure) and `bq_Q_pbe.01.in` (input with the last geometry, B6).
+*Expected:* a `JobId:` line; the command returns at once. Set `$J` to that JobId. When the job ends, these come back to `results\live` (test run): `bq_Q_pbe.out` (the output read in C), `bq_Q_pbe.log` (progress), `bq_Q_pbe.01.mae` (final structure), `bq_Q_pbe.01.in` (input with the last geometry, B6), `bq_Q_pbe.vib` and `bq_Q_pbe_vib.spm` (vibrations, for Maestro), and `bq_Q_pbe.recover`, `.01.smap`, `.write_dir.json` (job bookkeeping, not read in this session).
 
 *Why:* do not submit the same file twice from the same folder: the second job overwrites the first one's output.
 
@@ -472,7 +472,7 @@ Pop-Location
 & "$S\jsc" cancel $J          # only if the job is wrong
 ```
 
-*Expected:* `jsc list` shows a table `JobId Name Status Created Runtime Host` with the job as `Running` on `rs4`; `jsc info` shows the full JobId, the command line, `Status: Running` and the start time. The `.log` shows the SCF and geometry iterations as they happen; the `.out` is complete only at the end. `tail-file --name <file>` prints a job header and then the whole file so far; with `-f` it keeps following it and returns by itself when the job ends (Ctrl+C stops following, not the job). Each geometry step shows the energy, gradient and displacement with the threshold in brackets: `.` not met, `*` met. At the end the log reads `Job bq_Q_pbe completed on rs4.differ.nl` and the time (4.2 min, 4 geometry steps in the test run). A finished job disappears from `jsc list` ("No active jobs were found."); read its final status with `jsc info`.
+*Expected:* `jsc list` shows a table `JobId Name Status Created Runtime Host` with the job as `Running` on `rs4`; `jsc info` shows the full JobId, the command line, `Status: Running` and the start time. The `.log` shows the SCF and geometry iterations as they happen; the `.out` is complete only at the end. `tail-file --name <file>` prints a job header and then the whole file so far; with `-f` it keeps following it and returns by itself when the job ends (Ctrl+C stops following, not the job). Each geometry step shows the energy, gradient and displacement with the threshold in brackets: `.` not met, `*` met. At the end the log reads `Job bq_Q_pbe completed on rs4.differ.nl` and the time (4.2 min, 4 geometry steps in the test run). A finished job disappears from `jsc list` ("No active jobs were found."); read its final status with `jsc info`: `Status: Completed` and the total running time (4m15s in the test run).
 
 *Why:* a job that ends with no `.out`: read the `.log` and submit again (B1). Cancel a job as soon as you see it was submitted with a wrong input: it frees the host for the others.
 
