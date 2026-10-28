@@ -582,7 +582,7 @@ Then search `Quasi-Harmonic`, above the vibrational temperatures. If it is there
 
 **C6 · The live job.**
 
-*Input:* `results\live\bq_Q_pbe.out`, when it is back. *Command:* `summarise_job.py results\live\bq_Q_pbe.out`. *Expected:* fill in the C6 table of the worksheet: geometry steps, lowest frequency, wall time, smallest eigenvalue of S, against `bq_Q.out`. *Why:* the same molecule at a cheaper level; the differences show what the production level costs and what it changes.
+*Input:* `results\live\bq_Q_pbe.out`, when it is back. *Command:* `summarise_job.py results\live\bq_Q_pbe.out`. *Expected:* fill in the C6 table of the worksheet: geometry steps, lowest frequency, wall time, smallest eigenvalue of S, against `bq_Q.out`. Test run (PBE/LACVP++**, PBF water, 4 threads on rs4): every line found; 4 geometry steps but 12 `SCFE` lines; 30 vibrations, 0 imaginary, lowest 118.7 cm⁻¹ (B3u); point group D2h, σ = 4; smallest eigenvalue of S 3.086E-06; quasi-harmonic floor 100 cm⁻¹; 0.07 h; G rebuilt by hand equals Gtot (−380.986496 Eh) to 0.000 kcal/mol. *Why:* the same molecule at a cheaper level; the differences show what the production level costs and what it changes.
 
 ## D · IR spectrum (15 min)
 
