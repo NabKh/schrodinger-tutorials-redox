@@ -126,8 +126,8 @@ Select-String -Path results\solv\*.out -Pattern "SCFE:|Solvation energy|HOMO"   
 #   new job names need new rows in inputs\states.csv before check_inputs.py passes them
 
 # ---------------------------------------------------------------------------
-# A1 · read the production input
-code inputs\bq\bq_Q.in
+# A1 · read the production input you made in S3
+code results\made\bq_Q.in
 
 # A3 · three broken inputs, and the live inputs before B2
 & "$S\run" scripts\check_inputs.py inputs\broken inputs\live

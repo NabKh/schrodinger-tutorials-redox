@@ -367,22 +367,22 @@ The course level was chosen with this procedure in mind: a hybrid functional, wi
 
 ## A · The input (15 min)
 
-**A1 · Read `inputs/bq/bq_Q.in` together.**
+**A1 · Read your own `results/made/bq_Q.in` (made in S3) together.**
 
-*Input:* `inputs/bq/bq_Q.in`. *Command:* `code inputs\bq\bq_Q.in` (or Notepad). *Expected:* a first line `entry_name: bq_Q` (the Maestro entry name, used as title; not a keyword), a `&gen` section (keywords) ending with `&`, and a `&zmat` section (geometry, Å, one atom per line with a numbered label such as `C1`). *Why:* every keyword below is one physical or numerical choice; fill in the worksheet A1 in your own words.
+*Input:* `results/made/bq_Q.in`. *Command:* `code results\made\bq_Q.in` (or Notepad). *Expected:* a first line `entry_name: bq_Q` (the Maestro entry name, used as title; not a keyword), a line `MAEFILE: bq_Q.mae` (the structure file next to it, S4), a `&gen` section (keywords) ending with `&`, and a `&zmat` section (geometry, Å, one atom per line with a numbered label such as `C1`). *Why:* every keyword below is one physical or numerical choice; fill in the worksheet A1 in your own words.
 
 | keyword | value | what it does | in VASP terms |
 |---|---|---|---|
 | `dftname` | `B3LYP-D3` | exchange–correlation functional with Grimme's D3 dispersion correction (zero damping) | B3LYP: `LHFCALC = .TRUE.`, `GGA = B3` with `AEXX`, `AGGAX`, `AGGAC`, `ALDAC`; D3 zero damping is `IVDW = 11` (`IVDW = 12` is Becke–Johnson damping, written `B3LYP-D3(BJ)` elsewhere) |
 | `basis` | `def2-TZVPD` | Gaussian basis set: triple-ζ, polarisation, diffuse functions for anions | replaces `ENCUT` and the PAW potentials; completeness is controlled by the basis, not a cutoff |
-| `isolv=2`, `solvent=water` | | Poisson–Boltzmann (PBF) continuum water, self-consistent with the density | VASPsol |
+| `isolv=2`, `solvent=water` (`solvent` not written: water is the default, S4) | | Poisson–Boltzmann (PBF) continuum water, self-consistent with the density | VASPsol |
 | `nogas=2` | | "assume input zmat is gas phase minimum in solv geopt" (`jaguar_keywords.xml`): no preliminary gas-phase optimisation; the gas-phase reference energy is computed once, at the input geometry, and the optimisation in solvent starts from it | |
 | `igeopt=1` | | geometry optimisation to a minimum | `IBRION = 1/2`, `NSW` |
 | `maxitg=200` | | maximum number of geometry steps (default 100) | `NSW` |
 | `ifreq=1` | | Hessian at the final geometry, then frequencies, ZPE, thermochemistry | `IBRION = 5/6` (finite differences) or `7/8` (DFPT) |
 | `irder=1` | | IR intensities | `LEPSILON` / Born charges |
 | `molchg` | `0` | total charge | `NELECT` (but no compensating background: a molecule needs none) |
-| `multip` | `1` | spin multiplicity 2S+1 | `ISPIN = 2`, `NUPDOWN` |
+| `multip` | `1` (not written for a singlet: 1 is the default, S4) | spin multiplicity 2S+1 | `ISPIN = 2`, `NUPDOWN` |
 
 The radical inputs (`bq_Qradm.in`, `bq_QHrad.in`) also carry `iuhf=1`, an unrestricted wavefunction. Not in the input, but set by default (`jaguar_keywords.xml`, 2026-2):
 
