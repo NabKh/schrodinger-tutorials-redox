@@ -102,7 +102,7 @@ Why does an electron count catch a wrong spin but not every wrong charge?
 | Gtot printed (Eh) | | | |
 | G at 1 mol/L (Eh) | | | |
 
-**C4.** No reference output of this course has a mode below 100 cm⁻¹ (`bq_Q` 232.7, `tp_TH` 182.6, `di_D` 116.5 cm⁻¹). What kind of motion would produce one, and what would the floor then change in G: the enthalpy, the entropy, or both?
+**C4.** Is any mode of `bq_Q` below the quasi-harmonic floor? What kind of motion would produce such a mode, and what would the floor then change in G: the enthalpy, the entropy, or both?
 
 **C5 · QH₂ conformers.**
 
@@ -117,9 +117,9 @@ Is ΔG larger than the error of the method? Which G goes into Session 3, and why
 
 | quantity | PBE/LACVP++\*\* (live) | B3LYP-D3/def2-TZVPD |
 |---|---|---|
-| geometry steps | | 9 |
-| lowest frequency (cm⁻¹) | | 232.7 |
-| wall time (h) | | 1.12 |
+| geometry steps | | |
+| lowest frequency (cm⁻¹) | | |
+| wall time (h) | | |
 
 ## D · IR spectrum
 

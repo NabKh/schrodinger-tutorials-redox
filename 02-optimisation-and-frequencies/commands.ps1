@@ -83,11 +83,11 @@ Push-Location results\level
 Pop-Location
 
 # ---------------------------------------------------------------------------
-# C · read the output (reference outputs from the instructor, in reference\)
-& "$S\run" scripts\summarise_job.py reference\bq_Q.out
-& "$S\run" scripts\summarise_job.py reference\bq_QHrad.out
-& "$S\run" scripts\summarise_job.py reference\bq_QH2.out reference\bq_QH2cis.out
-# expected for bq_Q: converged, imaginary 0, lowest 232.7 cm-1, sigma 4, Gtot -381.566711 Eh
+# C · read the production outputs (workstation runs of inputs\bq, in results\bq\)
+& "$S\run" scripts\summarise_job.py results\bq\bq_Q.out
+& "$S\run" scripts\summarise_job.py results\bq\bq_QHrad.out
+& "$S\run" scripts\summarise_job.py results\bq\bq_QH2.out results\bq\bq_QH2cis.out
+# check: converged, 30 vibrations, 0 imaginary, G rebuilt by hand equal to Gtot
 
 # C6 · your live job, when it has finished
 & "$S\run" scripts\summarise_job.py results\live\bq_Q_pbe.out
@@ -101,11 +101,11 @@ Select-String -Path results\level\*.out -Pattern "Solvation energy|SCFE:"   # th
 Invoke-WebRequest "https://webbook.nist.gov/cgi/cbook.cgi?JCAMP=C106514&Index=0&Type=IR" -OutFile results\bq_Q_nist.jdx
 
 # D2 · computed against experiment
-& "$S\run" scripts\ir_compare.py reference\bq_Q.out --scale 0.9626 --exp results\bq_Q_nist.jdx --plot results\bq_Q_ir.pdf
+& "$S\run" scripts\ir_compare.py results\bq\bq_Q.out --scale 0.9626 --exp results\bq_Q_nist.jdx --plot results\bq_Q_ir.pdf
 # 0.9626: B3LYP/def2-TZVPP (NIST CCCBDB); use 0.9879 for the PBE live job
 
-# D3 · the same in the gas phase (output from the instructor)
-& "$S\run" scripts\ir_compare.py reference\bq_Q_gas.out --scale 0.9626 --exp results\bq_Q_nist.jdx
+# D3 · the same in the gas phase (output of D4, results\checks\bq_Q_gas.out)
+& "$S\run" scripts\ir_compare.py results\checks\bq_Q_gas.out --scale 0.9626 --exp results\bq_Q_nist.jdx
 
 # D4 · one-factor checks (instructor-run if time is short)
 New-Item -ItemType Directory -Force results\checks | Out-Null

@@ -45,16 +45,16 @@ mkdir -p results/level && cp inputs/levels/bq_Q_pbe_631g.in results/level/
 (cd results/level && $SCHRODINGER/jaguar run bq_Q_pbe_631g.in -HOST <host> -PARALLEL 4)
 
 # C · read the output
-$SCHRODINGER/run scripts/summarise_job.py reference/bq_Q.out
-$SCHRODINGER/run scripts/summarise_job.py reference/bq_QHrad.out
-$SCHRODINGER/run scripts/summarise_job.py reference/bq_QH2.out reference/bq_QH2cis.out
+$SCHRODINGER/run scripts/summarise_job.py results/bq/bq_Q.out
+$SCHRODINGER/run scripts/summarise_job.py results/bq/bq_QHrad.out
+$SCHRODINGER/run scripts/summarise_job.py results/bq/bq_QH2.out results/bq/bq_QH2cis.out
 
 # D1 · NIST spectrum (do not redistribute)
 curl -L -o results/bq_Q_nist.jdx "https://webbook.nist.gov/cgi/cbook.cgi?JCAMP=C106514&Index=0&Type=IR"
 
 # D2, D3 · computed against experiment
-$SCHRODINGER/run scripts/ir_compare.py reference/bq_Q.out --scale 0.9626 --exp results/bq_Q_nist.jdx --plot results/bq_Q_ir.pdf
-$SCHRODINGER/run scripts/ir_compare.py reference/bq_Q_gas.out --scale 0.9626 --exp results/bq_Q_nist.jdx
+$SCHRODINGER/run scripts/ir_compare.py results/bq/bq_Q.out --scale 0.9626 --exp results/bq_Q_nist.jdx --plot results/bq_Q_ir.pdf
+$SCHRODINGER/run scripts/ir_compare.py results/checks/bq_Q_gas.out --scale 0.9626 --exp results/bq_Q_nist.jdx
 
 # D4 · one-factor checks
 mkdir -p results/checks && cp inputs/gas/bq_Q_gas.in inputs/checks/*.in results/checks/
