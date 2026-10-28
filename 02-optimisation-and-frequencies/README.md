@@ -541,7 +541,7 @@ The outputs read here come from the instructor's test run (P2): `results\bq\bq_Q
 
 *Input:* `bq_Q.out`. *Command:* search `Geometry optimization complete`; just above it, the last step lists five criteria: energy change, gradient maximum, gradient rms, displacement maximum and displacement rms. Then search `Scaling standard convergence criteria`.
 
-*Expected:* all five criteria met (each value against the threshold in brackets: hartree, hartree/bohr, bohr). Scaling factor in solvent: ______. Number of the last geometry step: ______ (the number of `SCFE` lines can be larger: not every SCF is a geometry step). Gradient-maximum threshold: ______ Eh/bohr = ______ eV/Å (1 Eh/bohr = 51.42 eV/Å).
+*Expected:* all five criteria met (each value against the threshold in brackets: hartree, hartree/bohr, bohr). Scaling factor in solvent: ______. Number of the last geometry step: ______ (the number of `SCFE` lines can be larger: one `SCF energy` line for the gas phase, then one `Solution phase energy` line per solvation iteration of every geometry step; the live job had 4 steps and 12 lines). Gradient-maximum threshold: ______ Eh/bohr = ______ eV/Å (1 Eh/bohr = 51.42 eV/Å).
 
 *Why:* in VASP terms, compare with `EDIFFG = −0.02` (eV/Å, a force criterion on every atom) — but VASP stops on forces alone, Jaguar on five criteria at once, so the numbers are comparable only as orders of magnitude. If a criterion is not met and the step limit was reached, restart (B6).
 
@@ -563,12 +563,12 @@ The outputs read here come from the instructor's test run (P2): `results\bq\bq_Q
 
 | line | value |
 |---|---|
-| final `SCFE: Solution phase energy` | Eh |
+| last `Solution phase energy` (line `SCFE:  Solution phase energy: …`, two spaces after `SCFE:`) | Eh |
 | `The zero point energy (ZPE)` | kcal/mol |
 | `total` row, G column (without ZPE) | kcal/mol |
 | `Total Gibbs free energy, Gtot` | Eh |
 
-*Expected:* $E + (\mathrm{ZPE} + G_\mathrm{table})/627.5095$ = Gtot, to within the rounding of the printed numbers (the last line of `summarise_job.py` does the same). Gtot already contains the ZPE; it is at 1 atm, so +1.89 kcal/mol is still to be added for 1 mol/L.
+*Expected:* $E + (\mathrm{ZPE} + G_\mathrm{table})/627.5095$ = Gtot, to within the rounding of the printed numbers (the last line of `summarise_job.py` does the same). With `nogas=2` the gas-phase energy is computed once, at the input geometry (the `.out` says so after `The solvation energy is computed from`), so the printed `Solvation energy` is not a solvation free energy between two optimised geometries; E and Gtot are not affected. Gtot already contains the ZPE; it is at 1 atm, so +1.89 kcal/mol is still to be added for 1 mol/L.
 
 Then search `Quasi-Harmonic`, above the vibrational temperatures. If it is there, every mode below a minimum frequency (printed on the next lines: ______ cm⁻¹) is treated as if it were at that frequency when the vibrational entropy is computed. Compare the floor with the lowest frequency of C2 (worksheet C4). Finally `rotational symmetry number`: ______.
 
