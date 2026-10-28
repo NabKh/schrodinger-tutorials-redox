@@ -1,0 +1,46 @@
+job,family,charge,multiplicity,added_H,added_e,expected_point_group,note
+bq_Q,benzoquinone,0,1,0,0,D2h,quinone
+bq_Qradm,benzoquinone,-1,2,0,1,D2h,semiquinone radical anion
+bq_QHrad,benzoquinone,0,2,1,1,Cs,neutral semiquinone radical
+bq_QHm,benzoquinone,-1,1,1,2,Cs,hydroquinone monoanion
+bq_Q2m,benzoquinone,-2,1,0,2,D2h,hydroquinone dianion
+bq_QH2,benzoquinone,0,1,2,2,C2h,"hydroquinone, trans O-H"
+bq_QH2cis,benzoquinone,0,1,2,2,C2v,"hydroquinone, cis O-H"
+bq_Q_b3lyp,benzoquinone,0,1,0,0,D2h,"no D3, level comparison"
+bq_QH2_b3lyp,benzoquinone,0,1,2,2,C2h,"no D3, level comparison"
+bq_QH2cis_b3lyp,benzoquinone,0,1,2,2,C2v,"no D3, level comparison"
+bq_Q_pbe,benzoquinone,0,1,0,0,D2h,live job (PBE/LACVP++**)
+bq_QH2_pbe,benzoquinone,0,1,2,2,C2h,live job (PBE/LACVP++**)
+bq_Q_gas,benzoquinone,0,1,0,0,D2h,gas phase for the IR comparison
+bq_QH2_gas,benzoquinone,0,1,2,2,C2h,gas phase for the IR comparison
+bq_Q_gas_nops,benzoquinone,0,1,0,0,D2h,check: analytic integrals (nops=1)
+bq_Q_gas_grid,benzoquinone,0,1,0,0,D2h,check: ultrafine accuracy (iacc=1) and tight CPHF
+bq_Q_gas_tzvp,benzoquinone,0,1,0,0,D2h,check: no diffuse functions (def2-TZVP)
+aq_Q,aqds,-2,1,0,0,C2,quinone (two sulfonates)
+aq_Qradm,aqds,-3,2,0,1,C2,semiquinone radical anion
+aq_QHrad9,aqds,-2,2,1,1,C1,neutral-ring semiquinone (H on O9)
+aq_QHrad10,aqds,-2,2,1,1,C1,neutral-ring semiquinone (H on O10)
+aq_QHm9,aqds,-3,1,1,2,C1,hydroquinone monoanion (H on O9)
+aq_QHm10,aqds,-3,1,1,2,C1,hydroquinone monoanion (H on O10)
+aq_QH2,aqds,-2,1,2,2,C1,hydroquinone (H2AQDS)
+aq_Q2m,aqds,-4,1,0,2,C2,hydroquinone tetra-anion
+tp_Tp,tempo,1,1,0,0,Cs,oxoammonium cation
+tp_T,tempo,0,2,0,1,Cs,nitroxide radical
+tp_Tm,tempo,-1,1,0,2,Cs,"aminoxide anion (TEMPO-), start from tp_TH minus the O-H proton"
+tp_TH,tempo,0,1,1,2,Cs,hydroxylamine (TEMPO-H)
+tp_TH2p,tempo,1,1,2,2,Cs,protonated hydroxylamine
+di_D,indigo,0,1,0,0,C2h,dehydroindigo
+di_Dradm,indigo,-1,2,0,1,C2h,dehydroindigo radical anion
+di_D2m,indigo,-2,1,0,2,C2h,"indigo dianion, start from di_D"
+di_DHrad,indigo,0,2,1,1,C1,H on N
+di_Im,indigo,-1,1,1,2,C1,indigo monoanion
+di_I,indigo,0,1,2,2,C2h,indigo
+di_Iradm,indigo,-1,2,2,3,C2h,indigo radical anion
+di_LH3rad,indigo,0,2,3,3,Cs,"starts syn, compare with anti"
+di_L2m,indigo,-2,1,2,4,C2h,leucoindigo dianion
+di_Lm,indigo,-1,1,3,4,C1,"leucoindigo monoanion, starts syn"
+di_L,indigo,0,1,4,4,C2h,leucoindigo
+tp_T_pbe,tempo,0,2,0,1,Cs,group template
+aq_Q_pbe,aqds,-2,1,0,0,C2,group template
+di_I_pbe,indigo,0,1,2,2,C2h,group template
+di_L_pbe,indigo,0,1,4,4,C2h,group template
