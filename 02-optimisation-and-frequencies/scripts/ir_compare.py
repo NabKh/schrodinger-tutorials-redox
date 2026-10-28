@@ -74,12 +74,13 @@ def main():
         print(f"range {x.min():.0f}-{x.max():.0f} cm-1: computed modes outside it cannot be compared")
         print(f"{'exp peak':>9s} {'rel':>5s} {'mode':>4s} {'scaled':>8s} {'sym':>4s} {'error':>7s} {'%':>6s}")
         active = [(k, f * a.scale, s) for k, (f, s, i) in enumerate(zip(freqs, syms, ints), 1) if i / imax > ACTIVE]
-        used = set()
+        used = {}
         for xp, yp in peaks(x, y):
-            free = [c for c in active if c[0] not in used] or active
-            k, f, s = min(free, key=lambda c: abs(c[1] - xp))
-            used.add(k)  # one computed mode per experimental peak, strongest peak first
-            print(f"{xp:9.0f} {yp:5.2f} {k:4d} {f:8.1f} {s:>4s} {f - xp:+7.1f} {100 * (f - xp) / xp:+6.1f}")
+            # nearest IR-active mode; two peaks on one mode are one split band (Fermi resonance, overtone)
+            k, f, s = min(active, key=lambda c: abs(c[1] - xp))
+            note = f"  same mode as the {used[k]:.0f} peak" if k in used else ""
+            used.setdefault(k, xp)
+            print(f"{xp:9.0f} {yp:5.2f} {k:4d} {f:8.1f} {s:>4s} {f - xp:+7.1f} {100 * (f - xp) / xp:+6.1f}{note}")
         print("check every match by the displacement of the mode (Maestro), not by its nearness alone")
     if a.plot:
         import matplotlib.pyplot as plt

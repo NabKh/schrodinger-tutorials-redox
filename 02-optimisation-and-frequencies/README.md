@@ -613,7 +613,7 @@ Harmonic frequencies are the curvature of the potential at the minimum; measured
 | 1070 / 1054 | | | | | |
 | 882 | | | | C–H out of plane | |
 
-*Why:* the script matches each peak to the nearest IR-active mode not yet used; check every match by the displacement of the mode in Maestro. 1678 cm⁻¹ is the band maximum: the tabulated C=O fundamental is 1668 cm⁻¹ (B1u), and the band is split by a Fermi resonance. The plot broadens each computed line with a Lorentzian of 10 cm⁻¹ half width.
+*Why:* the script matches each peak to the nearest IR-active mode and marks a peak that falls on a mode already matched (`same mode as the … peak`): that is one band split in two, not a second mode. In the test run the live PBE job put 1054 and 1070 on the same mode 17 (1054.8 cm⁻¹ scaled). Check every match by the displacement of the mode in Maestro. 1678 cm⁻¹ is the band maximum: the tabulated C=O fundamental is 1668 cm⁻¹ (B1u), and the band is split by a Fermi resonance. The plot broadens each computed line with a Lorentzian of 10 cm⁻¹ half width.
 
 **D3 · Judge the agreement.**
 
