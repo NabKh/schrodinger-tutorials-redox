@@ -6,6 +6,18 @@
 export SCHRODINGER=/opt/schrodinger2026-2      # adjust to your installation
 mkdir -p results
 
+# S2 · parents from Session 1 (if not done there)
+# $SCHRODINGER/ligprep -ismi ../01-introduction/inputs/bq_closed_shell.smi -omae ../01-introduction/results/bq_prepped.maegz -i 0 -nt -s 1 -NJOBS 1 -WAIT
+
+# S3, S4 · all states, one input each, and check them
+$SCHRODINGER/run scripts/make_inputs.py inputs/recipes/bq.csv --out results/made
+$SCHRODINGER/run scripts/check_inputs.py results/made
+diff results/made/bq_Q2m.in inputs/bq/bq_Q2m.in
+
+# L · ladder and solvation inputs
+$SCHRODINGER/run scripts/check_inputs.py inputs/levels
+$SCHRODINGER/run scripts/check_inputs.py inputs/solvation
+
 # A3, A4 · check the inputs
 $SCHRODINGER/run scripts/check_inputs.py inputs/bq
 $SCHRODINGER/run scripts/check_inputs.py inputs/broken
@@ -21,6 +33,10 @@ mkdir -p results/live && cp inputs/live/*.in results/live/
 # B3 · monitor
 $SCHRODINGER/jsc list
 $SCHRODINGER/jsc tail-file --name bq_Q_pbe.log <jobid>
+
+# B5 · one ladder or solvation job per pair
+mkdir -p results/level && cp inputs/levels/bq_Q_pbe_631g.in results/level/
+(cd results/level && $SCHRODINGER/jaguar run bq_Q_pbe_631g.in -HOST <host> -PARALLEL 4)
 
 # C · read the output
 $SCHRODINGER/run scripts/summarise_job.py reference/bq_Q.out

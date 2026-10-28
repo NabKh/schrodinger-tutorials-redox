@@ -1,0 +1,7 @@
+job,parent,smiles,strip,charge,multiplicity
+bq_Q,bq_Q,O=C1C=CC(=O)C=C1,,0,1
+bq_Qradm,bq_Q,O=C1C=CC(=O)C=C1,,-1,2
+bq_QH2,bq_QH2,Oc1ccc(O)cc1,,0,1
+bq_QHrad,bq_QH2,Oc1ccc(O)cc1,O,0,2
+bq_QHm,bq_QH2,Oc1ccc(O)cc1,O,-1,1
+bq_Q2m,bq_QH2,Oc1ccc(O)cc1,O O,-2,1

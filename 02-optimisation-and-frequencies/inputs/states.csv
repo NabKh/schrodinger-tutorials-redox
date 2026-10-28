@@ -44,3 +44,15 @@ tp_T_pbe,tempo,0,2,0,1,Cs,group template
 aq_Q_pbe,aqds,-2,1,0,0,C2,group template
 di_I_pbe,indigo,0,1,2,2,C2h,group template
 di_L_pbe,indigo,0,1,4,4,C2h,group template
+bq_Q_pbe_631g,benzoquinone,0,1,0,0,D2h,"level ladder, gas: PBE/6-31G**"
+bq_Q_b3lyp_631g,benzoquinone,0,1,0,0,D2h,"level ladder, gas: B3LYP/6-31G**"
+bq_Q_m062x,benzoquinone,0,1,0,0,D2h,"level ladder, gas: M06-2X-D3/def2-TZVPD"
+bq_Q_wb97xd,benzoquinone,0,1,0,0,D2h,"level ladder, gas: wB97X-D/def2-TZVPD"
+bq_Q_sp_gas,benzoquinone,0,1,0,0,D2h,"solvation single point at the PBF geometry: gas"
+bq_Q_sp_pbf,benzoquinone,0,1,0,0,D2h,"solvation single point: PBF (must reproduce bq_Q.out)"
+bq_Q_sp_smd,benzoquinone,0,1,0,0,D2h,"solvation single point: SMD"
+bq_Q_sp_pcm,benzoquinone,0,1,0,0,D2h,"solvation single point: PCM (C-PCM, Jaguar default)"
+bq_Q2m_sp_gas,benzoquinone,-2,1,0,2,D2h,"solvation single point at the PBF geometry: gas"
+bq_Q2m_sp_pbf,benzoquinone,-2,1,0,2,D2h,"solvation single point: PBF (must reproduce bq_Q2m.out)"
+bq_Q2m_sp_smd,benzoquinone,-2,1,0,2,D2h,"solvation single point: SMD"
+bq_Q2m_sp_pcm,benzoquinone,-2,1,0,2,D2h,"solvation single point: PCM (C-PCM, Jaguar default)"

@@ -1,0 +1,12 @@
+job,parent,smiles,strip,charge,multiplicity
+di_D,di_D,O=C1C(C2=Nc3ccccc3C2=O)=Nc2ccccc21,,0,1
+di_Dradm,di_D,O=C1C(C2=Nc3ccccc3C2=O)=Nc2ccccc21,,-1,2
+di_D2m,di_D,O=C1C(C2=Nc3ccccc3C2=O)=Nc2ccccc21,,-2,1
+di_DHrad,di_I,O=C1/C(=C2\Nc3ccccc3C2=O)Nc2ccccc21,N,0,2
+di_Im,di_I,O=C1/C(=C2\Nc3ccccc3C2=O)Nc2ccccc21,N,-1,1
+di_I,di_I,O=C1/C(=C2\Nc3ccccc3C2=O)Nc2ccccc21,,0,1
+di_Iradm,di_I,O=C1/C(=C2\Nc3ccccc3C2=O)Nc2ccccc21,,-1,2
+di_LH3rad,di_L,Oc1c(-c2[nH]c3ccccc3c2O)[nH]c2ccccc12,O,0,2
+di_Lm,di_L,Oc1c(-c2[nH]c3ccccc3c2O)[nH]c2ccccc12,O,-1,1
+di_L2m,di_L,Oc1c(-c2[nH]c3ccccc3c2O)[nH]c2ccccc12,O O,-2,1
+di_L,di_L,Oc1c(-c2[nH]c3ccccc3c2O)[nH]c2ccccc12,,0,1

@@ -11,6 +11,25 @@ cd C:\schrodinger-tutorials-redox\02-optimisation-and-frequencies
 New-Item -ItemType Directory -Force results | Out-Null   # outputs of this session go here
 
 # ---------------------------------------------------------------------------
+# S2 · closed-shell parents from Session 1 (skip if ..\01-introduction\results\bq_prepped.maegz exists)
+#   & "$S\ligprep" -ismi ..\01-introduction\inputs\bq_closed_shell.smi -omae ..\01-introduction\results\bq_prepped.maegz -i 0 -nt -s 1 -NJOBS 1 -WAIT
+
+# S3 · every state and one Jaguar input per state, from the recipe
+& "$S\run" scripts\make_inputs.py inputs\recipes\bq.csv --out results\made
+#   or from the LigPrep parents:
+#   & "$S\run" scripts\make_inputs.py inputs\recipes\bq.csv --out results\made --parents ..\01-introduction\results\bq_prepped.maegz
+#   other families: inputs\recipes\aqds.csv, tempo.csv, indigo.csv; other level: --level live, --level gas, --set basis=6-31G**
+
+# S4 · check them, compare with the given inputs, look at them in Maestro
+& "$S\run" scripts\check_inputs.py results\made
+code --diff results\made\bq_Q2m.in inputs\bq\bq_Q2m.in
+# Maestro: File > Import Structures > results\made\states.maegz
+
+# L · the ladder and solvation inputs are checked like any other
+& "$S\run" scripts\check_inputs.py inputs\levels
+& "$S\run" scripts\check_inputs.py inputs\solvation
+
+# ---------------------------------------------------------------------------
 # A3 · check the inputs before they cost compute time
 & "$S\run" scripts\check_inputs.py inputs\bq
 # expected: one ok line per input
@@ -49,6 +68,14 @@ Push-Location results\group
 & "$S\jaguar" run <file>.in -HOST <host> -PARALLEL 4
 Pop-Location
 
+# B5 · one ladder or solvation job per pair (as assigned), e.g.
+New-Item -ItemType Directory -Force results\level | Out-Null
+Copy-Item inputs\levels\bq_Q_pbe_631g.in, inputs\solvation\bq_Q2m_sp_smd.in results\level\
+Push-Location results\level
+& "$S\jaguar" run bq_Q_pbe_631g.in -HOST <host> -PARALLEL 4
+#   & "$S\jaguar" run bq_Q2m_sp_smd.in -HOST <host> -PARALLEL 4
+Pop-Location
+
 # ---------------------------------------------------------------------------
 # C · read the output (reference outputs from the instructor, in reference\)
 & "$S\run" scripts\summarise_job.py reference\bq_Q.out
@@ -58,6 +85,10 @@ Pop-Location
 
 # C6 · your live job, when it has finished
 & "$S\run" scripts\summarise_job.py results\live\bq_Q_pbe.out
+
+# L · ladder and solvation results, when they are back
+foreach ($f in Get-ChildItem results\level\*.out) { & "$S\run" scripts\summarise_job.py $f.FullName }
+Select-String -Path results\level\*.out -Pattern "Solvation energy|SCFE:"   # the last SCFE line is E
 
 # ---------------------------------------------------------------------------
 # D1 · NIST gas-phase IR spectrum of 1,4-benzoquinone (NIST data: do not redistribute)

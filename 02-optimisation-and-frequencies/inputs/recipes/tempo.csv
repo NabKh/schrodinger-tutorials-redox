@@ -1,0 +1,6 @@
+job,parent,smiles,strip,charge,multiplicity
+tp_Tp,tp_Tp,CC1(C)CCCC(C)(C)[N+]1=O,,1,1
+tp_T,tp_TH,CC1(C)CCCC(C)(C)N1O,O,0,2
+tp_Tm,tp_TH,CC1(C)CCCC(C)(C)N1O,O,-1,1
+tp_TH,tp_TH,CC1(C)CCCC(C)(C)N1O,,0,1
+tp_TH2p,tp_TH2p,CC1(C)CCCC(C)(C)[NH+]1O,,1,1

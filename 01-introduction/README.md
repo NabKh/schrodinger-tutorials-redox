@@ -40,7 +40,7 @@ The three scripts run with the suite's Python: `& "$S\run" scripts\<name>.py ...
 - charge = $n_\mathrm{H} - n_e$ (Jaguar keyword `molchg`)
 - multiplicity = 2 if $n_e$ is odd (one unpaired electron), otherwise 1 (Jaguar keyword `multip`). This assumes a closed-shell parent and the low-spin state. For a charged parent, such as the methyl viologen dication MV²⁺, add its charge to the first rule.
 
-Radicals are calculated spin-unrestricted in Jaguar (`iuhf=1`); its default for open shells is restricted.
+Radicals are calculated spin-unrestricted in Jaguar: the default `iuhf=2` chooses unrestricted when `multip` > 1 and restricted otherwise (`jaguar_keywords.xml`, keyword `iuhf`), so only `multip` has to be right.
 
 ## A · Maestro (slides 31 to 40)
 

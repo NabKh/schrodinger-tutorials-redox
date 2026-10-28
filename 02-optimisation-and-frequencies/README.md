@@ -8,19 +8,24 @@ The session is hands-on throughout: every step is done together, in pairs, on th
 
 ## Learning goals
 
-1. Explain every keyword of a Jaguar optimisation + frequency input and name what it controls physically.
-2. Find a wrong charge or multiplicity in an input before submitting it, and explain why an electron count alone does not catch every error.
-3. Submit, monitor and retrieve a Jaguar job from the command line.
-4. Decide from the output whether a structure is a minimum: convergence criteria, 3N−6 frequencies, no imaginary mode, ⟨S²⟩ for radicals.
-5. Rebuild G from E, ZPE and the thermal table; state the approximations behind it (quasi-harmonic, ideal gas at 1 atm, symmetry number) and correct to 1 mol/L.
-6. Compare scaled harmonic frequencies with a gas-phase IR spectrum and judge what agreement means.
+1. Generate every redox state of a molecule from its closed-shell parents, with the right charge and multiplicity, and turn each into a Jaguar input, by script and in Maestro.
+2. Justify a level of theory (functional, basis, solvation model) from cheaper levels and from the quantity that is needed, not from habit.
+3. Explain every keyword of a Jaguar optimisation + frequency input and name what it controls physically.
+4. Find a wrong charge or multiplicity in an input before submitting it, and explain why an electron count alone does not catch every error.
+5. Submit, monitor and retrieve a Jaguar job from the command line.
+6. Decide from the output whether a structure is a minimum: convergence criteria, 3N−6 frequencies, no imaginary mode, ⟨S²⟩ for radicals.
+7. Rebuild G from E, ZPE and the thermal table; state the approximations behind it (quasi-harmonic, ideal gas at 1 atm, symmetry number) and correct to 1 mol/L.
+8. Compare scaled harmonic frequencies with a gas-phase IR spectrum and judge what agreement means.
 
 ## Files
 
 | file | used in |
 |---|---|
 | `worksheet.md` | predictions and results, filled in during the session |
-| `inputs/states.csv` | A, B: charge and multiplicity of every job of the course |
+| `inputs/states.csv` | S, A, B: charge and multiplicity of every job of the course |
+| `inputs/recipes/` | S: for each family, which parent each state is made from, which H is removed, charge and multiplicity |
+| `inputs/levels/` | L: benzoquinone in the gas phase at four more levels of theory (the level ladder) |
+| `inputs/solvation/` | L: Q and Q²⁻ single points at one geometry with no solvent, PBF, SMD and C-PCM |
 | `inputs/bq/` | A, C: benzoquinone states at the production level, B3LYP-D3/def2-TZVPD in PBF water; `_b3lyp` without D3 |
 | `inputs/live/bq_Q_pbe.in`, `bq_QH2_pbe.in` | B: the jobs submitted during the session (PBE/LACVP++\*\*, PBF water) |
 | `inputs/groups/` | A4, B4: one input per group with `molchg=??` and `multip=??` |
@@ -28,12 +33,13 @@ The session is hands-on throughout: every step is done together, in pairs, on th
 | `inputs/gas/` | D: gas-phase Q and QH₂ for the IR comparison |
 | `inputs/checks/` | D4: one-factor checks of the soft modes |
 | `inputs/aqds/`, `inputs/tempo/`, `inputs/indigo/` | E and homework: the other redox families at the production level |
+| `scripts/make_inputs.py` | S: parents → all states → one Jaguar input per state, plus `states.maegz` to open in Maestro |
 | `scripts/check_inputs.py` | A3, A4: electron count, multiplicity parity, comparison with `states.csv` |
 | `scripts/summarise_job.py` | C: the lines of a Jaguar output that decide whether a result is usable, and G rebuilt by hand |
 | `scripts/ir_compare.py` | D: computed against experimental IR, with a scale factor; optional plot |
-| `commands.ps1` (Windows), `commands.sh` (Linux) | B, C, D: every command of the session |
+| `commands.ps1` (Windows), `commands.sh` (Linux) | S, L, B, C, D: every command of the session |
 
-The scripts need only Python 3 with `numpy` (and `matplotlib` for the plot); they run with the suite's Python, `& "$S\run" scripts\<name>.py ...`, or any Python with those packages. Reference outputs of the production jobs are handed out by the instructor at the start of section C; they are not in the repository.
+`make_inputs.py` uses the Schrödinger Python API and must be run with the suite's Python, `& "$S\run" scripts\make_inputs.py ...`. The other scripts need only Python 3 with `numpy` (and `matplotlib` for the plot); they run with the suite's Python, `& "$S\run" scripts\<name>.py ...`, or any Python with those packages. Reference outputs of the production jobs are handed out by the instructor at the start of section C; they are not in the repository.
 
 ## Before the session
 
@@ -41,20 +47,22 @@ The scripts need only Python 3 with `numpy` (and `matplotlib` for the plot); the
 2. `& "$S\jsc" cert get <server>:<port>` has been run once (Session 1, Before the session, item 4).
 3. Either PowerShell or the VS Code terminal opens in `C:\schrodinger-tutorials-redox\02-optimisation-and-frequencies`. In VS Code: File > Open Folder > the repository, then Terminal > New Terminal (PowerShell is the default shell on Windows).
 4. `& "$S\run" scripts\check_inputs.py inputs\bq` prints one `ok` line per input.
+5. Session 1's LigPrep output `..\01-introduction\results\bq_prepped.maegz` exists (Session 1, B3); if not, S3 builds the parents from SMILES.
 
 ## Time plan
 
 | time | part | what you do |
 |---|---|---|
 | 0:00 | 0 · Goal | from states to G; what makes a G usable |
-| 0:10 | A · The input | read `bq_Q.in` keyword by keyword; fix three broken inputs; fill in your group's input |
-| 0:35 | B · Submit | submit the live job and your group's job; monitor them |
-| 0:50 | C · The output | read a finished output while the live jobs run; rebuild G |
-| 1:25 | D · IR spectrum | scale, compare with the NIST gas-phase spectrum, judge the agreement |
-| 1:45 | E · Other molecules | what changes for AQDS, TEMPO and indigo |
-| 1:55 | Homework | |
+| 0:05 | S · States → inputs | one molecule, all its states, one input each: by script, then the same in Maestro |
+| 0:30 | L · Level of theory | why B3LYP-D3/def2-TZVPD in PBF water: the ladder and the solvation comparison |
+| 0:45 | A · The input | read `bq_Q.in` keyword by keyword; fix three broken inputs; fill in your group's input |
+| 1:00 | B · Submit | submit the live job, your group's job and one ladder or solvation job; monitor them |
+| 1:10 | C · The output | read a finished output while the live jobs run; rebuild G |
+| 1:40 | D · IR spectrum | scale, compare with the NIST gas-phase spectrum, judge the agreement |
+| 1:55 | E · Other molecules | what changes for AQDS, TEMPO and indigo (read at home if time is short) |
 
-## 0 · Goal (10 min)
+## 0 · Goal (5 min)
 
 For each state $i$ of Session 1 this session gives
 
@@ -70,7 +78,158 @@ with $E_\mathrm{el}$ the electronic energy in PBF water at the optimised geometr
 
 Two energies in Session 3 enter a pKa or a potential as differences. An error of 1.36 kcal/mol in one G moves a pKa by one unit; 23.06 kcal/mol is 1 V per electron.
 
-## A · The input (25 min)
+## S · From one molecule to all its states, and to one Jaguar input per state (25 min)
+
+Session 1 gave the states of each family as a list. Here we make them, for benzoquinone, from start to finish, with a script; then the same in Maestro. The other families follow the same steps (S6).
+
+**S1 · The proton–electron grid.** Every state of benzoquinone is Q plus $n_\mathrm{H}$ protons and $n_e$ electrons. With the rules of Session 1, charge $= n_\mathrm{H} - n_e$ and multiplicity 2 if the electron count is odd:
+
+| state | job | $n_\mathrm{H}$ | $n_e$ | formula | `molchg` | electrons | `multip` | made from | H removed |
+|---|---|---|---|---|---|---|---|---|---|
+| Q | `bq_Q` | 0 | 0 | C₆H₄O₂ | 0 | 56 | 1 | Q | none |
+| Q•⁻ | `bq_Qradm` | 0 | 1 | C₆H₄O₂ | −1 | 57 | 2 | Q | none |
+| QH• | `bq_QHrad` | 1 | 1 | C₆H₅O₂ | 0 | 57 | 2 | QH₂ | one O–H |
+| QH⁻ | `bq_QHm` | 1 | 2 | C₆H₅O₂ | −1 | 58 | 1 | QH₂ | one O–H |
+| QH₂ | `bq_QH2` | 2 | 2 | C₆H₆O₂ | 0 | 58 | 1 | QH₂ | none |
+| Q²⁻ | `bq_Q2m` | 0 | 2 | C₆H₄O₂ | −2 | 58 | 1 | QH₂ | both O–H |
+
+Two kinds of operation make every state from only two closed-shell **parents**, Q and QH₂:
+
+- *removing a proton*: delete an H bonded to O (the atoms change);
+- *adding an electron*: change `molchg` only (the atoms stay the same; the electrons are not in the structure file, they are set by the charge).
+
+Q, Q•⁻ and Q²⁻ have the same atoms. Q²⁻ is nevertheless made from QH₂: its optimised C–O bond, 1.341 Å (`bq_Q2m.out`, final geometry), is a phenolate bond, far from the C=O of Q, 1.225 Å (`bq_Q.out`, final geometry), so the hydroquinone ring is the closer start. Either start should end in the same minimum; a start closer to it costs fewer geometry steps and is less likely to stop in a different one. The radicals are never passed through LigPrep, which adds hydrogens to them (Session 1, A5).
+
+The whole grid is written in one file per family, `inputs/recipes/bq.csv`:
+
+```
+job,parent,smiles,strip,charge,multiplicity
+bq_Q,bq_Q,O=C1C=CC(=O)C=C1,,0,1
+bq_Qradm,bq_Q,O=C1C=CC(=O)C=C1,,-1,2
+bq_QH2,bq_QH2,Oc1ccc(O)cc1,,0,1
+bq_QHrad,bq_QH2,Oc1ccc(O)cc1,O,0,2
+bq_QHm,bq_QH2,Oc1ccc(O)cc1,O,-1,1
+bq_Q2m,bq_QH2,Oc1ccc(O)cc1,O O,-2,1
+```
+
+`strip` lists the hydrogens to delete: `O` is the first H bonded to an O, `O:2` the second, `O O` both; an integer is an atom number as shown in Maestro.
+
+**S2 · The parents in 3D.** Two routes, both fine for a molecule this small:
+
+1. *From Session 1*: the LigPrep output `..\01-introduction\results\bq_prepped.maegz` (Session 1, B3: `-i 0 -nt -s 1`, ionisation not changed, no tautomers, one stereoisomer). Its entries are titled `bq_Q`, `bq_QH2`, … from the second column of `bq_closed_shell.smi`; the script picks the parents by title.
+2. *From the SMILES in the recipe*: the script builds each parent in 3D itself (`SmilesStructure(...).get3dStructure()` of the Schrödinger API).
+
+**S3 · All states and all inputs, by script** (commands S3):
+
+```powershell
+& "$S\run" scripts\make_inputs.py inputs\recipes\bq.csv --out results\made
+#  or, from the Session 1 LigPrep output:
+& "$S\run" scripts\make_inputs.py inputs\recipes\bq.csv --out results\made --parents ..\01-introduction\results\bq_prepped.maegz
+```
+
+For each row the script copies the parent, deletes the listed hydrogens, checks that the electron count fits the multiplicity, writes `results\made\<job>.in` with the `&gen` keywords of the production level (section A1), and appends the structure to `results\made\states.maegz`. `molchg` and `multip` are set from the recipe *after* the structure: the Schrödinger API otherwise takes the charge from the formal charges of the atoms, and a deleted H leaves the O without a formal charge, so QH⁻ would silently become neutral (`setStructure`, `schrodinger/application/jaguar/input.py`). The same keywords at another level: `--level live` (PBE/LACVP++\*\*) or `--level gas`, and any single keyword with `--set`, for example `--set basis=6-31G**`.
+
+*Expected:* one line per state, for example `bq_Q2m  from bq_QH2  H removed: 9 12  12 atoms  N=  58  molchg=-2  multip=1` (the atom numbers depend on how the parent was built), and `wrote 6 inputs`. The script has not yet been run with a licence on the workstation: the instructor runs it on Thursday and replaces this line with its output.
+
+**S4 · Check before submitting.**
+
+```powershell
+& "$S\run" scripts\check_inputs.py results\made          # parity and states.csv: six ok lines
+code --diff results\made\bq_Q2m.in inputs\bq\bq_Q2m.in    # same &gen, different starting coordinates
+```
+
+Open `results\made\states.maegz` in Maestro (File > Import Structures) and look at each state: is the right H gone, is the formula right? The given inputs in `inputs/bq/` were made the same way; they differ only in the starting coordinates, and the optimisation should take both to the same minimum.
+
+**S5 · The same in Maestro.** For one state, then compare with the script:
+
+1. File > Import Structures: `bq_prepped.maegz` from Session 1 (or draw the parent).
+2. Derived state: copy the parent entry in the Project Table (UNVERIFIED menu wording in 2026-2: right-click > Duplicate), select the O–H hydrogen in the Workspace and delete it, rename the entry (`bq_QHm`). Removing a proton leaves an O with one bond and no formal charge: either set its formal charge to −1 or set the charge in step 3. Adding an electron needs no change to the structure at all.
+3. Jaguar > Optimization (task search, as in Session 1, A6). Tabs:
+   - *Molecule*: charge and spin multiplicity of the entry (`molchg`, `multip`).
+   - *Theory*: B3LYP-D3, basis def2-TZVPD (`dftname`, `basis`).
+   - *SCF*: defaults.
+   - *Optimization*: maximum steps 200 (`maxitg`).
+   - *Properties*: vibrational frequencies with IR intensities (`ifreq`, `irder`).
+   - *Solvation*: PBF, water (`isolv=2`, `solvent`).
+4. The gear menu > Write: writes the `.in` file without running it. Compare it with `results\made\bq_QHm.in` and run `check_inputs.py` on it.
+
+The GUI is good for one state and for looking; the script is reproducible, and is what you use for 30 states. Either way, `check_inputs.py` is run before anything is submitted.
+
+**S6 · The other families.** Same steps, other recipes in `inputs/recipes/`:
+
+| family | parents (closed shell) | derived states | watch |
+|---|---|---|---|
+| AQDS, `aqds.csv` | `aq_Q` (−2), `aq_QH2` (−2) | Q•⁻ from Q; QH•, QH⁻ at O9 or O10, and Q²⁻, from QH₂ | the two SO₃⁻ give −2 to every state. `O:1` and `O:2` are the first and second O–H in atom order: check in `states.maegz` which one is at C9 and which at C10, and rename if needed. The 2,7-substitution makes the two sites different, so both are computed. |
+| TEMPO, `tempo.csv` | `tp_Tp` (oxoammonium, +1), `tp_TH` (hydroxylamine), `tp_TH2p` (+1) | T• and T⁻ from TH, by removing the O–H | T• is a doublet with 87 electrons; the oxoammonium N=O⁺ is a closed shell. |
+| indigo, `indigo.csv` | `di_D`, `di_I`, `di_L` (0, 2 and 4 N–H/O–H hydrogens) | D•⁻, D²⁻ from D; DH•, I⁻ (N–H removed) and I•⁻ from I; LH₃•, L⁻, L²⁻ (O–H removed) from L | which H is removed is a choice of tautomer: L⁻ with O⁻ and with N⁻ are different states with different G. The recipes take O–H for leucoindigo and N–H for indigo; the other choice is a homework question. |
+
+## L · Choosing the level of theory, from cheap to expensive (15 min)
+
+The production level of this course is B3LYP-D3/def2-TZVPD in PBF water. It is not chosen because it is the most expensive level available, and it should not be accepted without a test. A level of theory is chosen for one quantity and one accuracy.
+
+**L0 · The quantity and the target.** Session 3 uses differences of G between states: a pKa from a deprotonation, a potential from a reduction. The targets are 1.36 kcal/mol for one pKa unit and 23.06 kcal/mol per electron for 1 V, so 0.1 V for a 2e⁻ step is 4.6 kcal/mol. An approximation matters only if it changes such a *difference* by a comparable amount. That it changes the absolute energy is not enough.
+
+**L1 · What the benzoquinone reference outputs already show.** From the production outputs (B3LYP-D3/def2-TZVPD, PBF water), handed out in C:
+
+| effect | numbers | for the target |
+|---|---|---|
+| D3 dispersion | Gtot shifts by −5.06 (QH₂), −4.69 (QH⁻) and −4.32 kcal/mol (Q²⁻) between `bq_*.out` and `bq_*_b3lyp.out` | each protonation step changes by only −0.37 kcal/mol, 0.27 pKa units: small for this molecule |
+| solvation | the PBF solvation energy is −7.8 (Q), −12.6 (QH₂), −13.3 (QH•), −81.8 (QH⁻) and −240.3 kcal/mol (Q²⁻) (line `Solvation energy` in each output) | for the ions, solvation is the largest term of the difference; an error of 5 % in that of Q²⁻ is 12 kcal/mol, 0.26 V for the 2e⁻ step |
+
+So for benzoquinone the solvation model matters far more than dispersion. Most of the effort below therefore goes into the solvation comparison, not into the functional.
+
+**L2 · Functional: the ladder** (Jacob's ladder: GGA → hybrid → meta-GGA hybrid and range-separated hybrid). Q in the gas phase, optimisation and frequencies, each input changing one thing:
+
+| rung | input | functional (type, from Jaguar's `levels_of_theory.csv`) | basis | r(C=O) (Å) | ν(C=O), harmonic (cm⁻¹) | lowest B3u (cm⁻¹) | wall time |
+|---|---|---|---|---|---|---|---|
+| 1 | `levels/bq_Q_pbe_631g.in` | PBE (GGA) | 6-31G\*\* | | | | |
+| 2 | `levels/bq_Q_b3lyp_631g.in` | B3LYP (hybrid GGA) | 6-31G\*\* | | | | |
+| 3 | `checks/bq_Q_gas_tzvp.in` | B3LYP-D3 | def2-TZVP | | | | |
+| 4 | `gas/bq_Q_gas.in` | B3LYP-D3 | def2-TZVPD | | | | |
+| 5 | `levels/bq_Q_m062x.in` | M06-2X-D3 (hybrid meta-GGA) | def2-TZVPD | | | | |
+| 6 | `levels/bq_Q_wb97xd.in` | ωB97X-D (range-separated hybrid with dispersion) | def2-TZVPD | | | | |
+| exp. | | | | | 1678 (gas, fundamental) | 109 | |
+
+The instructor fills in the table after the Thursday runs. One point is known already: in PBF water, PBE/LACVP++\*\* gives r(C=O) = 1.247 Å (workstation test run of `inputs/live/bq_Q_pbe.in`) against 1.225 Å for B3LYP-D3/def2-TZVPD (`bq_Q.out`). How to read the table:
+
+- Steps 1 → 2 change the exchange (no exact exchange → part exact exchange). UNVERIFIED (general knowledge, not checked here): GGAs give too long bonds and too low frequencies, because of the self-interaction (delocalisation) error; hybrids reduce it.
+- Steps 2 → 3 → 4 change the basis at a nearly fixed functional; 3 → 4 adds only the diffuse functions (L3).
+- Steps 4 → 5 → 6 change the functional at a fixed basis. If 4, 5 and 6 agree within the target, the choice among them does not matter for this quantity. If they do not agree, the spread is part of the uncertainty, and Session 3 (comparison with measured E° and pKa) decides.
+- In Jaguar, B3LYP, B3LYP-D3, M06-2X and ωB97X-D carry the flag `is_recommended=1`; PBE does not (`levels_of_theory.csv`). This is the vendor's flag, not evidence for our quantity.
+
+**L3 · Basis set.** 6-31G\*\* (double-ζ) → def2-TZVP (triple-ζ, polarisation) → def2-TZVPD (the same plus diffuse functions). In Jaguar's `basis_sets.csv`, def2-TZVPD and LACVP++\*\* are the diffuse ones, 6-31G\*\* and def2-TZVP are not. The outer electrons of an anion are weakly bound and spread far from the nuclei, and a basis without diffuse functions confines them artificially. This matters for QH⁻ and Q²⁻ and for every AQDS state, all of them anions. The price is near-linear dependence: the smallest overlap eigenvalue is 8 × 10⁻⁷ for Q with def2-TZVPD (D4), and negative for dehydroindigo (E). A diffuse basis must be checked for this before production.
+
+**L4 · Solvation model.** Jaguar offers, among others (`isolv`, `jaguar_keywords.xml`): 2 PBF (Poisson–Boltzmann, Jaguar's own model, in which all production geometries of this course were optimised), 7 PCM (C-PCM by default, `pcm_model`), and 8 SMD (Jaguar can also optimise in SMD: keyword `pbf_after_smd`; UNVERIFIED, from the SMD paper's title and not read here: parametrised on experimental solvation free energies, with non-electrostatic terms). The inputs in `inputs/solvation/` are single points of Q and Q²⁻ at their PBF geometries with no solvent, PBF, SMD and C-PCM:
+
+| model | `isolv` | E(Q) (Eh) | E(Q²⁻) (Eh) | ΔG_solv(Q) | ΔG_solv(Q²⁻) | ΔE(Q → Q²⁻) (kcal/mol) |
+|---|---|---|---|---|---|---|
+| none (gas) | – | | | 0 | 0 | |
+| PBF | 2 | −381.625370 | −381.950413 | −7.8 | −240.3 | −204.0 |
+| SMD | 8 | | | | | |
+| C-PCM | 7 | | | | | |
+
+The PBF row is from `bq_Q.out` and `bq_Q2m.out`; the PBF single points must reproduce it, which checks the inputs. ΔG_solv = E(model) − E(gas) at the same geometry. The spread of the last column across the three models, divided by 46.1 kcal/mol (2 × 23.06), is a first estimate of how uncertain a 2e⁻ potential is from the solvation model alone. Its sign tells you which states the error affects: neutral Q is barely touched, and Q²⁻ carries the error.
+
+**L5 · What the literature says** (abstracts read; details in the papers):
+
+- Elhajj et al., *J. Chem. Theory Comput.* (2024), doi:10.1021/acs.jctc.4c00602. 345 quinones in DMF, one-electron potentials, four continuum models (IEF-PCM, C-PCM, COSMO, SM12). The correlation is high (r ≈ 0.95–0.96), but with systematic offsets of 200–400 mV, and larger errors for multiply charged anions. Optimising in the reaction field reduced the random error. The lessons: calibrate against experiment, and optimise in solvent.
+- Zhang et al., *Sci. Rep.* (2020), doi:10.1038/s41598-020-79153-w, and *Batteries* 7, 71 (2021), doi:10.3390/batteries7040071. Geometries from a cheap level plus DFT single points with implicit solvent are about as accurate for quinone redox potentials as full DFT. The lesson: the expensive level is needed for the energy, not necessarily for the geometry.
+- Huynh … Hammes-Schiffer, *J. Am. Chem. Soc.* (2016), doi:10.1021/jacs.6b05797: 1e⁻ and 2e⁻/2H⁺ potentials of 134 quinones and the scaling relations between them.
+- Er et al., *Chem. Sci.* (2015), doi:10.1039/c4sc03030c: high-throughput computational screening of quinones for flow batteries.
+- Methods: Grimme et al. (D3), doi:10.1063/1.3382344; Weigend and Ahlrichs (def2), doi:10.1039/b508541a; Rappoport and Furche (diffuse def2-D), doi:10.1063/1.3484283; Tannor et al., doi:10.1021/ja00105a030, and Marten et al., doi:10.1021/jp953087x (PBF); Marenich, Cramer and Truhlar (SMD), doi:10.1021/jp810292n.
+
+**L6 · The procedure, for any new molecule.**
+
+1. Name the quantity (ΔG of which step) and the accuracy needed (L0).
+2. Screen at a cheap level: GGA or hybrid with a double-ζ basis, to find conformers, tautomers and the states that matter.
+3. Converge the level on one molecule for which experiment exists, here benzoquinone (IR, D). Go up the ladder one factor at a time, and stop when the next rung changes the quantity by less than the target.
+4. Compute the solvation term with at least two models. For ions, the spread is usually the largest uncertainty.
+5. Validate the whole protocol against measured E° and pKa (Session 3). A systematic offset can be calibrated; a random error cannot.
+6. Count the cost. Production wall times, from the reference outputs: 1.0–1.3 h per benzoquinone state, 6.7–7.7 h per TEMPO state, 23 h for dehydroindigo. Multiply by the number of states and conformers before choosing a higher rung.
+
+For this course that procedure gives B3LYP-D3/def2-TZVPD in PBF water. It is a hybrid functional (no GGA self-interaction error at this level of concern), with dispersion that costs nothing and is small here, a diffuse basis because most states are anions, and the solvation model in which Jaguar optimises routinely. Its weak point, solvation of the multiply charged ions, is measured in L4 rather than assumed away.
+
+## A · The input (15 min)
 
 **A1 · Read `inputs/bq/bq_Q.in` together.** Open it in VS Code or Notepad. A Jaguar input has a `&gen` section (keywords) and a `&zmat` section (geometry, Å).
 
@@ -89,7 +248,7 @@ Two energies in Session 3 enter a pKa or a potential as differences. An error of
 
 Not in the input, but set by default (Jaguar 13.2, `jaguar_keywords.xml`): `iuhf=2`, spin-unrestricted when `multip` > 1 and restricted otherwise; pseudospectral integrals (`nops=0`); and in solvent, convergence criteria three times looser than in the gas phase (output line *Scaling standard convergence criteria by a factor of 3.00*). There are no k-points: a molecule is not periodic, and there are no periodic images to correct for when it is charged.
 
-**A2 · Why these choices.** Discuss before going on: why diffuse functions (the anions QH⁻ and Q²⁻, whose outer electrons are weakly bound); why D3, and whether it can matter for a single small molecule (compare `bq_QH2.out` and `bq_QH2_b3lyp.out` in C: the lowest frequency changes from 252.9 to 252.7 cm⁻¹); why optimise in water rather than in the gas phase (anions change geometry in solvent, and the course uses one geometry per state, as in Session 1). PBE/LACVP++\*\* in `inputs/live/` is a cheaper level for the live job only; its numbers are not used in Session 3.
+**A2 · Why these choices.** The argument is in section L; here, connect each keyword to it. Diffuse functions are for the anions QH⁻ and Q²⁻, whose outer electrons are weakly bound (L3). D3 shifts absolute G by 4–5 kcal/mol but a protonation step by only 0.4 kcal/mol, and the lowest frequency of QH₂ only from 252.9 to 252.7 cm⁻¹ (`bq_QH2.out` against `bq_QH2_b3lyp.out`) (L1). The optimisation is in water rather than in the gas phase because the anions change geometry in solvent, and the course uses one geometry per state (L4, L5). PBE/LACVP++\*\* in `inputs/live/` is a cheaper level for the live job only; its numbers are not used in Session 3.
 
 **A3 · Three broken inputs.** Predict the problem of each file in `inputs/broken/` from the `&gen` section alone, write it in the worksheet, then run
 
@@ -114,7 +273,7 @@ Not in the input, but set by default (Jaguar 13.2, `jaguar_keywords.xml`): `iuhf
 
 *Expected:* `ok` for every group. Group 2: two sulfonate groups SO₃⁻ give −2; group 1: 87 electrons, so a doublet.
 
-## B · Submit (15 min)
+## B · Submit (10 min)
 
 See `commands.ps1`, sections B1 to B4; the Linux equivalents are in `commands.sh`.
 
@@ -139,7 +298,9 @@ The `.log` shows the SCF and geometry iterations as they happen; the `.out` is c
 
 **B4 · Group job.** Submit your group's input from A4 the same way. These are larger molecules; they will not finish during the session. You will read them in the homework.
 
-## C · The output (35 min)
+**B5 · One ladder or solvation job per pair** (commands B5). The instructor assigns them: the two cheap rungs `inputs/levels/bq_Q_pbe_631g.in` and `bq_Q_b3lyp_631g.in`, and the eight single points in `inputs/solvation/`. The M06-2X and ωB97X-D rungs at def2-TZVPD are run by the instructor before the session. The results go into the L tables of the worksheet at the start of Session 3.
+
+## C · The output (30 min)
 
 While the live jobs run, work on the finished production output `bq_Q.out` (B3LYP-D3/def2-TZVPD, PBF water), handed out by the instructor. First the summary:
 
@@ -202,7 +363,7 @@ Jaguar 2026-2 treats every mode below 100 cm⁻¹ as if it were at 100 cm⁻¹ w
 
 *Expected:* the instructor fills in the PBE numbers after the Thursday test run.
 
-## D · IR spectrum (20 min)
+## D · IR spectrum (15 min)
 
 Harmonic frequencies are the curvature of the potential at the minimum; measured bands are anharmonic fundamentals and lie a few per cent lower. A scale factor fitted per method and basis absorbs most of this, on average.
 
@@ -237,7 +398,7 @@ Harmonic frequencies are the curvature of the potential at the minimum; measured
 
 Predict which one moves the B3u mode, then compare the results with the instructor's. If none of them does, the error is in the functional and is part of the uncertainty of every G that contains a soft mode.
 
-## E · What changes for the other molecules (10 min)
+## E · What changes for the other molecules (5 min)
 
 | family | what to watch |
 |---|---|
@@ -249,5 +410,6 @@ Predict which one moves the B3u mode, then compare the results with the instruct
 
 1. Read your group's output from B4 with `summarise_job.py`: converged? minimum? ⟨S²⟩? Rebuild G by hand as in C4 and add 1.89 kcal/mol.
 2. The live PBE job against the production job: which numbers change by more than 1 kcal/mol, and which would matter for a pKa?
-3. The worksheet questions of D3 and E.
-4. Write five lines on what surprised you and what is unclear, in the worksheet.
+3. The worksheet questions of D3, E and L.
+4. Make the states of your group's family with `make_inputs.py` and its recipe, and check them with `check_inputs.py`. For leucoindigo, write the recipe line for L⁻ with the N–H removed instead of the O–H.
+5. Write five lines on what surprised you and what is unclear, in the worksheet.

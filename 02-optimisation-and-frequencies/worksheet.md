@@ -2,6 +2,50 @@
 
 Fill in the predictions before running anything, then the observations.
 
+## S · From one molecule to all its states
+
+**S1.** Fill in before running `make_inputs.py`, then compare with its output.
+
+| state | job | parent | H removed | formula | electrons | `molchg` | `multip` |
+|---|---|---|---|---|---|---|---|
+| Q | `bq_Q` | | | | | | |
+| Q•⁻ | `bq_Qradm` | | | | | | |
+| QH• | `bq_QHrad` | | | | | | |
+| QH⁻ | `bq_QHm` | | | | | | |
+| QH₂ | `bq_QH2` | | | | | | |
+| Q²⁻ | `bq_Q2m` | | | | | | |
+
+Why is Q²⁻ made from QH₂ and not from Q, although it has the same atoms as Q?
+
+**S5.** The input you wrote from the Maestro panel (gear > Write) against `results\made\bq_QHm.in`: which lines differ, and does `check_inputs.py` pass it?
+
+## L · Level of theory
+
+**L2 · Ladder** (Q, gas phase). Prediction first: which rung changes r(C=O) most?
+
+| rung | level | r(C=O) (Å) | ν(C=O), harmonic (cm⁻¹) | lowest B3u (cm⁻¹) | wall time |
+|---|---|---|---|---|---|
+| 1 | PBE/6-31G\*\* | | | | |
+| 2 | B3LYP/6-31G\*\* | | | | |
+| 3 | B3LYP-D3/def2-TZVP | | | | |
+| 4 | B3LYP-D3/def2-TZVPD | | | | |
+| 5 | M06-2X-D3/def2-TZVPD | | | | |
+| 6 | ωB97X-D/def2-TZVPD | | | | |
+| exp. | | | 1678 | 109 | |
+
+**L4 · Solvation** (single points at the PBF geometries; kcal/mol unless stated).
+
+| model | E(Q) (Eh) | E(Q²⁻) (Eh) | ΔG_solv(Q) | ΔG_solv(Q²⁻) | ΔE(Q → Q²⁻) |
+|---|---|---|---|---|---|
+| gas | | | 0 | 0 | |
+| PBF | | | | | |
+| SMD | | | | | |
+| C-PCM | | | | | |
+
+Spread of ΔE(Q → Q²⁻) across the three models: ______ kcal/mol = ______ V for the 2e⁻ step. Is this larger or smaller than the D3 effect of L1?
+
+**L6.** In one sentence each: which rung would you stop at for benzoquinone, and what would make you go higher for indigo?
+
 ## A · The input
 
 **A1.** For each keyword, one line in your own words: what does it change physically?
