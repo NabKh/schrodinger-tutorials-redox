@@ -147,7 +147,7 @@ def main():
         jag.saveAs(str(out / f"{job}.in"))
         writer.append(st)
         print(
-            f"{job:16s} from {row['parent']:10s} H removed: {removed:14s} {st.atom_total:3d} atoms  N={n_el:4d}  molchg={charge:+d}  multip={mult}"
+            f"{job:16s} from {row['parent']:10s} H removed: {removed:16s} {st.atom_total:3d} atoms  N={n_el:4d}  molchg={charge:+d}  multip={mult}"
         )
     writer.close()
     print(f"wrote {len(rows)} inputs and states.maegz to {out}")
