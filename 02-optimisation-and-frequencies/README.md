@@ -369,7 +369,7 @@ The course level was chosen with this procedure in mind: a hybrid functional, wi
 
 **A1 · Read your own `results/made/bq_Q.in` (made in S3) together.**
 
-*Input:* `results/made/bq_Q.in`. *Command:* `code results\made\bq_Q.in` (or Notepad). *Expected:* a first line `entry_name: bq_Q` (the Maestro entry name, used as title; not a keyword), a line `MAEFILE: bq_Q.mae` (the structure file next to it, S4), a `&gen` section (keywords) ending with `&`, and a `&zmat` section (geometry, Å, one atom per line with a numbered label such as `C1`). *Why:* every keyword below is one physical or numerical choice; fill in the worksheet A1 in your own words.
+*Input:* `results/made/bq_Q.in`. *Command:* `code results\made\bq_Q.in` (or Notepad). *Expected:* in this order: `MAEFILE: bq_Q.mae` (the structure file next to it: keep the two together, S4); a `&gen` section (keywords) ending with `&`, with only the keywords that differ from Jaguar's defaults (8 for bq_Q); `entry_name: bq_Q` (the Maestro entry name, used as title; not a keyword); and a `&zmat` section (geometry, Å, one atom per line with a numbered label such as `C1`). *Why:* every keyword below is one physical or numerical choice; fill in the worksheet A1 in your own words.
 
 | keyword | value | what it does | in VASP terms |
 |---|---|---|---|
@@ -381,7 +381,7 @@ The course level was chosen with this procedure in mind: a hybrid functional, wi
 | `maxitg=200` | | maximum number of geometry steps (default 100) | `NSW` |
 | `ifreq=1` | | Hessian at the final geometry, then frequencies, ZPE, thermochemistry | `IBRION = 5/6` (finite differences) or `7/8` (DFPT) |
 | `irder=1` | | IR intensities | `LEPSILON` / Born charges |
-| `molchg` | `0` | total charge | `NELECT` (but no compensating background: a molecule needs none) |
+| `molchg` | `0` (not written for a neutral state: 0 is the default) | total charge | `NELECT` (but no compensating background: a molecule needs none) |
 | `multip` | `1` (not written for a singlet: 1 is the default, S4) | spin multiplicity 2S+1 | `ISPIN = 2`, `NUPDOWN` |
 
 The radical inputs (`bq_Qradm.in`, `bq_QHrad.in`) also carry `iuhf=1`, an unrestricted wavefunction. Not in the input, but set by default (`jaguar_keywords.xml`, 2026-2):
