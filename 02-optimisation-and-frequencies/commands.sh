@@ -74,9 +74,16 @@ JD=$(ls -d $SCHRODINGER/mmshare-v*/data/jaguar)
 head -1 $JD/levels_of_theory.csv | cut -d, -f1-10; grep -E '^(PBE|B3LYP|B3LYP-D3|M06-2X-D3|wB97X-D),' $JD/levels_of_theory.csv | cut -d, -f1-10
 head -1 $JD/basis_sets.csv; grep -E '^(6-31G\*\*|DEF2-TZVP|DEF2-TZVPD|LACVP\+\+\*\*),' $JD/basis_sets.csv
 
+# L1 · plots, with the interpretation in the README (Plot), into results/plots
+$SCHRODINGER/run scripts/plot_results.py dispersion results/bq/bq_Q.out results/bq/bq_Q_b3lyp.out results/bq/bq_QH2.out results/bq/bq_QH2_b3lyp.out results/bq/bq_QH2cis.out results/bq/bq_QH2cis_b3lyp.out --out results/plots/L1_dispersion
+
 # L2 · the ladder
 $SCHRODINGER/run scripts/summarise_job.py results/level/*.out results/checks/bq_Q_gas_tzvp.out results/checks/bq_Q_gas.out
 for o in results/level/*.out results/checks/bq_Q_gas_tzvp.out results/checks/bq_Q_gas.out; do $SCHRODINGER/run scripts/ir_compare.py "$o"; done
+
+# L2 · plots, with the interpretation in the README (Plot), into results/plots
+$SCHRODINGER/run scripts/plot_results.py ladder results/level/bq_Q_pbe_631g.out results/level/bq_Q_b3lyp_631g.out results/checks/bq_Q_gas_tzvp.out results/checks/bq_Q_gas.out results/level/bq_Q_m062x.out results/level/bq_Q_wb97xd.out --out results/plots/L2_ladder
+$SCHRODINGER/run scripts/plot_results.py spectra results/level/bq_Q_pbe_631g.out results/level/bq_Q_b3lyp_631g.out results/checks/bq_Q_gas.out results/level/bq_Q_m062x.out --out results/plots/L2_ladder_ir
 
 # L4a · solvation single points at the optimised PBF geometries (after P2)
 mkdir -p results/solv
@@ -91,6 +98,9 @@ done
 $SCHRODINGER/run scripts/check_inputs.py results/solv
 (cd results/solv && for i in *.in; do [[ $i =~ \.[0-9][0-9]\.in$ ]] || $SCHRODINGER/jaguar run "$i" -HOST "$H" -PARALLEL 4; done)
 grep -E "SCFE:|Solvation energy|HOMO" results/solv/*.out
+
+# L4a · plots, with the interpretation in the README (Plot), into results/plots
+$SCHRODINGER/run scripts/plot_results.py solvation results/solv/bq_Q_sp_gas.out results/solv/bq_Q_sp_pbf.out results/solv/bq_Q_sp_smd.out results/solv/bq_Q_sp_pcm.out results/solv/bq_Q2m_sp_gas.out results/solv/bq_Q2m_sp_pbf.out results/solv/bq_Q2m_sp_smd.out results/solv/bq_Q2m_sp_pcm.out --out results/plots/L4a_solvation
 
 # L6 · a cheap screen, and one rung up
 $SCHRODINGER/run scripts/make_inputs.py inputs/recipes/$f.csv --out results/screen --level gas --set dftname=PBE --set "basis=6-31G**" --suffix _screen
@@ -141,6 +151,14 @@ $SCHRODINGER/run scripts/summarise_job.py results/bq/bq_QHrad.out
 $SCHRODINGER/run scripts/summarise_job.py results/bq/bq_QH2.out results/bq/bq_QH2cis.out
 grep -nE "Geometry optimization complete|Scaling standard convergence criteria|Number of imaginary frequencies|Quasi-Harmonic|rotational symmetry number|Gtot" results/bq/bq_Q.out
 
+# C1-C5 · plots, with the interpretation in the README (Plot), into results/plots
+$SCHRODINGER/run scripts/plot_results.py convergence results/bq/bq_Q.out results/bq/bq_QHrad.out results/bq/bq_Q2m.out results/live/bq_Q_pbe.out --out results/plots/C1_convergence
+$SCHRODINGER/run scripts/plot_results.py modes results/bq/bq_Q.out results/level/bq_Q_wb97xd.out --out results/plots/C2_modes
+$SCHRODINGER/run scripts/plot_results.py states results/bq/bq_Q.out results/bq/bq_Qradm.out results/bq/bq_Q2m.out results/bq/bq_QHrad.out results/bq/bq_QHm.out results/bq/bq_QH2.out results/bq/bq_QH2cis.out --scale 0.963 --out results/plots/C2_states_ir
+$SCHRODINGER/run scripts/plot_results.py s2 results/bq/bq_QHrad.out results/bq/bq_Qradm.out --out results/plots/C3_s2
+$SCHRODINGER/run scripts/plot_results.py thermo results/bq/bq_Q.out results/bq/bq_Qradm.out results/bq/bq_Q2m.out results/bq/bq_QHrad.out results/bq/bq_QHm.out results/bq/bq_QH2.out results/bq/bq_QH2cis.out --out results/plots/C4_thermo
+$SCHRODINGER/run scripts/plot_results.py conformers results/bq/bq_QH2.out results/bq/bq_QH2cis.out --out results/plots/C5_conformers
+
 # C6 · the live job
 $SCHRODINGER/run scripts/summarise_job.py results/live/bq_Q_pbe.out
 
@@ -158,13 +176,19 @@ head -20 results/bq_Q_nist.jdx
 # D2, D3 · computed against experiment
 $SCHRODINGER/run scripts/ir_compare.py results/bq/bq_Q.out --scale 0.963 --exp results/bq_Q_nist.jdx --plot results/bq_Q_ir.pdf
 $SCHRODINGER/run scripts/ir_compare.py results/checks/bq_Q_gas.out --scale 0.963 --exp results/bq_Q_nist.jdx
-# PBE live job: --scale 0.989
+$SCHRODINGER/run scripts/ir_compare.py results/live/bq_Q_pbe.out --scale 0.989 --exp results/bq_Q_nist.jdx --plot results/bq_Q_pbe_ir.pdf
+
+# D3 · plots, with the interpretation in the README (Plot), into results/plots
+$SCHRODINGER/run scripts/plot_results.py spectra results/bq/bq_Q.out results/checks/bq_Q_gas.out --scale 0.963 --out results/plots/D3_water_gas
 
 # D4 · one-factor checks
 for o in results/checks/*.out; do
   $SCHRODINGER/run scripts/summarise_job.py "$o"
   $SCHRODINGER/run scripts/ir_compare.py "$o" --scale 0.963 --exp results/bq_Q_nist.jdx
 done
+
+# D4 · plots, with the interpretation in the README (Plot), into results/plots
+$SCHRODINGER/run scripts/plot_results.py checks results/checks/bq_Q_gas.out results/checks/bq_Q_gas_cphf.out results/checks/bq_Q_gas_iacc.out results/checks/bq_Q_gas_nops.out results/checks/bq_Q_gas_tzvp.out --out results/plots/D4_checks
 
 # ---------------------------------------------------------------------------
 # Homework

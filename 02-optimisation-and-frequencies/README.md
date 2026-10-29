@@ -37,11 +37,12 @@ The session is hands-on throughout: every step is worked through together, in pa
 | `scripts/check_inputs.py` | A3, A4: electron count, multiplicity parity, comparison with `states.csv` |
 | `scripts/summarise_job.py` | C: the lines of a Jaguar output that decide whether a result is usable, and G rebuilt by hand |
 | `scripts/ir_compare.py` | D: computed against experimental IR, with a scale factor; optional plot |
+| `scripts/plot_results.py` | C, D, L: one figure per step from the outputs (convergence, modes, spectra, ⟨S²⟩, G terms, conformers, D3, ladder, solvation, checks), PDF and PNG in `results\plots\`; prints the numbers it plots |
 | `commands.ps1` (Windows), `commands.sh` (Linux) | every command of the session, under the name of its step |
 
-`make_inputs.py` uses the Schrödinger Python API and must be run with the suite's Python, `& "$S\run" scripts\make_inputs.py ...`. The other scripts need only Python 3 with `numpy` (and `matplotlib` for the plot); they run with the suite's Python, `& "$S\run" scripts\<name>.py ...`, or any Python with those packages. Paths are written with `\` for Windows; on Linux use `/` (`commands.sh`).
+`make_inputs.py` uses the Schrödinger Python API and must be run with the suite's Python, `& "$S\run" scripts\make_inputs.py ...`. The other scripts need only Python 3 with `numpy` (and `matplotlib` for the plots); they run with the suite's Python, `& "$S\run" scripts\<name>.py ...`, or any Python with those packages. Paths are written with `\` for Windows; on Linux use `/` (`commands.sh`).
 
-**The outputs of the instructor's test run are in `results\`** (P, 2026-10-29, Jaguar 2026-2 build 125, host `cpurs4`), in the subfolders the commands below use (`results\bq\`, `results\checks\`, `results\level\`, `results\live\`, `results\solv\`, …), without the NIST spectrum (not redistributed: download it yourself, D1). Every command that reads an output works on them as soon as you have cloned the repository. Every output named below is produced by running the corresponding input on the workstation: in the instructor's test run before the session (P) for `results\bq\`, `results\checks\` and the two expensive ladder rungs, and in the session itself for the live, ladder and solvation jobs (B). The starting coordinates in `inputs/` are starting guesses; in the test run they are regenerated with `make_inputs.py` (P1), so do not read anything into them. They were written by `make_inputs.py` from the recipes in `inputs/recipes/`, not by Maestro or Epik. In class you do not start from them: you make the same files yourself (S3), check your own (S4), and only then compare with this copy.
+**The outputs of the instructor's test run are in `results\`** (P, 2026-10-29, Jaguar 2026-2 build 125, host `cpurs4`), in the subfolders the commands below use (`results\bq\`, `results\checks\`, `results\level\`, `results\live\`, `results\solv\`, …), without the NIST spectrum (not redistributed: download it yourself, D1). Every command that reads an output works on them as soon as you have cloned the repository. Every output named below is produced by running the corresponding input on the workstation: in the instructor's test run before the session (P) for `results\bq\`, `results\checks\` and the two expensive ladder rungs, and in the session itself for the live, ladder and solvation jobs (B). The starting coordinates in `inputs/` are starting guesses; in the test run they are regenerated with `make_inputs.py` (P1), so do not read anything into them. They were written by `make_inputs.py` from the recipes in `inputs/recipes/`, not by Maestro or Epik. In class you do not start from them: you make the same files yourself (S3), check your own (S4), and only then compare with this copy. The figures of the test run are in `results\plots\`, each made by the *Plot* command of its step (C1–C5, D2–D4, L1, L2, L4a); run the same command on your own outputs and compare.
 
 ## How each step is written
 
@@ -83,7 +84,7 @@ Everything students read in C, D and L1 comes from these jobs. They are run once
 - **P3 · Gas phase and checks.** `inputs\gas\bq_Q_gas.in` and `inputs\checks\*.in` into `results\checks\`.
 - **P4 · Expensive ladder rungs.** `inputs\levels\bq_Q_m062x.in` and `bq_Q_wb97xd.in` into `results\level\`; `bq_Q_wb97xd_631g.in` (ωB97X-D/6-31G\*\*, about 3 min) tests the rung-6 result below.
 
-*Expected:* for every job, a `.out` that passes C1–C3. A job that does not is restarted (B6) or its input corrected before the session, and the fix is written into this README.
+*Expected:* for every job, a `.out` that passes C1–C3. A job that does not is restarted (B6) or its input corrected before the session, and the fix is written into this README. Test run: all jobs converged, but three are not minima (C2): `bq_Q_wb97xd` and `bq_Q_wb97xd_631g` (L2, rung 6) and the production Q•⁻, `bq_Qradm` (one imaginary mode, −337.0 cm⁻¹, B2g). `bq_Qradm` is to be displaced along that mode and reoptimised (C2) before its G is used in Session 3.
 
 ## Time plan
 
@@ -313,6 +314,16 @@ In class, section L is predictions: every table below is filled in later, from t
 
 *Test run, D3 (PBF water, B3LYP-D3 against B3LYP, same basis):* Gtot shifts by −4.41 kcal/mol for Q (−381.566711 against −381.559688 Eh), −5.06 for QH₂ (−382.794292 against −382.786236) and −5.07 for QH₂ cis. The Q → QH₂ step changes by −0.65 kcal/mol, +0.014 V (2e⁻): D3 shifts each G by 4–5 kcal/mol but the difference by about a seventh of that. D3 leaves the frequencies within 1 cm⁻¹ (lowest B3u of Q 232.7 with, 232.8 without), so the step from about 100 cm⁻¹ (rungs 1–2) to about 210 cm⁻¹ (rungs 3–4) in L2 comes from the basis, not from D3.
 
+*Plot* (commands L1):
+
+```powershell
+& "$S\run" scripts\plot_results.py dispersion results\bq\bq_Q.out results\bq\bq_Q_b3lyp.out results\bq\bq_QH2.out results\bq\bq_QH2_b3lyp.out results\bq\bq_QH2cis.out results\bq\bq_QH2cis_b3lyp.out --out results\plots\L1_dispersion
+```
+
+![L1_dispersion](results/plots/L1_dispersion.png)
+
+Blue: what D3 does to G of each state (−4.41, −5.06, −5.07 kcal/mol). Red: what it does to the Q → QH₂ step, −0.65 kcal/mol. Dashed: 4.6 kcal/mol = 0.1 V for a 2e⁻ step. Each bar of a single state is as large as the target, the bar of the difference is a seventh of it: an effect on absolute energies is not an effect on a difference.
+
 *Why:* prediction first: which of the two rows changes a *difference* more? The answer decides where the effort goes, into the functional or into the solvation model. The `Solvation energy` line of a production output is not used here: with `nogas=2` its gas-phase reference is computed at the *starting* geometry (A1), so it is not a ΔG_solv at one geometry.
 
 **L2 · Functional: the ladder** (Jacob's ladder: GGA → hybrid → meta-GGA hybrid and range-separated hybrid). Q in the gas phase, optimisation and frequencies.
@@ -330,6 +341,26 @@ In class, section L is predictions: every table below is filled in later, from t
 | exp. | | | | | 1668 (B1u fundamental; band maximum 1678) | 109 | |
 
 *Test run, rung 6 failed the minimum check (C2).* `bq_Q_wb97xd` converged in 5 steps but has one imaginary mode, −2097.8 cm⁻¹ (B2g), and ZPE 49.8 kcal/mol (M06-2X-D3, same basis and start: 55.1, none imaginary). Its final geometry is still D2h but the ring is distorted: angle at the C=O carbon 106.7° (start 116.2°, M06-2X 117.5°), r(C=O) 1.229 Å, C1–C2 1.450 Å. The SCF energy fell by 7.4 kcal/mol along that distortion (−381.23538 → −381.24719 Eh), M06-2X by 0.6. The input differs from `bq_Q_m062x.in` only in `dftname`. Cause not established; this rung is not used for a comparison until it is. Test: the same functional with the rung-2 basis, `levels/bq_Q_wb97xd_631g.in` (differs from `bq_Q_b3lyp_631g.in` only in `dftname`). Result: the same distortion, so the basis is not the cause. `bq_Q_wb97xd_631g` (0.04 h): one imaginary mode, −2530.1 cm⁻¹ (B2g); angle at C1 107.7°, r(C=O) 1.240 Å, C1–C2 1.451 Å; ZPE 49.0 kcal/mol (B3LYP, same basis: 53.5); strongest B1u 1196.5 and 1550.0 cm⁻¹, no C=O band near 1700. PBE, B3LYP and M06-2X-D3 all give 117.2–117.5°. The fault follows ωB97X-D in Jaguar 2026-2 build 125 (to be reported to Schrödinger with both outputs); why it does is not established. In class rung 6 is a C2 example: a converged optimisation that is not a minimum, caught only by the frequencies. Lowest B3u, the out-of-plane mode, on the other rungs: PBE/6-31G\*\* 95.8, B3LYP/6-31G\*\* 100.5, M06-2X-D3/def2-TZVPD 205.3 cm⁻¹ (production, in water: 232.7; exp. 109).
+
+*Plot* (commands L2):
+
+```powershell
+& "$S\run" scripts\plot_results.py ladder results\level\bq_Q_pbe_631g.out results\level\bq_Q_b3lyp_631g.out results\checks\bq_Q_gas_tzvp.out results\checks\bq_Q_gas.out results\level\bq_Q_m062x.out results\level\bq_Q_wb97xd.out --out results\plots\L2_ladder
+```
+
+![L2_ladder](results/plots/L2_ladder.png)
+
+The four columns of the table per rung, in the order of the table; a rung that is not a minimum is a red cross and is not compared. r(C=O) shortens and ν(C=O) rises from PBE to the hybrids and further to M06-2X (1.238 → 1.208 Å, 1685 → 1831 cm⁻¹ harmonic); against the 1668 cm⁻¹ fundamental every harmonic value is too high except PBE, which is why a scale factor is needed and why it depends on the functional. The lowest B3u jumps from about 100 to about 210 cm⁻¹ between rungs 2 and 3 (basis and D3 change there together; L1 shows D3 does not move it), and the 6-31G\*\* rungs lie closest to the 109 cm⁻¹ fundamental although their basis is the least converged (L3): agreement with one number is not proof of a good level. Wall time rises 45-fold from rung 1 to rung 5 (0.05 → 2.27 h).
+
+*Plot* (commands L2):
+
+```powershell
+& "$S\run" scripts\plot_results.py spectra results\level\bq_Q_pbe_631g.out results\level\bq_Q_b3lyp_631g.out results\checks\bq_Q_gas.out results\level\bq_Q_m062x.out --out results\plots\L2_ladder_ir
+```
+
+![L2_ladder_ir](results/plots/L2_ladder_ir.png)
+
+The unscaled spectra of the rungs that are minima, with the experimental band maxima (dashed) and the tabulated low fundamentals 109 and 241 cm⁻¹ (dotted). Unscaled, the C=O band moves by 146 cm⁻¹ across the ladder; the other bands move less. One scale factor per functional and basis cannot correct all bands equally (D3).
 
 The experimental values are the tabulated fundamentals of NIST CCCBDB (assignment of Becker, Charney and Anno, D3) and the band maximum of the NIST gas-phase spectrum (D1).
 
@@ -365,6 +396,16 @@ The experimental values are the tabulated fundamentals of NIST CCCBDB (assignmen
 - HOMO energy of Q²⁻ in the gas phase: ______ eV. If it is positive, the second electron is not bound in the gas phase: the gas energy then depends on the basis, and so does ΔG_solv(Q²⁻).
 
 *Test run (the table above, 2026-2 build 125):* the PBF single point of Q gives −381.625313 Eh, the production `bq_Q.out` −381.625370 (0.04 kcal/mol apart: the single point converges its own PBF reaction field); Q²⁻ −381.950398 against −381.950413 (0.01 kcal/mol). ΔG_solv(Q) by hand −7.64 kcal/mol = the last PBF `Solvation energy` line, −0.01216731 Eh; for SMD and C-PCM the printed lines are −6.98 and −7.17 kcal/mol, the same as by hand. HOMO of Q²⁻ in the gas phase: +0.17594 Eh = +4.79 eV, positive: the extra electrons are not bound, so E(gas) of Q²⁻, the +28.33 kcal/mol gas column and every ΔG_solv(Q²⁻) depend on the basis. In all three solvents the HOMO is negative (−0.16 to −0.13 Eh). Spread of the last column: −164.55 to −203.99, 39.4 kcal/mol = 0.86 V for a 2e⁻ step; Q contributes 0.7 kcal/mol of it, Q²⁻ the rest. For L1: 5 % of ΔG_solv(Q²⁻) (PBF) is 12.0 kcal/mol = 0.26 V (2e⁻), against 0.014 V for D3: the solvation model, not dispersion, sets the uncertainty of a charged step.
+
+*Plot* (commands L4a):
+
+```powershell
+& "$S\run" scripts\plot_results.py solvation results\solv\bq_Q_sp_gas.out results\solv\bq_Q_sp_pbf.out results\solv\bq_Q_sp_smd.out results\solv\bq_Q_sp_pcm.out results\solv\bq_Q2m_sp_gas.out results\solv\bq_Q2m_sp_pbf.out results\solv\bq_Q2m_sp_smd.out results\solv\bq_Q2m_sp_pcm.out --out results\plots\L4a_solvation
+```
+
+![L4a_solvation](results/plots/L4a_solvation.png)
+
+Left: ΔG_solv of Q and Q²⁻ in each model (files: the four of Q, gas first, then the four of Q²⁻ in the same order). Q, −7 kcal/mol, is the same in all three; Q²⁻, −200 to −240, is 30 times larger and differs by 40 kcal/mol between models. Right: the energy of the 2e⁻ step. In the gas phase it is uphill (+28.3, the second electron is not bound, L4a); in every solvent it is downhill by 165–204 kcal/mol. The 39.4 kcal/mol between the models is 0.86 V, against 0.014 V for D3 (L1).
 
 *Why:* the spread of the last column across the three models, divided by 46.1 kcal/mol (2 × 23.06), is a first estimate of how uncertain a 2e⁻ potential is from the solvation model alone. Predict which state carries most of the spread, neutral Q or Q²⁻, and check it in the table. The geometry is the PBF one for all four models: a single point does not include the geometry relaxation in each model.
 
@@ -563,21 +604,61 @@ The outputs read here come from the instructor's test run (P2): `results\bq\bq_Q
 
 *Input:* `bq_Q.out`. *Command:* search `Geometry optimization complete`; just above it, the last step lists five criteria: energy change, gradient maximum, gradient rms, displacement maximum and displacement rms. Then search `Scaling standard convergence criteria`.
 
-*Expected:* all five criteria met (each value against the threshold in brackets: hartree, hartree/bohr, bohr). Scaling factor in solvent: ______. Number of the last geometry step: ______ (the number of `SCFE` lines can be larger: one `SCF energy` line for the gas phase, then one `Solution phase energy` line per solvation iteration of every geometry step; the live job had 4 steps and 12 lines). Gradient-maximum threshold: ______ Eh/bohr = ______ eV/Å (1 Eh/bohr = 51.42 eV/Å).
+*Expected:* the five criteria of the last step, each value against the threshold in brackets (hartree, hartree/bohr, bohr); the mark after the value is `.` for not met. Test run: `bq_Q` ends with `*` on all five; `bq_Q2m` and `bq_Qradm` end with the energy change still `.` (not met) and the line `Geometry optimization complete` all the same, so Jaguar does not require all five; other jobs print `#` (and once `!`) instead of `*` for some criteria. What `#` and `!` mean is in the Jaguar manual (not checked here): look it up before you call a job converged. Scaling factor in solvent: ______. Number of the last geometry step: ______ (the number of `SCFE` lines can be larger: one `SCF energy` line for the gas phase, then one `Solution phase energy` line per solvation iteration of every geometry step; the live job had 4 steps and 12 lines). Gradient-maximum threshold: ______ Eh/bohr = ______ eV/Å (1 Eh/bohr = 51.42 eV/Å).
 
 *Why:* in VASP terms, compare with `EDIFFG = −0.02` (eV/Å, a force criterion on every atom) — but VASP stops on forces alone, Jaguar on five criteria at once, so the numbers are comparable only as orders of magnitude. If a criterion is not met and the step limit was reached, restart (B6).
+
+*Plot* (commands C1):
+
+```powershell
+& "$S\run" scripts\plot_results.py convergence results\bq\bq_Q.out results\bq\bq_QHrad.out results\bq\bq_Q2m.out results\live\bq_Q_pbe.out --out results\plots\C1_convergence
+```
+
+![C1_convergence](results/plots/C1_convergence.png)
+
+Top row: each criterion divided by its threshold, on a log scale, at every geometry step; below the line at 1 it is met. Bottom row: the energy of each step above the last one. Test run: `bq_Q` needs 3 steps, its gradient maximum falls from 8.2 to 1.1 to 0.55 times the threshold and its energy from 0.49 kcal/mol above the final value to 0. `bq_QHrad` starts 5.6 kcal/mol above its minimum (the start is further away), `bq_Q2m` 0.84. In `bq_Q_pbe` (live job) step 2 lies 0.11 kcal/mol *below* the final energy: the energy need not fall at every step, and the criteria, not the energy alone, decide. The energy change has no value at step 1 (no previous step). Read: how many steps, which criterion is met last, how far the start was from the minimum (kcal/mol).
 
 **C2 · Is it a minimum?**
 
 *Input:* `bq_Q.out`. *Command:* search `Number of imaginary frequencies`. *Expected:* 30 frequencies for 12 atoms (3N − 6), 0 imaginary. The lowest: ______ cm⁻¹, label ______. Which motion is it? (Maestro: open `bq_Q.01.mae` or the `.out` and animate the mode.)
 
-*Why:* an imaginary mode after an optimisation usually means that the optimiser stopped at a saddle point, often because the start had a symmetry that the minimum does not have. Displace along the imaginary mode, reoptimise, and check again.
+*Why:* an imaginary mode after an optimisation usually means that the optimiser stopped at a saddle point, often because the start had a symmetry that the minimum does not have. Displace along the imaginary mode, reoptimise, and check again. Test run, production Q•⁻ (`results\bq\bq_Qradm.out`): `Geometry optimization complete` (line 2916), then `Number of imaginary frequencies:   1` (line 3480): mode 1 at −337.01 cm⁻¹, B2g, intensity 0 (line 3262). The molecule is planar in the yz plane and the mode moves the atoms only along x, out of the plane (largest on the H atoms, then on the C=O carbons); point group D2h, kept by the optimiser. So the planar D2h Q•⁻ at this level is a saddle point, not a minimum, and its G (with one mode left out of the thermal table) is not usable. To do before Session 3: displace the atoms along mode 1 (Maestro: animate the mode, take a frame at the turning point), reoptimise with the symmetry not imposed, and check the frequencies again. The Jaguar keyword that switches symmetry off is to be read in `jaguar_keywords.xml` (not checked here). The two ωB97X-D rungs (L2) are the other C2 failures of the test run.
+
+*Plot* (commands C2):
+
+```powershell
+& "$S\run" scripts\plot_results.py modes results\bq\bq_Q.out results\level\bq_Q_wb97xd.out --out results\plots\C2_modes
+```
+
+![C2_modes](results/plots/C2_modes.png)
+
+Each mode as a stick at its harmonic frequency, with its IR intensity; an imaginary mode is drawn in red at its negative value. `bq_Q`: 30 modes, none imaginary, the C=O stretch (B1u, 1724 cm⁻¹ harmonic, 639 km/mol) dominates. `bq_Q_wb97xd`: 30 modes, one at −2098 cm⁻¹, and no strong band near 1700 cm⁻¹: a converged optimisation that is not a minimum, seen at a glance.
+
+*Plot* (commands C2):
+
+```powershell
+& "$S\run" scripts\plot_results.py states results\bq\bq_Q.out results\bq\bq_Qradm.out results\bq\bq_Q2m.out results\bq\bq_QHrad.out results\bq\bq_QHm.out results\bq\bq_QH2.out results\bq\bq_QH2cis.out --scale 0.963 --out results\plots\C2_states_ir
+```
+
+![C2_states_ir](results/plots/C2_states_ir.png)
+
+The computed IR spectrum of every state (× 0.963, Lorentzian HWHM 10 cm⁻¹, each normalised to its strongest band). Strongest bands, test run: Q 1660 (C=O); Q•⁻ 1125 and 752; Q²⁻ 1244 and 1469; QH• 1227 and 1176; QH⁻ 1483 and 1287; QH₂ 1177 and 1219; QH₂ cis 1195 and 1497 cm⁻¹. Reduction removes the 1660 cm⁻¹ C=O band: no other state has a band above 1500 cm⁻¹ as strong. UNVERIFIED (general knowledge, not checked here): the added electrons go into a π* orbital that is antibonding in C=O, and in QH₂ the bonds are C–O(H) single bonds. Each state has its own pattern, so a measured spectrum can tell the states apart. The Q•⁻ curve is from a saddle point (above) and is to be redrawn after the rerun.
 
 **C3 · Radicals.**
 
 *Input:* `results\bq\bq_QHrad.out`. *Command:* `summarise_job.py results\bq\bq_QHrad.out`, and search `<S**2>`. *Expected:* close to 0.75: ______. The thermal table has an `elec.` row with S = R ln 2 = 1.377 cal/(mol K) for a doublet.
 
 *Why:* a pure doublet has S(S+1) = 0.75. A value well above it means spin contamination: the energy is no longer that of a doublet. As a rule of thumb only (not a fixed limit): more than about 10 % above 0.75 needs a look at the spin density and at another functional. Test run (production `bq_QHrad`, UDFT B3LYP-D3): ⟨S²⟩ = 0.754 at every printed step (+0.5 %), point group Cs, σ = 1, 33 modes, none imaginary, 2.77 h; `elec.` row S = 1.377 cal/(mol K), G = −0.411 kcal/mol = −RT ln 2.
+
+*Plot* (commands C3):
+
+```powershell
+& "$S\run" scripts\plot_results.py s2 results\bq\bq_QHrad.out results\bq\bq_Qradm.out --out results\plots\C3_s2
+```
+
+![C3_s2](results/plots/C3_s2.png)
+
+Every printed ⟨S²⟩ (one per SCF, so one per geometry step) against 0.75 and the 10 % line. Test run: QH• 0.754 at all 11 values, Q•⁻ 0.755–0.756 at all 12: both within 1 % of a pure doublet at every step, so spin contamination is not an issue for either radical. A curve that climbs during the optimisation would mean that the geometry is moving towards a broken-symmetry or a different electronic state.
 
 **C4 · Rebuild G by hand.**
 
@@ -596,11 +677,31 @@ Then search `Quasi-Harmonic`, above the vibrational temperatures. If it is there
 
 *Why:* low modes give the largest entropy and are the least harmonic; a floor avoids an entropy that grows without bound as a frequency goes to zero. Which molecules of the course have modes that could fall below the floor (E)? σ enters the rotational entropy as −R ln σ, so G contains +RT ln σ: D2h has σ = 4, and a σ of 1 (for example from a structure that lost its symmetry) would make G lower by RT ln 4 = 0.82 kcal/mol. Do not also count symmetry-equivalent structures by hand.
 
+*Plot* (commands C4):
+
+```powershell
+& "$S\run" scripts\plot_results.py thermo results\bq\bq_Q.out results\bq\bq_Qradm.out results\bq\bq_Q2m.out results\bq\bq_QHrad.out results\bq\bq_QHm.out results\bq\bq_QH2.out results\bq\bq_QH2cis.out --out results\plots\C4_thermo
+```
+
+![C4_thermo](results/plots/C4_thermo.png)
+
+Left: the terms of G − E for `bq_Q` at 298.15 K, from the thermal table. Test run: ZPE +54.57, translation −10.43, rotation −6.57, vibration −0.76, electronic 0 kcal/mol (closed shell), and +1.89 for 1 atm → 1 mol/L (RT ln 24.46, not in Gtot). Their sum without the last term, +36.81 kcal/mol, equals Gtot − E. The ZPE is by far the largest term, but it nearly cancels in a difference between states of the same molecule; translation and rotation are almost the same for all states; the 1 mol/L term cancels in a reaction with the same number of solute molecules on both sides. Right: the six lowest modes of every state against the quasi-harmonic floor (100 cm⁻¹). Test run: every real mode lies above 230 cm⁻¹, so the floor changes no G of benzoquinone; Q•⁻ has its imaginary mode at −337 cm⁻¹ (red, C2). For the larger molecules (E) look for modes left of the floor.
+
 **C5 · Two conformers of QH₂.**
 
 *Input:* `results\bq\bq_QH2.out` (trans O–H, C2h) and `bq_QH2cis.out` (cis, C2v). *Command:* commands C (`summarise_job.py` on both). *Expected:* Gtot ______ and ______ Eh, ΔG = ______ kcal/mol. With $p_i = e^{-G_i/RT} / \sum_j e^{-G_j/RT}$ (RT = 0.592 kcal/mol): ______ % trans, ______ % cis. The G of QH₂ as a mixture: $G = -RT \ln \sum_i e^{-G_i/RT}$ = ______ Eh.
 
 *Why:* is ΔG larger than the error of the method? The mixture G is never above the lowest one, and differs from it by at most RT ln 2 = 0.41 kcal/mol for two conformers. Which G goes into Session 3, and why (worksheet C5)? Test run: Gtot −382.794292 (trans) and −382.793832 Eh (cis); ΔG = +0.29 kcal/mol (ΔE +0.28), so 61.9 % trans, 38.1 % cis; mixture G = −382.794744 Eh, 0.28 kcal/mol below trans. Both converged, 0 imaginary, σ = 2 each; the lowest modes differ by < 3 cm⁻¹.
+
+*Plot* (commands C5):
+
+```powershell
+& "$S\run" scripts\plot_results.py conformers results\bq\bq_QH2.out results\bq\bq_QH2cis.out --out results\plots\C5_conformers
+```
+
+![C5_conformers](results/plots/C5_conformers.png)
+
+Left: G of each conformer above the lowest, against RT = 0.59 kcal/mol. Right: the Boltzmann populations. Test run: cis lies 0.29 kcal/mol above trans, less than RT, so both are populated, 61.9 % and 38.1 %, and G of the mixture is 0.28 kcal/mol below that of trans. Both numbers are far below the method error (L), but the same rule applied to a molecule with many conformers (AQDS, the sulfonate groups) can shift G by more.
 
 **C6 · The live job.**
 
@@ -622,6 +723,7 @@ Harmonic frequencies are the curvature of the potential at the minimum; measured
 
 ```powershell
 & "$S\run" scripts\ir_compare.py results\bq\bq_Q.out --scale 0.963 --exp results\bq_Q_nist.jdx --plot results\bq_Q_ir.pdf
+& "$S\run" scripts\ir_compare.py results\live\bq_Q_pbe.out --scale 0.989 --exp results\bq_Q_nist.jdx --plot results\bq_Q_pbe_ir.pdf
 ```
 
 0.963 ± 0.044 is the NIST CCCBDB factor for B3LYP/def2-TZVPP, the closest available to def2-TZVPD; for the live PBE job use 0.989 ± 0.027 (PBEPBE/6-31+G\*\*) (cccbdb.nist.gov, vibrational scaling factors). The ± is the scatter of the fit: 0.044 is 74 cm⁻¹ at 1678 cm⁻¹, larger than most differences below.
@@ -635,7 +737,7 @@ Harmonic frequencies are the curvature of the potential at the minimum; measured
 | 1070 / 1054 | | | | | |
 | 882 | | | | C–H out of plane | |
 
-*Why:* the script matches each peak to the nearest IR-active mode and marks a peak that falls on a mode already matched (`same mode as the … peak`): that is one band split in two, not a second mode. In the test run the live PBE job put 1054 and 1070 on the same mode 17 (1054.8 cm⁻¹ scaled). Check every match by the displacement of the mode in Maestro. 1678 cm⁻¹ is the band maximum: the tabulated C=O fundamental is 1668 cm⁻¹ (B1u), and the band is split by a Fermi resonance. The plot broadens each computed line with a Lorentzian of 10 cm⁻¹ half width. Test run, production bq_Q (PBF water) against the gas-phase NIST spectrum: 1678 → mode 25 B1u 1660.0 (−18 cm⁻¹, −1.1 %; −8 against the 1668 fundamental); 1302 → 20 B2u 1306.8 (+4.8); 1054 and 1070 → 17 B2u 1079.0, one mode; 882 → 13 B3u 918.2 (+36, +4.1 %). All within the ± 74 cm⁻¹ of the scale factor. The calculation is in water and the experiment in gas: the like-for-like comparison is `bq_Q_gas` (P3, commands L2).
+*Why:* the script matches each peak to the nearest IR-active mode and marks a peak that falls on a mode already matched (`same mode as the … peak`): that is one band split in two, not a second mode. In the test run the live PBE job put 1054 and 1070 on the same mode 17 (1054.8 cm⁻¹ scaled). Check every match by the displacement of the mode in Maestro. 1678 cm⁻¹ is the band maximum: the tabulated C=O fundamental is 1668 cm⁻¹ (B1u), and the band is split by a Fermi resonance. The plot broadens each computed line with a Lorentzian of 10 cm⁻¹ half width. Test run, production bq_Q (PBF water) against the gas-phase NIST spectrum: 1678 → mode 25 B1u 1660.0 (−18 cm⁻¹, −1.1 %; −8 against the 1668 fundamental); 1302 → 20 B2u 1306.8 (+4.8); 1054 and 1070 → 17 B2u 1079.0, one mode; 882 → 13 B3u 918.2 (+36, +4.1 %). All within the ± 74 cm⁻¹ of the scale factor. The calculation is in water and the experiment in gas: the like-for-like comparison is `bq_Q_gas` (P3, commands L2). In `bq_Q_ir.pdf` (blue, computed × 0.963; black, NIST, only after you downloaded it in D1) the positions of the five bands match as in the numbers above, but the weaker bands come out about half as strong relative to C=O as measured (882: about 0.15 against 0.3): computed intensities are only a guide. The width of 10 cm⁻¹ is chosen, not computed. Live PBE job (`bq_Q_pbe_ir.pdf`, × 0.989): C=O, mode 25 B1u, at 1625.7 cm⁻¹, 52 cm⁻¹ below the 1678 band, against 18 for B3LYP-D3: the cheaper level is visibly worse for the band that matters most.
 
 **D3 · Judge the agreement.**
 
@@ -644,6 +746,16 @@ Harmonic frequencies are the curvature of the potential at the minimum; measured
 *Why:* `bq_Q.out` is in water, the spectrum in the gas phase; the gas-phase job separates the solvent from the method. The low modes are below 550 cm⁻¹ and not in the spectrum: they are compared with the tabulated fundamentals only. 241 cm⁻¹ (B2g) is IR-inactive (a g mode of a centrosymmetric molecule) and comes from other data. Symmetry labels depend on the choice of axes: CCCBDB labels the 109 cm⁻¹ mode B3u, the 1965 papers B1u. Identify each mode by its displacement, not by its label. The assignment is that of Becker, Charney and Anno, *J. Chem. Phys.* 42, 942 (1965), doi:10.1063/1.1696085, with the normal-coordinate analysis of Anno, *J. Chem. Phys.* 42, 932 (1965), doi:10.1063/1.1696084. If the error differs between modes, a single scale factor cannot fix it. The comparison also assumes that the 1965 assignment of these weak low bands is right.
 
 *Test run (scale 0.963, `bq_Q_gas` against `bq_Q`).* C=O, mode 25 B1u: in water 1660.0, in the gas phase 1680.1 cm⁻¹ (+2.1 against the 1678 band maximum, +12 against the 1668 fundamental); water lowers it by 20 cm⁻¹. In-plane: 1302 → mode 20 1294.6 (−0.6 %, water +0.4 %); 1054/1070 → mode 17 1065.7, one mode (water 1079.0). Out-of-plane 882 → mode 13 B3u 911.1 (+3.3 %, water +4.1 %). Lowest two out-of-plane modes, gas: 219.3 (B3u, IR active) and 343.9 cm⁻¹ (B2g), against 109 and 241: +110 and +103 cm⁻¹, twice and 1.4 times the tabulated values. In-plane errors under 1 % and out-of-plane errors of 3 % to a factor of two: one scale factor cannot fix both.
+
+*Plot* (commands D3):
+
+```powershell
+& "$S\run" scripts\plot_results.py spectra results\bq\bq_Q.out results\checks\bq_Q_gas.out --scale 0.963 --out results\plots\D3_water_gas
+```
+
+![D3_water_gas](results/plots/D3_water_gas.png)
+
+Water (blue) against gas (orange), both × 0.963, with the experimental band maxima (dashed) and the low fundamentals (dotted). Water moves the C=O band down by 20 cm⁻¹ (1680 → 1660), away from the gas-phase band at 1678: UNVERIFIED (general knowledge, not checked here): the polar solvent stabilises the polarised C^δ+–O^δ− form and so weakens the bond. The bands below 1350 cm⁻¹ hardly move. The lowest out-of-plane modes (computed 211 and 331 cm⁻¹ scaled, gas) lie far right of the dotted lines at 109 and 241 cm⁻¹ in both media: the solvent is not the cause of that error.
 
 **D4 · Find the cause, one factor at a time** (outputs from the test run, P3).
 
@@ -668,6 +780,16 @@ Harmonic frequencies are the curvature of the potential at the minimum; measured
 | `tzvp` | +0.99 | +0.86 | 207.7 | 335.2 | 908.9 | 1680.2 | 1.610E-05 | 0.84 h |
 
 The three numerical settings move G by at most 0.06 kcal/mol and every mode by at most 0.5 cm⁻¹, at up to 3.6 times the cost: the defaults are converged for this molecule. def2-TZVP has 272 functions and Jaguar removes 10 (def2-TZVPD: 338, removes 30; S min 1.6E-05 against 8.4E-07). Removing the diffuse functions moves G by 0.9 kcal/mol and the lowest mode by −11.6 cm⁻¹, still 99 cm⁻¹ above the 109 fundamental. None of the four removes the factor-of-two error of the lowest out-of-plane mode, so it is not numerical. In `iacc`, `nops` and `tzvp` the C=O B1u is mode 26 and an Ag mode 0.2 cm⁻¹ away is mode 25: read modes by symmetry and intensity, not by number.
+
+*Plot* (commands D4):
+
+```powershell
+& "$S\run" scripts\plot_results.py checks results\checks\bq_Q_gas.out results\checks\bq_Q_gas_cphf.out results\checks\bq_Q_gas_iacc.out results\checks\bq_Q_gas_nops.out results\checks\bq_Q_gas_tzvp.out --out results\plots\D4_checks
+```
+
+![D4_checks](results/plots/D4_checks.png)
+
+Each check against `bq_Q_gas` (the first file): change of G, of the lowest B3u and B2g, and the wall time as a multiple. The three numerical checks (blue) are flat at 0 for G and the modes, at up to 3.6 times the cost; only the basis (red, def2-TZVP) moves anything: G +0.86 kcal/mol, the lowest modes −11.6 and −8.6 cm⁻¹, a tenth of the 110 cm⁻¹ between `bq_Q_gas` and the 109 cm⁻¹ fundamental. A check that changes nothing and costs more is the answer: the default is converged.
 
 ## E · What changes for the other molecules (5 min)
 

@@ -106,6 +106,9 @@ Import-Csv $JD\levels_of_theory.csv | Where-Object Method -in "PBE","B3LYP","B3L
 Import-Csv $JD\basis_sets.csv | Where-Object full_name -in "6-31G**","DEF2-TZVP","DEF2-TZVPD","LACVP++**" | Format-Table full_name, is_diffuse, is_ecp
 # expected (2026-2): recommended 1 for all but PBE; diffuse 1 for DEF2-TZVPD and LACVP++** only; ECP 1 for LACVP++** only
 
+# L1 · plots, with the interpretation in the README (Plot), into results\plots
+& "$S\run" scripts\plot_results.py dispersion results\bq\bq_Q.out results\bq\bq_Q_b3lyp.out results\bq\bq_QH2.out results\bq\bq_QH2_b3lyp.out results\bq\bq_QH2cis.out results\bq\bq_QH2cis_b3lyp.out --out results\plots\L1_dispersion
+
 # L2 · the ladder, when the rungs are back (B5, P3, P4)
 foreach ($o in Get-ChildItem results\level\*.out) { & "$S\run" scripts\summarise_job.py $o.FullName }
 & "$S\run" scripts\summarise_job.py results\checks\bq_Q_gas_tzvp.out results\checks\bq_Q_gas.out
@@ -113,6 +116,10 @@ foreach ($o in Get-ChildItem results\level\*.out) { & "$S\run" scripts\ir_compar
 & "$S\run" scripts\ir_compare.py results\checks\bq_Q_gas_tzvp.out
 & "$S\run" scripts\ir_compare.py results\checks\bq_Q_gas.out
 # r(C=O): open the final structure (<job>.01.mae) in Maestro and measure it
+
+# L2 · plots, with the interpretation in the README (Plot), into results\plots
+& "$S\run" scripts\plot_results.py ladder results\level\bq_Q_pbe_631g.out results\level\bq_Q_b3lyp_631g.out results\checks\bq_Q_gas_tzvp.out results\checks\bq_Q_gas.out results\level\bq_Q_m062x.out results\level\bq_Q_wb97xd.out --out results\plots\L2_ladder
+& "$S\run" scripts\plot_results.py spectra results\level\bq_Q_pbe_631g.out results\level\bq_Q_b3lyp_631g.out results\checks\bq_Q_gas.out results\level\bq_Q_m062x.out --out results\plots\L2_ladder_ir
 
 # L4a · solvation single points at the optimised PBF geometries (after P2)
 #   &gen of inputs\solvation\<job>.in + &zmat of results\bq\bq_<state>.01.in -> results\solv\<job>.in
@@ -132,6 +139,9 @@ foreach ($i in Get-ChildItem *.in | Where-Object { $_.Name -notmatch '\.\d\d\.in
 Pop-Location
 #   when they are back:
 Select-String -Path results\solv\*.out -Pattern "SCFE:|Solvation energy|HOMO"   # the last SCFE line of each file is E
+
+# L4a · plots, with the interpretation in the README (Plot), into results\plots
+& "$S\run" scripts\plot_results.py solvation results\solv\bq_Q_sp_gas.out results\solv\bq_Q_sp_pbf.out results\solv\bq_Q_sp_smd.out results\solv\bq_Q_sp_pcm.out results\solv\bq_Q2m_sp_gas.out results\solv\bq_Q2m_sp_pbf.out results\solv\bq_Q2m_sp_smd.out results\solv\bq_Q2m_sp_pcm.out --out results\plots\L4a_solvation
 
 # L6 · a cheap screen of a new family, and one rung up
 & "$S\run" scripts\make_inputs.py inputs\recipes\$f.csv --out results\screen --level gas --set dftname=PBE --set basis=6-31G** --suffix _screen
@@ -209,6 +219,14 @@ Pop-Location
 # C1-C4 by hand in the .out (VS Code, Ctrl+F):
 Select-String -Path results\bq\bq_Q.out -Pattern "Geometry optimization complete|Scaling standard convergence criteria|Number of imaginary frequencies|Quasi-Harmonic|rotational symmetry number|Gtot"
 
+# C1-C5 · plots, with the interpretation in the README (Plot), into results\plots
+& "$S\run" scripts\plot_results.py convergence results\bq\bq_Q.out results\bq\bq_QHrad.out results\bq\bq_Q2m.out results\live\bq_Q_pbe.out --out results\plots\C1_convergence
+& "$S\run" scripts\plot_results.py modes results\bq\bq_Q.out results\level\bq_Q_wb97xd.out --out results\plots\C2_modes
+& "$S\run" scripts\plot_results.py states results\bq\bq_Q.out results\bq\bq_Qradm.out results\bq\bq_Q2m.out results\bq\bq_QHrad.out results\bq\bq_QHm.out results\bq\bq_QH2.out results\bq\bq_QH2cis.out --scale 0.963 --out results\plots\C2_states_ir
+& "$S\run" scripts\plot_results.py s2 results\bq\bq_QHrad.out results\bq\bq_Qradm.out --out results\plots\C3_s2
+& "$S\run" scripts\plot_results.py thermo results\bq\bq_Q.out results\bq\bq_Qradm.out results\bq\bq_Q2m.out results\bq\bq_QHrad.out results\bq\bq_QHm.out results\bq\bq_QH2.out results\bq\bq_QH2cis.out --out results\plots\C4_thermo
+& "$S\run" scripts\plot_results.py conformers results\bq\bq_QH2.out results\bq\bq_QH2cis.out --out results\plots\C5_conformers
+
 # C6 · your live job, when it has finished
 & "$S\run" scripts\summarise_job.py results\live\bq_Q_pbe.out
 
@@ -227,16 +245,22 @@ Get-Content results\bq_Q_nist.jdx -TotalCount 20                 # header: ##STA
 # D2 · computed against experiment
 & "$S\run" scripts\ir_compare.py results\bq\bq_Q.out --scale 0.963 --exp results\bq_Q_nist.jdx --plot results\bq_Q_ir.pdf
 # 0.963 +- 0.044: B3LYP/def2-TZVPP (NIST CCCBDB); for the PBE live job use 0.989 +- 0.027 (PBEPBE/6-31+G**)
-#   & "$S\run" scripts\ir_compare.py results\live\bq_Q_pbe.out --scale 0.989 --exp results\bq_Q_nist.jdx
+& "$S\run" scripts\ir_compare.py results\live\bq_Q_pbe.out --scale 0.989 --exp results\bq_Q_nist.jdx --plot results\bq_Q_pbe_ir.pdf
 
 # D3 · the same in the gas phase (P3)
 & "$S\run" scripts\ir_compare.py results\checks\bq_Q_gas.out --scale 0.963 --exp results\bq_Q_nist.jdx
+
+# D3 · plots, with the interpretation in the README (Plot), into results\plots
+& "$S\run" scripts\plot_results.py spectra results\bq\bq_Q.out results\checks\bq_Q_gas.out --scale 0.963 --out results\plots\D3_water_gas
 
 # D4 · one-factor checks (P3)
 foreach ($o in Get-ChildItem results\checks\*.out) {
     & "$S\run" scripts\summarise_job.py $o.FullName
     & "$S\run" scripts\ir_compare.py $o.FullName --scale 0.963 --exp results\bq_Q_nist.jdx
 }
+
+# D4 · plots, with the interpretation in the README (Plot), into results\plots
+& "$S\run" scripts\plot_results.py checks results\checks\bq_Q_gas.out results\checks\bq_Q_gas_cphf.out results\checks\bq_Q_gas_iacc.out results\checks\bq_Q_gas_nops.out results\checks\bq_Q_gas_tzvp.out --out results\plots\D4_checks
 
 # ---------------------------------------------------------------------------
 # Homework
