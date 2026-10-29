@@ -319,8 +319,8 @@ In class, section L is predictions: every table below is filled in later, from t
 
 | rung | input | functional (type) | basis | r(C=O) (Å) | ν(C=O), harmonic (cm⁻¹) | lowest out-of-plane mode (cm⁻¹, label in output) | wall time |
 |---|---|---|---|---|---|---|---|
-| 1 | `levels/bq_Q_pbe_631g.in` | PBE (GGA) | 6-31G\*\* | | 1684.7 (mode 26) | 95.8 (B3u) | 0.05 h |
-| 2 | `levels/bq_Q_b3lyp_631g.in` | B3LYP (hybrid GGA) | 6-31G\*\* | | 1758.5 (mode 26) | 100.5 (B3u) | 0.05 h |
+| 1 | `levels/bq_Q_pbe_631g.in` | PBE (GGA) | 6-31G\*\* | 1.238 | 1684.7 (mode 26) | 95.8 (B3u) | 0.05 h |
+| 2 | `levels/bq_Q_b3lyp_631g.in` | B3LYP (hybrid GGA) | 6-31G\*\* | 1.225 | 1758.5 (mode 26) | 100.5 (B3u) | 0.05 h |
 | 3 | `checks/bq_Q_gas_tzvp.in` | B3LYP-D3 | def2-TZVP | | | | |
 | 4 | `gas/bq_Q_gas.in` | B3LYP-D3 | def2-TZVPD | | | | |
 | 5 | `levels/bq_Q_m062x.in` | M06-2X-D3 (hybrid meta-GGA) | def2-TZVPD | 1.208 | 1830.9 (mode 25) | 205.3 (B3u) | 2.27 h |
