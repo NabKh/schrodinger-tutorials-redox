@@ -9,3 +9,6 @@ Thumbs.db
 # Jupyter and Python caches
 .ipynb_checkpoints/
 __pycache__/
+# Session 2: the instructor's test-run outputs are kept, the NIST spectrum is not (not redistributable)
+!02-optimisation-and-frequencies/results/
+*.jdx
