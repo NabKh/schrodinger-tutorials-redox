@@ -322,7 +322,7 @@ In class, section L is predictions: every table below is filled in later, from t
 | 1 | `levels/bq_Q_pbe_631g.in` | PBE (GGA) | 6-31G\*\* | 1.238 | 1684.7 (mode 26) | 95.8 (B3u) | 0.05 h |
 | 2 | `levels/bq_Q_b3lyp_631g.in` | B3LYP (hybrid GGA) | 6-31G\*\* | 1.225 | 1758.5 (mode 26) | 100.5 (B3u) | 0.05 h |
 | 3 | `checks/bq_Q_gas_tzvp.in` | B3LYP-D3 | def2-TZVP | | | | |
-| 4 | `gas/bq_Q_gas.in` | B3LYP-D3 | def2-TZVPD | | | | |
+| 4 | `gas/bq_Q_gas.in` | B3LYP-D3 | def2-TZVPD | | 1744.7 (mode 25) | 219.3 (B3u) | 0.92 h |
 | 5 | `levels/bq_Q_m062x.in` | M06-2X-D3 (hybrid meta-GGA) | def2-TZVPD | 1.208 | 1830.9 (mode 25) | 205.3 (B3u) | 2.27 h |
 | 6 | `levels/bq_Q_wb97xd.in` | ωB97X-D (range-separated hybrid with dispersion) | def2-TZVPD | 1.229 | none: strongest B1u 1184.0 and 1552.2 (not a minimum, see below) | 221.3 (B3u); one imaginary, −2097.8 (B2g) | 2.81 h |
 | exp. | | | | | 1668 (B1u fundamental; band maximum 1678) | 109 | |
@@ -638,6 +638,8 @@ Harmonic frequencies are the curvature of the potential at the minimum; measured
 *Input:* `results\checks\bq_Q_gas.out` (gas phase, P3). *Command:* commands D3. *Expected:* predict first in which direction solvent shifts the C=O stretch, then: C=O in water ______, in the gas phase ______ cm⁻¹. Relative differences of the in-plane bands and of the out-of-plane band at 882 cm⁻¹: ______ % and ______ %. The two lowest out-of-plane modes, computed: ______ and ______ cm⁻¹, against the tabulated fundamentals 109 and 241 cm⁻¹ (NIST CCCBDB).
 
 *Why:* `bq_Q.out` is in water, the spectrum in the gas phase; the gas-phase job separates the solvent from the method. The low modes are below 550 cm⁻¹ and not in the spectrum: they are compared with the tabulated fundamentals only. 241 cm⁻¹ (B2g) is IR-inactive (a g mode of a centrosymmetric molecule) and comes from other data. Symmetry labels depend on the choice of axes: CCCBDB labels the 109 cm⁻¹ mode B3u, the 1965 papers B1u. Identify each mode by its displacement, not by its label. The assignment is that of Becker, Charney and Anno, *J. Chem. Phys.* 42, 942 (1965), doi:10.1063/1.1696085, with the normal-coordinate analysis of Anno, *J. Chem. Phys.* 42, 932 (1965), doi:10.1063/1.1696084. If the error differs between modes, a single scale factor cannot fix it. The comparison also assumes that the 1965 assignment of these weak low bands is right.
+
+*Test run (scale 0.963, `bq_Q_gas` against `bq_Q`).* C=O, mode 25 B1u: in water 1660.0, in the gas phase 1680.1 cm⁻¹ (+2.1 against the 1678 band maximum, +12 against the 1668 fundamental); water lowers it by 20 cm⁻¹. In-plane: 1302 → mode 20 1294.6 (−0.6 %, water +0.4 %); 1054/1070 → mode 17 1065.7, one mode (water 1079.0). Out-of-plane 882 → mode 13 B3u 911.1 (+3.3 %, water +4.1 %). Lowest two out-of-plane modes, gas: 219.3 (B3u, IR active) and 343.9 cm⁻¹ (B2g), against 109 and 241: +110 and +103 cm⁻¹, twice and 1.4 times the tabulated values. In-plane errors under 1 % and out-of-plane errors of 3 % to a factor of two: one scale factor cannot fix both.
 
 **D4 · Find the cause, one factor at a time** (outputs from the test run, P3).
 
