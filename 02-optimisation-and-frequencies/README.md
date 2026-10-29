@@ -571,7 +571,7 @@ The outputs read here come from the instructor's test run (P2): `results\bq\bq_Q
 
 *Input:* `results\bq\bq_QHrad.out`. *Command:* `summarise_job.py results\bq\bq_QHrad.out`, and search `<S**2>`. *Expected:* close to 0.75: ______. The thermal table has an `elec.` row with S = R ln 2 = 1.377 cal/(mol K) for a doublet.
 
-*Why:* a pure doublet has S(S+1) = 0.75. A value well above it means spin contamination: the energy is no longer that of a doublet. As a rule of thumb only (not a fixed limit): more than about 10 % above 0.75 needs a look at the spin density and at another functional.
+*Why:* a pure doublet has S(S+1) = 0.75. A value well above it means spin contamination: the energy is no longer that of a doublet. As a rule of thumb only (not a fixed limit): more than about 10 % above 0.75 needs a look at the spin density and at another functional. Test run (production `bq_QHrad`, UDFT B3LYP-D3): ⟨S²⟩ = 0.754 at every printed step (+0.5 %), point group Cs, σ = 1, 33 modes, none imaginary, 2.77 h.
 
 **C4 · Rebuild G by hand.**
 
