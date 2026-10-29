@@ -49,6 +49,7 @@ mkdir -p results/epik
 printf '%s\n' "O=C1C=CC(=O)C=C1 bq_Q" "[O-]c1ccc([O])cc1 bq_Qradm" "[O-]c1ccc([O-])cc1 bq_Q2m" > results/epik/bq_ne.smi
 $SCHRODINGER/utilities/structconvert results/epik/bq_ne.smi results/epik/bq_ne.mae
 $SCHRODINGER/epikx results/epik/bq_ne.mae results/epik/bq_ne_epik.maegz -ph 7.0 -pht 7.0 -ms 16 -WAIT
+mv -f bq_ne_epik.log results/epik/   # epikx writes its log to the current folder
 $SCHRODINGER/run ../01-introduction/scripts/list_epik_states.py results/epik/bq_ne.mae results/epik/bq_ne_epik.maegz
 # expected: input 52, 53, 54 electrons (no H yet); output bq_Q 56, and 58 for every state of bq_Qradm and bq_Q2m
 
