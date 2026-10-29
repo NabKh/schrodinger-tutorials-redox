@@ -1,0 +1,67 @@
+{ 
+ s_m_m2io_version
+ :::
+ 2.0.0 
+} 
+
+f_m_ct { 
+ s_m_title
+ i_f3d_flags
+ i_m_Spin_multiplicity
+ r_f3d_energy
+ i_m_ct_format
+ :::
+ bq_QHrad 
+ 0
+ 2
+ 0
+  2
+ m_atom[13] { 
+  # First column is atom index #
+  i_m_mmod_type
+  r_m_x_coord
+  r_m_y_coord
+  r_m_z_coord
+  i_m_color
+  i_m_atomic_number
+  s_m_color_rgb
+  s_m_atom_name
+  :::
+  1 16 0.000000 0.000000 0.000000 70 8 FF2F2F  O1 
+  2 2 1.380000 0.000000 0.000000 2 6 A0A0A0  C2 
+  3 2 2.074914 -1.203626 -0.000000 2 6 A0A0A0  C3 
+  4 2 3.464742 -1.203626 0.000000 2 6 A0A0A0  C4 
+  5 2 4.159656 0.000001 -0.000000 2 6 A0A0A0  C5 
+  6 16 5.539656 0.000001 -0.000000 70 8 FF2F2F  O6 
+  7 2 3.464742 1.203626 -0.000001 2 6 A0A0A0  C7 
+  8 2 2.074914 1.203626 -0.000001 2 6 A0A0A0  C8 
+  9 41 1.533889 -2.140710 0.000001 21 1 FFFFFF  H9 
+  10 41 4.005768 -2.140709 0.000001 21 1 FFFFFF  H10 
+  11 42 5.962274 0.906309 -0.000000 21 1 FFFFFF  H11 
+  12 41 4.005766 2.140711 -0.000001 21 1 FFFFFF  H12 
+  13 41 1.533888 2.140710 -0.000001 21 1 FFFFFF  H13 
+  :::
+ } 
+ m_bond[13] { 
+  # First column is bond index #
+  i_m_from
+  i_m_to
+  i_m_order
+  :::
+  1 1 2 1
+  2 2 3 2
+  3 2 8 1
+  4 3 4 1
+  5 3 9 1
+  6 4 5 2
+  7 4 10 1
+  8 5 6 1
+  9 5 7 1
+  10 6 11 1
+  11 7 8 2
+  12 7 12 1
+  13 8 13 1
+  :::
+ } 
+} 
+

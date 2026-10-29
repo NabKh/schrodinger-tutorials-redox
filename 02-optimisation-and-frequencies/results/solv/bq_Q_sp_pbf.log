@@ -1,0 +1,180 @@
+
+--------------------------------------------------------------------------------
+JobId          : dc6c9a57-d386-11f1-bf20-e454e8665817
+Name           : bq_Q_sp_pbf
+Program        : Jaguar
+ClientVersion  : 2026-2 build 125
+Host           : D-6QP7G03
+Dir            : C:\Users\khossossi\schrodinger-tutorials-redox\02-optimisation-and-frequencies\results\solv
+HostEntry      : cpurs4
+JobHost        : rs4.differ.nl
+JobDir         : /scratch/khossossi/jobs/dc6c9a57-d386-11f1-bf20-e454e8665817
+JobSchrodinger : /opt/schrodinger2026-2
+Commandline    : C:\Program Files\Schrodinger2026-2\jaguar.exe run bq_Q_sp_pbf.in -HOST cpurs4 -PARALLEL 4
+StartTime      : 2026-10-29-11:52:42
+Version        : 2026-2 build 125
+--------------------------------------------------------------------------------
+
+mmshare : 0081fc11b9a5c0238c64103940c810e7237b86bf
+jaguar-src : 3661799996b617cab0dd845f7945f9aa1fcded36
+epik-src : eb2f04bfa5d377af105844461338435d3de2ce5c
+impact-src : f3569fc6e286733c6cf5ccd5315dea49d71165a7
+macromodel-src : 2ef174ddc7115c1a158115bf5578e88c9752da36
+
+Contents of /scratch/khossossi/jobs/dc6c9a57-d386-11f1-bf20-e454e8665817:
+/scratch/khossossi/jobs/dc6c9a57-d386-11f1-bf20-e454e8665817/supv-dc6c9a57-d386-11f1-bf20-e454e8665817.log
+/scratch/khossossi/jobs/dc6c9a57-d386-11f1-bf20-e454e8665817/mpiNodefile.1930884792
+/scratch/khossossi/jobs/dc6c9a57-d386-11f1-bf20-e454e8665817/supv-stdout-dc6c9a57-d386-11f1-bf20-e454e8665817.log
+/scratch/khossossi/jobs/dc6c9a57-d386-11f1-bf20-e454e8665817/memory.json
+/scratch/khossossi/jobs/dc6c9a57-d386-11f1-bf20-e454e8665817/supv-stderr-dc6c9a57-d386-11f1-bf20-e454e8665817.log
+/scratch/khossossi/jobs/dc6c9a57-d386-11f1-bf20-e454e8665817/bq_Q_sp_pbf.in
+/scratch/khossossi/jobs/dc6c9a57-d386-11f1-bf20-e454e8665817/dc6c9a57-d386-11f1-bf20-e454e8665817-sysinfo.json
+/scratch/khossossi/jobs/dc6c9a57-d386-11f1-bf20-e454e8665817/bq_Q_sp_pbf.log
+/scratch/khossossi/jobs/dc6c9a57-d386-11f1-bf20-e454e8665817/.dc6c9a57-d386-11f1-bf20-e454e8665817-job-supervisor-access
+/scratch/khossossi/jobs/dc6c9a57-d386-11f1-bf20-e454e8665817/.dc6c9a57-d386-11f1-bf20-e454e8665817-job-server-config
+/scratch/khossossi/jobs/dc6c9a57-d386-11f1-bf20-e454e8665817/bq_Q_sp_pbf.recover
+/scratch/khossossi/jobs/dc6c9a57-d386-11f1-bf20-e454e8665817/.write_dir.json
+
+Executing subprocess:
+/opt/schrodinger2026-2/jaguar-v13.2/bin/Linux-x86_64/jexec bq_Q_sp_pbf.in -T 4 -out /scratch/khossossi/jobs/dc6c9a57-d386-11f1-bf20-e454e8665817 -cwd
+
+Stacksize hard limit = unlimited
+Job bq_Q_sp_pbf started on rs4.differ.nl at Thu Oct 29 11:52:44 2026
+jobid: dc6c9a57-d386-11f1-bf20-e454e8665817 
+Jaguar version 13.2, release 125
+ Using up to   4 threads per process
+Molecular Point Group: D2h     
+Point Group used: D2h
+/opt/schrodinger2026-2/internal/lib/python3.11/site-packages/numpy/core/getlimits.py:551: UserWarning: The value of the smallest subnormal for <class 'numpy.float64'> type is zero.
+  setattr(self, word, getattr(machar, word).flat[0])
+/opt/schrodinger2026-2/internal/lib/python3.11/site-packages/numpy/core/getlimits.py:89: UserWarning: The value of the smallest subnormal for <class 'numpy.float64'> type is zero.
+  return self._float_to_str(self.smallest_subnormal)
+/opt/schrodinger2026-2/internal/lib/python3.11/site-packages/numpy/core/getlimits.py:551: UserWarning: The value of the smallest subnormal for <class 'numpy.float32'> type is zero.
+  setattr(self, word, getattr(machar, word).flat[0])
+/opt/schrodinger2026-2/internal/lib/python3.11/site-packages/numpy/core/getlimits.py:89: UserWarning: The value of the smallest subnormal for <class 'numpy.float32'> type is zero.
+  return self._float_to_str(self.smallest_subnormal)
+pre (input checking) done.
+onee (1-electron integrals) done.
+hfig (HF initial guess) done.
+probe (project orbitals) done.
+grid (grid generation) done.
+rwr (Q operators) done.
+scf type: DFT=Becke_3_Parameter/HF+Slater+Becke88+VWN+LYP (B3LYP-D3)
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  5  M    -379.84585804764           3.2E-03  2.0E-01
+etot    2  Y  Y  6  M    -378.62114063842 -1.2E+00  3.9E-03  2.9E-01
+etot    3  Y  Y  6  M    -379.01898522452  4.0E-01  2.5E-03  2.3E-01
+etot    4  N  Y  2  U    -381.43754872081  2.4E+00  9.0E-04  5.8E-02
+etot    5  Y  Y  6  M    -381.53516410662  9.8E-02  3.8E-04  3.8E-02
+etot    6  N  Y  2  U    -381.60424179676  6.9E-02  7.4E-05  7.2E-03
+etot    7  Y  Y  6  M    -381.60597494091  1.7E-03  2.2E-05  1.9E-03
+etot    8  N  Y  2  U    -381.60611179950  1.4E-04  6.8E-06  5.0E-04
+etot    9  N  N  2  U    -381.60612107204  9.3E-06  0.0E+00  0.0E+00
+scf (DFT) done.
+--------gas phase calculation complete----------------------
+ch (properties) done.
+post (output conversion) done.
+pbf (Poisson-Boltzmann solver) done.
+solv (solvation checking) done.
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -381.63137975404           1.6E-04  9.4E-03
+etot    2  Y  Y  6  M    -381.63135713025 -2.3E-05  6.1E-05  1.0E-02
+etot    3  Y  Y  6  M    -381.63363580163  2.3E-03  1.3E-05  1.1E-03
+etot    4  N  Y  2  U    -381.63392220519  2.9E-04  3.3E-06  2.6E-04
+etot    5  N  N  2  U    -381.63392348046  1.3E-06  0.0E+00  0.0E+00
+scf (DFT) done.
+sole (solvation energy) done.
+----------solvation iteration  1 complete------------------
+ch (properties) done.
+post (output conversion) done.
+pbf (Poisson-Boltzmann solver) done.
+solv (solvation checking) done.
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -381.64042522121           4.0E-05  2.3E-03
+etot    2  N  Y  2  U    -381.64037121241 -5.4E-05  1.7E-05  3.1E-03
+etot    3  N  Y  2  U    -381.64055951231  1.9E-04  3.0E-06  2.3E-04
+etot    4  N  N  2  U    -381.64056153760  2.0E-06  0.0E+00  0.0E+00
+scf (DFT) done.
+sole (solvation energy) done.
+----------solvation iteration  2 complete------------------
+ch (properties) done.
+post (output conversion) done.
+pbf (Poisson-Boltzmann solver) done.
+solv (solvation checking) done.
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -381.64211089349           9.3E-06  5.2E-04
+etot    2  N  N  2  U    -381.64210882836 -2.1E-06  0.0E+00  0.0E+00
+scf (DFT) done.
+sole (solvation energy) done.
+----------solvation iteration  3 complete------------------
+ch (properties) done.
+post (output conversion) done.
+pbf (Poisson-Boltzmann solver) done.
+solv (solvation checking) done.
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -381.64269482973           1.0E-05  4.9E-04
+etot    2  N  N  2  U    -381.64266446904 -3.0E-05  0.0E+00  0.0E+00
+scf (DFT) done.
+sole (solvation energy) done.
+----------solvation iteration  4 complete------------------
+ch (properties) done.
+post (output conversion) done.
+pbf (Poisson-Boltzmann solver) done.
+solv (solvation checking) done.
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -381.64227007273           2.2E-05  1.2E-03
+etot    2  N  Y  2  U    -381.64212031813 -1.5E-04  1.6E-05  3.0E-03
+etot    3  N  Y  2  U    -381.64230231952  1.8E-04  4.7E-07  6.1E-05
+etot    4  N  N  2  U    -381.64230243180  1.1E-07  0.0E+00  0.0E+00
+scf (DFT) done.
+sole (solvation energy) done.
+----------solvation iteration  5 complete------------------
+ch (properties) done.
+post (output conversion) done.
+pbf (Poisson-Boltzmann solver) done.
+solv (solvation checking) done.
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -381.64252774318           2.0E-06  1.1E-04
+etot    2  N  N  2  U    -381.64252770497 -3.8E-08  0.0E+00  0.0E+00
+scf (DFT) done.
+sole (solvation energy) done.
+----final solvation iteration  6 complete------------------
+post (output conversion) done.
+Job bq_Q_sp_pbf completed on rs4.differ.nl at Thu Oct 29 11:53:51 2026
+Timer (jaguar_backend.py) : 67.50 secs (1.12 minutes)
+Finished:   Thu Oct 29 11:53:51 2026

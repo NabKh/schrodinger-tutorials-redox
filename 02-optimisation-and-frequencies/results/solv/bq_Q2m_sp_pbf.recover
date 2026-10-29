@@ -1,0 +1,10 @@
+Name: 'bq_Q2m_sp_pbf'
+JobId: 'cbe921da-d386-11f1-ba1e-e454e8665817'
+Commandline: 'C:\Program Files\Schrodinger2026-2\jaguar.exe run bq_Q2m_sp_pbf.in -HOST cpurs4 -PARALLEL 4'
+BackendCmdline: 'run jexec.py -PARALLEL 4 -jobname bq_Q2m_sp_pbf bq_Q2m_sp_pbf.in'
+Outfiles:
+- 'bq_Q2m_sp_pbf.out'
+- 'bq_Q2m_sp_pbf.01.in'
+- 'bq_Q2m_sp_pbf.log'
+- 'bq_Q2m_sp_pbf.recover'
+- 'bq_Q2m_sp_pbf.01.mae'

@@ -1,0 +1,1461 @@
+Job bq_Q_gas started on rs4.differ.nl at Thu Oct 29 10:45:19 2026
+jobid: 713c1aac-d37d-11f1-8afd-e454e8665817
+
+  +------------------------------------------------------------------------+
+  |  Jaguar version 13.2, release 125                                      |
+  |                                                                        |
+  |  Copyright Schrodinger, Inc.                                           |
+  |  All Rights Reserved.                                                  |
+  |                                                                        |
+  |  The following have contributed to Jaguar (listed alphabetically):     |
+  |  Ty Balduf, Mike Beachy, Chandler Bennett, Art Bochevarov,             |
+  |  Dale Braden, Yixiang Cao, Alan Chien, Chris Cortis,                   |
+  |  Rich Friesner, Jim Furness, Bill Goddard, Hod Greeley,                |
+  |  Tom Hughes, Leif Jacobson, Jean-Marc Langlois, Daniel Levine,         |
+  |  Daniel Mainz, Rob Murphy, Dean Philipp, Tom Pollard,                  |
+  |  Murco Ringnalda, Pablo Videla, Mark Watson, Haoyu Yu.                 |
+  |                                                                        |
+  |  Use of this program should be acknowledged in publications as:        |
+  |                                                                        |
+  |  Jaguar, version 13.2, Schrodinger, Inc., New York, NY, 2026.          |
+  |                                                                        |
+  |  Y. Cao, T. Balduf, M. D. Beachy, M. C. Bennett, A. D. Bochevarov,     |
+  |  A. Chien, P. A. Dub, K. G. Dyall, J. W. Furness, M. D. Halls,         |
+  |  T. F. Hughes, L. D. Jacobson, H. S. Kwak, D. S. Levine, D. T. Mainz,  |
+  |  K. B. Moore, M. Svensson, P. E. Videla, M. A. Watson, R. A. Friesner, |
+  |  "Quantum chemical package Jaguar: A survey of recent developments     |
+  |  and unique features", J. Chem. Phys. 161, 052502 (2024).              |
+  |  DOI: 10.1063/5.0213317                                                |
+  +------------------------------------------------------------------------+
+  
+  start of program pre
+  
+  Job name: bq_Q_gas
+  Executables used: /opt/schrodinger2026-2/jaguar-v13.2/bin/Linux-x86_64
+  Temporary files : /scratch/khossossi/jobs/713c1aac-d37d-11f1-8afd-e454e8665817
+  Basis file : using default basis file from /opt/schrodinger2026-2
+  Maestro file (input):  bq_Q_gas.mae
+  Maestro file (output): bq_Q_gas.01.mae
+  
+  Input file comments:
+   entry_name: bq_Q_gas
+  
+ Contents of input file: &gen and (if present) &atomic sections only
+ ----------------Contents start----------------
+&gen
+dftname=B3LYP-D3
+basis=def2-TZVPD
+igeopt=1
+ifreq=1
+irder=1
+maxitg=200
+molchg=0
+multip=1
+&
+ -----------------Contents end-----------------
+ 
+  basis set:               def2-tzvpd                      
+  net molecular charge:    0
+  multiplicity:            1
+  
+  Using up to   4 threads per process
+  
+  number of basis functions....          338
+  
+ Input geometry:
+                                   angstroms
+  atom               x                 y                 z
+  O1           -2.6684537800      0.0000000000      0.0000000000 
+  C1           -1.4465392300      0.0000000000      0.0000000000 
+  C2           -0.6680830400      1.2510016100      0.0000000000 
+  C3            0.6680830400      1.2510016100      0.0000000000 
+  C4            1.4465392300      0.0000000000      0.0000000000 
+  O2            2.6684537800      0.0000000000      0.0000000000 
+  C5            0.6680830400     -1.2510016100      0.0000000000 
+  C6           -0.6680830400     -1.2510016100      0.0000000000 
+  H1           -1.2432662800      2.1653957500      0.0000000000 
+  H2            1.2432662800      2.1653957500      0.0000000000 
+  H3            1.2432662800     -2.1653957500      0.0000000000 
+  H4           -1.2432662800     -2.1653957500      0.0000000000 
+   
+  principal moments of inertia:
+        amu*angstrom^2:                94.02276               305.66296               399.68572
+                g*cm^2:          1.56128448E-38          5.07565217E-38          6.63693665E-38
+   
+  rotational constants:
+               cm^(-1):      0.17929307      0.05515104      0.04217721
+                   GHz:      5.37507092      1.65338650      1.26444100
+   
+  Molecular weight:     108.02 amu
+   
+  Stoichiometry: C6H4O2
+  Molecular Point Group: D2h     
+	Molecule translated to center of mass 
+	Molecule reoriented along symmetry axes
+  Point Group used: D2h
+  
+ 
+Number of optimization coordinates:    36
+Number of independent coordinates:     36
+Number of non-redundant coordinates:   30
+Number of frozen coordinates:           0
+Number of harmonic constraints:         0
+ 
+Number of geometric degrees of freedom:    30
+Maximum geometric degrees of freedom:      30
+ " " " " " excluding dummy atoms:          30
+ 
+  
+ Symmetrized geometry:
+                                   angstroms
+  atom               x                 y                 z
+  O1            0.0000000000      0.0000000000      2.6684537800 
+  C1            0.0000000000      0.0000000000      1.4465392300 
+  C2            0.0000000000      1.2510016100      0.6680830400 
+  C3            0.0000000000      1.2510016100     -0.6680830400 
+  C4            0.0000000000      0.0000000000     -1.4465392300 
+  O2            0.0000000000      0.0000000000     -2.6684537800 
+  C5            0.0000000000     -1.2510016100     -0.6680830400 
+  C6            0.0000000000     -1.2510016100      0.6680830400 
+  H1            0.0000000000      2.1653957500      1.2432662800 
+  H2            0.0000000000      2.1653957500     -1.2432662800 
+  H3            0.0000000000     -2.1653957500     -1.2432662800 
+  H4            0.0000000000     -2.1653957500      1.2432662800 
+   
+  nuclear repulsion energy.......           323.714870014 hartrees
+ 
+ Non-default options chosen:
+   SCF calculation type: DFT(b3lyp-d3)               
+   DFT=Becke_3_Parameter/HF+Slater+Becke88+VWN+LYP (B3LYP-D3)
+   Geometry will be optimized in redundant internal coordinates
+   Vibrational frequencies and related properties will be computed
+      from analytic second derivatives
+   IR intensities will be computed
+   Thermochemical properties will be computed
+   Maximum number of geometry steps: 200
+   Scaling standard convergence criteria by a factor of   1.00
+   BFGS Hessian-updating used
+   Geometry DIIS turned off
+   Q will be computed as needed for coarse grid
+   Q will be computed as needed for medium grid
+   Q will be computed as needed for ultrafine grid
+   Q will be computed as needed for gradient grid
+  
+ Temporary integer options set:
+     73=  2
+  
+  end of program pre
+   
+ Time(pre)  user:       3.217  user+sys:       3.217  wallclock:       0.806
+  
+  start of program onee
+  
+  smallest eigenvalue of S:    8.240E-07
+  number of canonical orbitals.....          308
+  end of program onee
+   
+ Time(onee)  user:       0.892  user+sys:       0.892  wallclock:       0.239
+  
+  start of program hfig
+  
+  initial wavefunction generated automatically from atomic wavefunctions
+ 
+  Irreducible     Total no   No of occupied orbitals 
+  representation  orbitals   Shell_1  Shell_2    ...
+  Ag                61          8
+  B1g               22          1
+  B2g               30          2
+  B3g               41          3
+  Au                21          0
+  B1u               57          7
+  B2u               45          5
+  B3u               31          2
+  ------------------------
+  Orbital occupation/shell    1.000
+ 
+  end of program hfig
+   
+ Time(hfig)  user:       3.363  user+sys:       3.363  wallclock:       2.461
+  
+  start of program probe
+  
+  end of program probe
+   
+ Time(probe)  user:       0.635  user+sys:       0.635  wallclock:       0.165
+  
+  start of program grid
+  
+   grid     grid set  grid #  grid sym
+  ------    --------  ------  --------
+  coarse        0        0        1
+  medium        2        1        8
+  fine          0        0        1
+  ultrafine     4        2        8
+  charge        0        0        1
+  gradient      4        2        8
+  density       0        0        1
+  DFT-fine    -11        3        8
+  DFT-med.    -10        4        8
+  DFT-grad    -12        5        8
+  DFT-der2     -8        6        8
+  DFT-cphf     -9        7        8
+  LMP2-enrg     4        2        8
+  LMP2-grad     2        1        8
+  DFT-cphf2   -15        8        8
+  PBF-dens      0        0        1
+  plotting      0        0        1
+  Rel-grad    -17        0        1
+  Extreme       0        0        1
+  Extreme-G     0        0        1
+  
+  number of gridpoints: 
+                 total
+  grid # 1         698
+  grid # 2        1565
+  grid # 3        9450
+  grid # 4        4456
+  grid # 5        9918
+  grid # 6       33432
+  grid # 7        1481
+  grid # 8         818
+   
+  end of program grid
+   
+ Time(grid)  user:       1.057  user+sys:       1.057  wallclock:       0.278
+  
+  start of program rwr
+  
+  end of program rwr
+   
+ Time(rwr)  user:       1.970  user+sys:       1.970  wallclock:       0.524
+  
+  start of program scf
+  
+ number of electrons..........         56
+ number of alpha electrons....         28
+ number of beta electrons.....         28
+ number of orbitals, total....        308
+ number of doubly-occ'd orbs..         28
+ number of open shell orbs....          0
+ number of occupied orbitals..         28
+ number of virtual orbitals...        280
+ number of hamiltonians.......          1
+ number of shells.............          1
+ SCF type: DFT=Becke_3_Parameter/HF+Slater+Becke88+VWN+LYP (B3LYP-D3)
+ Energy computed using pseudospectral method.
+ Convergence Criteria:
+    Energy (econv):       1.00E-05
+    RMS density (dconv):  5.00E-06
+  
+       i  u  d  i  g                   
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+  WARNING : Population by symmetry has changed 
+etot    1  N  N  5  M    -379.83341905602           3.2E-03  2.2E-01
+  WARNING : Population by symmetry has changed 
+etot    2  Y  Y  6  M    -378.70424818692 -1.1E+00  3.9E-03  2.8E-01
+  WARNING : Population by symmetry has changed 
+etot    3  Y  Y  6  M    -379.02954427560  3.3E-01  2.5E-03  2.3E-01
+etot    4  N  Y  2  U    -381.43968961532  2.4E+00  9.0E-04  5.8E-02
+etot    5  Y  Y  6  M    -381.53714138802  9.7E-02  3.7E-04  3.7E-02
+etot    6  N  Y  2  U    -381.60401362706  6.7E-02  7.4E-05  7.3E-03
+etot    7  Y  Y  6  M    -381.60574770391  1.7E-03  2.2E-05  1.9E-03
+etot    8  N  Y  2  U    -381.60588239688  1.3E-04  6.9E-06  5.0E-04
+etot    9  N  Y  2  U    -381.60589226755  9.9E-06  1.1E-06  1.8E-04
+etot   10  N  N  2  U    -381.60589282763  5.6E-07  0.0E+00  0.0E+00
+ 
+  Computing the dispersion energy correction and its gradients...
+  
+  
+ Energy components, in hartrees:
+   (A)  Nuclear repulsion............     323.71487001411
+   (E)  Total one-electron terms.....   -1158.78748686705
+   (I)  Total two-electron terms.....     453.46672402530
+   (J)    Coulomb....................     504.70557477445
+   (K)    Exchange+Correlation.......     -51.23885074915
+   (L)  Electronic energy............    -705.32076284174  (E+I)
+   (N0) D3 correction................      -0.00700333044
+   (N)  Total energy.................    -381.61289615807  (A+L+N0)
+   (O)  Gas phase energy.............    -381.61289615807
+  
+ SCFE: SCF energy: DFT(b3lyp-d3)      -381.61289615807 hartrees   iterations:  10
+  
+ 
+ HOMO energy:    -0.28585
+ LUMO energy:    -0.14601
+ 
+  Orbital energies (hartrees)/symmetry label: 
+   -19.15028 Ag        -19.15026 B1u       -10.29085 B1u       -10.29084 Ag     
+   -10.22246 B2u       -10.22244 Ag        -10.22156 B3g       -10.22156 B1u    
+    -1.07339 Ag         -1.07130 B1u        -0.87684 Ag         -0.80530 B2u    
+    -0.72365 B1u        -0.65433 B3g        -0.62086 Ag         -0.53043 B2u    
+    -0.52215 Ag         -0.49670 B1u        -0.47478 B2u        -0.45911 B3u    
+    -0.45510 B1u        -0.43539 Ag         -0.42532 B2g        -0.41278 B3g    
+    -0.32235 B3u        -0.31755 B1g        -0.29539 B2u        -0.28585 B3g    
+    -0.14601 B2g        -0.04480 Au         -0.01100 B3u         0.00053 Ag     
+     0.02058 B2u         0.03298 B1u         0.04220 Ag          0.05943 B3u    
+     0.06613 B2g         0.06667 B3g    
+ 
+  end of program scf
+   
+ Time(scf)  user:      46.663  user+sys:      46.663  wallclock:      12.657
+  
+  start of program der1a
+  
+  end of program der1a
+   
+ Time(der1a)  user:       0.936  user+sys:       0.936  wallclock:       0.249
+  
+  start of program rwr
+  
+  end of program rwr
+   
+ Time(rwr)  user:       2.136  user+sys:       2.136  wallclock:       0.589
+  
+  start of program der1b
+  
+   
+  forces (hartrees/bohr) : total     
+   
+ atom  label           x              y              z
+ ---- --------   -------------  -------------  -------------
+    1 O1          0.000000E+00   4.482952E-21  -5.587023E-03
+    2 C1          0.000000E+00   3.428644E-21   4.072349E-03
+    3 C2          0.000000E+00   4.242156E-03  -2.233201E-04
+    4 C3          0.000000E+00   4.242156E-03   2.233201E-04
+    5 C4          0.000000E+00   7.863024E-21  -4.072349E-03
+    6 O2          0.000000E+00   3.404072E-20   5.587023E-03
+    7 C5          0.000000E+00  -4.242156E-03   2.233201E-04
+    8 C6          0.000000E+00  -4.242156E-03  -2.233201E-04
+    9 H1          0.000000E+00   1.773109E-03   1.121694E-03
+   10 H2          0.000000E+00   1.773109E-03  -1.121694E-03
+   11 H3          0.000000E+00  -1.773109E-03  -1.121694E-03
+   12 H4          0.000000E+00  -1.773109E-03   1.121694E-03
+ -------------   -------------  -------------  -------------
+     total        0.000000E+00   0.000000E+00  -2.168404E-19
+   
+  end of program der1b
+   
+ Time(der1b)  user:      37.697  user+sys:      37.697  wallclock:      10.727
+  
+  start of program geopt
+  
+ ----------------------------------------------------------------------------
+  Geometry optimization step  1
+  Total energy:      -381.61289615807 hartrees
+ ----------------------------------------------------------------------------
+  
+  gradient maximum:        7.0999E-03 .  (  4.5000E-04 )
+  gradient rms:            2.9808E-03 .  (  3.0000E-04 )
+  displacement maximum:    1.9417E-02 .  (  1.8000E-03 )
+  displacement rms:        8.6884E-03 .  (  1.2000E-03 )
+  
+  predicted energy change:  -4.2836E-04
+  step size:     0.05213
+  trust radius:  0.30000
+  
+  molecular structure not yet converged...
+  
+  center of mass moved by:
+     x:     0.0000E+00     y:     0.0000E+00     z:     0.0000E+00
+  
+  new geometry: 
+                                   angstroms
+  atom               x                 y                 z
+  O1            0.0000000000      0.0000000000      2.6566486678 
+  C1            0.0000000000      0.0000000000      1.4388678641 
+  C2            0.0000000000      1.2657922661      0.6681537636 
+  C3            0.0000000000      1.2657922661     -0.6681537636 
+  C4            0.0000000000      0.0000000000     -1.4388678641 
+  O2            0.0000000000      0.0000000000     -2.6566486678 
+  C5            0.0000000000     -1.2657922661     -0.6681537636 
+  C6            0.0000000000     -1.2657922661      0.6681537636 
+  H1            0.0000000000      2.1800109435      1.2494973640 
+  H2            0.0000000000      2.1800109435     -1.2494973640 
+  H3            0.0000000000     -2.1800109435     -1.2494973640 
+  H4            0.0000000000     -2.1800109435      1.2494973640 
+   
+  nuclear repulsion energy.......           323.286218533 hartrees
+ -------------------------------------------------
+   end of geometry optimization iteration  1
+ -------------------------------------------------
+   
+  end of program geopt
+   
+ Time(geopt)  user:       1.207  user+sys:       1.207  wallclock:       0.312
+  
+  start of program onee
+  
+  smallest eigenvalue of S:    8.491E-07
+  number of canonical orbitals.....          308
+  end of program onee
+   
+ Time(onee)  user:       0.946  user+sys:       0.946  wallclock:       0.240
+  
+  start of program probe
+  
+  end of program probe
+   
+ Time(probe)  user:       0.607  user+sys:       0.607  wallclock:       0.141
+  
+  start of program grid
+  
+  end of program grid
+   
+ Time(grid)  user:       0.972  user+sys:       0.972  wallclock:       0.254
+  
+  start of program rwr
+  
+  end of program rwr
+   
+ Time(rwr)  user:       2.062  user+sys:       2.062  wallclock:       0.551
+  
+  start of program scf
+  
+ Energy computed using pseudospectral method.
+ Convergence Criteria:
+    Energy (econv):       1.00E-05
+    RMS density (dconv):  5.00E-06
+  
+       i  u  d  i  g                   
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -381.60608608346           4.4E-05  1.7E-03
+etot    2  N  Y  2  U    -381.60629625655  2.1E-04  1.3E-05  7.2E-04
+etot    3  N  Y  2  U    -381.60625885894 -3.7E-05  8.8E-06  1.7E-03
+etot    4  N  Y  2  U    -381.60631055202  5.2E-05  8.2E-07  9.2E-05
+etot    5  N  N  2  U    -381.60631076973  2.2E-07  0.0E+00  0.0E+00
+ 
+  Computing the dispersion energy correction and its gradients...
+  
+  
+ Energy components, in hartrees:
+   (A)  Nuclear repulsion............     323.28621853265
+   (E)  Total one-electron terms.....   -1157.96740961399
+   (I)  Total two-electron terms.....     453.07488031161
+   (J)    Coulomb....................     504.30098455889
+   (K)    Exchange+Correlation.......     -51.22610424729
+   (L)  Electronic energy............    -704.89252930238  (E+I)
+   (N0) D3 correction................      -0.00702512510
+   (N)  Total energy.................    -381.61333589483  (A+L+N0)
+   (O)  Gas phase energy.............    -381.61333589483
+  
+ SCFE: SCF energy: DFT(b3lyp-d3)      -381.61333589483 hartrees   iterations:   5
+  
+ 
+ HOMO energy:    -0.28485
+ LUMO energy:    -0.14281
+ 
+  Orbital energies (hartrees)/symmetry label: 
+   -19.14922 Ag        -19.14921 B1u       -10.29130 B1u       -10.29129 Ag     
+   -10.22304 B2u       -10.22302 Ag        -10.22215 B3g       -10.22214 B1u    
+    -1.07485 Ag         -1.07283 B1u        -0.87346 Ag         -0.80504 B2u    
+    -0.71820 B1u        -0.65261 B3g        -0.61907 Ag         -0.52905 B2u    
+    -0.52017 Ag         -0.49707 B1u        -0.47608 B2u        -0.45829 B3u    
+    -0.45333 B1u        -0.43473 Ag         -0.42552 B2g        -0.41394 B3g    
+    -0.32171 B3u        -0.31765 B1g        -0.29436 B2u        -0.28485 B3g    
+    -0.14281 B2g        -0.04474 Au         -0.01131 B3u         0.00075 Ag     
+     0.02062 B2u         0.03312 B1u         0.04210 Ag          0.05967 B3u    
+     0.06562 B2g         0.06650 B3g    
+ 
+  end of program scf
+   
+ Time(scf)  user:      37.849  user+sys:      37.849  wallclock:      10.430
+  
+  start of program der1a
+  
+  end of program der1a
+   
+ Time(der1a)  user:       0.932  user+sys:       0.932  wallclock:       0.242
+  
+  start of program rwr
+  
+  end of program rwr
+   
+ Time(rwr)  user:       2.119  user+sys:       2.119  wallclock:       0.569
+  
+  start of program der1b
+  
+   
+  forces (hartrees/bohr) : total     
+   
+ atom  label           x              y              z
+ ---- --------   -------------  -------------  -------------
+    1 O1          0.000000E+00  -3.534361E-21   5.466414E-05
+    2 C1          0.000000E+00   1.526890E-20   2.000162E-04
+    3 C2          0.000000E+00   7.056519E-05  -5.042365E-04
+    4 C3          0.000000E+00   7.056519E-05   5.042365E-04
+    5 C4          0.000000E+00   2.144046E-20  -2.000162E-04
+    6 O2          0.000000E+00  -2.406480E-21  -5.466414E-05
+    7 C5          0.000000E+00  -7.056519E-05   5.042365E-04
+    8 C6          0.000000E+00  -7.056519E-05  -5.042365E-04
+    9 H1          0.000000E+00  -5.902003E-04   4.307291E-04
+   10 H2          0.000000E+00  -5.902003E-04  -4.307291E-04
+   11 H3          0.000000E+00   5.902003E-04  -4.307291E-04
+   12 H4          0.000000E+00   5.902003E-04   4.307291E-04
+ -------------   -------------  -------------  -------------
+     total        0.000000E+00   2.168404E-19  -1.626303E-19
+   
+  end of program der1b
+   
+ Time(der1b)  user:      36.998  user+sys:      36.998  wallclock:      10.448
+  
+  start of program geopt
+  
+ ----------------------------------------------------------------------------
+  Geometry optimization step  2
+  Total energy:      -381.61333589483 hartrees
+ ----------------------------------------------------------------------------
+  
+  energy change:          -4.3974E-04 .  (  5.0000E-05 )
+  gradient maximum:        1.3925E-03 .  (  4.5000E-04 )
+  gradient rms:            5.1431E-04 .  (  3.0000E-04 )
+  displacement maximum:    4.1495E-03 .  (  1.8000E-03 )
+  displacement rms:        1.4179E-03 .  (  1.2000E-03 )
+  
+  predicted energy change:  -1.2431E-05
+  step size:     0.00851
+  trust radius:  0.30000
+  
+  molecular structure not yet converged...
+  
+  center of mass moved by:
+     x:     0.0000E+00     y:     0.0000E+00     z:    -2.6311E-16
+  
+  new geometry: 
+                                   angstroms
+  atom               x                 y                 z
+  O1            0.0000000000      0.0000000000      2.6564623306 
+  C1            0.0000000000      0.0000000000      1.4387498390 
+  C2            0.0000000000      1.2653850354      0.6681861459 
+  C3            0.0000000000      1.2653850354     -0.6681861459 
+  C4            0.0000000000      0.0000000000     -1.4387498390 
+  O2            0.0000000000      0.0000000000     -2.6564623306 
+  C5            0.0000000000     -1.2653850354     -0.6681861459 
+  C6            0.0000000000     -1.2653850354      0.6681861459 
+  H1            0.0000000000      2.1769661626      1.2531063922 
+  H2            0.0000000000      2.1769661626     -1.2531063922 
+  H3            0.0000000000     -2.1769661626     -1.2531063922 
+  H4            0.0000000000     -2.1769661626      1.2531063922 
+   
+  nuclear repulsion energy.......           323.343895623 hartrees
+ -------------------------------------------------
+   end of geometry optimization iteration  2
+ -------------------------------------------------
+   
+  end of program geopt
+   
+ Time(geopt)  user:       1.210  user+sys:       1.210  wallclock:       0.312
+  
+  start of program onee
+  
+  smallest eigenvalue of S:    8.464E-07
+  number of canonical orbitals.....          308
+  end of program onee
+   
+ Time(onee)  user:       0.956  user+sys:       0.956  wallclock:       0.240
+  
+  start of program probe
+  
+  end of program probe
+   
+ Time(probe)  user:       0.670  user+sys:       0.670  wallclock:       0.168
+  
+  start of program grid
+  
+  end of program grid
+   
+ Time(grid)  user:       1.095  user+sys:       1.095  wallclock:       0.290
+  
+  start of program rwr
+  
+  end of program rwr
+   
+ Time(rwr)  user:       2.117  user+sys:       2.117  wallclock:       0.549
+  
+  start of program scf
+  
+ Energy computed using pseudospectral method.
+ Convergence Criteria:
+    Energy (econv):       1.00E-05
+    RMS density (dconv):  5.00E-06
+  
+       i  u  d  i  g                   
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -381.60631687639           6.6E-06  2.0E-04
+etot    2  N  Y  2  U    -381.60631995897  3.1E-06  1.1E-06  5.0E-05
+etot    3  N  N  2  U    -381.60631984189 -1.2E-07  0.0E+00  0.0E+00
+ 
+  Computing the dispersion energy correction and its gradients...
+  
+  
+ Energy components, in hartrees:
+   (A)  Nuclear repulsion............     323.34389562341
+   (E)  Total one-electron terms.....   -1158.07796519412
+   (I)  Total two-electron terms.....     453.12774972882
+   (J)    Coulomb....................     504.35515740623
+   (K)    Exchange+Correlation.......     -51.22740767740
+   (L)  Electronic energy............    -704.95021546530  (E+I)
+   (N0) D3 correction................      -0.00702996406
+   (N)  Total energy.................    -381.61334980595  (A+L+N0)
+   (O)  Gas phase energy.............    -381.61334980595
+  
+ SCFE: SCF energy: DFT(b3lyp-d3)      -381.61334980595 hartrees   iterations:   3
+  
+ 
+ HOMO energy:    -0.28483
+ LUMO energy:    -0.14293
+ 
+  Orbital energies (hartrees)/symmetry label: 
+   -19.14901 Ag        -19.14899 B1u       -10.29139 B1u       -10.29138 Ag     
+   -10.22314 B2u       -10.22312 Ag        -10.22224 B3g       -10.22224 B1u    
+    -1.07492 Ag         -1.07289 B1u        -0.87365 Ag         -0.80507 B2u    
+    -0.71855 B1u        -0.65310 B3g        -0.61882 Ag         -0.52934 B2u    
+    -0.52044 Ag         -0.49712 B1u        -0.47602 B2u        -0.45842 B3u    
+    -0.45336 B1u        -0.43501 Ag         -0.42559 B2g        -0.41376 B3g    
+    -0.32173 B3u        -0.31771 B1g        -0.29439 B2u        -0.28483 B3g    
+    -0.14293 B2g        -0.04488 Au         -0.01126 B3u         0.00076 Ag     
+     0.02073 B2u         0.03305 B1u         0.04236 Ag          0.05963 B3u    
+     0.06558 B2g         0.06647 B3g    
+ 
+  end of program scf
+   
+ Time(scf)  user:      23.712  user+sys:      23.712  wallclock:       6.620
+  
+  start of program der1a
+  
+  end of program der1a
+   
+ Time(der1a)  user:       0.998  user+sys:       0.998  wallclock:       0.261
+  
+  start of program rwr
+  
+  end of program rwr
+   
+ Time(rwr)  user:       2.187  user+sys:       2.187  wallclock:       0.583
+  
+  start of program der1b
+  
+   
+  forces (hartrees/bohr) : total     
+   
+ atom  label           x              y              z
+ ---- --------   -------------  -------------  -------------
+    1 O1          0.000000E+00   2.361479E-21   2.273346E-04
+    2 C1          0.000000E+00  -9.047049E-20  -1.889996E-04
+    3 C2          0.000000E+00   8.426561E-05  -4.136587E-04
+    4 C3          0.000000E+00   8.426561E-05   4.136587E-04
+    5 C4          0.000000E+00   2.850346E-20   1.889996E-04
+    6 O2          0.000000E+00   1.433245E-19  -2.273346E-04
+    7 C5          0.000000E+00  -8.426561E-05   4.136587E-04
+    8 C6          0.000000E+00  -8.426561E-05  -4.136587E-04
+    9 H1          0.000000E+00  -1.215517E-04   1.564697E-04
+   10 H2          0.000000E+00  -1.215517E-04  -1.564697E-04
+   11 H3          0.000000E+00   1.215517E-04  -1.564697E-04
+   12 H4          0.000000E+00   1.215517E-04   1.564697E-04
+ -------------   -------------  -------------  -------------
+     total        0.000000E+00  -4.065758E-19  -2.168404E-19
+   
+  end of program der1b
+   
+ Time(der1b)  user:      36.941  user+sys:      36.941  wallclock:      10.583
+  
+  start of program geopt
+  
+ ----------------------------------------------------------------------------
+  Geometry optimization step  3
+  Total energy:      -381.61334980595 hartrees
+ ----------------------------------------------------------------------------
+  
+  energy change:          -1.3911E-05 *  (  5.0000E-05 )
+  gradient maximum:        4.0390E-04 *  (  4.5000E-04 )
+  gradient rms:            1.6690E-04 *  (  3.0000E-04 )
+  displacement maximum:    2.0301E-03 .  (  1.8000E-03 )
+  displacement rms:        6.6296E-04 *  (  1.2000E-03 )
+  
+  predicted energy change:  -1.8389E-06
+  step size:     0.00398
+  trust radius:  0.30000
+  
+  molecular structure not yet converged...
+  
+  center of mass moved by:
+     x:     0.0000E+00     y:     0.0000E+00     z:    -3.2889E-16
+  
+  new geometry: 
+                                   angstroms
+  atom               x                 y                 z
+  O1            0.0000000000      0.0000000000      2.6561793060 
+  C1            0.0000000000      0.0000000000      1.4382872413 
+  C2            0.0000000000      1.2655719275      0.6680008088 
+  C3            0.0000000000      1.2655719275     -0.6680008088 
+  C4            0.0000000000      0.0000000000     -1.4382872413 
+  O2            0.0000000000      0.0000000000     -2.6561793060 
+  C5            0.0000000000     -1.2655719275     -0.6680008088 
+  C6            0.0000000000     -1.2655719275      0.6680008088 
+  H1            0.0000000000      2.1759486723      1.2547607064 
+  H2            0.0000000000      2.1759486723     -1.2547607064 
+  H3            0.0000000000     -2.1759486723     -1.2547607064 
+  H4            0.0000000000     -2.1759486723      1.2547607064 
+   
+  nuclear repulsion energy.......           323.360780016 hartrees
+ -------------------------------------------------
+   end of geometry optimization iteration  3
+ -------------------------------------------------
+   
+  end of program geopt
+   
+ Time(geopt)  user:       1.212  user+sys:       1.212  wallclock:       0.310
+  
+  start of program onee
+  
+  smallest eigenvalue of S:    8.445E-07
+  number of canonical orbitals.....          308
+  end of program onee
+   
+ Time(onee)  user:       0.952  user+sys:       0.952  wallclock:       0.239
+  
+  start of program probe
+  
+  end of program probe
+   
+ Time(probe)  user:       0.664  user+sys:       0.664  wallclock:       0.167
+  
+  start of program grid
+  
+  end of program grid
+   
+ Time(grid)  user:       1.013  user+sys:       1.013  wallclock:       0.282
+  
+  start of program rwr
+  
+  end of program rwr
+   
+ Time(rwr)  user:       1.946  user+sys:       1.946  wallclock:       0.525
+  
+  start of program scf
+  
+ Energy computed using pseudospectral method.
+ Convergence Criteria:
+    Energy (econv):       1.00E-05
+    RMS density (dconv):  5.00E-06
+  
+       i  u  d  i  g                   
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -381.60631747656           4.0E-06  1.3E-04
+etot    2  N  N  2  U    -381.60631749318  1.7E-08  0.0E+00  0.0E+00
+ 
+  Computing the dispersion energy correction and its gradients...
+  
+  
+ Energy components, in hartrees:
+   (A)  Nuclear repulsion............     323.36078001641
+   (E)  Total one-electron terms.....   -1158.12210537584
+   (I)  Total two-electron terms.....     453.15500786625
+   (J)    Coulomb....................     504.38237214941
+   (K)    Exchange+Correlation.......     -51.22736428316
+   (L)  Electronic energy............    -704.96709750959  (E+I)
+   (N0) D3 correction................      -0.00703247881
+   (N)  Total energy.................    -381.61334997199  (A+L+N0)
+   (O)  Gas phase energy.............    -381.61334997199
+  
+ SCFE: SCF energy: DFT(b3lyp-d3)      -381.61334997199 hartrees   iterations:   2
+  
+ 
+ HOMO energy:    -0.28490
+ LUMO energy:    -0.14277
+ 
+  Orbital energies (hartrees)/symmetry label: 
+   -19.15009 Ag        -19.15007 B1u       -10.29042 B1u       -10.29040 Ag     
+   -10.22252 B2u       -10.22250 Ag        -10.22162 B3g       -10.22162 B1u    
+    -1.07498 Ag         -1.07296 B1u        -0.87322 Ag         -0.80472 B2u    
+    -0.71809 B1u        -0.65284 B3g        -0.61836 Ag         -0.52906 B2u    
+    -0.52048 Ag         -0.49709 B1u        -0.47571 B2u        -0.45822 B3u    
+    -0.45331 B1u        -0.43509 Ag         -0.42555 B2g        -0.41349 B3g    
+    -0.32171 B3u        -0.31741 B1g        -0.29464 B2u        -0.28490 B3g    
+    -0.14277 B2g        -0.04450 Au         -0.01105 B3u         0.00084 Ag     
+     0.02084 B2u         0.03303 B1u         0.04259 Ag          0.05965 B3u    
+     0.06567 B2g         0.06647 B3g    
+ 
+  end of program scf
+   
+ Time(scf)  user:      17.190  user+sys:      17.190  wallclock:       4.726
+  
+  start of program der1a
+  
+  end of program der1a
+   
+ Time(der1a)  user:       0.991  user+sys:       0.991  wallclock:       0.264
+  
+  start of program rwr
+  
+  end of program rwr
+   
+ Time(rwr)  user:       2.300  user+sys:       2.300  wallclock:       0.619
+  
+  start of program der1b
+  
+   
+  forces (hartrees/bohr) : total     
+   
+ atom  label           x              y              z
+ ---- --------   -------------  -------------  -------------
+    1 O1          0.000000E+00   3.852510E-20  -1.514757E-04
+    2 C1          0.000000E+00   3.017207E-20   1.388283E-04
+    3 C2          0.000000E+00   1.536122E-04   7.129439E-05
+    4 C3          0.000000E+00   1.536122E-04  -7.129439E-05
+    5 C4          0.000000E+00   6.301848E-20  -1.388283E-04
+    6 O2          0.000000E+00   5.102965E-20   1.514757E-04
+    7 C5          0.000000E+00  -1.536122E-04  -7.129439E-05
+    8 C6          0.000000E+00  -1.536122E-04   7.129439E-05
+    9 H1          0.000000E+00  -7.981164E-05  -7.314489E-05
+   10 H2          0.000000E+00  -7.981164E-05   7.314489E-05
+   11 H3          0.000000E+00   7.981164E-05   7.314489E-05
+   12 H4          0.000000E+00   7.981164E-05  -7.314489E-05
+ -------------   -------------  -------------  -------------
+     total        0.000000E+00  -1.355253E-19  -8.131516E-20
+   
+  end of program der1b
+   
+ Time(der1b)  user:      38.240  user+sys:      38.240  wallclock:      11.095
+  
+  start of program geopt
+  
+ ----------------------------------------------------------------------------
+  Geometry optimization step  4
+  Total energy:      -381.61334997199 hartrees
+ ----------------------------------------------------------------------------
+  
+  energy change:          -1.6603E-07 !  (  5.0000E-05 )
+  gradient maximum:        1.5148E-04 *  (  4.5000E-04 )
+  gradient rms:            5.8688E-05 #  (  3.0000E-04 )
+  displacement maximum:    3.1320E-04 #  (  1.8000E-03 )
+  displacement rms:        1.5157E-04 #  (  1.2000E-03 )
+  
+  predicted energy change:  -1.4968E-07
+  step size:     0.00091
+  trust radius:  0.30000
+  
+  ********************************************************
+  **           Geometry optimization complete           **
+  ********************************************************
+  
+  Checking the geometry optimization convergence pattern ...
+  
+  best                    worst
+  ==0=====1=====2=====3=====4==
+    ^                          
+  
+  Convergence category 0: monotonic convergence.
+  
+  center of mass moved by:
+     x:     0.0000E+00     y:     0.0000E+00     z:     0.0000E+00
+  
+  final geometry: 
+                                   angstroms
+  atom               x                 y                 z
+  O1            0.0000000000      0.0000000000      2.6561793060 
+  C1            0.0000000000      0.0000000000      1.4382872413 
+  C2            0.0000000000      1.2655719275      0.6680008088 
+  C3            0.0000000000      1.2655719275     -0.6680008088 
+  C4            0.0000000000      0.0000000000     -1.4382872413 
+  O2            0.0000000000      0.0000000000     -2.6561793060 
+  C5            0.0000000000     -1.2655719275     -0.6680008088 
+  C6            0.0000000000     -1.2655719275      0.6680008088 
+  H1            0.0000000000      2.1759486723      1.2547607064 
+  H2            0.0000000000      2.1759486723     -1.2547607064 
+  H3            0.0000000000     -2.1759486723     -1.2547607064 
+  H4            0.0000000000     -2.1759486723      1.2547607064 
+   
+  bond lengths (angstroms):
+ O1      -C1      :   1.217892
+ C1      -C2      :   1.481558
+ C1      -C6      :   1.481558
+ C2      -C3      :   1.336002
+ C2      -H1      :   1.083085
+ C3      -C4      :   1.481558
+ C3      -H2      :   1.083085
+ C4      -O2      :   1.217892
+ C4      -C5      :   1.481558
+ C5      -C6      :   1.336002
+ C5      -H3      :   1.083085
+ C6      -H4      :   1.083085
+  
+  bond angles:
+ C2      -C1      -O1      : 121.326655
+ C6      -C1      -O1      : 121.326655
+ C6      -C1      -C2      : 117.346690
+ C3      -C2      -C1      : 121.326655
+ H1      -C2      -C1      : 115.870583
+ H1      -C2      -C3      : 122.802762
+ C4      -C3      -C2      : 121.326655
+ H2      -C3      -C2      : 122.802762
+ H2      -C3      -C4      : 115.870583
+ O2      -C4      -C3      : 121.326655
+ C5      -C4      -C3      : 117.346690
+ C5      -C4      -O2      : 121.326655
+ C6      -C5      -C4      : 121.326655
+ H3      -C5      -C4      : 115.870583
+ H3      -C5      -C6      : 122.802762
+ C5      -C6      -C1      : 121.326655
+ H4      -C6      -C1      : 115.870583
+ H4      -C6      -C5      : 122.802762
+  
+  torsional angles:
+ O1      -C1      -C2      -C3      : 180.000000
+ O1      -C1      -C2      -H1      :   0.000000
+ O1      -C1      -C6      -C5      : 180.000000
+ O1      -C1      -C6      -H4      :   0.000000
+ C1      -C2      -C3      -C4      :   0.000000
+ C1      -C2      -C3      -H2      : 180.000000
+ C1      -C6      -C5      -C4      :   0.000000
+ C1      -C6      -C5      -H3      : 180.000000
+ C2      -C1      -C6      -C5      :   0.000000
+ C2      -C1      -C6      -H4      : 180.000000
+ C2      -C3      -C4      -O2      : 180.000000
+ C2      -C3      -C4      -C5      :   0.000000
+ C3      -C2      -C1      -C6      :   0.000000
+ C3      -C4      -C5      -C6      :   0.000000
+ C3      -C4      -C5      -H3      : 180.000000
+ C4      -C3      -C2      -H1      : 180.000000
+ C4      -C5      -C6      -H4      : 180.000000
+ O2      -C4      -C3      -H2      :   0.000000
+ O2      -C4      -C5      -C6      : 180.000000
+ O2      -C4      -C5      -H3      :   0.000000
+ C5      -C4      -C3      -H2      : 180.000000
+ C6      -C1      -C2      -H1      : 180.000000
+ H1      -C2      -C3      -H2      :   0.000000
+ H3      -C5      -C6      -H4      :   0.000000
+  
+  
+  principal moments of inertia:
+        amu*angstrom^2:                95.96748               303.11134               399.07882
+                g*cm^2:          1.59357729E-38          5.03328160E-38          6.62685888E-38
+   
+  rotational constants:
+               cm^(-1):      0.17565981      0.05561530      0.04224135
+                   GHz:      5.26614860      1.66730485      1.26636389
+   
+  nuclear repulsion energy.......           323.360780016 hartrees
+ -------------------------------------------------
+   end of geometry optimization iteration  4
+ -------------------------------------------------
+   
+  end of program geopt
+   
+ Time(geopt)  user:       1.623  user+sys:       1.623  wallclock:       0.414
+  
+  start of program cutabab2
+  
+  end of program cutabab2
+   
+ Time(cutabab2)  user:       0.502  user+sys:       0.502  wallclock:       0.108
+  
+  start of program der2a
+  
+  end of program der2a
+   
+ Time(der2a)  user:       2.798  user+sys:       2.798  wallclock:       0.738
+  
+  start of program grid
+  
+  
+   Turning symmetry off because some of the
+   following programs cannot use it.
+   grid     grid set  grid #  grid sym
+  ------    --------  ------  --------
+  coarse        0        0        1
+  medium        2        1        8
+  fine          0        0        1
+  ultrafine     4        2        8
+  charge        0        0        1
+  gradient      4        2        8
+  density       0        0        1
+  DFT-fine    -11        3        8
+  DFT-med.    -10        4        8
+  DFT-grad    -12        5        8
+  DFT-der2     -8        6        8
+  DFT-cphf     -9        7        8
+  LMP2-enrg     4        2        8
+  LMP2-grad     2        1        8
+  DFT-cphf2   -15        8        8
+  PBF-dens      0        0        1
+  plotting      0        0        1
+  Rel-grad    -17        0        1
+  Extreme       0        0        1
+  Extreme-G     0        0        1
+  
+  number of gridpoints: 
+                 total
+  grid # 1        4340
+  grid # 2       10578
+  grid # 3       64128
+  grid # 4       26088
+  grid # 5       66120
+  grid # 6      246844
+  grid # 7        8892
+  grid # 8        4616
+   
+  end of program grid
+   
+ Time(grid)  user:       2.212  user+sys:       2.212  wallclock:       0.611
+  
+  start of program rwr
+  
+  end of program rwr
+   
+ Time(rwr)  user:       5.411  user+sys:       5.411  wallclock:       1.406
+  
+  start of program der2b
+  
+  end of program der2b
+   
+ Time(der2b)  user:    1616.399  user+sys:    1616.399  wallclock:     414.023
+  
+  start of program der2nda
+  
+  Computing the dispersion energy correction, gradient, hessian...
+ 
+  end of program der2nda
+   
+ Time(der2nda)  user:       1.685  user+sys:       1.685  wallclock:       0.783
+  
+  start of program der2ndb
+  
+  end of program der2ndb
+   
+ Time(der2ndb)  user:    9985.603  user+sys:    9985.603  wallclock:    2601.798
+  
+  start of program rwr
+  
+  end of program rwr
+   
+ Time(rwr)  user:       5.020  user+sys:       5.020  wallclock:       1.300
+  
+  start of program cphfa
+  
+       2  vectors produced in CPHF
+  
+     v    i  j  k  i  g
+     e    t  c  c  c  r
+     c    e  o  o  u  i
+     t    r  r  r  t  d       RMS  
+  
+     1    1  0  0  6  M     1.3E-02
+     1    2  0  0  6  M     8.2E-04
+     1    3  0  0  6  M     4.0E-04
+     1    4  0  0  6  M     1.2E-04
+     1    5  0  0  6  M     5.6E-05
+     1    6  0  0  6  M     7.0E-06
+  
+     v    i  j  k  i  g
+     e    t  c  c  c  r
+     c    e  o  o  u  i
+     t    r  r  r  t  d       RMS  
+  
+     2    1  0  0  6  M     1.1E-02
+     2    2  0  0  6  M     6.2E-04
+     2    3  0  0  6  M     2.3E-04
+     2    4  0  0  6  M     5.3E-05
+     2    5  0  0  6  M     1.1E-05
+  
+  
+  Atomic Polar Tensors (au): Total
+  =========================
+  
+  APT for atom O1      
+  --------------------------------------
+       -0.3507      -0.0000      -0.0000
+        0.0000      -0.4880       0.0000
+       -0.0000       0.0000      -1.1841
+  --------------------------------------
+  
+  APT for atom C1      
+  --------------------------------------
+        0.2719       0.0000       0.0000
+       -0.0000       0.7935       0.0000
+        0.0000      -0.0000       1.2655
+  --------------------------------------
+  
+  APT for atom C2      
+  --------------------------------------
+       -0.0871      -0.0000      -0.0000
+       -0.0000      -0.1415       0.2849
+       -0.0000       0.2263      -0.0830
+  --------------------------------------
+  
+  APT for atom C3      
+  --------------------------------------
+       -0.0871       0.0000      -0.0000
+       -0.0000      -0.1415      -0.2850
+        0.0000      -0.2263      -0.0831
+  --------------------------------------
+  
+  APT for atom C4      
+  --------------------------------------
+        0.2719       0.0000       0.0000
+       -0.0000       0.7935      -0.0000
+        0.0000      -0.0000       1.2655
+  --------------------------------------
+  
+  APT for atom O2      
+  --------------------------------------
+       -0.3507      -0.0000      -0.0000
+        0.0000      -0.4880      -0.0000
+       -0.0000      -0.0000      -1.1841
+  --------------------------------------
+  
+  APT for atom C5      
+  --------------------------------------
+       -0.0871      -0.0000      -0.0000
+        0.0000      -0.1415       0.2850
+        0.0000       0.2263      -0.0831
+  --------------------------------------
+  
+  APT for atom C6      
+  --------------------------------------
+       -0.0871       0.0000      -0.0000
+        0.0000      -0.1415      -0.2849
+       -0.0000      -0.2263      -0.0831
+  --------------------------------------
+  
+  APT for atom H1      
+  --------------------------------------
+        0.1265       0.0000      -0.0000
+       -0.0000      -0.0113      -0.0305
+        0.0000      -0.0401       0.0423
+  --------------------------------------
+  
+  APT for atom H2      
+  --------------------------------------
+        0.1265       0.0000       0.0000
+       -0.0000      -0.0113       0.0306
+        0.0000       0.0401       0.0423
+  --------------------------------------
+  
+  APT for atom H3      
+  --------------------------------------
+        0.1265       0.0000       0.0000
+        0.0000      -0.0113      -0.0305
+        0.0000      -0.0401       0.0423
+  --------------------------------------
+  
+  APT for atom H4      
+  --------------------------------------
+        0.1266      -0.0000      -0.0000
+        0.0000      -0.0113       0.0305
+        0.0000       0.0401       0.0423
+  --------------------------------------
+  
+  end of program cphfa
+   
+ Time(cphfa)  user:     708.544  user+sys:     708.544  wallclock:     179.196
+  
+  start of program freq
+  
+   
+  Number of frequencies:  30
+  harmonic frequencies in cm**-1, reduced masses in amu,
+  force constants in mDyne/A, and
+  normal modes in cartesian coordinates: 30
+  IR intensities in km/mol
+  
+  vibration #            1         2         3         4         5         6
+                 --------- --------- --------- --------- --------- ---------
+  frequencies       219.30    343.86    396.88    467.40    494.05    536.61
+  symmetries       B3u      B2g      Au       Ag       B2u      B3g     
+  intensities        15.31      0.00      0.00      0.00     19.25      0.00
+  reduc. mass         3.10      1.25      1.67      2.84      3.83      1.26
+  force const         0.09      0.09      0.16      0.37      0.55      0.21
+    O1       X     0.13527   0.08063  -0.00000   0.00000  -0.00000   0.00000
+    O1       Y    -0.00000  -0.00000  -0.00000  -0.00069   0.14456   0.06331
+    O1       Z     0.00000  -0.00000   0.00000   0.12710   0.00088  -0.00076
+    C1       X     0.01079  -0.07462   0.00000   0.00000   0.00000  -0.00000
+    C1       Y     0.00000  -0.00000  -0.00000  -0.00028  -0.02481  -0.09646
+    C1       Z    -0.00000  -0.00000   0.00000   0.11714   0.00080  -0.00068
+    C2       X    -0.08463  -0.10361  -0.12441  -0.00000  -0.00000   0.00000
+    C2       Y     0.00000   0.00000  -0.00000  -0.05251  -0.07758  -0.09629
+    C2       Z    -0.00000  -0.00000  -0.00000   0.00985  -0.00944  -0.03968
+    C3       X    -0.08463   0.10361   0.12441  -0.00000   0.00000  -0.00000
+    C3       Y     0.00000   0.00000  -0.00000  -0.05169  -0.07731   0.09684
+    C3       Z    -0.00000  -0.00000  -0.00000  -0.01049   0.00891  -0.03952
+    C4       X     0.01079   0.07462  -0.00000   0.00000   0.00000  -0.00000
+    C4       Y     0.00000   0.00000   0.00000   0.00069  -0.02454   0.09653
+    C4       Z     0.00000   0.00000  -0.00000  -0.11711  -0.00062   0.00039
+    O2       X     0.13527  -0.08063   0.00000  -0.00000  -0.00000   0.00000
+    O2       Y    -0.00000   0.00000  -0.00000  -0.00108   0.14457  -0.06369
+    O2       Z     0.00000   0.00000   0.00000  -0.12707  -0.00066   0.00046
+    C5       X    -0.08463   0.10360  -0.12442   0.00000  -0.00000  -0.00000
+    C5       Y     0.00000   0.00000   0.00000   0.05341  -0.07669   0.09654
+    C5       Z     0.00000   0.00000   0.00000  -0.00974  -0.00930   0.03999
+    C6       X    -0.08463  -0.10360   0.12442  -0.00000   0.00000   0.00000
+    C6       Y    -0.00000  -0.00000   0.00000   0.05257  -0.07695  -0.09670
+    C6       Z    -0.00000   0.00000   0.00000   0.01031   0.00940   0.03982
+    H1       X    -0.13000  -0.18847  -0.25249  -0.00000  -0.00000   0.00000
+    H1       Y    -0.00000  -0.00000   0.00000  -0.00350  -0.08201  -0.16335
+    H1       Z     0.00000   0.00000  -0.00000  -0.06404  -0.00546   0.06380
+    H2       X    -0.12999   0.18847   0.25247  -0.00000  -0.00000   0.00000
+    H2       Y    -0.00000   0.00000   0.00000  -0.00216  -0.08168   0.16351
+    H2       Z    -0.00000  -0.00000  -0.00000   0.06422   0.00505   0.06336
+    H3       X    -0.12999   0.18846  -0.25249  -0.00000  -0.00000   0.00000
+    H3       Y     0.00000   0.00000   0.00000   0.00450  -0.08159   0.16353
+    H3       Z    -0.00000   0.00000  -0.00000   0.06403  -0.00462  -0.06338
+    H4       X    -0.12999  -0.18846   0.25249  -0.00000  -0.00000   0.00000
+    H4       Y     0.00000  -0.00000   0.00000   0.00312  -0.08205  -0.16324
+    H4       Z     0.00000   0.00000   0.00000  -0.06429   0.00441  -0.06288
+  
+  vibration #            7         8         9        10        11        12
+                 --------- --------- --------- --------- --------- ---------
+  frequencies       572.09    619.82    768.65    774.95    778.97    872.33
+  symmetries       B3u      B3g      B1u      B1g      Ag       B2g     
+  intensities         5.18      0.00      0.25      0.00      0.00      0.00
+  reduc. mass         1.11      1.76      1.19      0.28      2.03      2.95
+  force const         0.21      0.40      0.41      0.10      0.72      1.32
+    O1       X    -0.05155   0.00000  -0.00000   0.00000  -0.00000   0.03809
+    O1       Y    -0.00000   0.09420  -0.00000   0.00000   0.00024   0.00000
+    O1       Z     0.00000   0.00025   0.09341  -0.00000  -0.05218   0.00000
+    C1       X     0.12996   0.00000  -0.00000  -0.00000   0.00000  -0.16966
+    C1       Y    -0.00000   0.00807  -0.00012   0.00000   0.00006  -0.00000
+    C1       Z     0.00000   0.00021   0.07806  -0.00000  -0.04525  -0.00000
+    C2       X    -0.00076  -0.00000  -0.00000  -0.06437  -0.00000   0.05444
+    C2       Y     0.00000   0.00334   0.02069   0.00000  -0.12913  -0.00000
+    C2       Z    -0.00000   0.11281  -0.08514   0.00000  -0.01254  -0.00000
+    C3       X    -0.00076   0.00000  -0.00000  -0.06437  -0.00000  -0.05444
+    C3       Y     0.00000  -0.00288  -0.02299   0.00000  -0.12875   0.00000
+    C3       Z    -0.00000   0.11273  -0.08492   0.00000   0.01479  -0.00000
+    C4       X     0.12996   0.00000  -0.00000   0.00000   0.00000   0.16966
+    C4       Y     0.00000  -0.00814   0.00014   0.00000  -0.00015   0.00000
+    C4       Z     0.00000  -0.00027   0.07897  -0.00000   0.04375  -0.00000
+    O2       X    -0.05155  -0.00000   0.00000  -0.00000  -0.00000  -0.03809
+    O2       Y    -0.00000  -0.09393  -0.00030   0.00000  -0.00020  -0.00000
+    O2       Z     0.00000  -0.00031   0.09444  -0.00000   0.05039   0.00000
+    C5       X    -0.00076  -0.00000   0.00000   0.06437   0.00000  -0.05444
+    C5       Y     0.00000  -0.00374   0.02343  -0.00000   0.12866  -0.00000
+    C5       Z     0.00000  -0.11277  -0.08488   0.00000   0.01426  -0.00000
+    C6       X    -0.00076   0.00000   0.00000   0.06437   0.00000   0.05444
+    C6       Y    -0.00000   0.00302  -0.02079  -0.00000   0.12926   0.00000
+    C6       Z     0.00000  -0.11267  -0.08518   0.00000  -0.01327  -0.00000
+    H1       X    -0.35554  -0.00000   0.00000   0.44579   0.00000   0.17289
+    H1       Y    -0.00000  -0.02621   0.09549   0.00000  -0.11253  -0.00000
+    H1       Z     0.00000   0.15923  -0.20054   0.00000  -0.04960   0.00000
+    H2       X    -0.35554   0.00000   0.00000   0.44578   0.00000  -0.17290
+    H2       Y     0.00000   0.02662  -0.09743   0.00000  -0.11043   0.00000
+    H2       Z    -0.00000   0.15907  -0.19958   0.00000   0.05454  -0.00000
+    H3       X    -0.35554  -0.00000  -0.00000  -0.44578  -0.00000  -0.17288
+    H3       Y     0.00000   0.02564   0.09827  -0.00000   0.11047  -0.00000
+    H3       Z    -0.00000  -0.15893  -0.20012   0.00000   0.05378  -0.00000
+    H4       X    -0.35555  -0.00000  -0.00000  -0.44578  -0.00000   0.17290
+    H4       Y    -0.00000  -0.02639  -0.09590  -0.00000   0.11239   0.00000
+    H4       Z     0.00000  -0.15883  -0.20108   0.00000  -0.05078   0.00000
+  
+  vibration #           13        14        15        16        17        18
+                 --------- --------- --------- --------- --------- ---------
+  frequencies       946.14    965.18   1045.23   1054.64   1106.69   1181.47
+  symmetries       B3u      B1u      Au       B2g      B2u      Ag      
+  intensities        70.95     18.34      0.00      0.00     39.58      0.00
+  reduc. mass         1.00      1.73      0.34      0.35      0.33      0.23
+  force const         0.53      0.95      0.22      0.23      0.24      0.19
+    O1       X    -0.03237   0.00000  -0.00000   0.00566  -0.00000  -0.00000
+    O1       Y    -0.00000  -0.00010   0.00000   0.00000   0.01665   0.00001
+    O1       Z     0.00000   0.03532  -0.00000   0.00000   0.00005   0.02246
+    C1       X     0.12411   0.00000   0.00000  -0.02211   0.00000   0.00000
+    C1       Y    -0.00000  -0.00003   0.00000   0.00000  -0.08176  -0.00006
+    C1       Z     0.00000   0.01188  -0.00000   0.00000   0.00004  -0.00513
+    C2       X    -0.06644   0.00000   0.07317   0.07526  -0.00000  -0.00000
+    C2       Y    -0.00000  -0.11971   0.00000  -0.00000   0.04453  -0.00459
+    C2       Z     0.00000  -0.03735   0.00000  -0.00000   0.02487   0.03145
+    C3       X    -0.06643   0.00000  -0.07317  -0.07526  -0.00000  -0.00000
+    C3       Y     0.00000   0.11980  -0.00000   0.00000   0.04469  -0.00458
+    C3       Z    -0.00000  -0.03719   0.00000  -0.00000  -0.02492  -0.03147
+    C4       X     0.12411  -0.00000   0.00000   0.02212   0.00000  -0.00000
+    C4       Y    -0.00000   0.00013   0.00000  -0.00000  -0.08172   0.00003
+    C4       Z    -0.00000   0.01185  -0.00000   0.00000   0.00001   0.00513
+    O2       X    -0.03237   0.00000  -0.00000  -0.00566   0.00000  -0.00000
+    O2       Y     0.00000  -0.00001  -0.00000   0.00000   0.01665  -0.00002
+    O2       Z     0.00000   0.03530  -0.00000   0.00000  -0.00004  -0.02246
+    C5       X    -0.06643   0.00000   0.07317  -0.07526   0.00000  -0.00000
+    C5       Y    -0.00000  -0.11968   0.00000  -0.00000   0.04446   0.00459
+    C5       Z    -0.00000  -0.03708   0.00000  -0.00000   0.02493  -0.03142
+    C6       X    -0.06643  -0.00000  -0.07317   0.07526  -0.00000   0.00000
+    C6       Y     0.00000   0.11960  -0.00000   0.00000   0.04460   0.00464
+    C6       Z    -0.00000  -0.03699   0.00000  -0.00000  -0.02495   0.03143
+    H1       X     0.30902  -0.00000  -0.42931  -0.42124   0.00000   0.00000
+    H1       Y     0.00000  -0.20460   0.00000  -0.00000  -0.17621  -0.24635
+    H1       Z    -0.00000   0.09116  -0.00000   0.00000   0.37930   0.41403
+    H2       X     0.30900   0.00000   0.42933   0.42125   0.00000   0.00000
+    H2       Y     0.00000   0.20490  -0.00000   0.00000  -0.17600  -0.24627
+    H2       Z     0.00000   0.09163   0.00000   0.00000  -0.37929  -0.41393
+    H3       X     0.30903  -0.00000  -0.42931   0.42126  -0.00000   0.00000
+    H3       Y    -0.00000  -0.20464   0.00000  -0.00000  -0.17648   0.24614
+    H3       Z     0.00000   0.09156  -0.00000   0.00000   0.37967  -0.41364
+    H4       X     0.30902   0.00000   0.42932  -0.42125   0.00000  -0.00000
+    H4       Y     0.00000   0.20473  -0.00000  -0.00000  -0.17623   0.24619
+    H4       Z    -0.00000   0.09192   0.00000  -0.00000  -0.37952   0.41367
+  
+  vibration #           19        20        21        22        23        24
+                 --------- --------- --------- --------- --------- ---------
+  frequencies      1264.20   1344.32   1398.19   1411.63   1654.98   1688.43
+  symmetries       B3g      B2u      B1u      B3g      B2u      Ag      
+  intensities         0.00     81.90      5.31      0.00     16.87      0.00
+  reduc. mass         1.53      2.24      0.45      0.84      2.66      1.80
+  force const         1.44      2.38      0.52      0.98      4.29      3.03
+    O1       X     0.00000  -0.00000  -0.00000   0.00000   0.00000  -0.00000
+    O1       Y    -0.02567  -0.02746   0.00008  -0.00651   0.00844   0.00002
+    O1       Z     0.00004  -0.00001   0.03380   0.00029  -0.00008   0.06564
+    C1       X    -0.00000   0.00000   0.00000  -0.00000  -0.00000   0.00000
+    C1       Y     0.14355   0.15843  -0.00070   0.08065   0.00283   0.00000
+    C1       Z     0.00003  -0.00003  -0.00867  -0.00004   0.00006  -0.06092
+    C2       X    -0.00000  -0.00000  -0.00000  -0.00000   0.00000  -0.00000
+    C2       Y    -0.03084  -0.04668   0.06990  -0.09013  -0.01664   0.01275
+    C2       Z    -0.02321   0.00922  -0.04774   0.03870   0.13926  -0.12263
+    C3       X     0.00000  -0.00000   0.00000   0.00000   0.00000  -0.00000
+    C3       Y     0.03089  -0.04684  -0.06980   0.09009  -0.01642   0.01255
+    C3       Z    -0.02320  -0.00931  -0.04792   0.03892  -0.13921   0.12258
+    C4       X    -0.00000   0.00000   0.00000   0.00000   0.00000   0.00000
+    C4       Y    -0.14354   0.15848   0.00041  -0.08060   0.00279   0.00015
+    C4       Z     0.00005  -0.00009  -0.00867   0.00000  -0.00005   0.06091
+    O2       X     0.00000  -0.00000  -0.00000   0.00000   0.00000  -0.00000
+    O2       Y     0.02566  -0.02747  -0.00005   0.00650   0.00843   0.00002
+    O2       Z    -0.00012   0.00016   0.03382   0.00016   0.00005  -0.06562
+    C5       X    -0.00000   0.00000  -0.00000  -0.00000  -0.00000  -0.00000
+    C5       Y     0.03079  -0.04672   0.06863   0.09110  -0.01663  -0.01282
+    C5       Z     0.02322   0.00918  -0.04728  -0.03945   0.13891   0.12297
+    C6       X     0.00000  -0.00000   0.00000   0.00000  -0.00000  -0.00000
+    C6       Y    -0.03083  -0.04680  -0.06856  -0.09109  -0.01654  -0.01271
+    C6       Z     0.02321  -0.00926  -0.04737  -0.03953  -0.13888  -0.12295
+    H1       X     0.00000   0.00000   0.00000  -0.00000  -0.00000   0.00000
+    H1       Y    -0.20392  -0.16875  -0.17992   0.10921   0.11369  -0.09959
+    H1       Z     0.24688   0.19294   0.35162  -0.28171  -0.03244   0.02080
+    H2       X    -0.00000   0.00000  -0.00000   0.00000  -0.00000   0.00000
+    H2       Y     0.20384  -0.16845   0.18041  -0.10955   0.11367  -0.09961
+    H2       Z     0.24668  -0.19228   0.35199  -0.28193   0.03202  -0.02048
+    H3       X    -0.00000   0.00000  -0.00000  -0.00000   0.00000   0.00000
+    H3       Y     0.20376  -0.16879  -0.17841  -0.11178   0.11329   0.09977
+    H3       Z    -0.24670   0.19288   0.34761   0.28661  -0.03226  -0.02079
+    H4       X     0.00000   0.00000   0.00000   0.00000   0.00000   0.00000
+    H4       Y    -0.20379  -0.16853   0.17875   0.11189   0.11329   0.09979
+    H4       Z    -0.24669  -0.19242   0.34791   0.28667   0.03209   0.02063
+  
+  vibration #           25        26        27        28        29        30
+                 --------- --------- --------- --------- --------- ---------
+  frequencies      1744.68   1744.80   3179.10   3179.32   3195.78   3198.20
+  symmetries       B1u      Ag       B1u      B3g      B2u      Ag      
+  intensities       444.47      0.06      1.84      0.00      3.59      0.00
+  reduc. mass         3.30      2.29      0.23      0.23      0.23      0.23
+  force const         5.91      4.11      1.39      1.39      1.40      1.40
+    O1       X     0.00000   0.00000  -0.00000   0.00000  -0.00000   0.00000
+    O1       Y    -0.00000   0.00000   0.00000  -0.00005  -0.00020   0.00000
+    O1       Z    -0.10286  -0.08874   0.00049   0.00002  -0.00001   0.00117
+    C1       X    -0.00000  -0.00000  -0.00000  -0.00000  -0.00000  -0.00000
+    C1       Y    -0.00000  -0.00000  -0.00002   0.00065   0.00180   0.00001
+    C1       Z     0.15960   0.15092  -0.00125  -0.00005   0.00001  -0.00290
+    C2       X     0.00000  -0.00000   0.00000   0.00000   0.00000   0.00000
+    C2       Y     0.00147   0.00719  -0.03379  -0.03611  -0.03414  -0.03489
+    C2       Z    -0.01529  -0.06178  -0.02035  -0.02213  -0.02636  -0.02621
+    C3       X    -0.00000  -0.00000  -0.00000  -0.00000   0.00000   0.00000
+    C3       Y    -0.00167   0.00712   0.03374   0.03606  -0.03421  -0.03495
+    C3       Z    -0.01670   0.06141  -0.02031  -0.02209   0.02640   0.02625
+    C4       X     0.00000  -0.00000   0.00000  -0.00000   0.00000  -0.00000
+    C4       Y     0.00013  -0.00010   0.00002  -0.00065   0.00180   0.00001
+    C4       Z     0.16304  -0.14720  -0.00124  -0.00004  -0.00001   0.00290
+    O2       X     0.00000   0.00000  -0.00000  -0.00000  -0.00000   0.00000
+    O2       Y    -0.00003   0.00003  -0.00000   0.00005  -0.00020  -0.00000
+    O2       Z    -0.10488   0.08635   0.00049   0.00002   0.00000  -0.00117
+    C5       X    -0.00000   0.00000  -0.00000   0.00000   0.00000  -0.00000
+    C5       Y     0.00160  -0.00712  -0.03630   0.03356  -0.03448   0.03459
+    C5       Z    -0.01668   0.06146  -0.02188   0.02059  -0.02660   0.02597
+    C6       X     0.00000  -0.00000   0.00000  -0.00000   0.00000   0.00000
+    C6       Y    -0.00148  -0.00716   0.03627  -0.03354  -0.03450   0.03462
+    C6       Z    -0.01526  -0.06184  -0.02186   0.02058   0.02662  -0.02599
+    H1       X     0.00000  -0.00000  -0.00000  -0.00000  -0.00000  -0.00000
+    H1       Y    -0.03775  -0.07250   0.38936   0.41836   0.39746   0.40132
+    H1       Z     0.05343   0.06317   0.24575   0.26468   0.25532   0.25717
+    H2       X    -0.00000   0.00000   0.00000   0.00000   0.00000   0.00000
+    H2       Y     0.03933  -0.07159  -0.38868  -0.41765   0.39818   0.40197
+    H2       Z     0.05482  -0.06178   0.24532   0.26422  -0.25578  -0.25759
+    H3       X    -0.00000   0.00000   0.00000  -0.00000  -0.00000   0.00000
+    H3       Y    -0.03945   0.07171   0.41839  -0.38891   0.40135  -0.39784
+    H3       Z     0.05491  -0.06195   0.26412  -0.24608   0.25782  -0.25494
+    H4       X     0.00000   0.00000   0.00000  -0.00000  -0.00000   0.00000
+    H4       Y     0.03771   0.07256  -0.41805   0.38867   0.40165  -0.39812
+    H4       Z     0.05342   0.06313   0.26390  -0.24593  -0.25801   0.25511
+  
+  Number of imaginary frequencies:   0
+   
+  Writing vibrational animation data to bq_Q_gas.vib
+  Writing IR vibrational spectrum data to bq_Q_gas_vib.spm
+  rotational symmetry number:  4
+
+  rotational temperatures (K):      0.252735      0.080018      0.060776
+   
+  The Quasi-Harmonic approximation will be applied to compute
+  vibrational constributions to thermodynamic properties.
+  Frequencies will be adjusted to a minimum value of  100.00 cm^-1.
+
+  vibrational temperatures:
+       mode:      1        2        3        4        5        6
+  temp. (K):   315.53   494.74   571.02   672.48   710.82   772.06
+   
+       mode:      7        8        9       10       11       12
+  temp. (K):   823.11   891.78  1105.91  1114.97  1120.77  1255.08
+   
+       mode:     13       14       15       16       17       18
+  temp. (K):  1361.28  1388.68  1503.85  1517.38  1592.28  1699.86
+   
+       mode:     19       20       21       22       23       24
+  temp. (K):  1818.90  1934.17  2011.69  2031.02  2381.15  2429.27
+   
+       mode:     25       26       27       28       29       30
+  temp. (K):  2510.20  2510.38  4574.01  4574.32  4598.00  4601.50
+   
+   
+  Thermodynamic properties calculated assuming an ideal gas.
+
+
+  In the table below, the units for temperature
+  are kelvins, the units for U, H, and G are
+  kcal/mol and the units for Cv and S are cal/(mol K)
+
+  The zero point energy (ZPE):     54.535 kcal/mol
+  is not included in U, H, or G in the table below
+  
+ 
+  =============================================================================
+  Thermodynamic properties for P = 1.00E+00 atm, calculated at   1 temperatures
+
+
+  T =   298.15 K, P = 1.00E+00 atm
+   
+  Ideal Gas
+                  U         Cv          S          H          G        ln(Q)
+              =========  =========  =========  =========  =========  =========
+  trans.          0.889      2.981     39.948      1.481    -10.429   17.60261
+  rot.            0.889      2.981     25.005      0.889     -6.567   11.08321
+  vib.            1.737     15.980      8.476      1.737     -0.791    1.33429
+  elec.           0.000      0.000      0.000      0.000      0.000    0.00000
+  ----------------------------------------------------------------------------
+  total           3.514     21.942     73.430      4.107    -17.786   30.02011
+   
+   Total internal energy, Utot(SCFE + ZPE + U):    -381.520843 hartrees
+   Total enthalpy, Htot (Utot + nRT), with n=1:    -381.519899 hartrees
+    Total Gibbs free energy, Gtot (Htot - T*S):    -381.554787 hartrees
+   
+  end of program freq
+   
+ Time(freq)  user:       0.664  user+sys:       0.664  wallclock:       0.166
+
+ Total cpu seconds     user:   12629.856   user+sys:   12629.856
+  
+ Total elapsed time:    3311 seconds
+
+Job bq_Q_gas completed on rs4.differ.nl at Thu Oct 29 11:40:30 2026

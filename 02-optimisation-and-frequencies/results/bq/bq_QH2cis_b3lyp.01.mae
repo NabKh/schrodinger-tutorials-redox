@@ -1,0 +1,134 @@
+{ 
+ s_m_m2io_version
+ s_m_workflow_menu
+ :::
+ 2.0.0 
+ "Jaguar Geometry Optimization Plot" 
+} 
+
+f_m_ct { 
+ s_m_title
+ i_j_Geometry_convergence_category
+ i_j_Num_Negative_Frequencies
+ i_j_Number_of_canonical_orbitals
+ i_m_Spin_multiplicity
+ r_j_2nd_Lowest_Frequency_(cm-1)
+ r_j_Enthalpy_(kcal/mol)_298.15K_1.00E+00atm
+ r_j_Entropy_(cal/mol/K)_298.15K_1.00E+00atm
+ r_j_Final_Energy
+ r_j_Free_Energy_(kcal/mol)_298.15K_1.00E+00atm
+ r_j_Gas_Phase_Energy
+ r_j_HOMO
+ r_j_Heat_Capacity_(cal/mol/K)_298.15K_1.00E+00atm
+ r_j_Highest_Frequency_(cm-1)
+ r_j_Internal_Energy_(kcal/mol)_298.15K_1.00E+00atm
+ r_j_LUMO
+ r_j_Lowest_Frequency_(cm-1)
+ r_j_Solution_Phase_Energy
+ r_j_Solvation_Energy_(kcal/mol)
+ r_j_Total_Enthalpy_(au)_298.15K_1.00E+00atm
+ r_j_Total_Free_Energy_(au)_298.15K_1.00E+00atm
+ r_j_Total_Internal_Energy_(au)_298.15K_1.00E+00atm
+ r_j_Zero_Point_Energy_(kcal/mol)
+ r_j_ln(Q)_298.15K_1.00E+00atm
+ s_j_Jaguar_input_file
+ s_j_Jaguar_log_file
+ s_j_Jaguar_mae_file
+ s_j_Jaguar_output_file
+ s_j_Jaguar_restart_input_file
+ s_j_Jaguar_restart_mae_file
+ s_j_QM_Basis
+ s_j_QM_Method
+ s_j_Task
+ s_m_entry_name
+ i_m_ct_format
+ :::
+ bq_QH2cis_b3lyp 
+ 0
+ 0
+ 325
+ 1
+ 432.150565263419
+ 4.25097700657459
+ 75.4059947370764
+ -382.867545108387
+ -18.2313203242847
+ -382.847851516861
+ -0.224263795477852
+ 24.3090361187618
+ 3689.02990201508
+ 3.65849141774732
+ -0.0287979273046717
+ 252.297111837145
+ -382.867545108387
+ -12.3579151806939
+ -382.749931017257
+ -382.785758838837
+ -382.750875203149
+ 69.5529789828372
+ 30.7709093150613
+ C:\Users\khossossi\schrodinger-tutorials-redox\02-optimisation-and-frequencies\results\bq\bq_QH2cis_b3lyp.in 
+ C:\Users\khossossi\schrodinger-tutorials-redox\02-optimisation-and-frequencies\results\bq\bq_QH2cis_b3lyp.log 
+ C:\Users\khossossi\schrodinger-tutorials-redox\02-optimisation-and-frequencies\results\bq\bq_QH2cis_b3lyp.mae 
+ C:\Users\khossossi\schrodinger-tutorials-redox\02-optimisation-and-frequencies\results\bq\bq_QH2cis_b3lyp.out 
+ C:\Users\khossossi\schrodinger-tutorials-redox\02-optimisation-and-frequencies\results\bq\bq_QH2cis_b3lyp.01.in 
+ C:\Users\khossossi\schrodinger-tutorials-redox\02-optimisation-and-frequencies\results\bq\bq_QH2cis_b3lyp.01.mae 
+ def2-tzvpd 
+ DFT(b3lyp)/SOLV 
+ Optimization 
+ bq_QH2cis_b3lyp 
+  2
+ m_atom[14] { 
+  # First column is atom index #
+  i_m_mmod_type
+  r_m_x_coord
+  r_m_y_coord
+  r_m_z_coord
+  i_m_color
+  r_m_charge1
+  r_m_charge2
+  i_m_atomic_number
+  s_m_color_rgb
+  s_m_atom_name
+  r_j_ESP_Charges
+  :::
+  1 16 0.000000 2.774234 -0.044632 70 -0.70667 -0.70667 8 FF2F2F  O1  -0.706669054971188
+  2 2 0.000000 1.396113 -0.002005 2 0.46478 0.46478 6 A0A0A0  C1  0.464784938551767
+  3 2 0.000000 0.696276 1.198999 2 -0.33740 -0.33740 6 A0A0A0  C2  -0.337403166161558
+  4 2 0.000000 -0.696276 1.198999 2 -0.33740 -0.33740 6 A0A0A0  C3  -0.337403166161558
+  5 2 0.000000 -1.396113 -0.002005 2 0.46478 0.46478 6 A0A0A0  C4  0.464784938551767
+  6 16 0.000000 -2.774234 -0.044632 70 -0.70667 -0.70667 8 FF2F2F  O2  -0.706669054971188
+  7 2 0.000000 -0.695796 -1.208203 2 -0.29513 -0.29513 6 A0A0A0  C5  -0.295131253888033
+  8 2 0.000000 0.695796 -1.208203 2 -0.29513 -0.29513 6 A0A0A0  C6  -0.295131253888033
+  9 42 0.000000 3.151833 0.851335 21 0.47491 0.47491 1 FFFFFF  H1  0.474912440522304
+  10 41 0.000000 1.238813 2.138100 21 0.20360 0.20360 1 FFFFFF  H2  0.203604992889042
+  11 41 0.000000 -1.238813 2.138100 21 0.20360 0.20360 1 FFFFFF  H3  0.203604992889042
+  12 42 0.000000 -3.151833 0.851335 21 0.47491 0.47491 1 FFFFFF  H4  0.474912440522304
+  13 41 0.000000 -1.238013 -2.147624 21 0.19590 0.19590 1 FFFFFF  H5  0.195901103057667
+  14 41 0.000000 1.238013 -2.147624 21 0.19590 0.19590 1 FFFFFF  H6  0.195901103057667
+  :::
+ } 
+ m_bond[14] { 
+  # First column is bond index #
+  i_m_from
+  i_m_to
+  i_m_order
+  :::
+  1 1 9 1
+  2 1 2 1
+  3 2 3 2
+  4 2 8 1
+  5 3 10 1
+  6 3 4 1
+  7 4 11 1
+  8 4 5 2
+  9 5 6 1
+  10 5 7 1
+  11 6 12 1
+  12 7 13 1
+  13 7 8 2
+  14 8 14 1
+  :::
+ } 
+} 
+

@@ -1,0 +1,13 @@
+Name: 'bq_Q_gas_cphf'
+JobId: 'b1661f9c-d2e6-11f1-9d1f-e454e8665817'
+Commandline: 'C:\Program Files\Schrodinger2026-2\jaguar.exe run bq_Q_gas_cphf.in -HOST cpurs4 -PARALLEL 4'
+BackendCmdline: 'run jexec.py -PARALLEL 4 -jobname bq_Q_gas_cphf bq_Q_gas_cphf.in'
+Outfiles:
+- 'bq_Q_gas_cphf.log'
+- 'bq_Q_gas_cphf.01.in'
+- 'bq_Q_gas_cphf.out'
+- 'bq_Q_gas_cphf.01.smap'
+- 'bq_Q_gas_cphf.vib'
+- 'bq_Q_gas_cphf.01.mae'
+- 'bq_Q_gas_cphf.recover'
+- 'bq_Q_gas_cphf_vib.spm'
