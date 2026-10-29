@@ -319,12 +319,12 @@ In class, section L is predictions: every table below is filled in later, from t
 
 | rung | input | functional (type) | basis | r(C=O) (Å) | ν(C=O), harmonic (cm⁻¹) | lowest out-of-plane mode (cm⁻¹, label in output) | wall time |
 |---|---|---|---|---|---|---|---|
-| 1 | `levels/bq_Q_pbe_631g.in` | PBE (GGA) | 6-31G\*\* | | | | |
-| 2 | `levels/bq_Q_b3lyp_631g.in` | B3LYP (hybrid GGA) | 6-31G\*\* | | | | |
+| 1 | `levels/bq_Q_pbe_631g.in` | PBE (GGA) | 6-31G\*\* | | 1684.7 (mode 26) | 95.8 (B3u) | 0.05 h |
+| 2 | `levels/bq_Q_b3lyp_631g.in` | B3LYP (hybrid GGA) | 6-31G\*\* | | 1758.5 (mode 26) | 100.5 (B3u) | 0.05 h |
 | 3 | `checks/bq_Q_gas_tzvp.in` | B3LYP-D3 | def2-TZVP | | | | |
 | 4 | `gas/bq_Q_gas.in` | B3LYP-D3 | def2-TZVPD | | | | |
-| 5 | `levels/bq_Q_m062x.in` | M06-2X-D3 (hybrid meta-GGA) | def2-TZVPD | | | | |
-| 6 | `levels/bq_Q_wb97xd.in` | ωB97X-D (range-separated hybrid with dispersion) | def2-TZVPD | | | | |
+| 5 | `levels/bq_Q_m062x.in` | M06-2X-D3 (hybrid meta-GGA) | def2-TZVPD | 1.208 | 1830.9 (mode 25) | 205.3 (B3u) | 2.27 h |
+| 6 | `levels/bq_Q_wb97xd.in` | ωB97X-D (range-separated hybrid with dispersion) | def2-TZVPD | 1.229 | none: strongest B1u 1184.0 and 1552.2 (not a minimum, see below) | 221.3 (B3u); one imaginary, −2097.8 (B2g) | 2.81 h |
 | exp. | | | | | 1668 (B1u fundamental; band maximum 1678) | 109 | |
 
 *Test run, rung 6 failed the minimum check (C2).* `bq_Q_wb97xd` converged in 5 steps but has one imaginary mode, −2097.8 cm⁻¹ (B2g), and ZPE 49.8 kcal/mol (M06-2X-D3, same basis and start: 55.1, none imaginary). Its final geometry is still D2h but the ring is distorted: angle at the C=O carbon 106.7° (start 116.2°, M06-2X 117.5°), r(C=O) 1.229 Å, C1–C2 1.450 Å. The SCF energy fell by 7.4 kcal/mol along that distortion (−381.23538 → −381.24719 Eh), M06-2X by 0.6. The input differs from `bq_Q_m062x.in` only in `dftname`. Cause not established; this rung is not used for a comparison until it is. Test: the same functional with the rung-2 basis, `levels/bq_Q_wb97xd_631g.in` (differs from `bq_Q_b3lyp_631g.in` only in `dftname`). A normal ring there (angle at C1 near 117°, no imaginary mode) puts the fault on ωB97X-D with def2-TZVPD; a distorted ring again puts it on ωB97X-D in this build. Lowest B3u, the out-of-plane mode, on the other rungs: PBE/6-31G\*\* 95.8, B3LYP/6-31G\*\* 100.5, M06-2X-D3/def2-TZVPD 205.3 cm⁻¹ (production, in water: 232.7; exp. 109).
