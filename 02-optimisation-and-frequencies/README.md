@@ -311,6 +311,8 @@ In class, section L is predictions: every table below is filled in later, from t
 | D3 dispersion | Gtot with and without D3: `bq_Q.out` against `bq_Q_b3lyp.out`, `bq_QH2.out` against `bq_QH2_b3lyp.out` (and `bq_QH2cis` against `bq_QH2cis_b3lyp`); shifts ______ and ______ kcal/mol | change of the Q → QH₂ step: ______ kcal/mol = ______ V (2e⁻) |
 | solvation | ΔG_solv of Q and Q²⁻ from L4a: ______ and ______ kcal/mol | an error of 5 % in that of Q²⁻: ______ kcal/mol = ______ V (2e⁻) |
 
+*Test run, D3 (PBF water, B3LYP-D3 against B3LYP, same basis):* Gtot shifts by −4.41 kcal/mol for Q (−381.566711 against −381.559688 Eh), −5.06 for QH₂ (−382.794292 against −382.786236) and −5.07 for QH₂ cis. The Q → QH₂ step changes by −0.65 kcal/mol, +0.014 V (2e⁻): D3 shifts each G by 4–5 kcal/mol but the difference by about a seventh of that. D3 leaves the frequencies within 1 cm⁻¹ (lowest B3u of Q 232.7 with, 232.8 without), so the step from about 100 cm⁻¹ (rungs 1–2) to about 210 cm⁻¹ (rungs 3–4) in L2 comes from the basis, not from D3.
+
 *Why:* prediction first: which of the two rows changes a *difference* more? The answer decides where the effort goes, into the functional or into the solvation model. The `Solvation energy` line of a production output is not used here: with `nogas=2` its gas-phase reference is computed at the *starting* geometry (A1), so it is not a ΔG_solv at one geometry.
 
 **L2 · Functional: the ladder** (Jacob's ladder: GGA → hybrid → meta-GGA hybrid and range-separated hybrid). Q in the gas phase, optimisation and frequencies.
@@ -321,8 +323,8 @@ In class, section L is predictions: every table below is filled in later, from t
 |---|---|---|---|---|---|---|---|
 | 1 | `levels/bq_Q_pbe_631g.in` | PBE (GGA) | 6-31G\*\* | 1.238 | 1684.7 (mode 26) | 95.8 (B3u) | 0.05 h |
 | 2 | `levels/bq_Q_b3lyp_631g.in` | B3LYP (hybrid GGA) | 6-31G\*\* | 1.225 | 1758.5 (mode 26) | 100.5 (B3u) | 0.05 h |
-| 3 | `checks/bq_Q_gas_tzvp.in` | B3LYP-D3 | def2-TZVP | | 1744.7 (mode 26) | 207.7 (B3u) | 0.84 h |
-| 4 | `gas/bq_Q_gas.in` | B3LYP-D3 | def2-TZVPD | | 1744.7 (mode 25) | 219.3 (B3u) | 0.92 h |
+| 3 | `checks/bq_Q_gas_tzvp.in` | B3LYP-D3 | def2-TZVP | 1.218 | 1744.7 (mode 26) | 207.7 (B3u) | 0.84 h |
+| 4 | `gas/bq_Q_gas.in` | B3LYP-D3 | def2-TZVPD | 1.218 | 1744.7 (mode 25) | 219.3 (B3u) | 0.92 h |
 | 5 | `levels/bq_Q_m062x.in` | M06-2X-D3 (hybrid meta-GGA) | def2-TZVPD | 1.208 | 1830.9 (mode 25) | 205.3 (B3u) | 2.27 h |
 | 6 | `levels/bq_Q_wb97xd.in` | ωB97X-D (range-separated hybrid with dispersion) | def2-TZVPD | 1.229 | none: strongest B1u 1184.0 and 1552.2 (not a minimum, see below) | 221.3 (B3u); one imaginary, −2097.8 (B2g) | 2.81 h |
 | exp. | | | | | 1668 (B1u fundamental; band maximum 1678) | 109 | |
@@ -663,7 +665,7 @@ Harmonic frequencies are the curvature of the potential at the minimum; measured
 | `nops` | +0.048 | +0.056 | 219.2 | 343.4 | 911.6 | 1680.6 | 8.440E-07 | 3.29 h |
 | `tzvp` | +0.99 | +0.86 | 207.7 | 335.2 | 908.9 | 1680.2 | 1.610E-05 | 0.84 h |
 
-The three numerical settings move G by at most 0.06 kcal/mol and every mode by at most 0.5 cm⁻¹, at up to 3.6 times the cost: the defaults are converged for this molecule. Removing the diffuse functions moves G by 0.9 kcal/mol and the lowest mode by −11.6 cm⁻¹, still 99 cm⁻¹ above the 109 fundamental. None of the four removes the factor-of-two error of the lowest out-of-plane mode, so it is not numerical. In `iacc`, `nops` and `tzvp` the C=O B1u is mode 26 and an Ag mode 0.2 cm⁻¹ away is mode 25: read modes by symmetry and intensity, not by number.
+The three numerical settings move G by at most 0.06 kcal/mol and every mode by at most 0.5 cm⁻¹, at up to 3.6 times the cost: the defaults are converged for this molecule. def2-TZVP has 272 functions and Jaguar removes 10 (def2-TZVPD: 338, removes 30; S min 1.6E-05 against 8.4E-07). Removing the diffuse functions moves G by 0.9 kcal/mol and the lowest mode by −11.6 cm⁻¹, still 99 cm⁻¹ above the 109 fundamental. None of the four removes the factor-of-two error of the lowest out-of-plane mode, so it is not numerical. In `iacc`, `nops` and `tzvp` the C=O B1u is mode 26 and an Ag mode 0.2 cm⁻¹ away is mode 25: read modes by symmetry and intensity, not by number.
 
 ## E · What changes for the other molecules (5 min)
 

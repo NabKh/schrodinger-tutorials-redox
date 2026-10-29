@@ -116,10 +116,11 @@ foreach ($o in Get-ChildItem results\level\*.out) { & "$S\run" scripts\ir_compar
 # L4a · solvation single points at the optimised PBF geometries (after P2)
 #   &gen of inputs\solvation\<job>.in + &zmat of results\bq\bq_<state>.01.in -> results\solv\<job>.in
 New-Item -ItemType Directory -Force results\solv | Out-Null
-foreach ($s in "Q", "Q2m") {
-    $zmat = [regex]::Match((Get-Content -Raw results\bq\bq_$s.01.in), '(?s)&zmat.*?\n\s*&').Value
+# the loop variable is $st, not $s: PowerShell names ignore case, and $s would overwrite $S
+foreach ($st in "Q", "Q2m") {
+    $zmat = [regex]::Match((Get-Content -Raw results\bq\bq_$st.01.in), '(?s)&zmat.*?\n\s*&').Value
     foreach ($m in "gas", "pbf", "smd", "pcm") {
-        $job = "bq_${s}_sp_$m"
+        $job = "bq_${st}_sp_$m"
         $gen = [regex]::Match((Get-Content -Raw inputs\solvation\$job.in), '(?s)^.*?&gen.*?\n\s*&').Value
         Set-Content -Path results\solv\$job.in -Value ($gen + "`n" + $zmat + "`n")
     }
