@@ -594,7 +594,7 @@ Then search `Quasi-Harmonic`, above the vibrational temperatures. If it is there
 
 *Input:* `results\bq\bq_QH2.out` (trans O–H, C2h) and `bq_QH2cis.out` (cis, C2v). *Command:* commands C (`summarise_job.py` on both). *Expected:* Gtot ______ and ______ Eh, ΔG = ______ kcal/mol. With $p_i = e^{-G_i/RT} / \sum_j e^{-G_j/RT}$ (RT = 0.592 kcal/mol): ______ % trans, ______ % cis. The G of QH₂ as a mixture: $G = -RT \ln \sum_i e^{-G_i/RT}$ = ______ Eh.
 
-*Why:* is ΔG larger than the error of the method? The mixture G is never above the lowest one, and differs from it by at most RT ln 2 = 0.41 kcal/mol for two conformers. Which G goes into Session 3, and why (worksheet C5)?
+*Why:* is ΔG larger than the error of the method? The mixture G is never above the lowest one, and differs from it by at most RT ln 2 = 0.41 kcal/mol for two conformers. Which G goes into Session 3, and why (worksheet C5)? Test run: Gtot −382.794292 (trans) and −382.793832 Eh (cis); ΔG = +0.29 kcal/mol (ΔE +0.28), so 61.9 % trans, 38.1 % cis; mixture G = −382.794744 Eh, 0.28 kcal/mol below trans. Both converged, 0 imaginary, σ = 2 each; the lowest modes differ by < 3 cm⁻¹.
 
 **C6 · The live job.**
 
