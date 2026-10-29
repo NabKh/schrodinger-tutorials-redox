@@ -630,7 +630,7 @@ Harmonic frequencies are the curvature of the potential at the minimum; measured
 | `bq_Q_gas_nops.in` | `nops=1` | "analytic calculation only": no pseudospectral integrals, with a diffuse basis |
 | `bq_Q_gas_iacc.in` | `iacc=1` | "v. high scf accuracy (ufine only)" instead of the default quick cutoffs |
 | `bq_Q_gas_cphf.in` | `rmscp=1.0e-6` | CPHF convergence, default 5.0e-5: the response of the density, which enters the Hessian and the IR intensities |
-| `bq_Q_gas_tzvp.in` | `basis=def2-TZVP` | diffuse functions (compare the smallest eigenvalue of S: near-linear dependence) |
+| `bq_Q_gas_tzvp.in` | `basis=def2-TZVP` | diffuse functions (compare the smallest eigenvalue of S: near-linear dependence; and `number of basis functions` with `number of canonical orbitals`: the difference is what Jaguar removed. Test run, def2-TZVPD in water: 338 and 308, S 8.2E-07) |
 
 *Command:* commands D4 (`summarise_job.py` and `ir_compare.py` on each). *Expected:* lowest out-of-plane mode and 882 band for each (worksheet D4). *Why:* predict which one moves the lowest out-of-plane mode, then compare. If none of them moves it, the numerics are not the cause; what remains is the functional and the harmonic approximation itself, for a soft mode that may be strongly anharmonic, and these checks cannot separate the two. Either way it is part of the uncertainty of every G that contains a soft mode.
 
