@@ -1,0 +1,13 @@
+Name: 'bq_QHm'
+JobId: '4f22598c-d2e6-11f1-ba5a-e454e8665817'
+Commandline: 'C:\Program Files\Schrodinger2026-2\jaguar.exe run bq_QHm.in -HOST cpurs4 -PARALLEL 4'
+BackendCmdline: 'run jexec.py -PARALLEL 4 -jobname bq_QHm bq_QHm.in'
+Outfiles:
+- 'bq_QHm_vib.spm'
+- 'bq_QHm.log'
+- 'bq_QHm.01.mae'
+- 'bq_QHm.recover'
+- 'bq_QHm.out'
+- 'bq_QHm.vib'
+- 'bq_QHm.01.in'
+- 'bq_QHm.01.smap'

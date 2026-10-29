@@ -1,0 +1,189 @@
+
+--------------------------------------------------------------------------------
+JobId          : 754e00e2-d37d-11f1-b85e-e454e8665817
+Name           : bq_Q_gas_iacc
+Program        : Jaguar
+ClientVersion  : 2026-2 build 125
+Host           : D-6QP7G03
+Dir            : C:\Users\khossossi\schrodinger-tutorials-redox\02-optimisation-and-frequencies\results\checks
+HostEntry      : cpurs4
+JobHost        : rs4.differ.nl
+JobDir         : /scratch/khossossi/jobs/754e00e2-d37d-11f1-b85e-e454e8665817
+JobSchrodinger : /opt/schrodinger2026-2
+Commandline    : C:\Program Files\Schrodinger2026-2\jaguar.exe run bq_Q_gas_iacc.in -HOST cpurs4 -PARALLEL 4
+StartTime      : 2026-10-29-10:45:23
+Version        : 2026-2 build 125
+--------------------------------------------------------------------------------
+
+mmshare : 0081fc11b9a5c0238c64103940c810e7237b86bf
+jaguar-src : 3661799996b617cab0dd845f7945f9aa1fcded36
+epik-src : eb2f04bfa5d377af105844461338435d3de2ce5c
+impact-src : f3569fc6e286733c6cf5ccd5315dea49d71165a7
+macromodel-src : 2ef174ddc7115c1a158115bf5578e88c9752da36
+
+Contents of /scratch/khossossi/jobs/754e00e2-d37d-11f1-b85e-e454e8665817:
+/scratch/khossossi/jobs/754e00e2-d37d-11f1-b85e-e454e8665817/supv-stderr-754e00e2-d37d-11f1-b85e-e454e8665817.log
+/scratch/khossossi/jobs/754e00e2-d37d-11f1-b85e-e454e8665817/bq_Q_gas_iacc.in
+/scratch/khossossi/jobs/754e00e2-d37d-11f1-b85e-e454e8665817/.754e00e2-d37d-11f1-b85e-e454e8665817-job-supervisor-access
+/scratch/khossossi/jobs/754e00e2-d37d-11f1-b85e-e454e8665817/754e00e2-d37d-11f1-b85e-e454e8665817-sysinfo.json
+/scratch/khossossi/jobs/754e00e2-d37d-11f1-b85e-e454e8665817/memory.json
+/scratch/khossossi/jobs/754e00e2-d37d-11f1-b85e-e454e8665817/supv-754e00e2-d37d-11f1-b85e-e454e8665817.log
+/scratch/khossossi/jobs/754e00e2-d37d-11f1-b85e-e454e8665817/supv-stdout-754e00e2-d37d-11f1-b85e-e454e8665817.log
+/scratch/khossossi/jobs/754e00e2-d37d-11f1-b85e-e454e8665817/bq_Q_gas_iacc.recover
+/scratch/khossossi/jobs/754e00e2-d37d-11f1-b85e-e454e8665817/bq_Q_gas_iacc.log
+/scratch/khossossi/jobs/754e00e2-d37d-11f1-b85e-e454e8665817/.754e00e2-d37d-11f1-b85e-e454e8665817-job-server-config
+/scratch/khossossi/jobs/754e00e2-d37d-11f1-b85e-e454e8665817/.write_dir.json
+/scratch/khossossi/jobs/754e00e2-d37d-11f1-b85e-e454e8665817/mpiNodefile.2866333058
+
+Executing subprocess:
+/opt/schrodinger2026-2/jaguar-v13.2/bin/Linux-x86_64/jexec bq_Q_gas_iacc.in -T 4 -out /scratch/khossossi/jobs/754e00e2-d37d-11f1-b85e-e454e8665817 -cwd
+
+Stacksize hard limit = unlimited
+Job bq_Q_gas_iacc started on rs4.differ.nl at Thu Oct 29 10:45:25 2026
+jobid: 754e00e2-d37d-11f1-b85e-e454e8665817 
+Jaguar version 13.2, release 125
+ Using up to   4 threads per process
+Molecular Point Group: D2h     
+Point Group used: D2h
+pre (input checking) done.
+onee (1-electron integrals) done.
+hfig (HF initial guess) done.
+probe (project orbitals) done.
+grid (grid generation) done.
+rwr (Q operators) done.
+scf type: DFT=Becke_3_Parameter/HF+Slater+Becke88+VWN+LYP (B3LYP-D3)
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  1  U    -379.83339285527           3.1E-03  2.2E-01
+etot    2  N  Y  1  U    -378.70387136855 -1.1E+00  3.8E-03  2.8E-01
+etot    3  N  Y  1  U    -379.03703539053  3.3E-01  2.4E-03  2.3E-01
+etot    4  N  Y  1  U    -381.44022024036  2.4E+00  8.5E-04  5.8E-02
+etot    5  N  Y  1  U    -381.53674203217  9.7E-02  3.3E-04  3.7E-02
+etot    6  N  Y  1  U    -381.60396762642  6.7E-02  6.8E-05  7.5E-03
+etot    7  N  Y  1  U    -381.60573952816  1.8E-03  2.1E-05  1.9E-03
+etot    8  N  Y  1  U    -381.60588321827  1.4E-04  4.1E-06  4.9E-04
+etot    9  N  N  1  U    -381.60589221425  9.0E-06  0.0E+00  0.0E+00
+scf (DFT) done.
+der1a (1-e 1st deriv.) done.
+rwr (1st deriv. Q) done.
+der1b (2-e 1st deriv.) done.
+  Geometry optimization step  1
+  Total energy:      -381.61289554469 hartrees
+  gradient maximum:        7.0979E-03 .  (  4.5000E-04 )
+  gradient rms:            2.9637E-03 .  (  3.0000E-04 )
+  displacement maximum:    1.9394E-02 .  (  1.8000E-03 )
+  displacement rms:        8.6273E-03 .  (  1.2000E-03 )
+  
+  predicted energy change: -4.2267E-04
+  step size:     0.05176
+  trust radius:  0.30000
+---------------- geometry iteration 1 complete ----------------
+geopt (optimize geometry) done.
+onee (1-electron integrals) done.
+probe (project orbitals) done.
+grid (grid generation) done.
+rwr (Q operators) done.
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  1  U    -381.60609047263           4.4E-05  1.7E-03
+etot    2  N  Y  1  U    -381.60630422741  2.1E-04  9.0E-06  4.0E-04
+etot    3  N  Y  1  U    -381.60628979737 -1.4E-05  6.1E-06  1.1E-03
+etot    4  N  Y  1  U    -381.60631112078  2.1E-05  9.9E-07  1.3E-04
+etot    5  N  N  1  U    -381.60631157459  4.5E-07  0.0E+00  0.0E+00
+scf (DFT) done.
+der1a (1-e 1st deriv.) done.
+rwr (1st deriv. Q) done.
+der1b (2-e 1st deriv.) done.
+  Geometry optimization step  2
+  Total energy:      -381.61333655126 hartrees
+  energy change:          -4.4101E-04 .  (  5.0000E-05 )
+  gradient maximum:        1.3688E-03 .  (  4.5000E-04 )
+  gradient rms:            5.0087E-04 .  (  3.0000E-04 )
+  displacement maximum:    4.1007E-03 .  (  1.8000E-03 )
+  displacement rms:        1.3915E-03 .  (  1.2000E-03 )
+  
+  predicted energy change: -1.1864E-05
+  step size:     0.00835
+  trust radius:  0.30000
+---------------- geometry iteration 2 complete ----------------
+geopt (optimize geometry) done.
+onee (1-electron integrals) done.
+probe (project orbitals) done.
+grid (grid generation) done.
+rwr (Q operators) done.
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  1  U    -381.60631705385           6.4E-06  2.0E-04
+etot    2  N  Y  1  U    -381.60632003235  3.0E-06  9.6E-07  4.6E-05
+etot    3  N  N  1  U    -381.60631997800 -5.4E-08  0.0E+00  0.0E+00
+scf (DFT) done.
+der1a (1-e 1st deriv.) done.
+rwr (1st deriv. Q) done.
+der1b (2-e 1st deriv.) done.
+  Geometry optimization step  3
+  Total energy:      -381.61334997730 hartrees
+  energy change:          -1.3426E-05 *  (  5.0000E-05 )
+  gradient maximum:        3.9289E-04 *  (  4.5000E-04 )
+  gradient rms:            1.6252E-04 *  (  3.0000E-04 )
+  displacement maximum:    2.0001E-03 .  (  1.8000E-03 )
+  displacement rms:        6.5461E-04 *  (  1.2000E-03 )
+  
+  predicted energy change: -1.7735E-06
+  step size:     0.00393
+  trust radius:  0.30000
+---------------- geometry iteration 3 complete ----------------
+geopt (optimize geometry) done.
+onee (1-electron integrals) done.
+probe (project orbitals) done.
+grid (grid generation) done.
+rwr (Q operators) done.
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  1  U    -381.60631761145           3.6E-06  1.2E-04
+etot    2  N  N  1  U    -381.60631811086  5.0E-07  0.0E+00  0.0E+00
+scf (DFT) done.
+der1a (1-e 1st deriv.) done.
+rwr (1st deriv. Q) done.
+der1b (2-e 1st deriv.) done.
+  Geometry optimization step  4
+  Total energy:      -381.61335063606 hartrees
+  energy change:          -6.5877E-07 #  (  5.0000E-05 )
+  gradient maximum:        1.1301E-04 *  (  4.5000E-04 )
+  gradient rms:            4.4324E-05 #  (  3.0000E-04 )
+  displacement maximum:    2.6369E-04 #  (  1.8000E-03 )
+  displacement rms:        1.1280E-04 #  (  1.2000E-03 )
+  
+  predicted energy change: -8.4480E-08
+  step size:     0.00068
+  trust radius:  0.30000
+------------- final geometry iteration 4 complete -------------
+geopt (optimize geometry) done.
+cutabab2 (abab integrals) done.
+der2a (1-e JK-1st deriv.) done.
+grid (grid generation) done.
+rwr (1st deriv. Q) done.
+der2b (2-e JK-1st deriv.) done.
+der2nda (1-e 2nd deriv.) done.
+der2ndb (2-e 2nd deriv.) done.
+rwr (Q operators) done.
+cphfa (gradient of wave function) done.
+freq (vib. frequencies) done.
+Job bq_Q_gas_iacc completed on rs4.differ.nl at Thu Oct 29 11:39:32 2026
+Timer (jaguar_backend.py) : 3246.70 secs (54.11 minutes)
+Finished:   Thu Oct 29 11:39:32 2026

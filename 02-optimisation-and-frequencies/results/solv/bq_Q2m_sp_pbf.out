@@ -1,0 +1,1189 @@
+Job bq_Q2m_sp_pbf started on rs4.differ.nl at Thu Oct 29 11:52:15 2026
+jobid: cbe921da-d386-11f1-ba1e-e454e8665817
+
+  +------------------------------------------------------------------------+
+  |  Jaguar version 13.2, release 125                                      |
+  |                                                                        |
+  |  Copyright Schrodinger, Inc.                                           |
+  |  All Rights Reserved.                                                  |
+  |                                                                        |
+  |  The following have contributed to Jaguar (listed alphabetically):     |
+  |  Ty Balduf, Mike Beachy, Chandler Bennett, Art Bochevarov,             |
+  |  Dale Braden, Yixiang Cao, Alan Chien, Chris Cortis,                   |
+  |  Rich Friesner, Jim Furness, Bill Goddard, Hod Greeley,                |
+  |  Tom Hughes, Leif Jacobson, Jean-Marc Langlois, Daniel Levine,         |
+  |  Daniel Mainz, Rob Murphy, Dean Philipp, Tom Pollard,                  |
+  |  Murco Ringnalda, Pablo Videla, Mark Watson, Haoyu Yu.                 |
+  |                                                                        |
+  |  Use of this program should be acknowledged in publications as:        |
+  |                                                                        |
+  |  Jaguar, version 13.2, Schrodinger, Inc., New York, NY, 2026.          |
+  |                                                                        |
+  |  Y. Cao, T. Balduf, M. D. Beachy, M. C. Bennett, A. D. Bochevarov,     |
+  |  A. Chien, P. A. Dub, K. G. Dyall, J. W. Furness, M. D. Halls,         |
+  |  T. F. Hughes, L. D. Jacobson, H. S. Kwak, D. S. Levine, D. T. Mainz,  |
+  |  K. B. Moore, M. Svensson, P. E. Videla, M. A. Watson, R. A. Friesner, |
+  |  "Quantum chemical package Jaguar: A survey of recent developments     |
+  |  and unique features", J. Chem. Phys. 161, 052502 (2024).              |
+  |  DOI: 10.1063/5.0213317                                                |
+  +------------------------------------------------------------------------+
+  
+  start of program pre
+  
+  Job name: bq_Q2m_sp_pbf
+  Executables used: /opt/schrodinger2026-2/jaguar-v13.2/bin/Linux-x86_64
+  Temporary files : /scratch/khossossi/jobs/cbe921da-d386-11f1-ba1e-e454e8665817
+  Basis file : using default basis file from /opt/schrodinger2026-2
+  Maestro file (input):  bq_Q2m_sp_pbf.mae
+  Maestro file (output): bq_Q2m_sp_pbf.01.mae
+  
+  Input file comments:
+   entry_name: bq_Q2m_sp_pbf
+   
+  
+ Contents of input file: &gen and (if present) &atomic sections only
+ ----------------Contents start----------------
+&gen
+dftname=B3LYP-D3
+basis=def2-TZVPD
+isolv=2
+solvent=water
+igeopt=0
+molchg=-2
+multip=1
+&
+ -----------------Contents end-----------------
+ 
+  basis set:               def2-tzvpd                      
+  net molecular charge:   -2
+  multiplicity:            1
+  
+  Using up to   4 threads per process
+  
+  number of basis functions....          338
+  
+ Input geometry:
+                                   angstroms
+  atom               x                 y                 z
+  O1            0.0000000000      0.0000000000      2.8037989520 
+  C1            0.0000000000      0.0000000000      1.4625500683 
+  C2            0.0000000000      1.1878630515      0.6988271910 
+  C3            0.0000000000      1.1878630515     -0.6988271910 
+  C4            0.0000000000      0.0000000000     -1.4625500683 
+  O2            0.0000000000      0.0000000000     -2.8037989520 
+  C5            0.0000000000     -1.1878630515     -0.6988271910 
+  C6            0.0000000000     -1.1878630515      0.6988271910 
+  H1            0.0000000000      2.1370495166      1.2284438208 
+  H2            0.0000000000      2.1370495166     -1.2284438208 
+  H3            0.0000000000     -2.1370495166     -1.2284438208 
+  H4            0.0000000000     -2.1370495166      1.2284438208 
+   
+  principal moments of inertia:
+        amu*angstrom^2:                86.13976               332.34333               418.48309
+                g*cm^2:          1.43038425E-38          5.51869011E-38          6.94907436E-38
+   
+  rotational constants:
+               cm^(-1):      0.19570090      0.05072354      0.04028270
+                   GHz:      5.86696532      1.52065339      1.20764499
+   
+  Molecular weight:     108.02 amu
+   
+  Stoichiometry: C6H4O2
+  Molecular Point Group: D2h     
+	Molecule translated to center of mass 
+	Molecule reoriented along symmetry axes
+  Point Group used: D2h
+  
+  
+ Symmetrized geometry:
+                                   angstroms
+  atom               x                 y                 z
+  O1            0.0000000000      0.0000000000      2.8037989520 
+  C1            0.0000000000      0.0000000000      1.4625500683 
+  C2            0.0000000000      1.1878630515      0.6988271910 
+  C3            0.0000000000      1.1878630515     -0.6988271910 
+  C4            0.0000000000      0.0000000000     -1.4625500683 
+  O2            0.0000000000      0.0000000000     -2.8037989520 
+  C5            0.0000000000     -1.1878630515     -0.6988271910 
+  C6            0.0000000000     -1.1878630515      0.6988271910 
+  H1            0.0000000000      2.1370495166      1.2284438208 
+  H2            0.0000000000      2.1370495166     -1.2284438208 
+  H3            0.0000000000     -2.1370495166     -1.2284438208 
+  H4            0.0000000000     -2.1370495166      1.2284438208 
+   
+  nuclear repulsion energy.......           319.078494660 hartrees
+ 
+ Non-default options chosen:
+   SCF calculation type: DFT(b3lyp-d3)               
+   DFT=Becke_3_Parameter/HF+Slater+Becke88+VWN+LYP (B3LYP-D3)
+   Solvation energy will be computed using PBF
+   Solvent: water                                                           
+   Internal dielectric constant:    1.000
+   Continuum dielectric constant:  80.370
+   Solvent probe molecule radius:   1.400
+   Q will be computed as needed for coarse grid
+   Q will be computed as needed for medium grid
+   Q will be computed as needed for ultrafine grid
+   Q will be computed as needed for gradient grid
+  
+ Temporary integer options set:
+     73=  2
+  
+  atom       vdw   vdw2    cov     mass  grid  daf  charge   basis
+  O1        1.702  1.400  0.730   15.995    Y    Y      Y    def2-tzvpd
+  C1        1.949  2.000  0.770   12.000    Y    Y      Y    def2-tzvpd
+  C2        1.949  2.000  0.770   12.000    Y    Y      Y    def2-tzvpd
+  C3        1.949  2.000  0.770   12.000    Y    Y      Y    def2-tzvpd
+  C4        1.949  2.000  0.770   12.000    Y    Y      Y    def2-tzvpd
+  O2        1.702  1.400  0.730   15.995    Y    Y      Y    def2-tzvpd
+  C5        1.949  2.000  0.770   12.000    Y    Y      Y    def2-tzvpd
+  C6        1.949  2.000  0.770   12.000    Y    Y      Y    def2-tzvpd
+  H1        1.597  1.250  0.320    1.008    Y    Y      Y    def2-tzvpd
+  H2        1.597  1.250  0.320    1.008    Y    Y      Y    def2-tzvpd
+  H3        1.597  1.250  0.320    1.008    Y    Y      Y    def2-tzvpd
+  H4        1.597  1.250  0.320    1.008    Y    Y      Y    def2-tzvpd
+  
+  end of program pre
+   
+ Time(pre)  user:       4.315  user+sys:       4.315  wallclock:       1.944
+  
+  start of program onee
+  
+  smallest eigenvalue of S:    7.015E-07
+  number of canonical orbitals.....          309
+  end of program onee
+   
+ Time(onee)  user:       0.938  user+sys:       0.938  wallclock:       0.247
+  
+  start of program hfig
+  
+  initial wavefunction generated automatically from atomic wavefunctions
+ 
+  Irreducible     Total no   No of occupied orbitals 
+  representation  orbitals   Shell_1  Shell_2    ...
+  Ag                61          8
+  B1g               22          1
+  B2g               30          2
+  B3g               41          4
+  Au                21          0
+  B1u               58          7
+  B2u               45          5
+  B3u               31          2
+  ------------------------
+  Orbital occupation/shell    1.000
+ 
+  end of program hfig
+   
+ Time(hfig)  user:       3.405  user+sys:       3.405  wallclock:       2.550
+  
+  start of program probe
+  
+  end of program probe
+   
+ Time(probe)  user:       0.607  user+sys:       0.607  wallclock:       0.155
+  
+  start of program grid
+  
+   grid     grid set  grid #  grid sym
+  ------    --------  ------  --------
+  coarse        0        0        1
+  medium        2        1        8
+  fine          0        0        1
+  ultrafine     4        2        8
+  charge       -1        3        8
+  gradient      4        2        8
+  density       0        0        1
+  DFT-fine    -11        4        8
+  DFT-med.    -10        5        8
+  DFT-grad    -12        6        8
+  DFT-der2      0        0        1
+  DFT-cphf      0        0        1
+  LMP2-enrg     4        2        8
+  LMP2-grad     2        1        8
+  DFT-cphf2     0        0        1
+  PBF-dens      0        0        1
+  plotting      0        0        1
+  Rel-grad    -17        0        1
+  Extreme       0        0        1
+  Extreme-G     0        0        1
+  
+  number of gridpoints: 
+                 total
+  grid # 1         701
+  grid # 2        1574
+  grid # 3         431
+  grid # 4        9450
+  grid # 5        4456
+  grid # 6        9918
+   
+  end of program grid
+   
+ Time(grid)  user:       0.784  user+sys:       0.784  wallclock:       0.212
+  
+  start of program rwr
+  
+  end of program rwr
+   
+ Time(rwr)  user:       1.934  user+sys:       1.934  wallclock:       0.526
+  
+  start of program scf
+  
+ number of electrons..........         58
+ number of alpha electrons....         29
+ number of beta electrons.....         29
+ number of orbitals, total....        309
+ number of doubly-occ'd orbs..         29
+ number of open shell orbs....          0
+ number of occupied orbitals..         29
+ number of virtual orbitals...        280
+ number of hamiltonians.......          1
+ number of shells.............          1
+ SCF type: DFT=Becke_3_Parameter/HF+Slater+Becke88+VWN+LYP (B3LYP-D3)
+ Energy computed using pseudospectral method.
+ Convergence Criteria:
+    Energy (econv):       5.00E-05
+    RMS density (dconv):  1.00E-04
+  
+       i  u  d  i  g                   
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+  WARNING : Population by symmetry has changed 
+etot    1  N  N  5  M    -380.18286042448           5.2E-02  2.3E-01
+  WARNING : Population by symmetry has changed 
+etot    2  Y  Y  6  M    -375.95139005307 -4.2E+00  5.2E-02  3.7E-01
+etot    3  Y  Y  6  M    -379.94152849528  4.0E+00  1.5E-03  1.9E-01
+etot    4  N  Y  2  U    -381.30683044190  1.4E+00  9.7E-04  8.2E-02
+etot    5  Y  Y  6  M    -381.45210763896  1.5E-01  6.0E-04  5.2E-02
+etot    6  N  Y  2  U    -381.55871872917  1.1E-01  2.5E-04  6.5E-03
+etot    7  Y  Y  6  M    -381.56075748230  2.0E-03  6.5E-05  2.8E-03
+etot    8  Y  Y  6  M    -381.56114564142  3.9E-04  2.0E-05  1.3E-03
+etot    9  N  N  2  U    -381.56115776392  1.2E-05  0.0E+00  0.0E+00
+ 
+  Computing the dispersion energy correction...
+  
+  
+ Energy components, in hartrees:
+   (A)  Nuclear repulsion............     319.07849466014
+   (E)  Total one-electron terms.....   -1172.14335007862
+   (F)    Electron-nuclear...........   -1551.93155367307
+   (H)    Kinetic....................     379.78820359445
+   (I)  Total two-electron terms.....     471.50369765456
+   (J)    Coulomb....................     523.19518705891
+   (K)    Exchange+Correlation.......     -51.69148940435
+   (L)  Electronic energy............    -700.63965242406  (E+I)
+   (M)  -V/T.........................       2.00466827077  (-(A+F+I)/H)
+   (N0) D3 correction................      -0.00684394030
+   (N)  Total energy.................    -381.56800170422  (A+L+N0)
+   (O)  Gas phase energy.............    -381.56800170422
+  
+ SCFE: SCF energy: DFT(b3lyp-d3)      -381.56800170422 hartrees   iterations:   9
+  
+ 
+ HOMO energy:     0.17594
+ LUMO energy:     0.25946
+ 
+  Orbital energies (hartrees)/symmetry label: 
+   -18.71408 B1u       -18.71408 Ag         -9.87059 B1u        -9.87057 Ag     
+    -9.83572 B2u        -9.83569 Ag         -9.83521 B3g        -9.83520 B1u    
+    -0.60379 Ag         -0.59781 B1u        -0.48579 Ag         -0.41046 B2u    
+    -0.35395 B1u        -0.27344 B3g        -0.24108 Ag         -0.13546 Ag     
+    -0.12608 B2u        -0.12387 B1u        -0.08801 B2u        -0.05556 B3u    
+    -0.04293 B1u        -0.02371 B3g        -0.01530 Ag          0.00158 B2g    
+     0.07084 B1g         0.08322 B3u         0.10928 B3g         0.11310 B2u    
+     0.17594 B2g         0.25946 Ag          0.27432 B1u         0.27594 B2u    
+     0.29836 Ag          0.30094 B3u         0.30781 Au          0.31356 B3g    
+     0.31635 B2g         0.33355 B2u         0.33792 Ag     
+ 
+  end of program scf
+   
+ Time(scf)  user:      33.071  user+sys:      33.071  wallclock:       8.971
+  
+  start of program ch
+  
+  gridpoints discarded for being within atomic van der Waals radii           30
+  gridpoints used for charge fit          401
+    out of a possible maximum of          431
+  
+   Electrostatic potential fitting constrained to reproduce
+     total charge:                yes
+     dipole moment:               no 
+     traceless quadrupole moment: no 
+     traceless octupole moment:   no 
+  
+  Atomic charges from electrostatic potential: 
+   
+ Atom       O1           C1           C2           C3           C4      
+ Charge   -0.99944      0.59167     -0.35080     -0.35080      0.59167
+   
+ Atom       O2           C5           C6           H1           H2      
+ Charge   -0.99944     -0.35080     -0.35080      0.05469      0.05469
+   
+ Atom       H3           H4      
+ Charge    0.05469      0.05469
+  
+  sum of atomic charges:    -2.000000
+   
+ RMS Error   2.45E-03 hartrees
+ 
+  end of program ch
+   
+ Time(ch)  user:       1.112  user+sys:       1.112  wallclock:       0.283
+  
+  start of program post
+  
+  Writing input files for PBF
+  end of program post
+   
+ Time(post)  user:       0.425  user+sys:       0.425  wallclock:       0.095
+
+  start of program pbf
+
+Pbf Version 4.10
+
+Molecular surface area:      124.11204   [A2]
+Reaction field energy:      -406.98689   [kT]
+
+Solvent-accessible surface area:  267.70075 [A2]
+Cavity energy:                      4.04096 [kT]
+
+  Peak memory usage: 301 MiB
+
+  end of program pbf
+
+ Time(pbf)  user:        0.5  user+sys:        0.5  wallclock:        0.6
+  
+  start of program solv
+  
+   number of surface charges from PBF    1548
+   sum of surface charges      1.97241
+   
+  nuclear repulsion energy.......           319.078494660 hartrees
+  end of program solv
+   
+ Time(solv)  user:       1.112  user+sys:       1.112  wallclock:       0.307
+  
+  start of program scf
+  
+ Energy computed using pseudospectral method.
+ Convergence Criteria:
+    Energy (econv):       5.00E-05
+    RMS density (dconv):  1.00E-04
+  
+       i  u  d  i  g                   
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -382.27025122360           7.5E-04  1.2E-02
+etot    2  Y  Y  6  M    -382.27853801166  8.3E-03  1.6E-04  1.6E-02
+etot    3  N  Y  2  U    -382.28661321700  8.1E-03  5.4E-05  2.6E-03
+etot    4  Y  Y  6  M    -382.28685440405  2.4E-04  2.0E-05  1.9E-03
+etot    5  N  Y  2  U    -382.28693147004  7.7E-05  6.3E-06  6.1E-04
+etot    6  N  N  2  U    -382.28694372656  1.2E-05  0.0E+00  0.0E+00
+ 
+  Computing the dispersion energy correction...
+  
+  
+ Energy components, in hartrees:
+   (A)  Total zero-electron terms....     338.46369569675
+   (B)    Nuclear-nuclear............     319.07849466014
+   (C)    Nuclear-solvent............      19.38520103661
+   (E)  Total one-electron terms.....   -1193.32651397433
+   (F)    Electron-nuclear...........   -1553.13639984807
+   (G)    Electron-solvent...........     -20.12561006283
+   (H)    Kinetic....................     379.93549593657
+   (I)  Total two-electron terms.....     472.57587455102
+   (J)    Coulomb....................     524.35904810106
+   (K)    Exchange+Correlation.......     -51.78317355004
+   (L)  Electronic energy............    -720.75063942331  (E+I)
+   (N0) D3 correction................      -0.00684394030
+   (N)  Total quantum mech. energy...    -382.29378766686  (A+L+N0)
+   (O)  Gas phase energy.............    -381.56800170422
+   (P)  Solution phase energy........    -381.93866976905  (Q+R+S+T)
+   (Q)    Total solute energy........    -381.55337864064  (N-C-G)
+   (R)    Total solvent energy.......      -0.37020451311  (C/2+G/2)
+   (S)    Solute cavity energy.......       0.00381349788
+   (T)    First shell corr. factor...      -0.01890011317
+   (U)  Reorganization energy........       0.01462306358  (Q-O)
+   (V)  Solvation energy.............      -0.37066806483  (P-O)
+  
+ SCFE:  Solution phase energy: DFT(b3lyp-d3)       -381.93866976905 hartrees
+        SCF iterations:   6
+  
+ 
+ HOMO energy:    -0.15915
+ LUMO energy:    -0.00452
+ 
+  Orbital energies (hartrees)/symmetry label: 
+   -19.05171 B1u       -19.05171 Ag        -10.19596 B1u       -10.19594 Ag     
+   -10.15139 B2u       -10.15136 Ag        -10.15087 B3g       -10.15087 B1u    
+    -0.94431 Ag         -0.94035 B1u        -0.80779 Ag         -0.72606 B2u    
+    -0.67844 B1u        -0.59190 B3g        -0.55774 Ag         -0.46383 Ag     
+    -0.44943 B2u        -0.43870 B1u        -0.40001 B2u        -0.38906 B1u    
+    -0.38116 B3u        -0.35193 Ag         -0.34219 B3g        -0.33679 B2g    
+    -0.25751 B3u        -0.24367 B1g        -0.23552 B3g        -0.23453 B2u    
+    -0.15915 B2g        -0.00452 Au          0.00847 Ag          0.02635 B1u    
+     0.03010 B2u         0.03115 B3u         0.04969 Ag          0.06590 Ag     
+     0.06814 B3g         0.07042 B2g         0.07141 B3u    
+ 
+  end of program scf
+   
+ Time(scf)  user:      25.407  user+sys:      25.407  wallclock:       6.917
+  
+  start of program sole
+  
+    SCRF                   solvation energy
+  iteration          Hartrees            kcal/mol
+     0               0.0000000            0.0000
+     1              -0.3706681         -232.5977
+  
+  solvation energy not yet converged... 
+  
+  end of program sole
+   
+ Time(sole)  user:       0.444  user+sys:       0.444  wallclock:       0.087
+  
+  start of program ch
+  
+  gridpoints used for charge fit         3208
+    out of a possible maximum of         3208
+  
+   Electrostatic potential fitting constrained to reproduce
+     total charge:                yes
+     dipole moment:               no 
+     traceless quadrupole moment: no 
+     traceless octupole moment:   no 
+  
+  Atomic charges from electrostatic potential: 
+   
+ Atom       O1           C1           C2           C3           C4      
+ Charge   -1.09870      0.58963     -0.36999     -0.36999      0.58963
+   
+ Atom       O2           C5           C6           H1           H2      
+ Charge   -1.09870     -0.36999     -0.36999      0.12452      0.12452
+   
+ Atom       H3           H4      
+ Charge    0.12452      0.12452
+  
+  sum of atomic charges:    -2.000000
+   
+ RMS Error   1.69E-03 hartrees
+ 
+  end of program ch
+   
+ Time(ch)  user:       1.178  user+sys:       1.178  wallclock:       0.301
+  
+  start of program post
+  
+  Writing input files for PBF
+  end of program post
+   
+ Time(post)  user:       0.452  user+sys:       0.452  wallclock:       0.100
+
+  start of program pbf
+
+Pbf Version 4.10
+
+Molecular surface area:      124.11204   [A2]
+Reaction field energy:      -430.75475   [kT]
+
+Solvent-accessible surface area:  267.70075 [A2]
+Cavity energy:                      4.04096 [kT]
+
+  Peak memory usage: 301 MiB
+
+  end of program pbf
+
+ Time(pbf)  user:        0.5  user+sys:        0.5  wallclock:        0.7
+  
+  start of program solv
+  
+   number of surface charges from PBF    1548
+   sum of surface charges      1.97241
+   
+  nuclear repulsion energy.......           319.078494660 hartrees
+  end of program solv
+   
+ Time(solv)  user:       1.186  user+sys:       1.186  wallclock:       0.317
+  
+  start of program scf
+  
+ Energy computed using pseudospectral method.
+ Convergence Criteria:
+    Energy (econv):       5.00E-05
+    RMS density (dconv):  1.00E-04
+  
+       i  u  d  i  g                   
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -382.30880705887           8.6E-05  2.7E-03
+etot    2  Y  Y  6  M    -382.30894421212  1.4E-04  2.8E-05  2.7E-03
+etot    3  N  Y  2  U    -382.30932200693  3.8E-04  8.5E-06  9.9E-04
+etot    4  N  N  2  U    -382.30935357781  3.2E-05  0.0E+00  0.0E+00
+ 
+  Computing the dispersion energy correction...
+  
+  
+ Energy components, in hartrees:
+   (A)  Total zero-electron terms....     338.59796086122
+   (B)    Nuclear-nuclear............     319.07849466014
+   (C)    Nuclear-solvent............      19.51946620108
+   (E)  Total one-electron terms.....   -1193.54133374575
+   (F)    Electron-nuclear...........   -1553.19656657559
+   (G)    Electron-solvent...........     -20.28736281322
+   (H)    Kinetic....................     379.94259564306
+   (I)  Total two-electron terms.....     472.63401930671
+   (J)    Coulomb....................     524.42305273903
+   (K)    Exchange+Correlation.......     -51.78903343232
+   (L)  Electronic energy............    -720.90731443904  (E+I)
+   (N0) D3 correction................      -0.00684394030
+   (N)  Total quantum mech. energy...    -382.31619751811  (A+L+N0)
+   (O)  Gas phase energy.............    -381.56800170422
+   (P)  Solution phase energy........    -381.94733582734  (Q+R+S+T)
+   (Q)    Total solute energy........    -381.54830090598  (N-C-G)
+   (R)    Total solvent energy.......      -0.38394830607  (C/2+G/2)
+   (S)    Solute cavity energy.......       0.00381349788
+   (T)    First shell corr. factor...      -0.01890011317
+   (U)  Reorganization energy........       0.01970079824  (Q-O)
+   (V)  Solvation energy.............      -0.37933412312  (P-O)
+  
+ SCFE:  Solution phase energy: DFT(b3lyp-d3)       -381.94733582734 hartrees
+        SCF iterations:   4
+  
+ 
+ HOMO energy:    -0.16264
+ LUMO energy:    -0.00323
+ 
+  Orbital energies (hartrees)/symmetry label: 
+   -19.05679 B1u       -19.05678 Ag        -10.19754 B1u       -10.19752 Ag     
+   -10.15052 B2u       -10.15049 Ag        -10.15001 B3g       -10.15000 B1u    
+    -0.94932 Ag         -0.94570 B1u        -0.80818 Ag         -0.72455 B2u    
+    -0.67956 B1u        -0.59103 B3g        -0.55646 Ag         -0.46571 Ag     
+    -0.45008 B2u        -0.43704 B1u        -0.39729 B2u        -0.39422 B1u    
+    -0.38311 B3u        -0.35495 Ag         -0.34164 B2g        -0.34130 B3g    
+    -0.26204 B3u        -0.24222 B1g        -0.24058 B3g        -0.24043 B2u    
+    -0.16264 B2g        -0.00323 Au          0.00917 Ag          0.02322 B1u    
+     0.03056 B3u         0.03447 B2u         0.05002 Ag          0.06633 Ag     
+     0.06789 B2g         0.06862 B3g         0.06899 B3u    
+ 
+  end of program scf
+   
+ Time(scf)  user:      17.606  user+sys:      17.606  wallclock:       4.847
+  
+  start of program sole
+  
+    SCRF                   solvation energy
+  iteration          Hartrees            kcal/mol
+     0               0.0000000            0.0000
+     1              -0.3706681         -232.5977
+     2              -0.3793341         -238.0358
+  
+  solvation energy not yet converged... 
+  
+  end of program sole
+   
+ Time(sole)  user:       0.446  user+sys:       0.446  wallclock:       0.093
+  
+  start of program ch
+  
+  gridpoints used for charge fit         3208
+    out of a possible maximum of         3208
+  
+   Electrostatic potential fitting constrained to reproduce
+     total charge:                yes
+     dipole moment:               no 
+     traceless quadrupole moment: no 
+     traceless octupole moment:   no 
+  
+  Atomic charges from electrostatic potential: 
+   
+ Atom       O1           C1           C2           C3           C4      
+ Charge   -1.12928      0.59693     -0.37383     -0.37383      0.59693
+   
+ Atom       O2           C5           C6           H1           H2      
+ Charge   -1.12928     -0.37383     -0.37383      0.14000      0.14000
+   
+ Atom       H3           H4      
+ Charge    0.14000      0.14000
+  
+  sum of atomic charges:    -2.000000
+   
+ RMS Error   1.70E-03 hartrees
+ 
+  end of program ch
+   
+ Time(ch)  user:       1.104  user+sys:       1.104  wallclock:       0.267
+  
+  start of program post
+  
+  Writing input files for PBF
+  end of program post
+   
+ Time(post)  user:       0.485  user+sys:       0.485  wallclock:       0.106
+
+  start of program pbf
+
+Pbf Version 4.10
+
+Molecular surface area:      124.11204   [A2]
+Reaction field energy:      -437.94395   [kT]
+
+Solvent-accessible surface area:  267.70075 [A2]
+Cavity energy:                      4.04096 [kT]
+
+  Peak memory usage: 301 MiB
+
+  end of program pbf
+
+ Time(pbf)  user:        0.5  user+sys:        0.6  wallclock:        0.7
+  
+  start of program solv
+  
+   number of surface charges from PBF    1548
+   sum of surface charges      1.97240
+   
+  nuclear repulsion energy.......           319.078494660 hartrees
+  end of program solv
+   
+ Time(solv)  user:       1.167  user+sys:       1.167  wallclock:       0.317
+  
+  start of program scf
+  
+ Energy computed using pseudospectral method.
+ Convergence Criteria:
+    Energy (econv):       5.00E-05
+    RMS density (dconv):  1.00E-04
+  
+       i  u  d  i  g                   
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -382.31538966085           2.3E-05  8.2E-04
+etot    2  N  N  2  U    -382.31541527437  2.6E-05  0.0E+00  0.0E+00
+ 
+  Computing the dispersion energy correction...
+  
+  
+ Energy components, in hartrees:
+   (A)  Total zero-electron terms....     338.62440982059
+   (B)    Nuclear-nuclear............     319.07849466014
+   (C)    Nuclear-solvent............      19.54591516045
+   (E)  Total one-electron terms.....   -1193.63251532967
+   (F)    Electron-nuclear...........   -1553.27715340890
+   (G)    Electron-solvent...........     -20.32213295113
+   (H)    Kinetic....................     379.96677103036
+   (I)  Total two-electron terms.....     472.69269023472
+   (J)    Coulomb....................     524.48691011006
+   (K)    Exchange+Correlation.......     -51.79421987534
+   (L)  Electronic energy............    -720.93982509495  (E+I)
+   (N0) D3 correction................      -0.00684394030
+   (N)  Total quantum mech. energy...    -382.32225921466  (A+L+N0)
+   (O)  Gas phase energy.............    -381.56800170422
+   (P)  Solution phase energy........    -381.94923693462  (Q+R+S+T)
+   (Q)    Total solute energy........    -381.54604142398  (N-C-G)
+   (R)    Total solvent energy.......      -0.38810889534  (C/2+G/2)
+   (S)    Solute cavity energy.......       0.00381349788
+   (T)    First shell corr. factor...      -0.01890011317
+   (U)  Reorganization energy........       0.02196028024  (Q-O)
+   (V)  Solvation energy.............      -0.38123523040  (P-O)
+  
+ SCFE:  Solution phase energy: DFT(b3lyp-d3)       -381.94923693462 hartrees
+        SCF iterations:   2
+  
+ 
+ HOMO energy:    -0.16242
+ LUMO energy:    -0.00284
+ 
+  Orbital energies (hartrees)/symmetry label: 
+   -19.05515 B1u       -19.05514 Ag        -10.19457 B1u       -10.19455 Ag     
+   -10.15085 B2u       -10.15083 Ag        -10.15034 B3g       -10.15034 B1u    
+    -0.94890 Ag         -0.94531 B1u        -0.80759 Ag         -0.72436 B2u    
+    -0.67864 B1u        -0.59041 B3g        -0.55605 Ag         -0.46555 Ag     
+    -0.44961 B2u        -0.43667 B1u        -0.39679 B2u        -0.39410 B1u    
+    -0.38264 B3u        -0.35491 Ag         -0.34143 B2g        -0.34073 B3g    
+    -0.26219 B3u        -0.24192 B1g        -0.24063 B2u        -0.24060 B3g    
+    -0.16242 B2g        -0.00284 Au          0.00936 Ag          0.02255 B1u    
+     0.03111 B3u         0.03537 B2u         0.04996 Ag          0.06687 Ag     
+     0.06749 B2g         0.06871 B3g         0.06885 B3u    
+ 
+  end of program scf
+   
+ Time(scf)  user:       8.971  user+sys:       8.971  wallclock:       2.414
+  
+  start of program sole
+  
+    SCRF                   solvation energy
+  iteration          Hartrees            kcal/mol
+     0               0.0000000            0.0000
+     1              -0.3706681         -232.5977
+     2              -0.3793341         -238.0358
+     3              -0.3812352         -239.2287
+  
+  solvation energy not yet converged... 
+  
+  end of program sole
+   
+ Time(sole)  user:       0.409  user+sys:       0.409  wallclock:       0.085
+  
+  start of program ch
+  
+  gridpoints used for charge fit         3208
+    out of a possible maximum of         3208
+  
+   Electrostatic potential fitting constrained to reproduce
+     total charge:                yes
+     dipole moment:               no 
+     traceless quadrupole moment: no 
+     traceless octupole moment:   no 
+  
+  Atomic charges from electrostatic potential: 
+   
+ Atom       O1           C1           C2           C3           C4      
+ Charge   -1.13892      0.59434     -0.37254     -0.37254      0.59434
+   
+ Atom       O2           C5           C6           H1           H2      
+ Charge   -1.13892     -0.37254     -0.37254      0.14483      0.14483
+   
+ Atom       H3           H4      
+ Charge    0.14483      0.14483
+  
+  sum of atomic charges:    -2.000000
+   
+ RMS Error   1.71E-03 hartrees
+ 
+  end of program ch
+   
+ Time(ch)  user:       1.092  user+sys:       1.092  wallclock:       0.284
+  
+  start of program post
+  
+  Writing input files for PBF
+  end of program post
+   
+ Time(post)  user:       0.438  user+sys:       0.438  wallclock:       0.087
+
+  start of program pbf
+
+Pbf Version 4.10
+
+Molecular surface area:      124.11204   [A2]
+Reaction field energy:      -440.61167   [kT]
+
+Solvent-accessible surface area:  267.70075 [A2]
+Cavity energy:                      4.04096 [kT]
+
+  Peak memory usage: 301 MiB
+
+  end of program pbf
+
+ Time(pbf)  user:        0.5  user+sys:        0.5  wallclock:        0.7
+  
+  start of program solv
+  
+   number of surface charges from PBF    1548
+   sum of surface charges      1.97240
+   
+  nuclear repulsion energy.......           319.078494660 hartrees
+  end of program solv
+   
+ Time(solv)  user:       1.139  user+sys:       1.139  wallclock:       0.307
+  
+  start of program scf
+  
+ Energy computed using pseudospectral method.
+ Convergence Criteria:
+    Energy (econv):       5.00E-05
+    RMS density (dconv):  1.00E-04
+  
+       i  u  d  i  g                   
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -382.31762869734           1.4E-05  5.7E-04
+etot    2  N  N  2  U    -382.31760534038 -2.3E-05  0.0E+00  0.0E+00
+ 
+  Computing the dispersion energy correction...
+  
+  
+ Energy components, in hartrees:
+   (A)  Total zero-electron terms....     338.63443913109
+   (B)    Nuclear-nuclear............     319.07849466014
+   (C)    Nuclear-solvent............      19.55594447096
+   (E)  Total one-electron terms.....   -1193.55335528925
+   (F)    Electron-nuclear...........   -1553.12332268900
+   (G)    Electron-solvent...........     -20.33353172430
+   (H)    Kinetic....................     379.90349912404
+   (I)  Total two-electron terms.....     472.60131081778
+   (J)    Coulomb....................     524.38606714783
+   (K)    Exchange+Correlation.......     -51.78475633005
+   (L)  Electronic energy............    -720.95204447148  (E+I)
+   (N0) D3 correction................      -0.00684394030
+   (N)  Total quantum mech. energy...    -382.32444928068  (A+L+N0)
+   (O)  Gas phase energy.............    -381.56800170422
+   (P)  Solution phase energy........    -381.95074226930  (Q+R+S+T)
+   (Q)    Total solute energy........    -381.54686202734  (N-C-G)
+   (R)    Total solvent energy.......      -0.38879362667  (C/2+G/2)
+   (S)    Solute cavity energy.......       0.00381349788
+   (T)    First shell corr. factor...      -0.01890011317
+   (U)  Reorganization energy........       0.02113967688  (Q-O)
+   (V)  Solvation energy.............      -0.38274056508  (P-O)
+  
+ SCFE:  Solution phase energy: DFT(b3lyp-d3)       -381.95074226930 hartrees
+        SCF iterations:   2
+  
+ 
+ HOMO energy:    -0.16482
+ LUMO energy:    -0.00201
+ 
+  Orbital energies (hartrees)/symmetry label: 
+   -19.06526 B1u       -19.06526 Ag        -10.19965 B1u       -10.19963 Ag     
+   -10.14827 B2u       -10.14824 Ag        -10.14776 B3g       -10.14775 B1u    
+    -0.95374 Ag         -0.95043 B1u        -0.80789 Ag         -0.72295 B2u    
+    -0.68018 B1u        -0.59042 B3g        -0.55557 Ag         -0.46706 Ag     
+    -0.45021 B2u        -0.43666 B1u        -0.39779 B1u        -0.39547 B2u    
+    -0.38419 B3u        -0.35693 Ag         -0.34515 B2g        -0.34130 B3g    
+    -0.26513 B3u        -0.24492 B2u        -0.24438 B3g        -0.24063 B1g    
+    -0.16482 B2g        -0.00201 Au          0.00926 Ag          0.02167 B1u    
+     0.03010 B3u         0.03601 B2u         0.04972 Ag          0.06675 B2g    
+     0.06709 Ag          0.06790 B3u         0.06841 B3g    
+ 
+  end of program scf
+   
+ Time(scf)  user:       9.103  user+sys:       9.103  wallclock:       2.479
+  
+  start of program sole
+  
+    SCRF                   solvation energy
+  iteration          Hartrees            kcal/mol
+     0               0.0000000            0.0000
+     1              -0.3706681         -232.5977
+     2              -0.3793341         -238.0358
+     3              -0.3812352         -239.2287
+     4              -0.3827406         -240.1733
+  
+  solvation energy not yet converged... 
+  
+  end of program sole
+   
+ Time(sole)  user:       0.494  user+sys:       0.494  wallclock:       0.094
+  
+  start of program ch
+  
+  gridpoints used for charge fit         3208
+    out of a possible maximum of         3208
+  
+   Electrostatic potential fitting constrained to reproduce
+     total charge:                yes
+     dipole moment:               no 
+     traceless quadrupole moment: no 
+     traceless octupole moment:   no 
+  
+  Atomic charges from electrostatic potential: 
+   
+ Atom       O1           C1           C2           C3           C4      
+ Charge   -1.14062      0.60574     -0.37774     -0.37774      0.60574
+   
+ Atom       O2           C5           C6           H1           H2      
+ Charge   -1.14062     -0.37774     -0.37774      0.14518      0.14518
+   
+ Atom       H3           H4      
+ Charge    0.14518      0.14518
+  
+  sum of atomic charges:    -2.000000
+   
+ RMS Error   1.72E-03 hartrees
+ 
+  end of program ch
+   
+ Time(ch)  user:       1.120  user+sys:       1.120  wallclock:       0.288
+  
+  start of program post
+  
+  Writing input files for PBF
+  end of program post
+   
+ Time(post)  user:       0.427  user+sys:       0.427  wallclock:       0.095
+
+  start of program pbf
+
+Pbf Version 4.10
+
+Molecular surface area:      124.11204   [A2]
+Reaction field energy:      -440.23201   [kT]
+
+Solvent-accessible surface area:  267.70075 [A2]
+Cavity energy:                      4.04096 [kT]
+
+  Peak memory usage: 301 MiB
+
+  end of program pbf
+
+ Time(pbf)  user:        0.5  user+sys:        0.5  wallclock:        0.6
+  
+  start of program solv
+  
+   number of surface charges from PBF    1548
+   sum of surface charges      1.97240
+   
+  nuclear repulsion energy.......           319.078494660 hartrees
+  end of program solv
+   
+ Time(solv)  user:       1.185  user+sys:       1.185  wallclock:       0.322
+  
+  start of program scf
+  
+ Energy computed using pseudospectral method.
+ Convergence Criteria:
+    Energy (econv):       5.00E-05
+    RMS density (dconv):  1.00E-04
+  
+       i  u  d  i  g                   
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -382.31727738797           2.3E-05  9.1E-04
+etot    2  N  Y  2  U    -382.31718578121 -9.2E-05  1.5E-05  1.8E-03
+etot    3  N  Y  2  U    -382.31731222065  1.3E-04  1.3E-06  1.4E-04
+etot    4  N  N  2  U    -382.31731319311  9.7E-07  0.0E+00  0.0E+00
+ 
+  Computing the dispersion energy correction...
+  
+  
+ Energy components, in hartrees:
+   (A)  Total zero-electron terms....     338.63092137740
+   (B)    Nuclear-nuclear............     319.07849466014
+   (C)    Nuclear-solvent............      19.55242671727
+   (E)  Total one-electron terms.....   -1193.60386930703
+   (F)    Electron-nuclear...........   -1553.21791602425
+   (G)    Electron-solvent...........     -20.33028856460
+   (H)    Kinetic....................     379.94433528182
+   (I)  Total two-electron terms.....     472.65563473652
+   (J)    Coulomb....................     524.44652712763
+   (K)    Exchange+Correlation.......     -51.79089239111
+   (L)  Electronic energy............    -720.94823457051  (E+I)
+   (N0) D3 correction................      -0.00684394030
+   (N)  Total quantum mech. energy...    -382.32415713340  (A+L+N0)
+   (O)  Gas phase energy.............    -381.56800170422
+   (P)  Solution phase energy........    -381.95031282503  (Q+R+S+T)
+   (Q)    Total solute energy........    -381.54629528607  (N-C-G)
+   (R)    Total solvent energy.......      -0.38893092367  (C/2+G/2)
+   (S)    Solute cavity energy.......       0.00381349788
+   (T)    First shell corr. factor...      -0.01890011317
+   (U)  Reorganization energy........       0.02170641815  (Q-O)
+   (V)  Solvation energy.............      -0.38231112081  (P-O)
+  
+ SCFE:  Solution phase energy: DFT(b3lyp-d3)       -381.95031282503 hartrees
+        SCF iterations:   4
+  
+ 
+ HOMO energy:    -0.16354
+ LUMO energy:    -0.00239
+ 
+  Orbital energies (hartrees)/symmetry label: 
+   -19.05926 B1u       -19.05926 Ag        -10.19682 B1u       -10.19680 Ag     
+   -10.14977 B2u       -10.14974 Ag        -10.14926 B3g       -10.14925 B1u    
+    -0.95107 Ag         -0.94760 B1u        -0.80773 Ag         -0.72366 B2u    
+    -0.67936 B1u        -0.59035 B3g        -0.55575 Ag         -0.46627 Ag     
+    -0.44987 B2u        -0.43658 B1u        -0.39607 B2u        -0.39583 B1u    
+    -0.38334 B3u        -0.35584 Ag         -0.34315 B2g        -0.34089 B3g    
+    -0.26355 B3u        -0.24264 B2u        -0.24236 B3g        -0.24128 B1g    
+    -0.16354 B2g        -0.00239 Au          0.00936 Ag          0.02203 B1u    
+     0.03067 B3u         0.03582 B2u         0.04981 Ag          0.06708 Ag     
+     0.06709 B2g         0.06840 B3u         0.06860 B3g    
+ 
+  end of program scf
+   
+ Time(scf)  user:      23.446  user+sys:      23.446  wallclock:       6.490
+  
+  start of program sole
+  
+    SCRF                   solvation energy
+  iteration          Hartrees            kcal/mol
+     0               0.0000000            0.0000
+     1              -0.3706681         -232.5977
+     2              -0.3793341         -238.0358
+     3              -0.3812352         -239.2287
+     4              -0.3827406         -240.1733
+     5              -0.3823111         -239.9038
+  
+  solvation energy not yet converged... 
+  
+  end of program sole
+   
+ Time(sole)  user:       0.412  user+sys:       0.412  wallclock:       0.092
+  
+  start of program ch
+  
+  gridpoints used for charge fit         3208
+    out of a possible maximum of         3208
+  
+   Electrostatic potential fitting constrained to reproduce
+     total charge:                yes
+     dipole moment:               no 
+     traceless quadrupole moment: no 
+     traceless octupole moment:   no 
+  
+  Atomic charges from electrostatic potential: 
+   
+ Atom       O1           C1           C2           C3           C4      
+ Charge   -1.14077      0.60080     -0.37525     -0.37525      0.60080
+   
+ Atom       O2           C5           C6           H1           H2      
+ Charge   -1.14077     -0.37525     -0.37525      0.14524      0.14524
+   
+ Atom       H3           H4      
+ Charge    0.14524      0.14524
+  
+  sum of atomic charges:    -2.000000
+   
+ RMS Error   1.71E-03 hartrees
+ 
+  end of program ch
+   
+ Time(ch)  user:       1.167  user+sys:       1.167  wallclock:       0.276
+  
+  start of program post
+  
+  Writing input files for PBF
+  end of program post
+   
+ Time(post)  user:       0.412  user+sys:       0.412  wallclock:       0.097
+
+  start of program pbf
+
+Pbf Version 4.10
+
+Molecular surface area:      124.11204   [A2]
+Reaction field energy:      -440.60180   [kT]
+
+Solvent-accessible surface area:  267.70075 [A2]
+Cavity energy:                      4.04096 [kT]
+
+  Peak memory usage: 301 MiB
+
+  end of program pbf
+
+ Time(pbf)  user:        0.5  user+sys:        0.5  wallclock:        0.6
+  
+  start of program solv
+  
+   number of surface charges from PBF    1548
+   sum of surface charges      1.97239
+   
+  nuclear repulsion energy.......           319.078494660 hartrees
+  end of program solv
+   
+ Time(solv)  user:       1.175  user+sys:       1.175  wallclock:       0.313
+  
+  start of program scf
+  
+ Energy computed using pseudospectral method.
+ Convergence Criteria:
+    Energy (econv):       5.00E-05
+    RMS density (dconv):  1.00E-04
+  
+       i  u  d  i  g                   
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -382.31762256521           1.6E-06  4.2E-05
+etot    2  N  N  2  U    -382.31762262402  5.9E-08  0.0E+00  0.0E+00
+ 
+  Computing the dispersion energy correction...
+  
+  
+ Energy components, in hartrees:
+   (A)  Total zero-electron terms....     338.63277798879
+   (B)    Nuclear-nuclear............     319.07849466014
+   (C)    Nuclear-solvent............      19.55428332865
+   (E)  Total one-electron terms.....   -1193.60943257651
+   (F)    Electron-nuclear...........   -1553.22289227564
+   (G)    Electron-solvent...........     -20.33259318741
+   (H)    Kinetic....................     379.94605288654
+   (I)  Total two-electron terms.....     472.65903196370
+   (J)    Coulomb....................     524.45025936141
+   (K)    Exchange+Correlation.......     -51.79122739771
+   (L)  Electronic energy............    -720.95040061281  (E+I)
+   (N0) D3 correction................      -0.00684394030
+   (N)  Total quantum mech. energy...    -382.32446656432  (A+L+N0)
+   (O)  Gas phase energy.............    -381.56800170422
+   (P)  Solution phase energy........    -381.95039825023  (Q+R+S+T)
+   (Q)    Total solute energy........    -381.54615670556  (N-C-G)
+   (R)    Total solvent energy.......      -0.38915492938  (C/2+G/2)
+   (S)    Solute cavity energy.......       0.00381349788
+   (T)    First shell corr. factor...      -0.01890011317
+   (U)  Reorganization energy........       0.02184499866  (Q-O)
+   (V)  Solvation energy.............      -0.38239654601  (P-O)
+  
+ SCFE:  Solution phase energy: DFT(b3lyp-d3)       -381.95039825023 hartrees
+        SCF iterations:   2
+  
+ 
+ HOMO energy:    -0.16352
+ LUMO energy:    -0.00241
+ 
+  Orbital energies (hartrees)/symmetry label: 
+   -19.05904 B1u       -19.05904 Ag        -10.19661 B1u       -10.19659 Ag     
+   -10.14989 B2u       -10.14986 Ag        -10.14938 B3g       -10.14937 B1u    
+    -0.95099 Ag         -0.94751 B1u        -0.80775 Ag         -0.72370 B2u    
+    -0.67933 B1u        -0.59034 B3g        -0.55576 Ag         -0.46627 Ag     
+    -0.44987 B2u        -0.43657 B1u        -0.39609 B2u        -0.39578 B1u    
+    -0.38333 B3u        -0.35583 Ag         -0.34311 B2g        -0.34086 B3g    
+    -0.26354 B3u        -0.24260 B2u        -0.24233 B3g        -0.24130 B1g    
+    -0.16352 B2g        -0.00241 Au          0.00936 Ag          0.02199 B1u    
+     0.03071 B3u         0.03587 B2u         0.04981 Ag          0.06706 B2g    
+     0.06710 Ag          0.06838 B3u         0.06860 B3g    
+ 
+  end of program scf
+   
+ Time(scf)  user:       9.137  user+sys:       9.137  wallclock:       2.536
+  
+  start of program sole
+  
+    SCRF                   solvation energy
+  iteration          Hartrees            kcal/mol
+     0               0.0000000            0.0000
+     1              -0.3706681         -232.5977
+     2              -0.3793341         -238.0358
+     3              -0.3812352         -239.2287
+     4              -0.3827406         -240.1733
+     5              -0.3823111         -239.9038
+     6              -0.3823965         -239.9575
+  
+  stopping: solvation energy converged
+  
+  WARNING: 
+  The solvation energy is computed from 
+  energies at the solution phase geometry and
+  at the gas phase geometry.  Because the 
+  nogas=2 flag was used, the gas phase geometry
+  was not optimized in this calculation; 
+  instead the input geometry was assumed to be 
+  the correct optimized gas phase geometry. 
+  
+  iterations:   6    sfinal:   -239.9575 kcal/mol
+  
+  end of program sole
+   
+ Time(sole)  user:       0.412  user+sys:       0.412  wallclock:       0.092
+  
+  start of program post
+  
+  Writing input files for PBF
+  end of program post
+   
+ Time(post)  user:       0.419  user+sys:       0.419  wallclock:       0.097
+
+ Total cpu seconds     user:     145.232   user+sys:     145.232
+  
+ Total elapsed time:    68 seconds
+
+Job bq_Q2m_sp_pbf completed on rs4.differ.nl at Thu Oct 29 11:53:23 2026

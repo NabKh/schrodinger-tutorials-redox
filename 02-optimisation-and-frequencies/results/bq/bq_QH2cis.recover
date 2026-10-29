@@ -1,0 +1,13 @@
+Name: 'bq_QH2cis'
+JobId: '451fb43f-d2e6-11f1-9f99-e454e8665817'
+Commandline: 'C:\Program Files\Schrodinger2026-2\jaguar.exe run bq_QH2cis.in -HOST cpurs4 -PARALLEL 4'
+BackendCmdline: 'run jexec.py -PARALLEL 4 -jobname bq_QH2cis bq_QH2cis.in'
+Outfiles:
+- 'bq_QH2cis.log'
+- 'bq_QH2cis.01.in'
+- 'bq_QH2cis.out'
+- 'bq_QH2cis.01.mae'
+- 'bq_QH2cis.01.smap'
+- 'bq_QH2cis.vib'
+- 'bq_QH2cis.recover'
+- 'bq_QH2cis_vib.spm'

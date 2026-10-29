@@ -1,0 +1,13 @@
+Name: 'bq_Q_gas_iacc'
+JobId: '754e00e2-d37d-11f1-b85e-e454e8665817'
+Commandline: 'C:\Program Files\Schrodinger2026-2\jaguar.exe run bq_Q_gas_iacc.in -HOST cpurs4 -PARALLEL 4'
+BackendCmdline: 'run jexec.py -PARALLEL 4 -jobname bq_Q_gas_iacc bq_Q_gas_iacc.in'
+Outfiles:
+- 'bq_Q_gas_iacc.vib'
+- 'bq_Q_gas_iacc.log'
+- 'bq_Q_gas_iacc.out'
+- 'bq_Q_gas_iacc.recover'
+- 'bq_Q_gas_iacc.01.smap'
+- 'bq_Q_gas_iacc_vib.spm'
+- 'bq_Q_gas_iacc.01.mae'
+- 'bq_Q_gas_iacc.01.in'

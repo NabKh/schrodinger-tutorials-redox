@@ -1,0 +1,123 @@
+{ 
+ s_m_m2io_version
+ s_m_workflow_menu
+ :::
+ 2.0.0 
+ "Jaguar Geometry Optimization Plot" 
+} 
+
+f_m_ct { 
+ s_m_title
+ i_j_Geometry_convergence_category
+ i_j_Num_Negative_Frequencies
+ i_j_Number_of_canonical_orbitals
+ i_m_Spin_multiplicity
+ r_j_2nd_Lowest_Frequency_(cm-1)
+ r_j_Enthalpy_(kcal/mol)_298.15K_1.00E+00atm
+ r_j_Entropy_(cal/mol/K)_298.15K_1.00E+00atm
+ r_j_Final_Energy
+ r_j_Free_Energy_(kcal/mol)_298.15K_1.00E+00atm
+ r_j_Gas_Phase_Energy
+ r_j_HOMO
+ r_j_Heat_Capacity_(cal/mol/K)_298.15K_1.00E+00atm
+ r_j_Highest_Frequency_(cm-1)
+ r_j_Internal_Energy_(kcal/mol)_298.15K_1.00E+00atm
+ r_j_LUMO
+ r_j_Lowest_Frequency_(cm-1)
+ r_j_Total_Enthalpy_(au)_298.15K_1.00E+00atm
+ r_j_Total_Free_Energy_(au)_298.15K_1.00E+00atm
+ r_j_Total_Internal_Energy_(au)_298.15K_1.00E+00atm
+ r_j_Zero_Point_Energy_(kcal/mol)
+ r_j_ln(Q)_298.15K_1.00E+00atm
+ s_j_Jaguar_input_file
+ s_j_Jaguar_log_file
+ s_j_Jaguar_mae_file
+ s_j_Jaguar_output_file
+ s_j_Jaguar_restart_input_file
+ s_j_Jaguar_restart_mae_file
+ s_j_QM_Basis
+ s_j_QM_Method
+ s_j_Task
+ s_m_entry_name
+ i_m_ct_format
+ :::
+ bq_Q_wb97xd 
+ 0
+ 1
+ 308
+ 1
+ 221.31160569413
+ 4.20966342647308
+ 73.7464132637286
+ -381.247191438423
+ -17.7778296881076
+ -381.247191438423
+ -0.272834887827779
+ 23.3985219179295
+ 3207.33942145282
+ 3.61717783764581
+ -0.194956297086588
+ -2097.74824374741
+ -381.161134743407
+ -381.196174044271
+ -381.162078929299
+ 49.791727653079
+ 30.0055056584512
+ C:\Users\khossossi\schrodinger-tutorials-redox\02-optimisation-and-frequencies\results\level\bq_Q_wb97xd.in 
+ C:\Users\khossossi\schrodinger-tutorials-redox\02-optimisation-and-frequencies\results\level\bq_Q_wb97xd.log 
+ C:\Users\khossossi\schrodinger-tutorials-redox\02-optimisation-and-frequencies\results\level\bq_Q_wb97xd.mae 
+ C:\Users\khossossi\schrodinger-tutorials-redox\02-optimisation-and-frequencies\results\level\bq_Q_wb97xd.out 
+ C:\Users\khossossi\schrodinger-tutorials-redox\02-optimisation-and-frequencies\results\level\bq_Q_wb97xd.01.in 
+ C:\Users\khossossi\schrodinger-tutorials-redox\02-optimisation-and-frequencies\results\level\bq_Q_wb97xd.01.mae 
+ def2-tzvpd 
+ DFT(wb97x-d) 
+ Optimization 
+ bq_Q_wb97xd 
+  2
+ m_atom[12] { 
+  # First column is atom index #
+  i_m_mmod_type
+  r_m_x_coord
+  r_m_y_coord
+  r_m_z_coord
+  i_m_color
+  i_m_atomic_number
+  s_m_color_rgb
+  s_m_atom_name
+  :::
+  1 15 0.000000 0.000000 2.764729 70 8 FF2F2F  O1 
+  2 2 0.000000 0.000000 1.535493 2 6 A0A0A0  C1 
+  3 2 0.000000 1.162803 0.669940 2 6 A0A0A0  C2 
+  4 2 0.000000 1.162803 -0.669940 2 6 A0A0A0  C3 
+  5 2 0.000000 0.000000 -1.535493 2 6 A0A0A0  C4 
+  6 15 0.000000 0.000000 -2.764729 70 8 FF2F2F  O2 
+  7 2 0.000000 -1.162803 -0.669940 2 6 A0A0A0  C5 
+  8 2 0.000000 -1.162803 0.669940 2 6 A0A0A0  C6 
+  9 41 0.000000 2.087438 1.233802 21 1 FFFFFF  H1 
+  10 41 0.000000 2.087438 -1.233802 21 1 FFFFFF  H2 
+  11 41 0.000000 -2.087438 -1.233802 21 1 FFFFFF  H3 
+  12 41 0.000000 -2.087438 1.233802 21 1 FFFFFF  H4 
+  :::
+ } 
+ m_bond[12] { 
+  # First column is bond index #
+  i_m_from
+  i_m_to
+  i_m_order
+  :::
+  1 1 2 2
+  2 2 3 1
+  3 2 8 1
+  4 3 9 1
+  5 3 4 2
+  6 4 10 1
+  7 4 5 1
+  8 5 6 2
+  9 5 7 1
+  10 7 11 1
+  11 7 8 2
+  12 8 12 1
+  :::
+ } 
+} 
+

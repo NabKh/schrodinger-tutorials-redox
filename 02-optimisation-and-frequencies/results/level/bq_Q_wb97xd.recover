@@ -1,0 +1,13 @@
+Name: 'bq_Q_wb97xd'
+JobId: '54e0c8ea-d2e8-11f1-a50b-e454e8665817'
+Commandline: 'C:\Program Files\Schrodinger2026-2\jaguar.exe run bq_Q_wb97xd.in -HOST cpurs4 -PARALLEL 4'
+BackendCmdline: 'run jexec.py -PARALLEL 4 -jobname bq_Q_wb97xd bq_Q_wb97xd.in'
+Outfiles:
+- 'bq_Q_wb97xd.vib'
+- 'bq_Q_wb97xd_vib.spm'
+- 'bq_Q_wb97xd.log'
+- 'bq_Q_wb97xd.out'
+- 'bq_Q_wb97xd.01.mae'
+- 'bq_Q_wb97xd.01.in'
+- 'bq_Q_wb97xd.01.smap'
+- 'bq_Q_wb97xd.recover'

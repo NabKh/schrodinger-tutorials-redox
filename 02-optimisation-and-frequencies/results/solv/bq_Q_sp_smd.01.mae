@@ -1,0 +1,98 @@
+{ 
+ s_m_m2io_version
+ :::
+ 2.0.0 
+} 
+
+f_m_ct { 
+ s_m_title
+ s_m_entry_name
+ i_m_Spin_multiplicity
+ i_j_Number_of_canonical_orbitals
+ r_j_Gas_Phase_Energy
+ r_j_Solution_Phase_Energy
+ r_j_Solvation_Energy_(kcal/mol)
+ r_j_Final_Energy
+ r_j_HOMO
+ r_j_LUMO
+ s_j_Task
+ s_j_Jaguar_input_file
+ s_j_Jaguar_restart_input_file
+ s_j_Jaguar_restart_mae_file
+ s_j_Jaguar_output_file
+ s_j_Jaguar_log_file
+ s_j_Jaguar_mae_file
+ s_j_QM_Method
+ s_j_QM_Basis
+ i_m_ct_format
+ :::
+ bq_Q_sp_smd 
+  bq_Q_sp_smd 
+  1
+  308
+  -381.613145258021
+  -381.624270753332
+  -6.98135366572311
+  -381.624270753332
+  -0.283898058641832
+  -0.136921104480037
+  "Single Point" 
+  C:\Users\khossossi\schrodinger-tutorials-redox\02-optimisation-and-frequencies\results\solv\bq_Q_sp_smd.in 
+  C:\Users\khossossi\schrodinger-tutorials-redox\02-optimisation-and-frequencies\results\solv\bq_Q_sp_smd.01.in 
+  C:\Users\khossossi\schrodinger-tutorials-redox\02-optimisation-and-frequencies\results\solv\bq_Q_sp_smd.01.mae 
+  C:\Users\khossossi\schrodinger-tutorials-redox\02-optimisation-and-frequencies\results\solv\bq_Q_sp_smd.out 
+  C:\Users\khossossi\schrodinger-tutorials-redox\02-optimisation-and-frequencies\results\solv\bq_Q_sp_smd.log 
+  C:\Users\khossossi\schrodinger-tutorials-redox\02-optimisation-and-frequencies\results\solv\bq_Q_sp_smd.mae 
+  DFT(b3lyp-d3) 
+  def2-tzvpd 
+  2
+ m_atom[12] { 
+  # First column is atom index #
+  i_m_mmod_type
+  r_m_x_coord
+  r_m_y_coord
+  r_m_z_coord
+  i_m_color
+  r_m_charge1
+  r_m_charge2
+  i_m_atomic_number
+  s_m_color_rgb
+  s_m_atom_name
+  r_j_ESP_Charges
+  :::
+  1 15 0.000000 0.000000 2.654484 70 -0.60633 -0.60633 8 FF2F2F  O1  -0.606330281305159
+  2 2 0.000000 0.000000 1.429749 2 0.70622 0.70622 6 A0A0A0  C1  0.706222432795043
+  3 2 0.000000 1.269432 0.668597 2 -0.23727 -0.23727 6 A0A0A0  C2  -0.23726974002181
+  4 2 0.000000 1.269432 -0.668597 2 -0.23727 -0.23727 6 A0A0A0  C3  -0.23726974002181
+  5 2 0.000000 0.000000 -1.429749 2 0.70622 0.70622 6 A0A0A0  C4  0.706222432795043
+  6 15 0.000000 0.000000 -2.654484 70 -0.60633 -0.60633 8 FF2F2F  O2  -0.606330281305159
+  7 2 0.000000 -1.269432 -0.668597 2 -0.23727 -0.23727 6 A0A0A0  C5  -0.23726974002181
+  8 2 0.000000 -1.269432 0.668597 2 -0.23727 -0.23727 6 A0A0A0  C6  -0.23726974002181
+  9 41 0.000000 2.183511 1.252324 21 0.18732 0.18732 1 FFFFFF  H1  0.187323664276868
+  10 41 0.000000 2.183511 -1.252324 21 0.18732 0.18732 1 FFFFFF  H2  0.187323664276868
+  11 41 0.000000 -2.183511 -1.252324 21 0.18732 0.18732 1 FFFFFF  H3  0.187323664276868
+  12 41 0.000000 -2.183511 1.252324 21 0.18732 0.18732 1 FFFFFF  H4  0.187323664276868
+  :::
+ } 
+ m_bond[12] { 
+  # First column is bond index #
+  i_m_from
+  i_m_to
+  i_m_order
+  :::
+  1 1 2 2
+  2 2 3 1
+  3 2 8 1
+  4 3 9 1
+  5 3 4 2
+  6 4 10 1
+  7 4 5 1
+  8 5 6 2
+  9 5 7 1
+  10 7 11 1
+  11 7 8 2
+  12 8 12 1
+  :::
+ } 
+} 
+
