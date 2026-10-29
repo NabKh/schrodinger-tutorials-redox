@@ -321,7 +321,7 @@ In class, section L is predictions: every table below is filled in later, from t
 |---|---|---|---|---|---|---|---|
 | 1 | `levels/bq_Q_pbe_631g.in` | PBE (GGA) | 6-31G\*\* | 1.238 | 1684.7 (mode 26) | 95.8 (B3u) | 0.05 h |
 | 2 | `levels/bq_Q_b3lyp_631g.in` | B3LYP (hybrid GGA) | 6-31G\*\* | 1.225 | 1758.5 (mode 26) | 100.5 (B3u) | 0.05 h |
-| 3 | `checks/bq_Q_gas_tzvp.in` | B3LYP-D3 | def2-TZVP | | | | |
+| 3 | `checks/bq_Q_gas_tzvp.in` | B3LYP-D3 | def2-TZVP | | 1744.7 (mode 26) | 207.7 (B3u) | 0.84 h |
 | 4 | `gas/bq_Q_gas.in` | B3LYP-D3 | def2-TZVPD | | 1744.7 (mode 25) | 219.3 (B3u) | 0.92 h |
 | 5 | `levels/bq_Q_m062x.in` | M06-2X-D3 (hybrid meta-GGA) | def2-TZVPD | 1.208 | 1830.9 (mode 25) | 205.3 (B3u) | 2.27 h |
 | 6 | `levels/bq_Q_wb97xd.in` | ωB97X-D (range-separated hybrid with dispersion) | def2-TZVPD | 1.229 | none: strongest B1u 1184.0 and 1552.2 (not a minimum, see below) | 221.3 (B3u); one imaginary, −2097.8 (B2g) | 2.81 h |
@@ -653,6 +653,17 @@ Harmonic frequencies are the curvature of the potential at the minimum; measured
 | `bq_Q_gas_tzvp.in` | `basis=def2-TZVP` | diffuse functions (compare the smallest eigenvalue of S: near-linear dependence; and `number of basis functions` with `number of canonical orbitals`: the difference is what Jaguar removed. Test run, def2-TZVPD in water, removed = basis − canonical: Q 338 − 308 = 30; Q•⁻ and Q²⁻ 338 − 309 = 29, the same atoms as Q; QH•, QH⁻ 347 − 317 = 30; QH₂ trans and cis 356 − 325 = 31. So the number removed depends on the geometry, not only on the atoms, and every ΔG between states compares slightly different effective bases; def2-TZVP, with nothing removed or fewer, shows how much that moves ΔG. S 8.2E-07 for Q) |
 
 *Command:* commands D4 (`summarise_job.py` and `ir_compare.py` on each). *Expected:* lowest out-of-plane mode and 882 band for each (worksheet D4). *Why:* predict which one moves the lowest out-of-plane mode, then compare. If none of them moves it, the numerics are not the cause; what remains is the functional and the harmonic approximation itself, for a soft mode that may be strongly anharmonic, and these checks cannot separate the two. Either way it is part of the uncertainty of every G that contains a soft mode.
+
+*Test run, against `bq_Q_gas` (E −381.61334997 Eh, G −381.554787 Eh; lowest B3u 219.3, B2g 343.9; 882 band → 911.1; wall 0.92 h):*
+
+| check | ΔE (kcal/mol) | ΔG (kcal/mol) | lowest B3u | B2g | 882 → | C=O (scaled) | S min | wall |
+|---|---|---|---|---|---|---|---|---|
+| `cphf` | 0.000 | 0.000 | 219.3 | 343.9 | 911.1 | 1680.1 | 8.445E-07 | 1.62 h |
+| `iacc` | −0.0004 | −0.001 | 219.2 | 343.6 | 911.2 | 1680.4 | 8.445E-07 | 0.90 h |
+| `nops` | +0.048 | +0.056 | 219.2 | 343.4 | 911.6 | 1680.6 | 8.440E-07 | 3.29 h |
+| `tzvp` | +0.99 | +0.86 | 207.7 | 335.2 | 908.9 | 1680.2 | 1.610E-05 | 0.84 h |
+
+The three numerical settings move G by at most 0.06 kcal/mol and every mode by at most 0.5 cm⁻¹, at up to 3.6 times the cost: the defaults are converged for this molecule. Removing the diffuse functions moves G by 0.9 kcal/mol and the lowest mode by −11.6 cm⁻¹, still 99 cm⁻¹ above the 109 fundamental. None of the four removes the factor-of-two error of the lowest out-of-plane mode, so it is not numerical. In `iacc`, `nops` and `tzvp` the C=O B1u is mode 26 and an Ag mode 0.2 cm⁻¹ away is mode 25: read modes by symmetry and intensity, not by number.
 
 ## E · What changes for the other molecules (5 min)
 
