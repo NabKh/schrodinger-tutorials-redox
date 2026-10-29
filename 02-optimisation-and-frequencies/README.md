@@ -118,6 +118,20 @@ Two energies in Session 3 enter a pKa or a potential as differences. An error of
 
 Session 1 gave the states of benzoquinone as a list. Here we make them, from start to finish, with a script; then the same in Maestro. The other families follow the same steps (S6, S7).
 
+**The rule, for any molecule, shown for benzoquinone.** Start from one molecule and change the electrons first, the protons last:
+
+| step | rule | benzoquinone |
+|---|---|---|
+| 1 · parent, $n_e = 0$ | any source or own design; taken as the oxidised form | Q `O=C1C=CC(=O)C=C1`, C₆H₄O₂, charge 0, 56 electrons |
+| 2 · redox termini | O or N atoms in the conjugated π system; a pair is kept if the rest still pairs up (a Kekulé structure remains) | the two O; with one extra electron on each, the ring becomes aromatic |
+| 3 · reduced form, $n_e = 2$ | add one e⁻ at each terminus: each terminus gets charge −1 | Q²⁻ `[O-]c1ccc([O-])cc1`, charge −2, 58 electrons |
+| 4 · radical, $n_e = 1$ | add one e⁻: one terminus takes −1, the other keeps the unpaired e⁻ | Q•⁻ `[O-]c1ccc([O])cc1`, charge −1, 57 electrons, doublet |
+| 5 · merge resonance forms | same skeleton, H count, charge and radical count = one species | the unpaired electron on O or on the ring: one Q•⁻; −1 on either O: one Q²⁻ |
+| 6 · Epik on each form | adds or removes H⁺ only; $n_e$ stays fixed in every branch | expected: $n_e = 0$: Q; $n_e = 1$: Q•⁻, QH•; $n_e = 2$: Q²⁻, QH⁻, QH₂ |
+| 7 · Jaguar for all | one optimisation + frequencies per state (S3 onwards) | the six inputs of `inputs/bq/` |
+
+Steps 1–5 change only electrons, step 6 only protons, so every state lands in one cell of the grid of S1. The electron counts above are those of the SMILES (56, 57, 58), the same as `make_inputs.py` prints (S3).
+
 **Where all the states come from.** One molecule, written as a SMILES (Session 1, `01-introduction/inputs/bq_closed_shell.smi`), gives every state in three moves:
 
 | move | what happens | by hand | by script |
@@ -126,7 +140,7 @@ Session 1 gave the states of benzoquinone as a list. Here we make them, from sta
 | b | **remove a proton**: delete an H bonded to O (QH•, QH⁻, Q²⁻); the atoms change | Maestro: select the H, delete | `strip` column of the recipe |
 | c | **add an electron**: only the charge changes, not the atoms (Q•⁻, and the charge of b) | Jaguar panel, *Molecule* tab: charge, multiplicity | `charge`, `multiplicity` columns |
 
-Not Epik: Epik adds or removes protons for a given pH, but not electrons, so it cannot make Q•⁻ or QH•, and LigPrep puts H back on radicals (Session 1, A5). Two parents and these three moves give the six states; the four other files in `inputs/bq/` are not new states but the same molecules at B3LYP without D3 (`_b3lyp`, L1) and QH₂ with one O–H turned by 180° (`bq_QH2cis`, built in Maestro, P1).
+Epik adds or removes protons for a given pH, but not electrons: it is step 6 of the rule above, never steps 3–4. Epik and LigPrep are made for closed-shell molecules, and LigPrep puts H back on radicals (Session 1, A5, C3); what Epik does with Q•⁻ is checked in the test run. Two parents and these three moves give the six states; the four other files in `inputs/bq/` are not new states but the same molecules at B3LYP without D3 (`_b3lyp`, L1) and QH₂ with one O–H turned by 180° (`bq_QH2cis`, built in Maestro, P1).
 
 **S1 · The proton–electron grid.** Every state is a reference state plus $n_\mathrm{H}$ protons and $n_e$ electrons:
 
