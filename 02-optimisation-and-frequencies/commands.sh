@@ -143,6 +143,12 @@ grep -nE "Geometry optimization complete|Scaling standard convergence criteria|N
 # C6 · the live job
 $SCHRODINGER/run scripts/summarise_job.py results/live/bq_Q_pbe.out
 
+# P3, D4 · basis functions removed by Jaguar (near-linear dependence), every state: basis - canonical
+for o in results/bq/*.out results/checks/*.out; do case $o in *.[0-9][0-9].out) continue;; esac
+  nb=$(grep -m1 "number of basis functions" $o | awk '{print $NF}'); nc=$(grep "number of canonical orbitals" $o | tail -1 | awk '{print $NF}')
+  printf '%-22s basis %4s  canonical %4s  removed %3s\n' $(basename $o) $nb $nc $((nb - nc)); done
+# expected (test run, results/bq): removed 30 for Q, 29 for Q*- and Q2-, 30 for QH* and QH-, 31 for QH2
+
 # ---------------------------------------------------------------------------
 # D1 · NIST spectrum (do not redistribute, do not commit)
 curl -L -o results/bq_Q_nist.jdx "https://webbook.nist.gov/cgi/cbook.cgi?JCAMP=C106514&Index=0&Type=IR"

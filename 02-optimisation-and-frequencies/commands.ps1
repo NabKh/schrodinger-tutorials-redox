@@ -209,6 +209,13 @@ Select-String -Path results\bq\bq_Q.out -Pattern "Geometry optimization complete
 # C6 · your live job, when it has finished
 & "$S\run" scripts\summarise_job.py results\live\bq_Q_pbe.out
 
+# P3, D4 · basis functions removed by Jaguar (near-linear dependence), every state: basis - canonical
+foreach ($o in Get-ChildItem results\bq\*.out, results\checks\*.out | Where-Object { $_.Name -notmatch '\.\d\d\.out$' }) {
+  $nb = [regex]::Match((Select-String -Path $o.FullName -Pattern "number of basis functions" | Select-Object -First 1).Line, '\d+\s*$').Value.Trim()
+  $nc = [regex]::Match((Select-String -Path $o.FullName -Pattern "number of canonical orbitals" | Select-Object -Last 1).Line, '\d+\s*$').Value.Trim()
+  "{0,-22} basis {1,4}  canonical {2,4}  removed {3,3}" -f $o.Name, $nb, $nc, ($nb - $nc) }
+# expected (test run, results\bq): removed 30 for Q, 29 for Q*- and Q2-, 30 for QH* and QH-, 31 for QH2
+
 # ---------------------------------------------------------------------------
 # D1 · NIST gas-phase IR spectrum of 1,4-benzoquinone (NIST data: do not redistribute, do not commit)
 Invoke-WebRequest "https://webbook.nist.gov/cgi/cbook.cgi?JCAMP=C106514&Index=0&Type=IR" -OutFile results\bq_Q_nist.jdx
