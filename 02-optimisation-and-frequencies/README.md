@@ -327,6 +327,8 @@ In class, section L is predictions: every table below is filled in later, from t
 | 6 | `levels/bq_Q_wb97xd.in` | ωB97X-D (range-separated hybrid with dispersion) | def2-TZVPD | | | | |
 | exp. | | | | | 1668 (B1u fundamental; band maximum 1678) | 109 | |
 
+*Test run, rung 6 failed the minimum check (C2).* `bq_Q_wb97xd` converged in 5 steps but has one imaginary mode, −2097.8 cm⁻¹ (B2g), and ZPE 49.8 kcal/mol (M06-2X-D3, same basis and start: 55.1, none imaginary). Its final geometry is still D2h but the ring is distorted: angle at the C=O carbon 106.7° (start 116.2°, M06-2X 117.5°), r(C=O) 1.229 Å, C1–C2 1.450 Å. The SCF energy fell by 7.4 kcal/mol along that distortion (−381.23538 → −381.24719 Eh), M06-2X by 0.6. The input differs from `bq_Q_m062x.in` only in `dftname`. Cause not established; this rung is not used for a comparison until it is. Lowest B3u, the out-of-plane mode, on the other rungs: PBE/6-31G\*\* 95.8, B3LYP/6-31G\*\* 100.5, M06-2X-D3/def2-TZVPD 205.3 cm⁻¹ (production, in water: 232.7; exp. 109).
+
 The experimental values are the tabulated fundamentals of NIST CCCBDB (assignment of Becker, Charney and Anno, D3) and the band maximum of the NIST gas-phase spectrum (D1).
 
 *Why:* each step changes as few things as possible.
