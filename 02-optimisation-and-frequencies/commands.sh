@@ -113,6 +113,7 @@ J="<the JobId printed above>"                  # replace the text in quotes
 # B3 · monitor, and cancel a wrong job
 $SCHRODINGER/jsc list
 $SCHRODINGER/jsc info "$J"
+# a job that leaves only its .in failed before Jaguar started; "srun: executable file not found": submit the same .in again
 $SCHRODINGER/jsc tail-file --name bq_Q_pbe.log "$J"   # prints the whole log so far; -f keeps following until the job ends; Ctrl+C stops following, not the job
 # $SCHRODINGER/jsc cancel "$J"
 

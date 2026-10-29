@@ -161,7 +161,7 @@ Push-Location results\live
 #   & "$S\jaguar" run bq_QH2_pbe.in -HOST $H -PARALLEL 4
 Pop-Location
 $J = "<the JobId printed above>"   # replace the text in quotes
-# a job that fails at once with "srun: executable file not found" hit a bad node: submit it again
+# a job that leaves only its .in failed before Jaguar started (jsc info: "srun": executable file not found): submit the same .in again
 
 # B3 · monitor, and cancel a wrong job
 & "$S\jsc" list
