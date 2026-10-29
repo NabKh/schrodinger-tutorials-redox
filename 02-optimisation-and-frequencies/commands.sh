@@ -37,8 +37,8 @@ mkdir -p results/checks && cp inputs/gas/bq_Q_gas.in inputs/checks/*.in results/
 (cd results/checks && for i in *.in; do [[ $i =~ \.[0-9][0-9]\.in$ ]] || $SCHRODINGER/jaguar run "$i" -HOST "$H" -PARALLEL 4; done)
 
 # P4 · the expensive ladder rungs
-mkdir -p results/level && cp inputs/levels/bq_Q_m062x.in inputs/levels/bq_Q_wb97xd.in results/level/
-(cd results/level && for i in bq_Q_m062x.in bq_Q_wb97xd.in; do $SCHRODINGER/jaguar run "$i" -HOST "$H" -PARALLEL 4; done)
+mkdir -p results/level && cp inputs/levels/bq_Q_m062x.in inputs/levels/bq_Q_wb97xd.in inputs/levels/bq_Q_wb97xd_631g.in results/level/
+(cd results/level && for i in bq_Q_m062x.in bq_Q_wb97xd.in bq_Q_wb97xd_631g.in; do $SCHRODINGER/jaguar run "$i" -HOST "$H" -PARALLEL 4; done)
 
 # ---------------------------------------------------------------------------
 # S2 · parents from Session 1 (if not done there)

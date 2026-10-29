@@ -52,10 +52,11 @@ Pop-Location
 
 # P4 · the expensive ladder rungs (L2)
 New-Item -ItemType Directory -Force results\level | Out-Null
-Copy-Item inputs\levels\bq_Q_m062x.in, inputs\levels\bq_Q_wb97xd.in results\level\
+Copy-Item inputs\levels\bq_Q_m062x.in, inputs\levels\bq_Q_wb97xd.in, inputs\levels\bq_Q_wb97xd_631g.in results\level\
 Push-Location results\level
 & "$S\jaguar" run bq_Q_m062x.in -HOST $H -PARALLEL 4
 & "$S\jaguar" run bq_Q_wb97xd.in -HOST $H -PARALLEL 4
+& "$S\jaguar" run bq_Q_wb97xd_631g.in -HOST $H -PARALLEL 4   # tests the wB97X-D result (README L2)
 Pop-Location
 
 # ---------------------------------------------------------------------------
