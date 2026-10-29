@@ -355,14 +355,16 @@ The experimental values are the tabulated fundamentals of NIST CCCBDB (assignmen
 
 | model | `isolv` | E(Q) (Eh) | E(Q²⁻) (Eh) | ΔG_solv(Q) | ΔG_solv(Q²⁻) | ΔE(Q → Q²⁻) (kcal/mol) |
 |---|---|---|---|---|---|---|
-| none (gas) | – | | | 0 | 0 | |
-| PBF | 2 | | | | | |
-| SMD | 8 | | | | | |
-| C-PCM | 7 | | | | | |
+| none (gas) | – | −381.613145 | −381.568002 | 0 | 0 | +28.33 |
+| PBF | 2 | −381.625313 | −381.950398 | −7.64 | −239.96 | −203.99 |
+| SMD | 8 | −381.624271 | −381.903983 | −6.98 | −210.83 | −175.52 |
+| C-PCM | 7 | −381.624568 | −381.886793 | −7.17 | −200.04 | −164.55 |
 
 - The PBF single points reproduce the final `SCFE` of `bq_Q.out` and `bq_Q2m.out`: ______ and ______ Eh. This checks the inputs.
 - ΔG_solv = E(model) − E(gas) at the same geometry, and it equals the `Solvation energy` line of the same single-point output: ______ against ______ kcal/mol.
 - HOMO energy of Q²⁻ in the gas phase: ______ eV. If it is positive, the second electron is not bound in the gas phase: the gas energy then depends on the basis, and so does ΔG_solv(Q²⁻).
+
+*Test run (the table above, 2026-2 build 125):* the PBF single point of Q gives −381.625313 Eh, the production `bq_Q.out` −381.625370 (0.04 kcal/mol apart: the single point converges its own PBF reaction field). ΔG_solv(Q) by hand −7.64 kcal/mol = the last PBF `Solvation energy` line, −0.01216731 Eh; for SMD and C-PCM the printed lines are −6.98 and −7.17 kcal/mol, the same as by hand. HOMO of Q²⁻ in the gas phase: +0.17594 Eh = +4.79 eV, positive: the extra electrons are not bound, so E(gas) of Q²⁻, the +28.33 kcal/mol gas column and every ΔG_solv(Q²⁻) depend on the basis. In all three solvents the HOMO is negative (−0.16 to −0.13 Eh). Spread of the last column: −164.55 to −203.99, 39.4 kcal/mol = 0.86 V for a 2e⁻ step; Q contributes 0.7 kcal/mol of it, Q²⁻ the rest. For L1: 5 % of ΔG_solv(Q²⁻) (PBF) is 12.0 kcal/mol = 0.26 V (2e⁻), against 0.014 V for D3: the solvation model, not dispersion, sets the uncertainty of a charged step.
 
 *Why:* the spread of the last column across the three models, divided by 46.1 kcal/mol (2 × 23.06), is a first estimate of how uncertain a 2e⁻ potential is from the solvation model alone. Predict which state carries most of the spread, neutral Q or Q²⁻, and check it in the table. The geometry is the PBF one for all four models: a single point does not include the geometry relaxation in each model.
 
