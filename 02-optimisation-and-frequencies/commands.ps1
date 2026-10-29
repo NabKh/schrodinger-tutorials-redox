@@ -62,6 +62,14 @@ Pop-Location
 # S2 · closed-shell parents from Session 1 (skip if ..\01-introduction\results\bq_prepped.maegz exists)
 #   & "$S\ligprep" -ismi ..\01-introduction\inputs\bq_closed_shell.smi -omae ..\01-introduction\results\bq_prepped.maegz -i 0 -nt -s 1 -NJOBS 1 -WAIT
 
+# S · the rule, step 5: Epik on the three n_e forms Q, Q*- and Q2- (test run: the radical comes back as QH2, QH-, Q2-)
+New-Item -ItemType Directory -Force results\epik | Out-Null
+Set-Content results\epik\bq_ne.smi "O=C1C=CC(=O)C=C1 bq_Q", "[O-]c1ccc([O])cc1 bq_Qradm", "[O-]c1ccc([O-])cc1 bq_Q2m"
+& "$S\utilities\structconvert" results\epik\bq_ne.smi results\epik\bq_ne.mae
+& "$S\epikx" results\epik\bq_ne.mae results\epik\bq_ne_epik.maegz -ph 7.0 -pht 7.0 -ms 16 -WAIT
+& "$S\run" ..\01-introduction\scripts\list_epik_states.py results\epik\bq_ne.mae results\epik\bq_ne_epik.maegz
+# expected: input 52, 53, 54 electrons (no H yet); output bq_Q 56, and 58 for every state of bq_Qradm and bq_Q2m
+
 # S3 · every state and one Jaguar input per state, from the recipe
 & "$S\run" scripts\make_inputs.py inputs\recipes\bq.csv --out results\made
 #   or from the LigPrep parents:

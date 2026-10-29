@@ -44,6 +44,14 @@ mkdir -p results/level && cp inputs/levels/bq_Q_m062x.in inputs/levels/bq_Q_wb97
 # S2 · parents from Session 1 (if not done there)
 # $SCHRODINGER/ligprep -ismi ../01-introduction/inputs/bq_closed_shell.smi -omae ../01-introduction/results/bq_prepped.maegz -i 0 -nt -s 1 -NJOBS 1 -WAIT
 
+# S · the rule, step 5: Epik on the three n_e forms Q, Q*- and Q2- (test run: the radical comes back as QH2, QH-, Q2-)
+mkdir -p results/epik
+printf '%s\n' "O=C1C=CC(=O)C=C1 bq_Q" "[O-]c1ccc([O])cc1 bq_Qradm" "[O-]c1ccc([O-])cc1 bq_Q2m" > results/epik/bq_ne.smi
+$SCHRODINGER/utilities/structconvert results/epik/bq_ne.smi results/epik/bq_ne.mae
+$SCHRODINGER/epikx results/epik/bq_ne.mae results/epik/bq_ne_epik.maegz -ph 7.0 -pht 7.0 -ms 16 -WAIT
+$SCHRODINGER/run ../01-introduction/scripts/list_epik_states.py results/epik/bq_ne.mae results/epik/bq_ne_epik.maegz
+# expected: input 52, 53, 54 electrons (no H yet); output bq_Q 56, and 58 for every state of bq_Qradm and bq_Q2m
+
 # S3, S4 · all states, one input each, and check them
 $SCHRODINGER/run scripts/make_inputs.py inputs/recipes/bq.csv --out results/made
 $SCHRODINGER/run scripts/check_inputs.py results/made

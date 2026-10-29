@@ -118,19 +118,21 @@ Two energies in Session 3 enter a pKa or a potential as differences. An error of
 
 Session 1 gave the states of benzoquinone as a list. Here we make them, from start to finish, with a script; then the same in Maestro. The other families follow the same steps (S6, S7).
 
-**The rule, for any molecule, shown for benzoquinone.** Start from one molecule and change the electrons first, the protons last:
+**The rule, for any molecule, shown for benzoquinone.** Three redox forms first, then the protons of each, then Jaguar. One H atom is e⁻ + H⁺, so moving H⁺ (Epik) never changes $n_e$:
 
 | step | rule | benzoquinone |
 |---|---|---|
-| 1 · parent, $n_e = 0$ | any source or own design; taken as the oxidised form | Q `O=C1C=CC(=O)C=C1`, C₆H₄O₂, charge 0, 56 electrons |
-| 2 · redox termini | O or N atoms in the conjugated π system; a pair is kept if the rest still pairs up (a Kekulé structure remains) | the two O; with one extra electron on each, the ring becomes aromatic |
-| 3 · reduced form, $n_e = 2$ | add one e⁻ at each terminus: each terminus gets charge −1 | Q²⁻ `[O-]c1ccc([O-])cc1`, charge −2, 58 electrons |
-| 4 · radical, $n_e = 1$ | add one e⁻: one terminus takes −1, the other keeps the unpaired e⁻ | Q•⁻ `[O-]c1ccc([O])cc1`, charge −1, 57 electrons, doublet |
-| 5 · merge resonance forms | same skeleton, H count, charge and radical count = one species | the unpaired electron on O or on the ring: one Q•⁻; −1 on either O: one Q²⁻ |
-| 6 · Epik on each form | adds or removes H⁺ only; $n_e$ stays fixed in every branch | expected: $n_e = 0$: Q; $n_e = 1$: Q•⁻, QH•; $n_e = 2$: Q²⁻, QH⁻, QH₂ |
-| 7 · Jaguar for all | one optimisation + frequencies per state (S3 onwards) | the six inputs of `inputs/bq/` |
+| 1 · oxidised, $n_e = 0$ | the parent as stored, from any source (e.g. the RedDB reactant) or own design; nothing to generate | Q `O=C1C=CC(=O)C=C1`, C₆H₄O₂, 56 electrons |
+| 2 · reduced, $n_e = 2$ | given by the source when it has one (RedDB gives the reduced product); otherwise +2 H atoms on the redox termini (quinones: C=O → C–OH) | QH₂ `Oc1ccc(O)cc1`, C₆H₆O₂, 58 electrons |
+| 3 · redox centres | compare 1 and 2 atom by atom: the atoms that gain an H (O or N of the conjugated π system). An O–H already in the parent is not one (the 2-OH of lawsone); no rules per family are needed | the two O |
+| 4 · radical, $n_e = 1$ | the reduced form minus one H atom at one redox centre, which keeps the unpaired electron; one radical per centre, merged when the centres are equivalent | QH• `[O]c1ccc(O)cc1`, C₆H₅O₂, 57 electrons, doublet; the two O are equivalent: one QH• |
+| 5 · Epik on the closed-shell forms | adds or removes H⁺ only, at fixed $n_e$; on forms 1 and 2, not on 4 (test run below) | $n_e = 0$: Q; $n_e = 2$: QH₂, QH⁻, Q²⁻ (pKa 9.57, 11.07) |
+| 6 · radical microstates | each $n_e = 2$ microstate minus one H atom at a redox centre; Epik knows no spin, so multiplicity 2 is set in every radical's Jaguar input | QH₂ → QH•; QH⁻ → Q•⁻; Q²⁻ has no O–H: none |
+| 7 · Jaguar for every microstate | one optimisation + frequencies each (S3 onwards); then pKa, E⁰, Pourbaix (Session 3) | the six inputs of `inputs/bq/` |
 
-Steps 1–5 change only electrons, step 6 only protons, so every state lands in one cell of the grid of S1. The electron counts above are those of the SMILES (56, 57, 58), the same as `make_inputs.py` prints (S3).
+Every microstate lands in one cell of the grid of S1. `bq.csv` is this table: rows with `strip` empty are steps 1 and 2, `strip` = `O` or `O O` are the H atoms or protons removed, and `multiplicity` 2 is step 6 (S3).
+
+*Test run, Epik on the three $n_e$ forms* (commands S): Q (n_e = 0) gave Q alone, 56 electrons. The radical Q•⁻ `[O-]c1ccc([O])cc1` came back as QH₂, QH⁻ and Q²⁻, all 58 electrons, with the same pKa as the Q²⁻ input (9.57, 11.07): Epik put an H on the radical O and turned the $n_e = 1$ branch into $n_e = 2$. The input had no explicit H (structconvert from SMILES: 52, 53, 54 electrons counted), so Epik also filled the valences. Hence step 5 on closed-shell forms only, and step 6 by `strip` and `multiplicity`, as Session 1 (C3) did by hand. Check the electron count of every Epik output (`list_epik_states.py`): one value per branch.
 
 **Where all the states come from.** One molecule, written as a SMILES (Session 1, `01-introduction/inputs/bq_closed_shell.smi`), gives every state in three moves:
 
@@ -140,7 +142,7 @@ Steps 1–5 change only electrons, step 6 only protons, so every state lands in 
 | b | **remove a proton**: delete an H bonded to O (QH•, QH⁻, Q²⁻); the atoms change | Maestro: select the H, delete | `strip` column of the recipe |
 | c | **add an electron**: only the charge changes, not the atoms (Q•⁻, and the charge of b) | Jaguar panel, *Molecule* tab: charge, multiplicity | `charge`, `multiplicity` columns |
 
-Epik adds or removes protons for a given pH, but not electrons: it is step 6 of the rule above, never steps 3–4. Epik and LigPrep are made for closed-shell molecules, and LigPrep puts H back on radicals (Session 1, A5, C3); what Epik does with Q•⁻ is checked in the test run. Two parents and these three moves give the six states; the four other files in `inputs/bq/` are not new states but the same molecules at B3LYP without D3 (`_b3lyp`, L1) and QH₂ with one O–H turned by 180° (`bq_QH2cis`, built in Maestro, P1).
+Epik adds or removes protons for a given pH, but not electrons: it is step 5 of the rule above, on closed-shell forms only. Like LigPrep (Session 1, A5, C3), it puts H back on a radical (test run above). Two parents and these three moves give the six states; the four other files in `inputs/bq/` are not new states but the same molecules at B3LYP without D3 (`_b3lyp`, L1) and QH₂ with one O–H turned by 180° (`bq_QH2cis`, built in Maestro, P1).
 
 **S1 · The proton–electron grid.** Every state is a reference state plus $n_\mathrm{H}$ protons and $n_e$ electrons:
 
@@ -627,7 +629,7 @@ Harmonic frequencies are the curvature of the potential at the minimum; measured
 | 1070 / 1054 | | | | | |
 | 882 | | | | C–H out of plane | |
 
-*Why:* the script matches each peak to the nearest IR-active mode and marks a peak that falls on a mode already matched (`same mode as the … peak`): that is one band split in two, not a second mode. In the test run the live PBE job put 1054 and 1070 on the same mode 17 (1054.8 cm⁻¹ scaled). Check every match by the displacement of the mode in Maestro. 1678 cm⁻¹ is the band maximum: the tabulated C=O fundamental is 1668 cm⁻¹ (B1u), and the band is split by a Fermi resonance. The plot broadens each computed line with a Lorentzian of 10 cm⁻¹ half width.
+*Why:* the script matches each peak to the nearest IR-active mode and marks a peak that falls on a mode already matched (`same mode as the … peak`): that is one band split in two, not a second mode. In the test run the live PBE job put 1054 and 1070 on the same mode 17 (1054.8 cm⁻¹ scaled). Check every match by the displacement of the mode in Maestro. 1678 cm⁻¹ is the band maximum: the tabulated C=O fundamental is 1668 cm⁻¹ (B1u), and the band is split by a Fermi resonance. The plot broadens each computed line with a Lorentzian of 10 cm⁻¹ half width. Test run, production bq_Q (PBF water) against the gas-phase NIST spectrum: 1678 → mode 25 B1u 1660.0 (−18 cm⁻¹, −1.1 %; −8 against the 1668 fundamental); 1302 → 20 B2u 1306.8 (+4.8); 1054 and 1070 → 17 B2u 1079.0, one mode; 882 → 13 B3u 918.2 (+36, +4.1 %). All within the ± 74 cm⁻¹ of the scale factor. The calculation is in water and the experiment in gas: the like-for-like comparison is `bq_Q_gas` (P3, commands L2).
 
 **D3 · Judge the agreement.**
 
