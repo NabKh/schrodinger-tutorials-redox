@@ -1,0 +1,378 @@
+
+--------------------------------------------------------------------------------
+JobId          : 4781454b-d2e3-11f1-bd9c-e454e8665817
+Name           : bq_Q_pbe
+Program        : Jaguar
+ClientVersion  : 2026-2 build 125
+Host           : D-6QP7G03
+Dir            : C:\Users\khossossi\schrodinger-tutorials-redox\02-optimisation-and-frequencies\results\live
+HostEntry      : cpurs4
+JobHost        : rs4.differ.nl
+JobDir         : /scratch/khossossi/jobs/4781454b-d2e3-11f1-bd9c-e454e8665817
+JobSchrodinger : /opt/schrodinger2026-2
+Commandline    : C:\Program Files\Schrodinger2026-2\jaguar.exe run bq_Q_pbe.in -HOST cpurs4 -PARALLEL 4
+StartTime      : 2026-10-28-16:21:44
+Version        : 2026-2 build 125
+--------------------------------------------------------------------------------
+
+mmshare : 0081fc11b9a5c0238c64103940c810e7237b86bf
+jaguar-src : 3661799996b617cab0dd845f7945f9aa1fcded36
+epik-src : eb2f04bfa5d377af105844461338435d3de2ce5c
+impact-src : f3569fc6e286733c6cf5ccd5315dea49d71165a7
+macromodel-src : 2ef174ddc7115c1a158115bf5578e88c9752da36
+
+Contents of /scratch/khossossi/jobs/4781454b-d2e3-11f1-bd9c-e454e8665817:
+/scratch/khossossi/jobs/4781454b-d2e3-11f1-bd9c-e454e8665817/.4781454b-d2e3-11f1-bd9c-e454e8665817-job-server-config
+/scratch/khossossi/jobs/4781454b-d2e3-11f1-bd9c-e454e8665817/bq_Q_pbe.in
+/scratch/khossossi/jobs/4781454b-d2e3-11f1-bd9c-e454e8665817/.4781454b-d2e3-11f1-bd9c-e454e8665817-job-supervisor-access
+/scratch/khossossi/jobs/4781454b-d2e3-11f1-bd9c-e454e8665817/bq_Q_pbe.recover
+/scratch/khossossi/jobs/4781454b-d2e3-11f1-bd9c-e454e8665817/memory.json
+/scratch/khossossi/jobs/4781454b-d2e3-11f1-bd9c-e454e8665817/supv-stderr-4781454b-d2e3-11f1-bd9c-e454e8665817.log
+/scratch/khossossi/jobs/4781454b-d2e3-11f1-bd9c-e454e8665817/supv-stdout-4781454b-d2e3-11f1-bd9c-e454e8665817.log
+/scratch/khossossi/jobs/4781454b-d2e3-11f1-bd9c-e454e8665817/4781454b-d2e3-11f1-bd9c-e454e8665817-sysinfo.json
+/scratch/khossossi/jobs/4781454b-d2e3-11f1-bd9c-e454e8665817/supv-4781454b-d2e3-11f1-bd9c-e454e8665817.log
+/scratch/khossossi/jobs/4781454b-d2e3-11f1-bd9c-e454e8665817/bq_Q_pbe.log
+/scratch/khossossi/jobs/4781454b-d2e3-11f1-bd9c-e454e8665817/mpiNodefile.3228998230
+/scratch/khossossi/jobs/4781454b-d2e3-11f1-bd9c-e454e8665817/.write_dir.json
+
+Executing subprocess:
+/opt/schrodinger2026-2/jaguar-v13.2/bin/Linux-x86_64/jexec bq_Q_pbe.in -T 4 -out /scratch/khossossi/jobs/4781454b-d2e3-11f1-bd9c-e454e8665817 -cwd
+
+Stacksize hard limit = unlimited
+Job bq_Q_pbe started on rs4.differ.nl at Wed Oct 28 16:21:46 2026
+jobid: 4781454b-d2e3-11f1-bd9c-e454e8665817 
+Jaguar version 13.2, release 125
+ Using up to   4 threads per process
+Molecular Point Group: D2h     
+Point Group used: D2h
+/opt/schrodinger2026-2/internal/lib/python3.11/site-packages/numpy/core/getlimits.py:551: UserWarning: The value of the smallest subnormal for <class 'numpy.float64'> type is zero.
+  setattr(self, word, getattr(machar, word).flat[0])
+/opt/schrodinger2026-2/internal/lib/python3.11/site-packages/numpy/core/getlimits.py:89: UserWarning: The value of the smallest subnormal for <class 'numpy.float64'> type is zero.
+  return self._float_to_str(self.smallest_subnormal)
+/opt/schrodinger2026-2/internal/lib/python3.11/site-packages/numpy/core/getlimits.py:551: UserWarning: The value of the smallest subnormal for <class 'numpy.float32'> type is zero.
+  setattr(self, word, getattr(machar, word).flat[0])
+/opt/schrodinger2026-2/internal/lib/python3.11/site-packages/numpy/core/getlimits.py:89: UserWarning: The value of the smallest subnormal for <class 'numpy.float32'> type is zero.
+  return self._float_to_str(self.smallest_subnormal)
+pre (input checking) done.
+onee (1-electron integrals) done.
+hfig (HF initial guess) done.
+probe (project orbitals) done.
+grid (grid generation) done.
+rwr (Q operators) done.
+scf type: DFT=PBE(X+LC)+PW91 (PBE)
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  5  M    -379.46188840892           1.2E-02  2.2E-01
+etot    2  Y  Y  6  M    -377.22245800241 -2.2E+00  1.2E-02  4.2E-01
+etot    3  Y  Y  6  M    -380.65278264607  3.4E+00  5.1E-03  1.4E-01
+etot    4  N  Y  2  U    -380.98035602077  3.3E-01  3.2E-03  4.2E-02
+etot    5  Y  Y  6  M    -381.02326080010  4.3E-02  6.4E-04  7.8E-03
+etot    6  N  Y  2  U    -381.02511534786  1.9E-03  2.9E-04  2.8E-03
+etot    7  Y  Y  6  M    -381.02533488566  2.2E-04  3.8E-05  7.4E-04
+etot    8  N  Y  2  U    -381.02536095406  2.6E-05  1.2E-05  2.9E-04
+etot    9  N  Y  2  U    -381.02536398299  3.0E-06  3.7E-06  1.1E-04
+etot   10  N  N  2  U    -381.02536418485  2.0E-07  0.0E+00  0.0E+00
+scf (DFT) done.
+--------gas phase calculation complete----------------------
+ch (properties) done.
+post (output conversion) done.
+pbf (Poisson-Boltzmann solver) done.
+solv (solvation checking) done.
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -381.04848126178           1.1E-03  1.0E-02
+etot    2  Y  Y  6  M    -381.04665762825 -1.8E-03  3.2E-04  1.6E-02
+etot    3  Y  Y  6  M    -381.05118508367  4.5E-03  1.2E-04  1.4E-03
+etot    4  N  Y  2  U    -381.05077738501 -4.1E-04  2.1E-05  4.1E-04
+etot    5  N  Y  2  U    -381.05078060374  3.2E-06  7.0E-06  2.2E-04
+etot    6  N  Y  2  U    -381.05078209333  1.5E-06  2.0E-06  6.3E-05
+etot    7  N  N  2  U    -381.05078215117  5.8E-08  0.0E+00  0.0E+00
+scf (DFT) done.
+sole (solvation energy) done.
+----------solvation iteration  1 complete------------------
+ch (properties) done.
+post (output conversion) done.
+pbf (Poisson-Boltzmann solver) done.
+solv (solvation checking) done.
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -381.05657290135           2.5E-04  2.2E-03
+etot    2  Y  Y  6  M    -381.05680343558  2.3E-04  8.3E-05  4.0E-03
+etot    3  Y  Y  6  M    -381.05707977640  2.8E-04  2.9E-05  3.2E-04
+etot    4  N  Y  2  U    -381.05668958038 -3.9E-04  5.0E-06  1.2E-04
+etot    5  N  Y  2  U    -381.05669001195  4.3E-07  1.4E-06  4.6E-05
+etot    6  N  N  2  U    -381.05669008113  6.9E-08  0.0E+00  0.0E+00
+scf (DFT) done.
+sole (solvation energy) done.
+----------solvation iteration  2 complete------------------
+ch (properties) done.
+post (output conversion) done.
+pbf (Poisson-Boltzmann solver) done.
+solv (solvation checking) done.
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -381.05803771718           6.1E-05  5.1E-04
+etot    2  Y  Y  6  M    -381.05840654904  3.7E-04  2.1E-05  9.9E-04
+etot    3  N  Y  2  U    -381.05804369119 -3.6E-04  6.8E-06  8.1E-05
+etot    4  N  Y  2  U    -381.05804394247  2.5E-07  1.2E-06  2.8E-05
+etot    5  N  N  2  U    -381.05804397050  2.8E-08  0.0E+00  0.0E+00
+scf (DFT) done.
+sole (solvation energy) done.
+----------solvation iteration  3 complete------------------
+ch (properties) done.
+post (output conversion) done.
+pbf (Poisson-Boltzmann solver) done.
+solv (solvation checking) done.
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -381.05835584855           1.4E-05  1.3E-04
+etot    2  N  Y  2  U    -381.05835509856 -7.5E-07  5.2E-06  2.5E-04
+etot    3  N  Y  2  U    -381.05835616428  1.1E-06  1.5E-06  2.2E-05
+etot    4  N  N  2  U    -381.05835617987  1.6E-08  0.0E+00  0.0E+00
+scf (DFT) done.
+sole (solvation energy) done.
+----final solvation iteration  4 complete------------------
+ch (properties) done.
+post (output conversion) done.
+pbf (Poisson-Boltzmann solver) done.
+der1a (1-e 1st deriv.) done.
+dsolv (solvation derivatives) done.
+rwr (1st deriv. Q) done.
+der1b (2-e 1st deriv.) done.
+  Geometry optimization step  1
+  Total energy:      -381.03611225822 hartrees
+  gradient maximum:        3.5547E-02 .  (  1.3500E-03 )
+  gradient rms:            1.1486E-02 .  (  9.0000E-04 )
+  displacement maximum:    4.9085E-02 .  (  5.4000E-03 )
+  displacement rms:        2.4391E-02 .  (  3.6000E-03 )
+  
+  predicted energy change: -4.7888E-03
+  step size:     0.14634
+  trust radius:  0.30000
+---------------- geometry iteration 1 complete ----------------
+geopt (optimize geometry) done.
+onee (1-electron integrals) done.
+probe (project orbitals) done.
+grid (grid generation) done.
+rwr (Q operators) done.
+ch (properties) done.
+post (output conversion) done.
+pbf (Poisson-Boltzmann solver) done.
+solv (solvation checking) done.
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -381.06131702546           2.0E-03  2.6E-02
+etot    2  Y  Y  6  M    -381.06293568548  1.6E-03  5.3E-04  4.2E-03
+etot    3  Y  Y  6  M    -381.06215896336 -7.8E-04  1.8E-04  6.4E-03
+etot    4  Y  Y  6  M    -381.06298562993  8.3E-04  4.7E-05  2.3E-03
+etot    5  N  Y  2  U    -381.06324453914  2.6E-04  9.6E-06  1.5E-04
+etot    6  N  Y  2  U    -381.06324536365  8.2E-07  3.3E-06  3.7E-05
+etot    7  N  N  2  U    -381.06324539912  3.5E-08  0.0E+00  0.0E+00
+scf (DFT) done.
+sole (solvation energy) done.
+----------solvation iteration  1 complete------------------
+ch (properties) done.
+post (output conversion) done.
+pbf (Poisson-Boltzmann solver) done.
+solv (solvation checking) done.
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -381.06367908231           1.9E-05  9.9E-05
+etot    2  N  Y  2  U    -381.06367910689  2.5E-08  6.8E-06  1.8E-04
+etot    3  N  Y  2  U    -381.06367966595  5.6E-07  2.9E-06  1.1E-04
+etot    4  N  N  2  U    -381.06367985055  1.8E-07  0.0E+00  0.0E+00
+scf (DFT) done.
+sole (solvation energy) done.
+----------solvation iteration  2 complete------------------
+ch (properties) done.
+post (output conversion) done.
+pbf (Poisson-Boltzmann solver) done.
+solv (solvation checking) done.
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -381.06378506853           4.1E-06  3.4E-05
+etot    2  N  N  2  U    -381.06378503783 -3.1E-08  0.0E+00  0.0E+00
+scf (DFT) done.
+sole (solvation energy) done.
+----final solvation iteration  3 complete------------------
+ch (properties) done.
+post (output conversion) done.
+pbf (Poisson-Boltzmann solver) done.
+der1a (1-e 1st deriv.) done.
+dsolv (solvation derivatives) done.
+rwr (1st deriv. Q) done.
+der1b (2-e 1st deriv.) done.
+  Geometry optimization step  2
+  Total energy:      -381.04020783013 hartrees
+  energy change:          -4.0956E-03 .  (  1.5000E-04 )
+  gradient maximum:        4.4954E-03 .  (  1.3500E-03 )
+  gradient rms:            2.2698E-03 .  (  9.0000E-04 )
+  displacement maximum:    1.2909E-02 .  (  5.4000E-03 )
+  displacement rms:        5.6985E-03 .  (  3.6000E-03 )
+  
+  predicted energy change: -2.1279E-04
+  step size:     0.03419
+  trust radius:  0.30000
+---------------- geometry iteration 2 complete ----------------
+geopt (optimize geometry) done.
+onee (1-electron integrals) done.
+probe (project orbitals) done.
+grid (grid generation) done.
+rwr (Q operators) done.
+ch (properties) done.
+post (output conversion) done.
+pbf (Poisson-Boltzmann solver) done.
+solv (solvation checking) done.
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -381.06358412156           2.1E-04  2.1E-03
+etot    2  Y  Y  6  M    -381.06362019216  3.6E-05  8.0E-05  1.7E-03
+etot    3  Y  Y  6  M    -381.06359124999 -2.9E-05  5.0E-05  2.3E-03
+etot    4  Y  Y  6  M    -381.06368340521  9.2E-05  5.8E-06  1.8E-04
+etot    5  N  Y  2  U    -381.06368799703  4.6E-06  1.7E-06  3.8E-05
+etot    6  N  N  2  U    -381.06368802466  2.8E-08  0.0E+00  0.0E+00
+scf (DFT) done.
+sole (solvation energy) done.
+----------solvation iteration  1 complete------------------
+ch (properties) done.
+post (output conversion) done.
+pbf (Poisson-Boltzmann solver) done.
+solv (solvation checking) done.
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -381.06373950882           3.1E-06  2.4E-05
+etot    2  N  N  2  U    -381.06373946103 -4.8E-08  0.0E+00  0.0E+00
+scf (DFT) done.
+sole (solvation energy) done.
+----final solvation iteration  2 complete------------------
+ch (properties) done.
+post (output conversion) done.
+pbf (Poisson-Boltzmann solver) done.
+der1a (1-e 1st deriv.) done.
+dsolv (solvation derivatives) done.
+rwr (1st deriv. Q) done.
+der1b (2-e 1st deriv.) done.
+  Geometry optimization step  3
+  Total energy:      -381.04001191059 hartrees
+  energy change:           1.9592E-04 .  (  1.5000E-04 )
+  gradient maximum:        9.2982E-04 *  (  1.3500E-03 )
+  gradient rms:            4.3012E-04 *  (  9.0000E-04 )
+  displacement maximum:    3.2933E-03 *  (  5.4000E-03 )
+  displacement rms:        1.6031E-03 *  (  3.6000E-03 )
+  
+  predicted energy change: -1.1759E-05
+  step size:     0.00962
+  trust radius:  0.30000
+---------------- geometry iteration 3 complete ----------------
+geopt (optimize geometry) done.
+onee (1-electron integrals) done.
+probe (project orbitals) done.
+grid (grid generation) done.
+rwr (Q operators) done.
+ch (properties) done.
+post (output conversion) done.
+pbf (Poisson-Boltzmann solver) done.
+solv (solvation checking) done.
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -381.06378382391           2.8E-05  3.7E-04
+etot    2  N  Y  2  U    -381.06378515083  1.3E-06  2.1E-05  6.2E-04
+etot    3  N  Y  2  U    -381.06378766667  2.5E-06  1.1E-05  4.7E-04
+etot    4  N  Y  2  U    -381.06379180335  4.1E-06  1.6E-06  3.6E-05
+etot    5  N  N  2  U    -381.06379183205  2.9E-08  0.0E+00  0.0E+00
+scf (DFT) done.
+sole (solvation energy) done.
+----------solvation iteration  1 complete------------------
+ch (properties) done.
+post (output conversion) done.
+pbf (Poisson-Boltzmann solver) done.
+solv (solvation checking) done.
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  2  U    -381.06381275469           1.1E-06  1.4E-05
+etot    2  N  N  2  U    -381.06381274694 -7.8E-09  0.0E+00  0.0E+00
+scf (DFT) done.
+sole (solvation energy) done.
+----final solvation iteration  2 complete------------------
+ch (properties) done.
+post (output conversion) done.
+pbf (Poisson-Boltzmann solver) done.
+der1a (1-e 1st deriv.) done.
+dsolv (solvation derivatives) done.
+rwr (1st deriv. Q) done.
+der1b (2-e 1st deriv.) done.
+  Geometry optimization step  4
+  Total energy:      -381.04003846761 hartrees
+  energy change:          -2.6557E-05 *  (  1.5000E-04 )
+  gradient maximum:        3.0123E-04 *  (  1.3500E-03 )
+  gradient rms:            1.0241E-04 #  (  9.0000E-04 )
+  displacement maximum:    6.2543E-04 #  (  5.4000E-03 )
+  displacement rms:        2.6096E-04 #  (  3.6000E-03 )
+  
+  predicted energy change: -4.1970E-07
+  step size:     0.00157
+  trust radius:  0.30000
+------------- final geometry iteration 4 complete -------------
+geopt (optimize geometry) done.
+cutabab2 (abab integrals) done.
+der2a (1-e JK-1st deriv.) done.
+grid (grid generation) done.
+rwr (1st deriv. Q) done.
+der2b (2-e JK-1st deriv.) done.
+der2nda (1-e 2nd deriv.) done.
+der2ndb (2-e 2nd deriv.) done.
+rwr (Q operators) done.
+cphfa (gradient of wave function) done.
+freq (vib. frequencies) done.
+post (output conversion) done.
+Job bq_Q_pbe completed on rs4.differ.nl at Wed Oct 28 16:25:58 2026
+Timer (jaguar_backend.py) : 252.49 secs (4.21 minutes)
+Finished:   Wed Oct 28 16:25:59 2026

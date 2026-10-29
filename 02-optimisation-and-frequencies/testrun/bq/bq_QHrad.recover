@@ -1,0 +1,13 @@
+Name: 'bq_QHrad'
+JobId: '527e71dc-d2e6-11f1-985d-e454e8665817'
+Commandline: 'C:\Program Files\Schrodinger2026-2\jaguar.exe run bq_QHrad.in -HOST cpurs4 -PARALLEL 4'
+BackendCmdline: 'run jexec.py -PARALLEL 4 -jobname bq_QHrad bq_QHrad.in'
+Outfiles:
+- 'bq_QHrad.01.in'
+- 'bq_QHrad.out'
+- 'bq_QHrad.log'
+- 'bq_QHrad.01.mae'
+- 'bq_QHrad.recover'
+- 'bq_QHrad_vib.spm'
+- 'bq_QHrad.01.smap'
+- 'bq_QHrad.vib'

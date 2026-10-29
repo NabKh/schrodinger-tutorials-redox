@@ -1,0 +1,283 @@
+Job bq_Q_sp_gas started on rs4.differ.nl at Thu Oct 29 11:52:37 2026
+jobid: d85c8993-d386-11f1-8a78-e454e8665817
+
+  +------------------------------------------------------------------------+
+  |  Jaguar version 13.2, release 125                                      |
+  |                                                                        |
+  |  Copyright Schrodinger, Inc.                                           |
+  |  All Rights Reserved.                                                  |
+  |                                                                        |
+  |  The following have contributed to Jaguar (listed alphabetically):     |
+  |  Ty Balduf, Mike Beachy, Chandler Bennett, Art Bochevarov,             |
+  |  Dale Braden, Yixiang Cao, Alan Chien, Chris Cortis,                   |
+  |  Rich Friesner, Jim Furness, Bill Goddard, Hod Greeley,                |
+  |  Tom Hughes, Leif Jacobson, Jean-Marc Langlois, Daniel Levine,         |
+  |  Daniel Mainz, Rob Murphy, Dean Philipp, Tom Pollard,                  |
+  |  Murco Ringnalda, Pablo Videla, Mark Watson, Haoyu Yu.                 |
+  |                                                                        |
+  |  Use of this program should be acknowledged in publications as:        |
+  |                                                                        |
+  |  Jaguar, version 13.2, Schrodinger, Inc., New York, NY, 2026.          |
+  |                                                                        |
+  |  Y. Cao, T. Balduf, M. D. Beachy, M. C. Bennett, A. D. Bochevarov,     |
+  |  A. Chien, P. A. Dub, K. G. Dyall, J. W. Furness, M. D. Halls,         |
+  |  T. F. Hughes, L. D. Jacobson, H. S. Kwak, D. S. Levine, D. T. Mainz,  |
+  |  K. B. Moore, M. Svensson, P. E. Videla, M. A. Watson, R. A. Friesner, |
+  |  "Quantum chemical package Jaguar: A survey of recent developments     |
+  |  and unique features", J. Chem. Phys. 161, 052502 (2024).              |
+  |  DOI: 10.1063/5.0213317                                                |
+  +------------------------------------------------------------------------+
+  
+  start of program pre
+  
+  Job name: bq_Q_sp_gas
+  Executables used: /opt/schrodinger2026-2/jaguar-v13.2/bin/Linux-x86_64
+  Temporary files : /scratch/khossossi/jobs/d85c8993-d386-11f1-8a78-e454e8665817
+  Basis file : using default basis file from /opt/schrodinger2026-2
+  Maestro file (input):  bq_Q_sp_gas.mae
+  Maestro file (output): bq_Q_sp_gas.01.mae
+  
+  Input file comments:
+   entry_name: bq_Q_sp_gas
+   
+  
+ Contents of input file: &gen and (if present) &atomic sections only
+ ----------------Contents start----------------
+&gen
+dftname=B3LYP-D3
+basis=def2-TZVPD
+igeopt=0
+molchg=0
+multip=1
+&
+ -----------------Contents end-----------------
+ 
+  basis set:               def2-tzvpd                      
+  net molecular charge:    0
+  multiplicity:            1
+  
+  Using up to   4 threads per process
+  
+  number of basis functions....          338
+  
+ Input geometry:
+                                   angstroms
+  atom               x                 y                 z
+  O1            0.0000000000      0.0000000000      2.6544842619 
+  C1            0.0000000000      0.0000000000      1.4297492664 
+  C2            0.0000000000      1.2694321803      0.6685973912 
+  C3            0.0000000000      1.2694321803     -0.6685973912 
+  C4            0.0000000000      0.0000000000     -1.4297492664 
+  O2            0.0000000000      0.0000000000     -2.6544842619 
+  C5            0.0000000000     -1.2694321803     -0.6685973912 
+  C6            0.0000000000     -1.2694321803      0.6685973912 
+  H1            0.0000000000      2.1835113538      1.2523242797 
+  H2            0.0000000000      2.1835113538     -1.2523242797 
+  H3            0.0000000000     -2.1835113538     -1.2523242797 
+  H4            0.0000000000     -2.1835113538      1.2523242797 
+   
+  principal moments of inertia:
+        amu*angstrom^2:                96.57010               302.24933               398.81944
+                g*cm^2:          1.60358411E-38          5.01896759E-38          6.62255171E-38
+   
+  rotational constants:
+               cm^(-1):      0.17456364      0.05577392      0.04226883
+                   GHz:      5.23328632      1.67205997      1.26718751
+   
+  Molecular weight:     108.02 amu
+   
+  Stoichiometry: C6H4O2
+  Molecular Point Group: D2h     
+	Molecule translated to center of mass 
+	Molecule reoriented along symmetry axes
+  Point Group used: D2h
+  
+  
+ Symmetrized geometry:
+                                   angstroms
+  atom               x                 y                 z
+  O1            0.0000000000      0.0000000000      2.6544842619 
+  C1            0.0000000000      0.0000000000      1.4297492664 
+  C2            0.0000000000      1.2694321803      0.6685973912 
+  C3            0.0000000000      1.2694321803     -0.6685973912 
+  C4            0.0000000000      0.0000000000     -1.4297492664 
+  O2            0.0000000000      0.0000000000     -2.6544842619 
+  C5            0.0000000000     -1.2694321803     -0.6685973912 
+  C6            0.0000000000     -1.2694321803      0.6685973912 
+  H1            0.0000000000      2.1835113538      1.2523242797 
+  H2            0.0000000000      2.1835113538     -1.2523242797 
+  H3            0.0000000000     -2.1835113538     -1.2523242797 
+  H4            0.0000000000     -2.1835113538      1.2523242797 
+   
+  nuclear repulsion energy.......           323.134996430 hartrees
+ 
+ Non-default options chosen:
+   SCF calculation type: DFT(b3lyp-d3)               
+   DFT=Becke_3_Parameter/HF+Slater+Becke88+VWN+LYP (B3LYP-D3)
+   Q will be computed as needed for coarse grid
+   Q will be computed as needed for medium grid
+   Q will be computed as needed for ultrafine grid
+   Q will be computed as needed for gradient grid
+  
+ Temporary integer options set:
+     73=  2
+  
+  end of program pre
+   
+ Time(pre)  user:       3.145  user+sys:       3.145  wallclock:       0.798
+  
+  start of program onee
+  
+  smallest eigenvalue of S:    8.388E-07
+  number of canonical orbitals.....          308
+  end of program onee
+   
+ Time(onee)  user:       0.955  user+sys:       0.955  wallclock:       0.249
+  
+  start of program hfig
+  
+  initial wavefunction generated automatically from atomic wavefunctions
+ 
+  Irreducible     Total no   No of occupied orbitals 
+  representation  orbitals   Shell_1  Shell_2    ...
+  Ag                61          8
+  B1g               22          1
+  B2g               30          2
+  B3g               41          3
+  Au                21          0
+  B1u               57          7
+  B2u               45          5
+  B3u               31          2
+  ------------------------
+  Orbital occupation/shell    1.000
+ 
+  end of program hfig
+   
+ Time(hfig)  user:       3.424  user+sys:       3.424  wallclock:       2.548
+  
+  start of program probe
+  
+  end of program probe
+   
+ Time(probe)  user:       0.656  user+sys:       0.656  wallclock:       0.168
+  
+  start of program grid
+  
+   grid     grid set  grid #  grid sym
+  ------    --------  ------  --------
+  coarse        0        0        1
+  medium        2        1        8
+  fine          0        0        1
+  ultrafine     4        2        8
+  charge        0        0        1
+  gradient      4        2        8
+  density       0        0        1
+  DFT-fine    -11        3        8
+  DFT-med.    -10        4        8
+  DFT-grad    -12        5        8
+  DFT-der2      0        0        1
+  DFT-cphf      0        0        1
+  LMP2-enrg     4        2        8
+  LMP2-grad     2        1        8
+  DFT-cphf2     0        0        1
+  PBF-dens      0        0        1
+  plotting      0        0        1
+  Rel-grad    -17        0        1
+  Extreme       0        0        1
+  Extreme-G     0        0        1
+  
+  number of gridpoints: 
+                 total
+  grid # 1         698
+  grid # 2        1566
+  grid # 3        9450
+  grid # 4        4456
+  grid # 5        9918
+   
+  end of program grid
+   
+ Time(grid)  user:       0.861  user+sys:       0.861  wallclock:       0.221
+  
+  start of program rwr
+  
+  end of program rwr
+   
+ Time(rwr)  user:       2.024  user+sys:       2.024  wallclock:       0.532
+  
+  start of program scf
+  
+ number of electrons..........         56
+ number of alpha electrons....         28
+ number of beta electrons.....         28
+ number of orbitals, total....        308
+ number of doubly-occ'd orbs..         28
+ number of open shell orbs....          0
+ number of occupied orbitals..         28
+ number of virtual orbitals...        280
+ number of hamiltonians.......          1
+ number of shells.............          1
+ SCF type: DFT=Becke_3_Parameter/HF+Slater+Becke88+VWN+LYP (B3LYP-D3)
+ Energy computed using pseudospectral method.
+ Convergence Criteria:
+    Energy (econv):       5.00E-05
+    RMS density (dconv):  1.00E-04
+  
+       i  u  d  i  g                   
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+  WARNING : Population by symmetry has changed 
+etot    1  N  N  5  M    -379.84585804764           3.2E-03  2.0E-01
+  WARNING : Population by symmetry has changed 
+etot    2  Y  Y  6  M    -378.62114063842 -1.2E+00  3.9E-03  2.9E-01
+  WARNING : Population by symmetry has changed 
+etot    3  Y  Y  6  M    -379.01898522453  4.0E-01  2.5E-03  2.3E-01
+etot    4  N  Y  2  U    -381.43754872082  2.4E+00  9.0E-04  5.8E-02
+etot    5  Y  Y  6  M    -381.53516410662  9.8E-02  3.8E-04  3.8E-02
+etot    6  N  Y  2  U    -381.60424179677  6.9E-02  7.4E-05  7.2E-03
+etot    7  Y  Y  6  M    -381.60597494090  1.7E-03  2.2E-05  1.9E-03
+etot    8  N  Y  2  U    -381.60611179949  1.4E-04  6.8E-06  5.0E-04
+etot    9  N  N  2  U    -381.60612107205  9.3E-06  0.0E+00  0.0E+00
+ 
+  Computing the dispersion energy correction...
+  
+  
+ Energy components, in hartrees:
+   (A)  Nuclear repulsion............     323.13499643018
+   (E)  Total one-electron terms.....   -1157.68919170793
+   (I)  Total two-electron terms.....     452.94807420570
+   (J)    Coulomb....................     504.16378613976
+   (K)    Exchange+Correlation.......     -51.21571193406
+   (L)  Electronic energy............    -704.74111750223  (E+I)
+   (N0) D3 correction................      -0.00702418598
+   (N)  Total energy.................    -381.61314525802  (A+L+N0)
+   (O)  Gas phase energy.............    -381.61314525802
+  
+ SCFE: SCF energy: DFT(b3lyp-d3)      -381.61314525802 hartrees   iterations:   9
+  
+ 
+ HOMO energy:    -0.28523
+ LUMO energy:    -0.14360
+ 
+  Orbital energies (hartrees)/symmetry label: 
+   -19.14810 Ag        -19.14808 B1u       -10.29176 B1u       -10.29174 Ag     
+   -10.22404 B2u       -10.22402 Ag        -10.22315 B3g       -10.22315 B1u    
+    -1.07082 Ag         -1.06862 B1u        -0.87410 Ag         -0.80604 B2u    
+    -0.71814 B1u        -0.65320 B3g        -0.61963 Ag         -0.52862 B2u    
+    -0.51997 Ag         -0.49716 B1u        -0.47762 B2u        -0.45729 B3u    
+    -0.45195 B1u        -0.43282 Ag         -0.42309 B2g        -0.41390 B3g    
+    -0.32059 B3u        -0.31840 B1g        -0.29340 B2u        -0.28523 B3g    
+    -0.14360 B2g        -0.04569 Au         -0.01275 B3u         0.00062 Ag     
+     0.02044 B2u         0.03322 B1u         0.04145 Ag          0.05990 B3u    
+     0.06550 B2g         0.06641 B3g    
+ 
+  end of program scf
+   
+ Time(scf)  user:      40.830  user+sys:      40.830  wallclock:      11.144
+
+ Total cpu seconds     user:      49.404   user+sys:      49.404
+  
+ Total elapsed time:    20 seconds
+
+Job bq_Q_sp_gas completed on rs4.differ.nl at Thu Oct 29 11:52:57 2026

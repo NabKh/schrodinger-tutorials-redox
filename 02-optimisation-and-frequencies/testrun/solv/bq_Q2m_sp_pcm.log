@@ -1,0 +1,90 @@
+
+--------------------------------------------------------------------------------
+JobId          : d01de4be-d386-11f1-a2ba-e454e8665817
+Name           : bq_Q2m_sp_pcm
+Program        : Jaguar
+ClientVersion  : 2026-2 build 125
+Host           : D-6QP7G03
+Dir            : C:\Users\khossossi\schrodinger-tutorials-redox\02-optimisation-and-frequencies\results\solv
+HostEntry      : cpurs4
+JobHost        : rs4.differ.nl
+JobDir         : /scratch/khossossi/jobs/d01de4be-d386-11f1-a2ba-e454e8665817
+JobSchrodinger : /opt/schrodinger2026-2
+Commandline    : C:\Program Files\Schrodinger2026-2\jaguar.exe run bq_Q2m_sp_pcm.in -HOST cpurs4 -PARALLEL 4
+StartTime      : 2026-10-29-11:52:22
+Version        : 2026-2 build 125
+--------------------------------------------------------------------------------
+
+mmshare : 0081fc11b9a5c0238c64103940c810e7237b86bf
+jaguar-src : 3661799996b617cab0dd845f7945f9aa1fcded36
+epik-src : eb2f04bfa5d377af105844461338435d3de2ce5c
+impact-src : f3569fc6e286733c6cf5ccd5315dea49d71165a7
+macromodel-src : 2ef174ddc7115c1a158115bf5578e88c9752da36
+
+Contents of /scratch/khossossi/jobs/d01de4be-d386-11f1-a2ba-e454e8665817:
+/scratch/khossossi/jobs/d01de4be-d386-11f1-a2ba-e454e8665817/supv-stdout-d01de4be-d386-11f1-a2ba-e454e8665817.log
+/scratch/khossossi/jobs/d01de4be-d386-11f1-a2ba-e454e8665817/d01de4be-d386-11f1-a2ba-e454e8665817-sysinfo.json
+/scratch/khossossi/jobs/d01de4be-d386-11f1-a2ba-e454e8665817/.d01de4be-d386-11f1-a2ba-e454e8665817-job-supervisor-access
+/scratch/khossossi/jobs/d01de4be-d386-11f1-a2ba-e454e8665817/memory.json
+/scratch/khossossi/jobs/d01de4be-d386-11f1-a2ba-e454e8665817/mpiNodefile.956668054
+/scratch/khossossi/jobs/d01de4be-d386-11f1-a2ba-e454e8665817/bq_Q2m_sp_pcm.log
+/scratch/khossossi/jobs/d01de4be-d386-11f1-a2ba-e454e8665817/.d01de4be-d386-11f1-a2ba-e454e8665817-job-server-config
+/scratch/khossossi/jobs/d01de4be-d386-11f1-a2ba-e454e8665817/bq_Q2m_sp_pcm.recover
+/scratch/khossossi/jobs/d01de4be-d386-11f1-a2ba-e454e8665817/supv-d01de4be-d386-11f1-a2ba-e454e8665817.log
+/scratch/khossossi/jobs/d01de4be-d386-11f1-a2ba-e454e8665817/supv-stderr-d01de4be-d386-11f1-a2ba-e454e8665817.log
+/scratch/khossossi/jobs/d01de4be-d386-11f1-a2ba-e454e8665817/.write_dir.json
+/scratch/khossossi/jobs/d01de4be-d386-11f1-a2ba-e454e8665817/bq_Q2m_sp_pcm.in
+
+Executing subprocess:
+/opt/schrodinger2026-2/jaguar-v13.2/bin/Linux-x86_64/jexec bq_Q2m_sp_pcm.in -T 4 -out /scratch/khossossi/jobs/d01de4be-d386-11f1-a2ba-e454e8665817 -cwd
+
+Stacksize hard limit = unlimited
+Job bq_Q2m_sp_pcm started on rs4.differ.nl at Thu Oct 29 11:52:24 2026
+jobid: d01de4be-d386-11f1-a2ba-e454e8665817 
+Jaguar version 13.2, release 125
+ Using up to   4 threads per process
+Molecular Point Group: D2h     
+Point Group used: D2h
+pre (input checking) done.
+onee (1-electron integrals) done.
+hfig (HF initial guess) done.
+probe (project orbitals) done.
+grid (grid generation) done.
+rwr (Q operators) done.
+scf type: DFT=Becke_3_Parameter/HF+Slater+Becke88+VWN+LYP (B3LYP-D3)
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  5  M    -380.18286042448           5.2E-02  2.3E-01
+etot    2  Y  Y  6  M    -375.95139005308 -4.2E+00  5.2E-02  3.7E-01
+etot    3  Y  Y  6  M    -379.94152849529  4.0E+00  1.5E-03  1.9E-01
+etot    4  N  Y  2  U    -381.30683044191  1.4E+00  9.7E-04  8.2E-02
+etot    5  Y  Y  6  M    -381.45210763896  1.5E-01  6.0E-04  5.2E-02
+etot    6  N  Y  2  U    -381.55871872918  1.1E-01  2.5E-04  6.5E-03
+etot    7  Y  Y  6  M    -381.56075748230  2.0E-03  6.5E-05  2.8E-03
+etot    8  Y  Y  6  M    -381.56114564141  3.9E-04  2.0E-05  1.3E-03
+etot    9  N  N  2  U    -381.56115776392  1.2E-05  0.0E+00  0.0E+00
+  
+solvation phase SCF calculation with PCM ...
+scf type: DFT=Becke_3_Parameter/HF+Slater+Becke88+VWN+LYP (B3LYP-D3)
+  
+       i  u  d  i  g
+       t  p  i  c  r                                 RMS    maximum
+       e  d  i  u  i                       energy  density   DIIS  
+       r  t  s  t  d       total energy    change  change    error 
+  
+etot    1  N  N  5  M    -381.88025640878           6.3E-04  8.7E-03
+etot    2  Y  Y  6  M    -381.88541604924  5.2E-03  1.0E-04  6.8E-03
+etot    3  N  Y  2  U    -381.88649022715  1.1E-03  1.4E-04  2.8E-03
+etot    4  Y  Y  6  M    -381.88673444357  2.4E-04  5.5E-05  1.4E-03
+etot    5  Y  Y  6  M    -381.88679346217  5.9E-05  3.3E-05  4.8E-04
+etot    6  N  N  2  U    -381.88679347895  1.7E-08  0.0E+00  0.0E+00
+scf (DFT) done.
+ch (properties) done.
+post (output conversion) done.
+Job bq_Q2m_sp_pcm completed on rs4.differ.nl at Thu Oct 29 11:52:50 2026
+Timer (jaguar_backend.py) : 27.17 secs
+Finished:   Thu Oct 29 11:52:51 2026
